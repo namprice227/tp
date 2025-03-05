@@ -17,7 +17,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/itsapaulblem)]
 
-* Role: Project Advisor
+* Role: Documentation 
+* Responsibilities: Responsible for the quality of various project documents
 
 ### Mustafa Abbas
 
@@ -27,6 +28,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Scheduling and Tracker
 * Responsibilities: In charge of scheduling, assigning tasks
+
+=======
+### Nguyen Dinh Nam
+
+<img src="images/namprice227.png" width="200px">
+
+* Role: Scheduling and Tracker
+* Responsibilities: In charge of scheduling, assigning tasks
+
+[[github](https://github.com/namprice227)]
 
 ### Johnny Doe
 
@@ -56,3 +67,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+
+### Zenn Saw
+
