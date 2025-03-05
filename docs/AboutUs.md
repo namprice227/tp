@@ -13,48 +13,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Paul Cheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/itsapaulblem.png" width="200px">
 
 [[github](https://github.com/itsapaulblem)]
 
-* Role: Documentation
+* Role: Documentation 
 * Responsibilities: Responsible for the quality of various project documents
 
-### Jane Doe
+### Nguyen Dinh Nam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/namprice227.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/namprice227)]
 
 * Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
 * Responsibilities: UI
