@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Paul Cheng
 
-<img src="docs/images/itsapaulblem.png" width="200px">
+<img src="images/itsapaulblem.png" width="200px">
 
 [[github](https://github.com/itsapaulblem)]
 
