@@ -31,14 +31,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Clarabelle Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/clarabellelim.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/clarabellelim)] 
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Deliverables and Deadlines 
+* Responsibilities: Ensure project deliverables are done on time and in the right format.
 
 ### Jean Doe
 
