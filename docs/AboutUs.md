@@ -11,11 +11,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Paul Cheng
+
+<img src="images/itsapaulblem.png" width="200px">
+
+[[github](https://github.com/itsapaulblem)]
+
+* Role: Documentation 
+* Responsibilities: Responsible for the quality of various project documents
+
 ### Nguyen Dinh Nam
 
 <img src="images/namprice227.png" width="200px">
 
-[[github](http://github.com/namprice227)]
+[[github](https://github.com/namprice227)]
 
-* Role: Testing
-* Responsibilities: Testing codes and makes sure code has no bugs
+* Role: Team Lead
+* Responsibilities: UI
