@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Paul Cheng
 
 <img src="images/johndoe.png" width="200px">
 
@@ -19,7 +19,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Documentation
+* Responsibilities: Responsible for the quality of various project documents
 
 ### Jane Doe
 
