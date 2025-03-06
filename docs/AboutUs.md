@@ -11,22 +11,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Paul Cheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/itsapaulblem.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/itsapaulblem)]
 
-* Role: Project Advisor
+* Role: Documentation 
+* Responsibilities: Responsible for the quality of various project documents
 
-### Jane Doe
+### Nguyen Dinh Nam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/namprice227.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/namprice227)]
 
 * Role: Team Lead
 * Responsibilities: UI
@@ -59,3 +57,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+
+### Zenn Saw
+

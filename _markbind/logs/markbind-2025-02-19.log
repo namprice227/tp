@@ -1,0 +1,19 @@
+2025-02-19T12:25:51.199Z - error: No config file found in parent directories of C:\Users\User\tp
+2025-02-19T12:25:51.204Z - error: uncaughtException: The "path" argument must be of type string. Received undefined date=Wed Feb 19 2025 20:25:51 GMT+0800 (Singapore Standard Time), pid=23260, uid=null, gid=null, cwd=C:\Users\User\tp, execPath=C:\Program Files\nodejs\node.exe, version=v22.14.0, argv=[C:\Program Files\nodejs\node.exe, C:\Users\User\AppData\Roaming\npm\node_modules\markbind-cli\index.js, serve], rss=93102080, heapTotal=65028096, heapUsed=36339920, external=2395592, arrayBuffers=16875, loadavg=[0, 0, 0], uptime=214946.875
+TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at Object.join (node:path:478:7)
+    at serve (C:\Users\User\AppData\Roaming\npm\node_modules\markbind-cli\src\cmd\serve.js:57:27)
+    at Command.<anonymous> (C:\Users\User\AppData\Roaming\npm\node_modules\markbind-cli\index.js:62:5)
+    at Command.listener [as _actionHandler] (C:\Users\User\AppData\Roaming\npm\node_modules\markbind-cli\node_modules\commander\lib\command.js:488:17)
+    at C:\Users\User\AppData\Roaming\npm\node_modules\markbind-cli\node_modules\commander\lib\command.js:1227:65
+    at Command._chainOrCall (C:\Users\User\AppData\Roaming\npm\node_modules\markbind-cli\node_modules\commander\lib\command.js:1144:12)
+    at Command._parseCommand (C:\Users\User\AppData\Roaming\npm\node_modules\markbind-cli\node_modules\commander\lib\command.js:1227:27)
+    at Command._dispatchSubcommand (C:\Users\User\AppData\Roaming\npm\node_modules\markbind-cli\node_modules\commander\lib\command.js:1050:25)
+    at Command._parseCommand (C:\Users\User\AppData\Roaming\npm\node_modules\markbind-cli\node_modules\commander\lib\command.js:1193:19)
+    at Command.parse (C:\Users\User\AppData\Roaming\npm\node_modules\markbind-cli\node_modules\commander\lib\command.js:897:10)
+    at Object.<anonymous> (C:\Users\User\AppData\Roaming\npm\node_modules\markbind-cli\index.js:87:9)
+    at Module._compile (node:internal/modules/cjs/loader:1554:14)
+    at Object..js (node:internal/modules/cjs/loader:1706:10)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
