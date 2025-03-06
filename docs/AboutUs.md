@@ -20,14 +20,23 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Documentation 
 * Responsibilities: Responsible for the quality of various project documents
 
+### Mustafa Abbas
+
+<img src="images/mistyk786.png" width="200px">
+
+[[github](http://github.com/mistyk786)]
+
+* Role: Scheduling and Tracker
+* Responsibilities: In charge of scheduling, assigning tasks
+
 ### Nguyen Dinh Nam
 
 <img src="images/namprice227.png" width="200px">
 
 [[github](https://github.com/namprice227)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team leader
+* Responsibilities: Overseeing tasks and UI
 
 ### Zenn Saw
 
