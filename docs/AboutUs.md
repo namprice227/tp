@@ -11,6 +11,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Nguyen Dinh Nam
+
+<img src="images/namprice227.png" width="200px">
+
+[[github](https://github.com/namprice227)]
+
+* Role: Team Lead
+* Responsibilities: Oversee tasks and UI
+
 ### Paul Cheng
 
 <img src="images/itsapaulblem.png" width="200px">
@@ -20,6 +29,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Documentation 
 * Responsibilities: Responsible for the quality of various project documents
 
+
+### Clarabelle Lim
+
+<img src="images/clarabellelim.png" width="200px">
+
+[[github](http://github.com/clarabellelim)] 
+
+* Role: Deliverables and Deadlines 
+* Responsibilities: Ensure project deliverables are done on time and in the right format.
+
 ### Mustafa Abbas
 
 <img src="images/mistyk786.png" width="200px">
@@ -28,15 +47,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Scheduling and Tracker
 * Responsibilities: In charge of scheduling, assigning tasks
-
-### Nguyen Dinh Nam
-
-<img src="images/namprice227.png" width="200px">
-
-[[github](https://github.com/namprice227)]
-
-* Role: Team leader
-* Responsibilities: Overseeing tasks and UI
 
 ### Zenn Saw
 
