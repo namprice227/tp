@@ -29,44 +29,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Scheduling and Tracker
 * Responsibilities: In charge of scheduling, assigning tasks
 
-=======
 ### Nguyen Dinh Nam
 
 <img src="images/namprice227.png" width="200px">
 
-* Role: Scheduling and Tracker
-* Responsibilities: In charge of scheduling, assigning tasks
-
 [[github](https://github.com/namprice227)]
 
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: Team leader
+* Responsibilities: Overseeing tasks and UI
 
 ### Zenn Saw
 
+<img src="images/zenn345.png" width="200px">
+
+[[github](http://github.com/zenn345)]
+
+* Role: Testing
+* Responsibilities: Ensure testing of project is done
