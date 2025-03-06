@@ -11,6 +11,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Nguyen Dinh Nam
+
+<img src="images/namprice227.png" width="200px">
+
+[[github](https://github.com/namprice227)]
+
+* Role: Team Lead
+* Responsibilities: Oversee tasks and UI
+
 ### Paul Cheng
 
 <img src="images/itsapaulblem.png" width="200px">
@@ -20,14 +29,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Documentation 
 * Responsibilities: Responsible for the quality of various project documents
 
-### Nguyen Dinh Nam
-
-<img src="images/namprice227.png" width="200px">
-
-[[github](https://github.com/namprice227)]
-
-* Role: Team Lead
-* Responsibilities: UI
 
 ### Clarabelle Lim
 
@@ -38,25 +39,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Deliverables and Deadlines 
 * Responsibilities: Ensure project deliverables are done on time and in the right format.
 
-### Jean Doe
+### Mustafa Abbas
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mistyk786.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/mistyk786)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: Scheduling and Tracker
+* Responsibilities: In charge of scheduling, assigning tasks
 
 ### Zenn Saw
 
+<img src="images/zenn345.png" width="200px">
+
+[[github](http://github.com/zenn345)]
+
+* Role: Testing
+* Responsibilities: Ensure testing of project is done
