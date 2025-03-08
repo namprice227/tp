@@ -11,51 +11,48 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Nguyen Dinh Nam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/namprice227.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/namprice227)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Oversee tasks and UI
 
-### Johnny Doe
+### Paul Cheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/itsapaulblem.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/itsapaulblem)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Documentation 
+* Responsibilities: Responsible for the quality of various project documents
 
-### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
+### Clarabelle Lim
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/clarabellelim.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+[[github](http://github.com/clarabellelim)] 
 
-### James Doe
+* Role: Deliverables and Deadlines 
+* Responsibilities: Ensure project deliverables are done on time and in the right format.
 
-<img src="images/johndoe.png" width="200px">
+### Mustafa Abbas
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/mistyk786.png" width="200px">
 
-* Role: Developer
-* Responsibilities: UI
+[[github](http://github.com/mistyk786)]
+
+* Role: Scheduling and Tracker
+* Responsibilities: In charge of scheduling, assigning tasks
+
+### Zenn Saw
+
+<img src="images/zenn345.png" width="200px">
+
+[[github](http://github.com/zenn345)]
+
+* Role: Testing
+* Responsibilities: Ensure testing of project is done
