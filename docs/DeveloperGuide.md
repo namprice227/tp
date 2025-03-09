@@ -29,7 +29,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <puml src="diagrams/ArchitectureDiagram.puml" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The **Architecture Diagram** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -272,73 +272,204 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: \
+Healthcare administrators in clinics
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+**Value proposition**: \
+HealthSync allows healthcare staff to efficiently organize patient details and key contacts in one unified platform. 
+With quick access to updated information, administrators can easily connect with medical staff and patients' families, ensuring smooth communication and 
+prompt action, especially when managing recovery progress and treatment schedules. 
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
-
-### User stories
+### User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                                   | So that I can…​                                                                                    |
+|----------|--------------------------------------------|----------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| `* * *`  | healthcare administrator                   | quickly locate patient emergency contacts                      | promptly notify their next of kin in life-threatening medical situations                           |
+| `* * *`  | healthcare administrator                   | accurately upload and store hospital patients' contact details | ensure their information is reliably available for communication and record-keeping                |
+| `* * *`  | healthcare professional                    | quickly identify a patient's diseases and all                  | understand the patient’s condition and give better advice                                          |
+| `* * *`  | new user                                   | have sample data to work with                                  | understand how to use the application                                                              |
+| `* * *`  | healthcare administrator                   | efficiently update and manage patient schedules                | ensure that doctor’s schedules are efficiently maintained and there is no overlap between patients |
+| `* *`    | healthcare administrator                   | undo the last operation                                        | recover from unintentional modifications or deletions                                              |
+| `* *`    | healthcare administrator                   | redo the last undone operation                                 | reverse an undo operation if it was done in error                                                  |
+| `*`      | user with many persons in the address book | sort persons by name                                           | locate a person easily                                                                             |
+| `* * *`  | healthcare administrator                   | identify patient’s allergies by tags                           | give appropriate medicines and prevent any cases of malpractice                                    |
 
-*{More to be added}*
 
-### Use cases
+### Use Cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `HealthSync` and the **Actor** is the `Healthcare Administrator`, unless specified otherwise.)
 
-**Use case: Delete a person**
+---
 
-**MSS**
+#### **UC01 - Add Patient**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator chooses to add a new patient.
+2. HealthSync requests patient details.
+3. Healthcare Administrator enters the requested details.
+4. HealthSync asks the Healthcare Administrator to confirm the addition.
+5. Healthcare Administrator confirms the addition details.
+6. HealthSync successfully adds the patient.
+7. Use case ends.
 
-    Use case ends.
+**Extensions:**
+- **3a.** Healthcare Administrator enters incomplete or invalid details.
+    - **3a1.** HealthSync highlights the errors and requests corrections.
+    - **3a2.** Healthcare Administrator provides corrected details.
+    - Steps **3a1-3a2** are repeated until all details are valid.
+    - Use case resumes from step **4**.
+- **3b.** A patient with the same unique identifier (e.g., National ID, Patient ID) already exists.
+    - **3b1.** HealthSync notifies the Healthcare Administrator of the duplication.
+    - **3b2.** Healthcare Administrator can choose to:
+        - Update the existing record (transition to **UC02 - Edit Patient Details**).
+        - Cancel the addition (Use case ends).
+- **3c.** Healthcare Administrator chooses to assign an emergency contact while adding a patient.
+    - **3c1.** HealthSync requests emergency contact details.
+    - **3c2.** Healthcare Administrator provides emergency contact details.
+    - Use case resumes from step **5**.
+- **4a.** Healthcare Administrator chooses to cancel the operation.
+    - **4a1.** Healthcare Administrator confirms the cancellation.
+    - Use case ends.
 
-**Extensions**
+---
 
-* 2a. The list is empty.
+#### **UC02 - Edit Patient Details**
 
-  Use case ends.
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator requests to edit a patient’s details.
+2. HealthSync prompts the user to enter the following details:
+    - Index of the patient to be edited.
+    - New information for the field to be updated.
+3. Healthcare Administrator inputs the new information.
+4. HealthSync asks for confirmation.
+5. Healthcare Administrator confirms the edit.
+6. HealthSync updates the patient’s details successfully.
+7. Use case ends.
 
-* 3a. The given index is invalid.
+**Extensions:**
+- **2a.** The given index is invalid (out of range).
+    - **2a1.** HealthSync informs the user of the invalid index.
+    - Use case resumes from step **2**.
+- **2b.** The entered details are invalid (e.g., phone number contains letters).
+    - **2b1.** HealthSync displays an error message.
+    - **2b2.** Healthcare Administrator corrects the details and resubmits.
+    - Use case resumes from step **2**.
+- **6a.** Healthcare Administrator chooses to cancel the edit.
+    - **6a1.** Healthcare Administrator confirms the cancellation.
+    - Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+---
 
-      Use case resumes at step 2.
+#### **UC03 - Delete a Patient**
 
-*{More to be added}*
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator requests to delete a patient’s contact.
+2. HealthSync prompts the user to enter the index of the patient to be deleted.
+3. Healthcare Administrator provides the patient index.
+4. HealthSync asks for confirmation.
+5. Healthcare Administrator confirms the deletion.
+6. HealthSync deletes the patient’s contact from the system.
+7. HealthSync confirms successful deletion.
+8. Use case ends.
+
+**Extensions:**
+- **2a.** The given index is invalid (out of range or does not exist).
+    - **2a1.** HealthSync informs the user of the invalid index.
+    - Use case resumes from step **2**.
+- **4a.** Healthcare Administrator cancels the deletion.
+    - **4a1.** HealthSync aborts the deletion process.
+    - Use case ends.
+
+---
+
+#### **UC04 - Update Patient Schedule**
+
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator requests to update a patient’s schedule.
+2. HealthSync prompts the user to enter:
+    - Patient identifier (e.g., index, name, or ID).
+    - New or modified schedule details (e.g., appointment date, time, doctor, location).
+3. Healthcare Administrator inputs the updated schedule.
+4. HealthSync asks for confirmation.
+5. Healthcare Administrator confirms the update.
+6. HealthSync updates the patient’s schedule successfully.
+7. Use case ends.
+
+**Extensions:**
+- **2a.** The provided patient identifier is invalid.
+    - **2a1.** HealthSync informs the user.
+    - Use case resumes from step **2**.
+- **2b.** The entered schedule details are invalid (e.g., overlapping appointments, incorrect format).
+    - **2b1.** HealthSync displays an error message.
+    - **2b2.** Healthcare Administrator corrects the details and resubmits.
+    - Use case resumes from step **2**.
+- **4a.** Healthcare Administrator chooses to cancel the update.
+    - **4a1.** Healthcare Administrator confirms the cancellation.
+    - Use case ends.
+
+---
+
+#### **UC05 - Add an Emergency Contact**
+
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator requests to add an emergency contact for a patient.
+2. HealthSync prompts the user to enter:
+    - Patient index.
+    - Emergency contact’s name.
+    - Emergency contact’s email.
+    - Emergency contact’s phone number.
+    - Emergency contact’s address.
+    - Relationship to the patient.
+3. Healthcare Administrator provides the details.
+4. HealthSync asks for confirmation.
+5. Healthcare Administrator confirms the addition.
+6. HealthSync adds the emergency contact to the patient’s record.
+7. HealthSync confirms successful addition.
+8. Use case ends.
+
+**Extensions:**
+- **2a.** The given patient index is invalid.
+    - **2a1.** HealthSync informs the user.
+    - Use case resumes from step **2**.
+- **2b.** The entered details are invalid.
+    - **2b1.** HealthSync displays an error message.
+    - **2b2.** User corrects the details and resubmits.
+    - Use case resumes from step **2**.
+- **4a.** Healthcare Administrator chooses to cancel the operation.
+    - **4a1.** Healthcare Administrator confirms the cancellation.
+    - Use case ends.
+
+---
+
+#### **UC06 - Sort Patients by Name**
+
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator requests to sort the list of patients by name.
+2. HealthSync prompts the user to choose the sorting order:
+    - Ascending (A-Z).
+    - Descending (Z-A).
+3. Healthcare Administrator selects the preferred sorting order.
+4. HealthSync asks for confirmation.
+5. Healthcare Administrator confirms the sorting.
+6. HealthSync sorts the patient list accordingly.
+7. HealthSync displays the sorted patient list.
+8. Use case ends.
+
+**Extensions:**
+- **4a.** Healthcare Administrator chooses to cancel the sorting request.
+    - **4a1.** HealthSync aborts the sorting process.
+    - Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+- Should work on any mainstream OS as long as it has **Java 17 or above** installed.
+- Should be able to handle up to **50 concurrent patients** without noticeable sluggishness in performance for typical use.
+- A user with **above-average typing speed** for regular English text (i.e., not code or system admin commands) should be able to accomplish most tasks **faster using commands than with the mouse**.
+- **HealthSync must comply with relevant healthcare data protection regulations**, such as **PDPA**.
+- The architecture should support **modular extensions**, allowing for additional features (e.g., appointment scheduling, integration with electronic health records).
 
-*{More to be added}*
-
-### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
