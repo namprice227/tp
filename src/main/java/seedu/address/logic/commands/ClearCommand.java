@@ -11,12 +11,35 @@ import seedu.address.model.Model;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
+    public static final String COMMAND_WORD_ALT = "Clear";
+    public static final String MESSAGE_CONFIRMATION = "Are you sure you want to clear the address book? (y/n)";
+    public static final String MESSAGE_CANCELLED = "Clear command cancelled.";
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
 
+    private boolean needsConfirmation;
 
+    public ClearCommand() {
+        this.needsConfirmation = true;
+    }
+
+    /**
+     * Creates a clear command with confirmation status specified.
+     * @param needsConfirmation true if confirmation is needed, false if already confirmed
+     */
+    public ClearCommand(boolean needsConfirmation) {
+        this.needsConfirmation = needsConfirmation;
+    }
+
+    /**
+     * @param model {@code Model} which the command should operate on.
+     * @return
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        if (needsConfirmation) {
+            return new CommandResult(MESSAGE_CONFIRMATION, false, false, true);
+        }
         model.setAddressBook(new AddressBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }
