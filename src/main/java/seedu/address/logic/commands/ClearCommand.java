@@ -30,6 +30,14 @@ public class ClearCommand extends Command {
         this.needsConfirmation = needsConfirmation;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        ClearCommand that = (ClearCommand) obj;
+        return needsConfirmation == that.needsConfirmation;
+    }
+
     /**
      * @param model {@code Model} which the command should operate on.
      * @return
