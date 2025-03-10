@@ -525,3 +525,10 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Glossary**
+
+1. **Mainstream OS**: Windows, Linux, Unix, MacOS
+2. **Private contact detail**: A contact detail that is not meant to be shared with others
