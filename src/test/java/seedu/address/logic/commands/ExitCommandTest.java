@@ -13,8 +13,14 @@ public class ExitCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_exit_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
+    public void execute_exit_needsConfirmation() {
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false, null);
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    public void execute_exit_success() {
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false, null);
+        assertCommandSuccess(new ExitCommand(true), model, expectedCommandResult, expectedModel);
     }
 }

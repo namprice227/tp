@@ -15,6 +15,10 @@ public class ExitCommand extends Command {
 
     private final boolean isConfirmed;
 
+    public ExitCommand() {
+        this.isConfirmed = false;
+    }
+
     public ExitCommand(boolean isConfirmed) {
         this.isConfirmed = isConfirmed;
     }
@@ -24,7 +28,17 @@ public class ExitCommand extends Command {
         if (!isConfirmed) {
             return new CommandResult(CONFIRMATION_MESSAGE, false, false, true, CONFIRMATION_MESSAGE);
         }
-            return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
+            return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false, null);
+    }
+
+    public static ExitCommand parseConfirmation(String arguments) {
+        if (arguments.trim().equalsIgnoreCase("Y")) {
+            return new ExitCommand(true);
+        } else if (arguments.trim().equalsIgnoreCase("N")) {
+            return new ExitCommand(false);
+        } else {
+            return new ExitCommand(false);
+        }
     }
 
 }
