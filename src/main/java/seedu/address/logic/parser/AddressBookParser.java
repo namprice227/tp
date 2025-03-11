@@ -11,6 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -18,6 +19,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 
 /**
  * Parses user input.
@@ -29,6 +31,8 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
+
+    private boolean awaitingClearConfirmation = false;
 
     /**
      * Parses user input into command for execution.
@@ -51,6 +55,29 @@ public class AddressBookParser {
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
+        // Handle confirmation for clear command
+        if (awaitingClearConfirmation) {
+            awaitingClearConfirmation = false; // Reset state
+
+            if (commandWord.equalsIgnoreCase("y") || commandWord.equalsIgnoreCase("Y")) {
+                return new ClearCommand(false); // Confirmed, no need for further confirmation
+            } else if (commandWord.equalsIgnoreCase("n") || commandWord.equalsIgnoreCase("N")) {
+                return new Command() {
+                    @Override
+                    public CommandResult execute(seedu.address.model.Model model) {
+                        return new CommandResult(ClearCommand.MESSAGE_CANCELLED);
+                    }
+                };
+            } else {
+                return new Command() {
+                    @Override
+                    public CommandResult execute(Model model) {
+                        return new CommandResult("Invalid response. " + ClearCommand.MESSAGE_CANCELLED);
+                    }
+                };
+            }
+        }
+
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -63,7 +90,9 @@ public class AddressBookParser {
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case ClearCommand.COMMAND_WORD_ALT:
+            awaitingClearConfirmation = true;
+            return new ClearCommand(true);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
@@ -83,4 +112,10 @@ public class AddressBookParser {
         }
     }
 
+    /**
+     * Resets the confirmation state.
+     */
+    public void resetConfirmationState() {
+        awaitingClearConfirmation = false;
+    }
 }
