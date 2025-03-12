@@ -34,11 +34,8 @@ public class AddressBookParser {
 
     private boolean awaitingClearConfirmation = false;
 
-<<<<<<< HEAD
-=======
     private boolean awaitingExitConfirmation = false;
 
->>>>>>> d61821b5 (Fix Exit Command)
     /**
      * Parses user input into command for execution.
      *
