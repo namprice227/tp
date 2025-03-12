@@ -60,7 +60,7 @@ public class AddressBookParser {
         if (awaitingExitConfirmation) {
             awaitingExitConfirmation = false;
             if (commandWord.equalsIgnoreCase("Y")) {
-                return new ExitCommand(true);  //Proceed with exit
+                return new ExitCommand(true); // Proceed with exit
             } else if (commandWord.equalsIgnoreCase("N")) {
                 return new ExitCommand(false);
             } else {
