@@ -20,17 +20,15 @@ public class CommandResult {
     private final boolean exit;
 
     private final boolean requiresConfirmation;
-    private final String confirmationMessage;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean requiresConfirmation, String confirmationMessage) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean requiresConfirmation) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.requiresConfirmation = requiresConfirmation;
-        this.confirmationMessage = confirmationMessage;
     }
 
     /**
@@ -38,7 +36,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, null);
+        this(feedbackToUser, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -55,10 +53,6 @@ public class CommandResult {
 
     public boolean isRequiresConfirmation() {
         return requiresConfirmation;
-    }
-
-    public String getConfirmationMessage() {
-        return confirmationMessage;
     }
 
     public boolean requiresConfirmation() {
@@ -79,14 +73,12 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
-                && requiresConfirmation == otherCommandResult.requiresConfirmation
-                && Objects.equals(confirmationMessage, otherCommandResult.confirmationMessage);
                 && requiresConfirmation == otherCommandResult.requiresConfirmation;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, requiresConfirmation, confirmationMessage);
+        return Objects.hash(feedbackToUser, showHelp, exit, requiresConfirmation);
     }
 
     @Override
@@ -96,7 +88,6 @@ public class CommandResult {
                 .add("showHelp", showHelp)
                 .add("exit", exit)
                 .add("requiresConfirmation", requiresConfirmation)
-                .add("confirmationMessage", confirmationMessage)
                 .toString();
     }
 

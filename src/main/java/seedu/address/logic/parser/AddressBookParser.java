@@ -11,6 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -18,6 +19,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 
 /**
  * Parses user input.
@@ -32,6 +34,11 @@ public class AddressBookParser {
 
     private boolean awaitingClearConfirmation = false;
 
+<<<<<<< HEAD
+=======
+    private boolean awaitingExitConfirmation = false;
+
+>>>>>>> d61821b5 (Fix Exit Command)
     /**
      * Parses user input into command for execution.
      *
@@ -52,6 +59,23 @@ public class AddressBookParser {
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
+
+        if (awaitingExitConfirmation) {
+            awaitingExitConfirmation = false;
+            if (commandWord.equalsIgnoreCase("Y")) {
+                return new ExitCommand(true);  // Proceed with exit
+            } else if (commandWord.equalsIgnoreCase("N")) {
+                return new ExitCommand(false);
+            } else {
+                return new Command() {
+                    @Override
+                    public CommandResult execute(Model model) {
+                        return new CommandResult("Invalid response. " + ExitCommand.EXIT_CANCELLED);
+                    }
+                };
+            }
+        }
+
 
         switch (commandWord) {
 
@@ -75,7 +99,8 @@ public class AddressBookParser {
 
         case ExitCommand.COMMAND_WORD:
             case ExitCommand.COMMAND_WORD_ALTERNATIVE:
-            return ExitCommand.parseConfirmation(arguments);
+                awaitingExitConfirmation = true;
+                return new ExitCommand(false);
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
