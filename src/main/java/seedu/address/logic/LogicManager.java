@@ -3,6 +3,7 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -33,6 +34,8 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final AddressBookParser addressBookParser;
 
+    private Optional<Command> pendingCommand = Optional.empty();
+
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
@@ -45,11 +48,17 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
+        Command command;
+        if (pendingCommand.isPresent()) {
+            return handleConfirmation(commandText);
+        }
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
+        if (commandResult.requiresConfirmation()) {
+            pendingCommand = Optional.of(command); // Store command for next execution
+        }
         try {
             storage.saveAddressBook(model.getAddressBook());
         } catch (AccessDeniedException e) {
@@ -60,6 +69,36 @@ public class LogicManager implements Logic {
 
         return commandResult;
     }
+
+    /**
+     * Handles user input when a confirmation command is pending.
+     */
+    private CommandResult handleConfirmation(String userInput) throws CommandException {
+        if (userInput.equalsIgnoreCase("y")) {
+            Command confirmedCommand = pendingCommand.get();
+            pendingCommand = Optional.empty(); // Reset state
+            CommandResult result = confirmedCommand.execute(model);
+            saveData();
+            return result;
+        } else {
+            pendingCommand = Optional.empty(); // Reset state
+            return new CommandResult("Command cancelled");
+        }
+    }
+
+    /**
+     * Saves data to storage, handling any potential errors.
+     */
+    private void saveData() throws CommandException {
+        try {
+            storage.saveAddressBook(model.getAddressBook());
+        } catch (AccessDeniedException e) {
+            throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
+        } catch (IOException ioe) {
+            throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
+        }
+    }
+
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
