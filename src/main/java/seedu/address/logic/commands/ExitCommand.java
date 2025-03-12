@@ -28,14 +28,6 @@ public class ExitCommand extends Command {
         if (!isConfirmed) {
             return new CommandResult(CONFIRMATION_MESSAGE, false, false, true);
         }
-            return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false);
-    }
-
-    public static ExitCommand parseConfirmation(String arguments) {
-        if (arguments.trim().equalsIgnoreCase("Y")) {
-            return new ExitCommand(true);
-        } else {
-            return new ExitCommand(false);
-        }
+        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false);
     }
 }

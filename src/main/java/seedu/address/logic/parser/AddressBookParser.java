@@ -60,7 +60,7 @@ public class AddressBookParser {
         if (awaitingExitConfirmation) {
             awaitingExitConfirmation = false;
             if (commandWord.equalsIgnoreCase("Y")) {
-                return new ExitCommand(true);  // Proceed with exit
+                return new ExitCommand(true);  //Proceed with exit
             } else if (commandWord.equalsIgnoreCase("N")) {
                 return new ExitCommand(false);
             } else {
@@ -95,9 +95,9 @@ public class AddressBookParser {
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
-            case ExitCommand.COMMAND_WORD_ALTERNATIVE:
-                awaitingExitConfirmation = true;
-                return new ExitCommand(false);
+        case ExitCommand.COMMAND_WORD_ALTERNATIVE:
+            awaitingExitConfirmation = true;
+            return new ExitCommand(false);
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
