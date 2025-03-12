@@ -64,12 +64,7 @@ public class AddressBookParser {
             } else if (commandWord.equalsIgnoreCase("N")) {
                 return new ExitCommand(false);
             } else {
-                return new Command() {
-                    @Override
-                    public CommandResult execute(Model model) {
-                        return new CommandResult("Invalid response. " + ExitCommand.EXIT_CANCELLED);
-                    }
-                };
+                return new ExitCommand();
             }
         }
 
