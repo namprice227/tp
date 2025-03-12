@@ -65,6 +65,7 @@ public class CommandResultTest {
                 + commandResult.getFeedbackToUser() + ", showHelp=" + commandResult.isShowHelp()
                 + ", exit=" + commandResult.isExit()
                 + ", requiresConfirmation=" + commandResult.requiresConfirmation() + "}";
+                + ", exit=" + commandResult.isExit() + ", requiresConfirmation=" + commandResult.isRequiresConfirmation() + "}";
         assertEquals(expected, commandResult.toString());
     }
 }
