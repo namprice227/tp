@@ -39,6 +39,7 @@ public class ExitCommand extends Command {
         } else {
             return new ExitCommand(false);
         }
+        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false);
     }
 
 }

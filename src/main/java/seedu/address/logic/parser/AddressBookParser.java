@@ -30,6 +30,8 @@ public class AddressBookParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
+    private boolean awaitingClearConfirmation = false;
+
     /**
      * Parses user input into command for execution.
      *
@@ -84,4 +86,10 @@ public class AddressBookParser {
         }
     }
 
+    /**
+     * Resets the confirmation state.
+     */
+    public void resetConfirmationState() {
+        awaitingClearConfirmation = false;
+    }
 }

@@ -61,6 +61,10 @@ public class CommandResult {
         return confirmationMessage;
     }
 
+    public boolean requiresConfirmation() {
+        return requiresConfirmation;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,16 +72,16 @@ public class CommandResult {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof CommandResult)) {
+        if (!(other instanceof CommandResult otherCommandResult)) {
             return false;
         }
 
-        CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
                 && requiresConfirmation == otherCommandResult.requiresConfirmation
                 && Objects.equals(confirmationMessage, otherCommandResult.confirmationMessage);
+                && requiresConfirmation == otherCommandResult.requiresConfirmation;
     }
 
     @Override
