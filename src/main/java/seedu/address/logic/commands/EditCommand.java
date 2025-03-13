@@ -129,6 +129,10 @@ public class EditCommand extends Command {
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
     }
 
+    public void setConfirmation(boolean confirmation) {
+        needsConfirmation = confirmation;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
