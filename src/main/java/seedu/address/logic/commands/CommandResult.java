@@ -51,10 +51,6 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isRequiresConfirmation() {
-        return requiresConfirmation;
-    }
-
     public boolean requiresConfirmation() {
         return requiresConfirmation;
     }

@@ -34,7 +34,6 @@ public class AddressBookParser {
 
     private boolean awaitingClearConfirmation = false;
 
-    private boolean awaitingExitConfirmation = false;
 
     /**
      * Parses user input into command for execution.
@@ -56,17 +55,6 @@ public class AddressBookParser {
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
-
-        if (awaitingExitConfirmation) {
-            awaitingExitConfirmation = false;
-            if (commandWord.equalsIgnoreCase("Y")) {
-                return new ExitCommand(true); // Proceed with exit
-            } else if (commandWord.equalsIgnoreCase("N")) {
-                return new ExitCommand(false);
-            } else {
-                return new ExitCommand();
-            }
-        }
 
 
         switch (commandWord) {
@@ -90,9 +78,7 @@ public class AddressBookParser {
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
-        case ExitCommand.COMMAND_WORD_ALTERNATIVE:
-            awaitingExitConfirmation = true;
-            return new ExitCommand(false);
+            return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
