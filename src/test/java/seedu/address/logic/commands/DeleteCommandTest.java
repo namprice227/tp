@@ -83,14 +83,15 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_confirmationRequired_showsConfirmationMessage() {
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+    public void execute_confirmationRequired_showsConfirmationMessage() throws CommandException {
+    DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+    
+    // Ensure command is in confirmation state
+    CommandResult result = deleteCommand.execute(model);
+    
+    assertEquals(DeleteCommand.MESSAGE_CONFIRMATION, result.getFeedbackToUser());
+}
 
-        // Ensure command is in confirmation state
-        deleteCommand.execute(model);
-
-        assertEquals(DeleteCommand.MESSAGE_CONFIRMATION, new DeleteCommand(INDEX_FIRST_PERSON).execute(model).getFeedbackToUser());
-    }
 
     @Test
     public void equals() {
