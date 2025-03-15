@@ -22,7 +22,6 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
         requireNonNull(args);
 
         String trimmedArgs = args.trim();
-
         // If user types "schedule -s", show the sorted schedule list
         if (trimmedArgs.equals("-s")) {
             return new ScheduleCommand();

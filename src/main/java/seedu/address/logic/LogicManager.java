@@ -105,6 +105,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Person> getFilteredScheduleList() {
+        return model.getFilteredScheduleList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
@@ -126,6 +131,6 @@ public class LogicManager implements Logic {
 
     @Override
     public boolean isScheduleView() {
-        return
+        return model.isScheduleView();
     }
 }
