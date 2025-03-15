@@ -54,6 +54,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the HealthSync";
     public static final String MESSAGE_CONFIRMATION = "Are you sure you want to edit this patient? (y/n)";
+    public static final String MESSAGE_NO_CHANGES = "No changes were made to the patient's information.";
+
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -87,6 +89,11 @@ public class EditCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+
+        // Check if the edited person is exactly the same as the original person
+        if (personToEdit.equals(editedPerson)) {
+            throw new CommandException(MESSAGE_NO_CHANGES);
+        }
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
