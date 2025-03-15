@@ -18,30 +18,42 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the person identified by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_CONFIRMATION = "Are you sure you want to delete this patient? (y/n)";
 
     private final Index targetIndex;
+    private Person personToDelete;
+    private boolean needsConfirmation;
 
     public DeleteCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
+
         this.targetIndex = targetIndex;
+        this.needsConfirmation = true;
+
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (needsConfirmation) {
+            needsConfirmation = false;
+            return new CommandResult(MESSAGE_CONFIRMATION, false, false, true);
+        }
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
+
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 
@@ -52,11 +64,10 @@ public class DeleteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteCommand otherDeleteCommand)) {
             return false;
         }
 
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
         return targetIndex.equals(otherDeleteCommand.targetIndex);
     }
 
