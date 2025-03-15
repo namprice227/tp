@@ -84,13 +84,13 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_confirmationRequired_showsConfirmationMessage() throws CommandException {
-    DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
     
-    // Ensure command is in confirmation state
-    CommandResult result = deleteCommand.execute(model);
+        // Ensure command is in confirmation state
+        CommandResult result = deleteCommand.execute(model);
     
-    assertEquals(DeleteCommand.MESSAGE_CONFIRMATION, result.getFeedbackToUser());
-}
+        assertEquals(DeleteCommand.MESSAGE_CONFIRMATION, result.getFeedbackToUser());
+    }
 
 
     @Test
