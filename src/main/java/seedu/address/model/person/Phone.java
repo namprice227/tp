@@ -50,7 +50,7 @@ public class Phone {
         }
 
         Phone otherPhone = (Phone) other;
-        return value.equals(otherPhone.value);
+        return value.trim().equals(otherPhone.value.trim());
     }
 
     @Override
