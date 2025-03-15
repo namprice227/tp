@@ -2,10 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
@@ -24,6 +21,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private List<DateTime> dateTimeList;
 
     /**
      * Every field must be present and not null.
@@ -35,6 +33,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.dateTimeList = new ArrayList<>();
     }
 
     public Name getName() {
@@ -51,6 +50,12 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public List<DateTime> getDateTimeList() {return dateTimeList;}
+
+    public void addDateTime(DateTime dateTime) {
+        dateTimeList.add(dateTime);
     }
 
     /**

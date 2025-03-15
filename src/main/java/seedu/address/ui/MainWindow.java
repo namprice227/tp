@@ -50,6 +50,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    private boolean showScheduleMode = false;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -193,4 +195,10 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
+    public void showContactView() {
+        logic.showContactView();
+        personListPanel.refresh();
+    }
+
 }
