@@ -29,6 +29,11 @@ public class DeleteCommand extends Command {
     private Person personToDelete;
     private boolean needsConfirmation;
 
+    /**
+     * Constructs a DeleteCommand to delete the person at the specified index.
+     *
+     * @param targetIndex the index of the person to delete
+     */
     public DeleteCommand(Index targetIndex) {
         requireNonNull(targetIndex);
 
