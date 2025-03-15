@@ -161,6 +161,30 @@ Exits the program.
 
 Format: `exit`
 
+### Scheduling an Appointment : `schedule`
+
+Schedule the patient's next appointment. 
+
+Format: `schedule <patient_ID> DD-MM-YYYY HH:MM`
+
+Examples: 
+* `schedule 1 19-06-2025 10-30` Schedule an appointment for patient whose ID is 1.
+
+<box type="tip" seamless>
+
+**Tip:** `schedule -s` shows all the schedule ordered by date.
+</box>
+
+### Tracking Patient's Condition : `condition`
+
+Keep track of patient's illness and condtion by recording them.
+
+Format: `condition <patient_ID> <medical_condition>`
+
+Examples:
+* `condition 1 diabetes` Recorded that patientID 1 has diabetes.
+
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
