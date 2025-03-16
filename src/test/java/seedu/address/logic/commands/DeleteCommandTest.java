@@ -85,7 +85,6 @@ public class DeleteCommandTest {
     @Test
     public void execute_confirmationRequired_showsConfirmationMessage() {
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-    
         try {
             // Ensure command is in confirmation state
             CommandResult result = deleteCommand.execute(model);
