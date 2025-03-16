@@ -71,6 +71,10 @@ public class DeleteCommand extends Command {
         return targetIndex.equals(otherDeleteCommand.targetIndex);
     }
 
+    public void setConfirmation(boolean needsConfirmation) {
+        this.needsConfirmation = needsConfirmation;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
