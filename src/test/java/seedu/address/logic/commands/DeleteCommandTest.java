@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -31,14 +33,17 @@ public class DeleteCommandTest {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete));
+        String expectedMessage = String.format(
+                DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(personToDelete)
+        );
+
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
         deleteCommand.setConfirmation(false);
         assertCommandSuccess(deleteCommand, model, new CommandResult(expectedMessage), expectedModel);
     }
-
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
@@ -57,11 +62,13 @@ public class DeleteCommandTest {
         assertFalse(model.getFilteredPersonList().isEmpty());
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON); // No changes here
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         deleteCommand.setConfirmation(false);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+        String expectedMessage = String.format(
+                DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(personToDelete)
+        );
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -75,10 +82,9 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex); // No changes here
+        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
         deleteCommand.setConfirmation(false);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -89,10 +95,12 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
         try {
-            assertEquals(DeleteCommand.MESSAGE_CONFIRMATION, new DeleteCommand(INDEX_FIRST_PERSON)
-                    .execute(model).getFeedbackToUser());
+            assertEquals(
+                    DeleteCommand.MESSAGE_CONFIRMATION,
+                    new DeleteCommand(INDEX_FIRST_PERSON).execute(model).getFeedbackToUser()
+            );
         } catch (CommandException c) {
-            throw new AssertionError("Unexpected CommandException thrown",  c);
+            throw new AssertionError("Unexpected CommandException thrown", c);
         }
     }
 
@@ -101,20 +109,10 @@ public class DeleteCommandTest {
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
 
-        // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
-
-        // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
-
-        // different types -> returns false
+        assertTrue(deleteFirstCommand.equals(new DeleteCommand(INDEX_FIRST_PERSON)));
         assertFalse(deleteFirstCommand.equals(1));
-
-        // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
-
-        // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
@@ -131,7 +129,6 @@ public class DeleteCommandTest {
      */
     private void showNoPerson(Model model) {
         model.updateFilteredPersonList(p -> false);
-
         assertTrue(model.getFilteredPersonList().isEmpty());
     }
 }
