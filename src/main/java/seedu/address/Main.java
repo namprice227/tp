@@ -21,7 +21,6 @@ import seedu.address.commons.core.LogsCenter;
  * By having a separate main class (Main) that doesn't extend Application
  * to be the entry point of the application, we avoid this issue.
  */
-
 public class Main {
     private static Logger logger = LogsCenter.getLogger(Main.class);
 
