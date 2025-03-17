@@ -21,12 +21,6 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
     public ScheduleCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        String trimmedArgs = args.trim();
-        // If user types "schedule -s", show the sorted schedule list
-        if (trimmedArgs.equals("-s")) {
-            return new ScheduleCommand();
-        }
-
         String[] splitArgs = args.trim().split("\\s+");
 
         if (splitArgs.length < 3) {

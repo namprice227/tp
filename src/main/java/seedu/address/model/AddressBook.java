@@ -6,9 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniqueAppointmentList;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -18,7 +16,6 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueAppointmentList appointments;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,7 +26,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        appointments = new UniqueAppointmentList();
     }
 
     public AddressBook() {}
@@ -111,12 +107,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
-
-    @Override
-    public ObservableList<Appointment> getAppointmentList() {
-        return appointments.asUnmodifiableObservableList();
-    }
-
 
     @Override
     public boolean equals(Object other) {

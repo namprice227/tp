@@ -1,33 +1,32 @@
 package seedu.address.model.person;
 
 import java.util.Objects;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.DateTime;
 
 /**
  * Represents a Schedule in the address book.
  * Guarantees: details are present and not null.
  */
-public class Appointment {
-    private final Person person;
+public class Appointment implements Comparable<Appointment> {
     private final DateTime dateTime;
     private final String description;
 
     /**
      * Constructs a {@code Schedule}.
      *
-     * @param person The person associated with the schedule.
      * @param dateTime The date and time of the schedule.
      * @param description A brief description of the event.
      */
-    public Appointment(Person person, DateTime dateTime, String description) {
-        this.person = Objects.requireNonNull(person);
+    public Appointment(DateTime dateTime, String description) {
         this.dateTime = Objects.requireNonNull(dateTime);
         this.description = Objects.requireNonNull(description);
     }
 
-    public Person getPerson() {
-        return person;
+    /**
+     * Constructs a {@code Schedule}.
+     */
+    public Appointment() {
+        this.dateTime = null;
+        this.description = "";
     }
 
     public DateTime getDateTime() {
@@ -38,11 +37,8 @@ public class Appointment {
         return description;
     }
 
-    /**
-     * Returns a formatted string representation of the schedule.
-     */
-    public String getFormattedDetails() {
-        return String.format("%s - %s: %s", dateTime, person.getName(), description);
+    public int compareTo(Appointment other) {
+        return this.dateTime.compareTo(other.dateTime);
     }
 
     @Override
@@ -54,18 +50,19 @@ public class Appointment {
             return false;
         }
         Appointment otherAppointment = (Appointment) other;
-        return person.equals(otherAppointment.person)
-                && dateTime.equals(otherAppointment.dateTime)
-                && description.equals(otherAppointment.description);
+        return dateTime.equals(otherAppointment.dateTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(person, dateTime, description);
+        return Objects.hash(dateTime, description);
     }
 
     @Override
     public String toString() {
-        return getFormattedDetails();
+        if (dateTime == null) {
+            return "";
+        }
+        return dateTime.toString();
     }
 }

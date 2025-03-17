@@ -11,40 +11,46 @@ import seedu.address.model.Model;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Person;
 
-public class ScheduleCommand extends Command{
+/**
+ * Represents a command to schedule an appointment for a person in the address book.
+ */
+public class ScheduleCommand extends Command {
     public static final String COMMAND_WORD = "schedule";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a schedule to the schedule list.\n"
-            + "Parameters: INDEX (must be a positive integer)"
+            + "Parameters: INDEX (must be a positive integer) "
             + "DD-MM-YYYY HH:MM\n";
+
     public static final String MESSAGE_SUCCESS = "New schedule added";
     public static final String MESSAGE_SHOW_SCHEDULE = "Show schedule";
-    public static final String MESSAGE_INVALID_DATETIME = ""
-            + "The format should be schedule DD-MM-YYYY HH:MM";
+    public static final String MESSAGE_INVALID_DATETIME =
+            "The format should be schedule DD-MM-YYYY HH:MM";
+
     private final Index index;
     private DateTime dateTime;
-    private final boolean showAllSchedules; // Flag to show all schedules
 
-
+    /**
+     * Constructs a {@code ScheduleCommand} to schedule an appointment for a specific person.
+     *
+     * @param index The index of the person in the filtered person list.
+     * @param dateTime The appointment date and time.
+     */
     public ScheduleCommand(Index index, DateTime dateTime) {
         this.index = index;
         this.dateTime = dateTime;
-        this.showAllSchedules = false;
     }
 
-    public ScheduleCommand() {
-        this.index = null;
-        this.dateTime = null;
-        this.showAllSchedules = true;
-    }
-
+    /**
+     * Executes the schedule command by adding an appointment to a selected person.
+     *
+     * @param model The model which maintains the list of persons and appointments.
+     * @return A CommandResult indicating the outcome of execution.
+     * @throws CommandException If the provided index is out of bounds.
+     */
+    @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (this.showAllSchedules) {
-            model.showScheduleView();
-            return new CommandResult(MESSAGE_SHOW_SCHEDULE);
-        }
 
         List<Person> lastShownList = model.getFilteredPersonList();
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -52,8 +58,15 @@ public class ScheduleCommand extends Command{
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        personToEdit.addDateTime(dateTime);
-        model.updateFilteredPersonList(p -> true);;
+        System.out.println(dateTime);
+        System.out.println(index);
+
+        // Create an updated person instance with the new appointment
+        Person editedPerson = personToEdit.withAppointment(dateTime);
+
+        // Update the model with the edited person
+        model.setPerson(personToEdit, editedPerson);
+
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
