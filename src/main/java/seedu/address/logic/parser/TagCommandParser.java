@@ -26,7 +26,14 @@ public class TagCommandParser implements Parser<TagCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
         }
 
+        // Check if the only argument provided is a valid index and there are no tags
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        if (argMultimap.getAllValues(PREFIX_ALLERGY).isEmpty() &&
+                argMultimap.getAllValues(PREFIX_CONDITION).isEmpty() &&
+                argMultimap.getAllValues(PREFIX_INSURANCE).isEmpty()) {
+            throw new ParseException("Error: Tags must be provided when adding a tag.");
+        }
+
         Set<Tag> allergies = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ALLERGY));
         Set<Tag> conditions = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CONDITION));
         Set<Tag> insurances = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_INSURANCE));
