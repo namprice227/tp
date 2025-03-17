@@ -24,7 +24,8 @@ public class TagCommand extends Command {
 
   public static final String COMMAND_WORD = "tag";
 
-  public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds different types of tags to an existing patient in HealthSync.\n"
+  public static final String MESSAGE_USAGE = COMMAND_WORD
+          + ": Adds different types of tags to an existing patient in HealthSync.\n"
           + "Parameters: "
           + "INDEX (must be a positive integer) "
           + "[" + PREFIX_ALLERGY + "ALLERGY]... "
@@ -34,7 +35,6 @@ public class TagCommand extends Command {
           + PREFIX_ALLERGY + "peanuts "
           + PREFIX_CONDITION + "asthma "
           + PREFIX_INSURANCE + "medisave";
-
   public static final String MESSAGE_SUCCESS = "Tags added to patient: %1$s";
   public static final String MESSAGE_DUPLICATE_TAGS = "Some tags are already in the patient's tag list";
 
