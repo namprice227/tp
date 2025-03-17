@@ -17,19 +17,19 @@ import seedu.address.model.tag.Tag;
  */
 public class TagCommandParser implements Parser<TagCommand> {
 
-  @Override
-  public TagCommand parse(String args) throws ParseException {
-    ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ALLERGY, PREFIX_CONDITION, PREFIX_INSURANCE);
+    @Override
+    public TagCommand parse(String args) throws ParseException {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ALLERGY, PREFIX_CONDITION, PREFIX_INSURANCE);
 
-    if (argMultimap.getPreamble().isEmpty()) {
-      throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
+        }
+
+        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        Set<Tag> allergies = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ALLERGY));
+        Set<Tag> conditions = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CONDITION));
+        Set<Tag> insurances = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_INSURANCE));
+
+        return new TagCommand(index, allergies, conditions, insurances);
     }
-
-    Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-    Set<Tag> allergies = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ALLERGY));
-    Set<Tag> conditions = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CONDITION));
-    Set<Tag> insurances = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_INSURANCE));
-
-    return new TagCommand(index, allergies, conditions, insurances);
-  }
 }

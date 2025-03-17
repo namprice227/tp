@@ -11,8 +11,8 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -22,9 +22,8 @@ import seedu.address.model.tag.Tag;
  */
 public class TagCommand extends Command {
 
-  public static final String COMMAND_WORD = "tag";
-
-  public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String COMMAND_WORD = "tag";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
           + ": Adds different types of tags to an existing patient in HealthSync.\n"
           + "Parameters: "
           + "INDEX (must be a positive integer) "
@@ -35,81 +34,81 @@ public class TagCommand extends Command {
           + PREFIX_ALLERGY + "peanuts "
           + PREFIX_CONDITION + "asthma "
           + PREFIX_INSURANCE + "medisave";
-  public static final String MESSAGE_SUCCESS = "Tags added to patient: %1$s";
-  public static final String MESSAGE_DUPLICATE_TAGS = "Some tags are already in the patient's tag list";
+    public static final String MESSAGE_SUCCESS = "Tags added to patient: %1$s";
+    public static final String MESSAGE_DUPLICATE_TAGS = "Some tags are already in the patient's tag list";
 
-  private final Index targetIndex;
-  private final Set<Tag> allergies;
-  private final Set<Tag> conditions;
-  private final Set<Tag> insurances;
+    private final Index targetIndex;
+    private final Set<Tag> allergies;
+    private final Set<Tag> conditions;
+    private final Set<Tag> insurances;
 
-  /**
-   * Creates a TagCommand to add the specified tags to the person at the specified index.
-   */
-  public TagCommand(Index targetIndex, Set<Tag> allergies, Set<Tag> conditions, Set<Tag> insurances) {
-    requireNonNull(targetIndex);
-    requireNonNull(allergies);
-    requireNonNull(conditions);
-    requireNonNull(insurances);
+    /**
+     * Creates a TagCommand to add the specified tags to the person at the specified index.
+     */
+    public TagCommand(Index targetIndex, Set<Tag> allergies, Set<Tag> conditions, Set<Tag> insurances) {
+        requireNonNull(targetIndex);
+        requireNonNull(allergies);
+        requireNonNull(conditions);
+        requireNonNull(insurances);
 
-    this.targetIndex = targetIndex;
-    this.allergies = allergies;
-    this.conditions = conditions;
-    this.insurances = insurances;
-  }
-
-  @Override
-  public CommandResult execute(Model model) throws CommandException {
-    requireNonNull(model);
-
-    List<Person> lastShownList = model.getFilteredPersonList();
-
-    if (targetIndex.getZeroBased() >= lastShownList.size()) {
-      throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        this.targetIndex = targetIndex;
+        this.allergies = allergies;
+        this.conditions = conditions;
+        this.insurances = insurances;
     }
 
-    Person personToTag = lastShownList.get(targetIndex.getZeroBased());
-    Set<Tag> allTags = mergeTags();
-    Person updatedPerson = model.addTagsToPerson(personToTag, allTags);
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
 
-    return new CommandResult(String.format(MESSAGE_SUCCESS, seedu.address.logic.Messages.format(updatedPerson)));
-  }
+        List<Person> lastShownList = model.getFilteredPersonList();
 
-  /**
-   * Combines all tag categories into one set.
-   */
-  private Set<Tag> mergeTags() {
-    Set<Tag> allTags = new HashSet<>();
-    allTags.addAll(allergies);
-    allTags.addAll(conditions);
-    allTags.addAll(insurances);
-    return allTags;
-  }
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
 
-  @Override
-  public boolean equals(Object other) {
-    if (other == this) {
-      return true;
+        Person personToTag = lastShownList.get(targetIndex.getZeroBased());
+        Set<Tag> allTags = mergeTags();
+        Person updatedPerson = model.addTagsToPerson(personToTag, allTags);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, seedu.address.logic.Messages.format(updatedPerson)));
     }
 
-    if (!(other instanceof TagCommand)) {
-      return false;
+    /**
+     * Combines all tag categories into one set.
+     */
+    private Set<Tag> mergeTags() {
+        Set<Tag> allTags = new HashSet<>();
+        allTags.addAll(allergies);
+        allTags.addAll(conditions);
+        allTags.addAll(insurances);
+        return allTags;
     }
 
-    TagCommand otherTagCommand = (TagCommand) other;
-    return targetIndex.equals(otherTagCommand.targetIndex)
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof TagCommand)) {
+            return false;
+        }
+
+        TagCommand otherTagCommand = (TagCommand) other;
+        return targetIndex.equals(otherTagCommand.targetIndex)
             && allergies.equals(otherTagCommand.allergies)
             && conditions.equals(otherTagCommand.conditions)
             && insurances.equals(otherTagCommand.insurances);
-  }
+    }
 
-  @Override
-  public String toString() {
-    return new ToStringBuilder(this)
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
             .add("targetIndex", targetIndex)
             .add("allergies", allergies)
             .add("conditions", conditions)
             .add("insurances", insurances)
             .toString();
-  }
+    }
 }
