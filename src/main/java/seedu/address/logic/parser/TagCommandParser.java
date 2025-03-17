@@ -19,7 +19,8 @@ public class TagCommandParser implements Parser<TagCommand> {
 
     @Override
     public TagCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ALLERGY, PREFIX_CONDITION, PREFIX_INSURANCE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ALLERGY,
+                PREFIX_CONDITION, PREFIX_INSURANCE);
 
         if (argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
