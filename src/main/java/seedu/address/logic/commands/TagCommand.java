@@ -5,9 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -79,8 +79,11 @@ public class TagCommand extends Command {
    * Combines all tag categories into one set.
    */
   private Set<Tag> mergeTags() {
-    return Set.copyOf(allergies).stream()
-            .collect(Collectors.toSet());
+    Set<Tag> allTags = new HashSet<>();
+    allTags.addAll(allergies);
+    allTags.addAll(conditions);
+    allTags.addAll(insurances);
+    return allTags;
   }
 
   @Override
