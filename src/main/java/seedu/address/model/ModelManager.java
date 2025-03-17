@@ -12,7 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
-import seedu.address.model.schedule.Schedule;
+import seedu.address.model.person.Appointment;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,7 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Schedule> filteredSchedules;
+    private final FilteredList<Appointment> filteredAppointments;
     private boolean showScheduleMode = false;
 
 
@@ -38,7 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredSchedules = new FilteredList<>(this.schedules.
+        this.filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
     }
 
     public ModelManager() {
@@ -128,8 +128,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Person> getFilteredScheduleList() {
-        return filteredSchedules;
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
     }
 
     @Override

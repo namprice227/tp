@@ -1,4 +1,4 @@
-package seedu.address.model.schedule;
+package seedu.address.model.person;
 
 import java.util.Objects;
 import seedu.address.model.person.Person;
@@ -8,7 +8,7 @@ import seedu.address.model.person.DateTime;
  * Represents a Schedule in the address book.
  * Guarantees: details are present and not null.
  */
-public class Schedule {
+public class Appointment {
     private final Person person;
     private final DateTime dateTime;
     private final String description;
@@ -20,7 +20,7 @@ public class Schedule {
      * @param dateTime The date and time of the schedule.
      * @param description A brief description of the event.
      */
-    public Schedule(Person person, DateTime dateTime, String description) {
+    public Appointment(Person person, DateTime dateTime, String description) {
         this.person = Objects.requireNonNull(person);
         this.dateTime = Objects.requireNonNull(dateTime);
         this.description = Objects.requireNonNull(description);
@@ -50,13 +50,13 @@ public class Schedule {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof Schedule)) {
+        if (!(other instanceof Appointment)) {
             return false;
         }
-        Schedule otherSchedule = (Schedule) other;
-        return person.equals(otherSchedule.person)
-                && dateTime.equals(otherSchedule.dateTime)
-                && description.equals(otherSchedule.description);
+        Appointment otherAppointment = (Appointment) other;
+        return person.equals(otherAppointment.person)
+                && dateTime.equals(otherAppointment.dateTime)
+                && description.equals(otherAppointment.description);
     }
 
     @Override

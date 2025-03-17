@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -78,7 +79,7 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
-    ObservableList<Person> getFilteredScheduleList();
+    ObservableList<Appointment> getFilteredAppointmentList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
