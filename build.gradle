@@ -44,6 +44,11 @@ dependencies {
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '17.0.7'
 
+    implementation "org.openjfx:javafx-controls:17.0.7:mac-aarch64"
+    implementation "org.openjfx:javafx-fxml:17.0.7:mac-aarch64"
+    implementation "org.openjfx:javafx-graphics:17.0.7:mac-aarch64"
+    implementation "org.openjfx:javafx-base:17.0.7:mac-aarch64"
+
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'
