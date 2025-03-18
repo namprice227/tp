@@ -276,9 +276,9 @@ _{Explain here how the data archiving feature will be implemented}_
 Healthcare administrators in clinics
 
 **Value proposition**: \
-HealthSync allows healthcare staff to efficiently organize patient details and key contacts in one unified platform. 
-With quick access to updated information, administrators can easily connect with medical staff and patients' families, ensuring smooth communication and 
-prompt action, especially when managing recovery progress and treatment schedules. 
+HealthSync allows healthcare staff to efficiently organize patient details and key contacts in one unified platform.
+With quick access to updated information, administrators can easily connect with medical staff and patients' families, ensuring smooth communication and
+prompt action, especially when managing recovery progress and treatment schedules.
 
 ### User Stories
 

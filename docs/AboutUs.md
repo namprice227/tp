@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/itsapaulblem)]
 
-* Role: Documentation 
+* Role: Documentation
 * Responsibilities: Responsible for the quality of various project documents
 
 
@@ -34,9 +34,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/clarabellelim.png" width="200px">
 
-[[github](http://github.com/clarabellelim)] 
+[[github](http://github.com/clarabellelim)]
 
-* Role: Deliverables and Deadlines 
+* Role: Deliverables and Deadlines
 * Responsibilities: Ensure project deliverables are done on time and in the right format.
 
 ### Mustafa Abbas

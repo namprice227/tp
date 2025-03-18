@@ -163,11 +163,11 @@ Format: `exit`
 
 ### Scheduling an Appointment : `schedule`
 
-Schedule the patient's next appointment. 
+Schedule the patient's next appointment.
 
 Format: `schedule <patient_ID> DD-MM-YYYY HH:MM`
 
-Examples: 
+Examples:
 * `schedule 1 19-06-2025 10:30` Schedule an appointment for patient whose ID is 1.
 
 <box type="tip" seamless>

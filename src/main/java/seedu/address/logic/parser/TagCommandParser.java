@@ -1,0 +1,43 @@
+package seedu.address.logic.parser;
+
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE;
+
+import java.util.Set;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.Tag;
+
+/**
+ * Parses input arguments and creates a new TagCommand object
+ */
+public class TagCommandParser implements Parser<TagCommand> {
+
+    @Override
+    public TagCommand parse(String args) throws ParseException {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ALLERGY,
+                PREFIX_CONDITION, PREFIX_INSURANCE);
+
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
+        }
+
+        // Check if the only argument provided is a valid index and there are no tags
+        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        if (argMultimap.getAllValues(PREFIX_ALLERGY).isEmpty()
+                && argMultimap.getAllValues(PREFIX_CONDITION).isEmpty()
+                && argMultimap.getAllValues(PREFIX_INSURANCE).isEmpty()) {
+            throw new ParseException("Error: Tags must be provided when adding a tag.");
+        }
+
+        Set<Tag> allergies = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ALLERGY));
+        Set<Tag> conditions = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CONDITION));
+        Set<Tag> insurances = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_INSURANCE));
+
+        return new TagCommand(index, allergies, conditions, insurances);
+    }
+}
