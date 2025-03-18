@@ -243,5 +243,11 @@ public class EditCommand extends Command {
                     && Objects.equals(address, otherDescriptor.address)
                     && Objects.equals(tags, otherDescriptor.tags);
         }
+
+        @Override
+        public String toString() {
+            return "EditPersonDescriptor{name=" + name + ", phone=" + phone + ", email=" + email +
+                ", address=" + address + ", tags=" + tags + "}";
+        }
     }
 }

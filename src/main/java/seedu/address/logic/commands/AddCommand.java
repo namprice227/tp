@@ -63,7 +63,8 @@ public class AddCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        //if (!(other instanceof AddCommand)) {
+        if (other == null || getClass() != other.getClass()) {
             return false;
         }
 
