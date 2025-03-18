@@ -246,8 +246,8 @@ public class EditCommand extends Command {
 
         @Override
         public String toString() {
-            return "EditPersonDescriptor{name=" + name + ", phone=" + phone + ", email=" + email +
-                ", address=" + address + ", tags=" + tags + "}";
+            return "EditPersonDescriptor{name=" + name + ", phone=" + phone + ", email=" + email
+                + ", address=" + address + ", tags=" + tags + "}";
         }
     }
 }
