@@ -50,7 +50,11 @@ public class Appointment implements Comparable<Appointment> {
             return false;
         }
         Appointment otherAppointment = (Appointment) other;
-        return dateTime.equals(otherAppointment.dateTime);
+        if (dateTime == null && otherAppointment.dateTime == null) {
+            return true;
+        }
+
+        return dateTime != null && dateTime.equals(otherAppointment.dateTime);
     }
 
     @Override
