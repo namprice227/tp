@@ -87,11 +87,11 @@ public class Person {
         return this;
     }
 
-    public Appointment getAppointment () {
+    public Appointment getAppointment() {
         return appointment;
     }
 
-    public boolean hasAppointment () {
+    public boolean hasAppointment() {
         return appointment != null;
     }
 
@@ -102,8 +102,7 @@ public class Person {
      * @param dateTime The date and time of the appointment.
      * @return A new {@code Person} instance with the updated appointment.
      */
-
-    public Person withAppointment (DateTime dateTime){
+    public Person withAppointment(DateTime dateTime) {
         Appointment newAppointment = new Appointment(dateTime, "");
         return new Person(name, phone, email, address, tags, newAppointment);
     }
@@ -112,7 +111,7 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags () {
+    public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
 
@@ -120,7 +119,7 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson (Person otherPerson){
+    public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
             return true;
         }
@@ -135,7 +134,7 @@ public class Person {
      * This defines a stronger notion of equality between two persons.
      */
     @Override
-    public boolean equals (Object other){
+    public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
@@ -156,13 +155,13 @@ public class Person {
     }
 
     @Override
-    public int hashCode () {
+    public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags, emergencyContact);
     }
 
     @Override
-    public String toString () {
+    public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
                 .add("phone", phone)
