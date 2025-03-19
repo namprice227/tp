@@ -13,7 +13,7 @@ public class AppointmentTest {
 
     @Test
     public void testGetters() {
-        DateTime dt = new DateTime("18-03-2025 10:00");
+        DateTime dt = new DateTime("18-03-2026 10:00");
         Appointment appointment = new Appointment(dt, "Meeting");
         assertEquals(dt, appointment.getDateTime());
         assertEquals("Meeting", appointment.getDescription());
@@ -21,8 +21,8 @@ public class AppointmentTest {
 
     @Test
     public void testCompareTo() {
-        DateTime dt1 = new DateTime("18-03-2025 10:00");
-        DateTime dt2 = new DateTime("18-03-2025 11:00");
+        DateTime dt1 = new DateTime("18-03-2026 10:00");
+        DateTime dt2 = new DateTime("18-03-2026 11:00");
         Appointment appointment1 = new Appointment(dt1, "Meeting");
         Appointment appointment2 = new Appointment(dt2, "Lunch");
 
@@ -38,13 +38,13 @@ public class AppointmentTest {
 
     @Test
     public void testEquals() {
-        DateTime dt1 = new DateTime("18-03-2025 10:00");
+        DateTime dt1 = new DateTime("18-03-2026 10:00");
         Appointment appointment1 = new Appointment(dt1, "Meeting");
         Appointment appointment2 = new Appointment(dt1, "Another Meeting");
         // equals is based solely on dateTime (with a special case for both being null)
         assertEquals(appointment1, appointment2);
 
-        DateTime dt2 = new DateTime("18-03-2025 11:00");
+        DateTime dt2 = new DateTime("18-03-2026 11:00");
         Appointment appointment3 = new Appointment(dt2, "Meeting");
         assertNotEquals(appointment1, appointment3);
 
@@ -56,7 +56,7 @@ public class AppointmentTest {
 
     @Test
     public void testToString() {
-        DateTime dt = new DateTime("18-03-2025 10:00");
+        DateTime dt = new DateTime("18-03-2026 10:00");
         Appointment appointment = new Appointment(dt, "Meeting");
         // toString() should delegate to DateTime's toString() if dateTime is not null.
         assertEquals(dt.toString(), appointment.toString());
