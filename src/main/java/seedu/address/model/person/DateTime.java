@@ -34,6 +34,7 @@ public class DateTime implements Comparable<DateTime> {
 
     /**
      * Returns true if a given string is a valid date-time.
+     * @param test A string that contains that is supposed to be in format dd-MM-yyyy HH:mm
      */
     public static boolean isValidDateTime(String test) {
         try {
