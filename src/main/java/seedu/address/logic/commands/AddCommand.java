@@ -6,13 +6,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.util.Objects;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-import java.util.Objects;
 
 /**
  * Adds a person to the address book.
@@ -66,7 +67,6 @@ public class AddCommand extends Command {
 
         // instanceof handles nulls
         if (!(other instanceof AddCommand)) {
-        //if (other == null || getClass() != other.getClass()) {
             return false;
         }
 
