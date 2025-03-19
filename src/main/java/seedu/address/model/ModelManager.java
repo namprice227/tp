@@ -124,7 +124,7 @@ public class ModelManager implements Model {
         requireAllNonNull(person, emergencyPerson);
         Person updatedPerson = person.setEmergencyContact(emergencyPerson);
     }
-    
+
     //=========== Tag Command Methods ========================================================================
 
     @Override
