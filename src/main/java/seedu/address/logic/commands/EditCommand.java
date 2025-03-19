@@ -219,7 +219,7 @@ public class EditCommand extends Command {
         }
 
         public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+            this.tags = (tags != null) ? new HashSet<>(tags) : new HashSet<>();
         }
 
         public Optional<Set<Tag>> getTags() {

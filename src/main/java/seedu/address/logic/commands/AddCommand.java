@@ -12,6 +12,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+import java.util.Objects;
+
 /**
  * Adds a person to the address book.
  */
@@ -63,14 +65,20 @@ public class AddCommand extends Command {
         }
 
         // instanceof handles nulls
-        //if (!(other instanceof AddCommand)) {
-        if (other == null || getClass() != other.getClass()) {
+        if (!(other instanceof AddCommand)) {
+        //if (other == null || getClass() != other.getClass()) {
             return false;
         }
 
         AddCommand otherAddCommand = (AddCommand) other;
         return toAdd.equals(otherAddCommand.toAdd);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(toAdd);
+    }
+
 
     @Override
     public String toString() {
