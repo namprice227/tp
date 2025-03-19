@@ -24,9 +24,30 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Appointment appointment;
 
     /**
      * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Appointment appointment) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.appointment = appointment;
+    }
+
+    /**
+     * Constructs a {@code Person} with all specified details, including an appointment.
+     *
+     * @param name The person's name.
+     * @param phone The person's phone number.
+     * @param email The person's email address.
+     * @param address The person's home address.
+     * @param tags The set of tags associated with the person.
+     * @param appointment The appointment associated with the person.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -35,6 +56,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.appointment = new Appointment();
     }
 
     public Name getName() {
@@ -51,6 +73,27 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Appointment getAppointment() {
+        return appointment;
+    }
+
+    public boolean hasAppointment() {
+        return appointment != null;
+    }
+
+    /**
+     * Returns a new {@code Person} instance with the given appointment date and time.
+     * The existing person's details remain unchanged, ensuring immutability.
+     *
+     * @param dateTime The date and time of the appointment.
+     * @return A new {@code Person} instance with the updated appointment.
+     */
+
+    public Person withAppointment(DateTime dateTime) {
+        Appointment newAppointment = new Appointment(dateTime, "");
+        return new Person(name, phone, email, address, tags, newAppointment);
     }
 
     /**
@@ -70,8 +113,9 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail()) && otherPerson.getName().equals(getName());
+        return otherPerson != null && otherPerson.getName().equals(getName())
+                && (otherPerson.getPhone().equals(getPhone())
+                || otherPerson.getEmail().equals(getEmail()));
     }
 
     /**
@@ -96,6 +140,9 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address);
         //&& tags.equals(otherPerson.tags);
+                && address.equals(otherPerson.address)
+                && tags.equals(otherPerson.tags)
+                && Objects.equals(appointment, otherPerson.appointment);
     }
 
     @Override
