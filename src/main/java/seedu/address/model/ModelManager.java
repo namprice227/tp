@@ -120,7 +120,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Person addEmergencyContactToPerson(Person person, EmergencyPerson emergencyPerson) {
+    public void addEmergencyContactToPerson(Person person, EmergencyPerson emergencyPerson) {
         requireAllNonNull(person, emergencyPerson);
         Person updatedPerson = person.setEmergencyContact(emergencyPerson);
     }

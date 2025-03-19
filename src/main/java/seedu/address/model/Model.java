@@ -77,7 +77,7 @@ public interface Model {
     /**
      * Add emergency contact to the given person {@code Person} with {@code emergencyPerson}.
      */
-    Person addEmergencyContactToPerson(Person person, EmergencyPerson emergencyPerson);
+    void addEmergencyContactToPerson(Person person, EmergencyPerson emergencyPerson);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

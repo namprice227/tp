@@ -26,7 +26,7 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private EmergencyPerson emergencyContact;
 
-    private Appointment appointment;
+    private final Appointment appointment;
 
 
     /**
@@ -45,12 +45,11 @@ public class Person {
     /**
      * Constructs a {@code Person} with all specified details, including an appointment.
      *
-     * @param name The person's name.
-     * @param phone The person's phone number.
-     * @param email The person's email address.
+     * @param name    The person's name.
+     * @param phone   The person's phone number.
+     * @param email   The person's email address.
      * @param address The person's home address.
-     * @param tags The set of tags associated with the person.
-     * @param appointment The appointment associated with the person.
+     * @param tags    The set of tags associated with the person.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -79,17 +78,20 @@ public class Person {
         return address;
     }
 
-    public EmergencyPerson getEmergencyContact() { return emergencyContact; }
+    public EmergencyPerson getEmergencyContact() {
+        return emergencyContact;
+    }
 
     public Person setEmergencyContact(EmergencyPerson emergencyContact) {
         this.emergencyContact = emergencyContact;
         return this;
+    }
 
-    public Appointment getAppointment() {
+    public Appointment getAppointment () {
         return appointment;
     }
 
-    public boolean hasAppointment() {
+    public boolean hasAppointment () {
         return appointment != null;
     }
 
@@ -101,7 +103,7 @@ public class Person {
      * @return A new {@code Person} instance with the updated appointment.
      */
 
-    public Person withAppointment(DateTime dateTime) {
+    public Person withAppointment (DateTime dateTime){
         Appointment newAppointment = new Appointment(dateTime, "");
         return new Person(name, phone, email, address, tags, newAppointment);
     }
@@ -110,7 +112,7 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
+    public Set<Tag> getTags () {
         return Collections.unmodifiableSet(tags);
     }
 
@@ -118,7 +120,7 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
+    public boolean isSamePerson (Person otherPerson){
         if (otherPerson == this) {
             return true;
         }
@@ -133,7 +135,7 @@ public class Person {
      * This defines a stronger notion of equality between two persons.
      */
     @Override
-    public boolean equals(Object other) {
+    public boolean equals (Object other){
         if (other == this) {
             return true;
         }
@@ -149,18 +151,18 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && emergencyContact.equals(otherPerson.emergencyContact);
+                && emergencyContact.equals(otherPerson.emergencyContact)
                 && Objects.equals(appointment, otherPerson.appointment);
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode () {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags, emergencyContact);
     }
 
     @Override
-    public String toString() {
+    public String toString () {
         return new ToStringBuilder(this)
                 .add("name", name)
                 .add("phone", phone)
