@@ -163,11 +163,11 @@ Format: `exit`
 
 ### Scheduling an Appointment : `schedule`
 
-Schedule the patient's next appointment. 
+Schedule the patient's next appointment.
 
 Format: `schedule <patient_ID> DD-MM-YYYY HH:MM`
 
-Examples: 
+Examples:
 * `schedule 1 19-06-2025 10:30` Schedule an appointment for patient whose ID is 1.
 
 <box type="tip" seamless>
@@ -175,9 +175,18 @@ Examples:
 **Tip:** `schedule -s` shows all the schedule ordered by date.
 </box>
 
+### Switching between modes : `contact`
+
+Allows you to switch from schedule mode to normal contact mode.
+
+Format: `contact`
+
+Examples:
+* `contact` Brings you from the scheduling page to the contact page.
+
 ### Tracking Patient's Condition : `condition`
 
-Keep track of patient's illness and condtion by recording them.
+Keep track of patient's illness and condition by recording them.
 
 Format: `condition <patient_ID> <medical_condition>`
 

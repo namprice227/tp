@@ -1,12 +1,16 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.EmergencyPerson;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -82,6 +86,21 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Finds a person by their name.
+     * @param name the name to search for
+     * @return an Optional containing the person if found, or empty if not found
+     */
+    Optional<Person> findPersonByName(Name name);
+
+    /**
+     * Adds tags to the given person.
+     * @param person the person to add tags to
+     * @param tagsToAdd the tags to be added
+     * @return the updated person with the new tags
+     */
+    Person addTagsToPerson(Person person, Set<Tag> tagsToAdd);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -90,4 +109,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
 }

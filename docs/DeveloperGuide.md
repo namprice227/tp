@@ -276,9 +276,9 @@ _{Explain here how the data archiving feature will be implemented}_
 Healthcare administrators in clinics
 
 **Value proposition**: \
-HealthSync allows healthcare staff to efficiently organize patient details and key contacts in one unified platform. 
-With quick access to updated information, administrators can easily connect with medical staff and patients' families, ensuring smooth communication and 
-prompt action, especially when managing recovery progress and treatment schedules. 
+HealthSync allows healthcare staff to efficiently organize patient details and key contacts in one unified platform.
+With quick access to updated information, administrators can easily connect with medical staff and patients' families, ensuring smooth communication and
+prompt action, especially when managing recovery progress and treatment schedules.
 
 ### User Stories
 
@@ -387,21 +387,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **UC04 - Update Patient Schedule**
 
 **Main Success Scenario (MSS):**
-1. Healthcare Administrator requests to update a patient’s schedule.
+1. Healthcare Administrator requests to update a patient’s appointment.
 2. HealthSync prompts the user to enter:
     - Patient identifier (e.g., index, name, or ID).
-    - New or modified schedule details (e.g., appointment date, time, doctor, location).
-3. Healthcare Administrator inputs the updated schedule.
+    - New or modified appointment details (e.g., appointment date, time, doctor, location).
+3. Healthcare Administrator inputs the updated appointment.
 4. HealthSync asks for confirmation.
 5. Healthcare Administrator confirms the update.
-6. HealthSync updates the patient’s schedule successfully.
+6. HealthSync updates the patient’s appointment successfully.
 7. Use case ends.
 
 **Extensions:**
 - **2a.** The provided patient identifier is invalid.
     - **2a1.** HealthSync informs the user.
     - Use case resumes from step **2**.
-- **2b.** The entered schedule details are invalid (e.g., overlapping appointments, incorrect format).
+- **2b.** The entered appointment details are invalid (e.g., overlapping appointments, incorrect format).
     - **2b1.** HealthSync displays an error message.
     - **2b2.** Healthcare Administrator corrects the details and resubmits.
     - Use case resumes from step **2**.

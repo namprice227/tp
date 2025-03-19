@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,7 +15,9 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.EmergencyPerson;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,6 +28,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private boolean showScheduleMode = false;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,7 +41,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -116,6 +123,40 @@ public class ModelManager implements Model {
     public Person addEmergencyContactToPerson(Person person, EmergencyPerson emergencyPerson) {
         requireAllNonNull(person, emergencyPerson);
         Person updatedPerson = person.setEmergencyContact(emergencyPerson);
+    }
+  
+    //=========== Tag Command Methods ========================================================================
+
+    @Override
+    public Optional<Person> findPersonByName(Name name) {
+        requireNonNull(name);
+        return addressBook.getPersonList().stream()
+                .filter(person -> person.getName().equals(name))
+                .findFirst();
+    }
+
+    @Override
+    public Person addTagsToPerson(Person person, Set<Tag> tagsToAdd) {
+        requireAllNonNull(person, tagsToAdd);
+
+        // Create a new set with all existing tags
+        Set<Tag> updatedTags = new HashSet<>(person.getTags());
+
+        // Add the new tags
+        updatedTags.addAll(tagsToAdd);
+
+        // Create a new person with the updated tags
+        Person updatedPerson = new Person(
+                person.getName(),
+                person.getPhone(),
+                person.getEmail(),
+                person.getAddress(),
+                updatedTags
+        );
+
+        // Update the person in the address book
+        setPerson(person, updatedPerson);
+
         return updatedPerson;
     }
 
