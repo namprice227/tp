@@ -83,7 +83,7 @@ public class AddCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("toAdd", toAdd)
-                .toString();
+            .add("toAdd", toAdd)
+            .toString();
     }
 }
