@@ -18,8 +18,8 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the patient identified by the index number used"
-            + " in the displayed patient list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the patient identified "
+            + "by the index number used in the displayed patient list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -27,7 +27,6 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_CONFIRMATION = "Are you sure you want to delete this patient? (y/n)";
 
     private final Index targetIndex;
-    private Person personToDelete;
     private boolean needsConfirmation;
 
     /**
@@ -57,7 +56,7 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
