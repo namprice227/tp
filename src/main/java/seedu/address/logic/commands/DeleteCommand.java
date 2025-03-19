@@ -18,12 +18,12 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the person identified by the index number used"
-            + " in the displayed person list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the patient identified by the index number used"
+            + " in the displayed patient list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Patient: %1$s";
     public static final String MESSAGE_CONFIRMATION = "Are you sure you want to delete this patient? (y/n)";
 
     private final Index targetIndex;
@@ -31,8 +31,9 @@ public class DeleteCommand extends Command {
     private boolean needsConfirmation;
 
     /**
-     * Constructor
-     * @param targetIndex
+     * Constructs a DeleteCommand to delete the person at the specified index.
+     *
+     * @param targetIndex the index of the person to delete
      */
     public DeleteCommand(Index targetIndex) {
         requireNonNull(targetIndex);
