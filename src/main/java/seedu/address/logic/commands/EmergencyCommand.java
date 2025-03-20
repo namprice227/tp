@@ -26,7 +26,7 @@ public class EmergencyCommand extends Command {
             + "INDEX (must be a positive integer) "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
-            + PREFIX_PHONE + "RELATIONSHIP "
+            + PREFIX_RELATIONSHIP + "RELATIONSHIP "
             + "Example: " + COMMAND_WORD + " " + "1"
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
