@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.CommandException; // Added missing import
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -31,7 +31,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON); // No changes here
 
         String expectedMessage = String.format(
                 DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
@@ -93,14 +93,12 @@ public class DeleteCommandTest {
     @Test
     public void execute_confirmationRequired_showsConfirmationMessage() {
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-
         try {
-            assertEquals(
-                    DeleteCommand.MESSAGE_CONFIRMATION,
-                    new DeleteCommand(INDEX_FIRST_PERSON).execute(model).getFeedbackToUser()
-            );
-        } catch (CommandException c) {
-            throw new AssertionError("Unexpected CommandException thrown", c);
+            // Ensure command is in confirmation state
+            CommandResult result = deleteCommand.execute(model);
+            assertEquals(DeleteCommand.MESSAGE_CONFIRMATION, result.getFeedbackToUser());
+        } catch (CommandException e) {
+            throw new AssertionError("Unexpected CommandException thrown", e);
         }
     }
 
@@ -109,6 +107,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
 
+        // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
         assertTrue(deleteFirstCommand.equals(new DeleteCommand(INDEX_FIRST_PERSON)));
         assertFalse(deleteFirstCommand.equals(1));
@@ -129,6 +128,7 @@ public class DeleteCommandTest {
      */
     private void showNoPerson(Model model) {
         model.updateFilteredPersonList(p -> false);
+
         assertTrue(model.getFilteredPersonList().isEmpty());
     }
 }

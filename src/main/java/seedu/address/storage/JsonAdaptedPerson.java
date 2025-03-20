@@ -29,6 +29,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String appointment;
+    private final String emergencyContact;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -37,13 +38,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                             @JsonProperty("appointment") String appointment) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("appointment") String appointment,
+            @JsonProperty("emergencyContact") String emergencyContact) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.appointment = appointment;
+        this.emergencyContact = emergencyContact;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -53,11 +55,12 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
+        name = source.getName().toString();
+        phone = source.getPhone().toString();
+        email = source.getEmail().toString();
+        address = source.getAddress().toString();
         appointment = source.getAppointment().toString();
+        emergencyContact = source.getEmergencyContact().toString();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

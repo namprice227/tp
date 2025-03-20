@@ -24,7 +24,10 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private Appointment appointment;
+    private EmergencyPerson emergencyContact;
+
+    private final Appointment appointment;
+
 
     /**
      * Every field must be present and not null.
@@ -37,17 +40,17 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.appointment = appointment;
+        this.emergencyContact = new EmergencyPerson(name, phone, new Relationship("SELF"));
     }
 
     /**
      * Constructs a {@code Person} with all specified details, including an appointment.
      *
-     * @param name The person's name.
-     * @param phone The person's phone number.
-     * @param email The person's email address.
+     * @param name    The person's name.
+     * @param phone   The person's phone number.
+     * @param email   The person's email address.
      * @param address The person's home address.
-     * @param tags The set of tags associated with the person.
-     * @param appointment The appointment associated with the person.
+     * @param tags    The set of tags associated with the person.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -57,6 +60,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.appointment = new Appointment();
+        this.emergencyContact = new EmergencyPerson(name, phone, new Relationship("SELF"));
     }
 
     public Name getName() {
@@ -75,6 +79,15 @@ public class Person {
         return address;
     }
 
+    public EmergencyPerson getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public Person setEmergencyContact(EmergencyPerson emergencyContact) {
+        this.emergencyContact = emergencyContact;
+        return this;
+    }
+
     public Appointment getAppointment() {
         return appointment;
     }
@@ -90,7 +103,6 @@ public class Person {
      * @param dateTime The date and time of the appointment.
      * @return A new {@code Person} instance with the updated appointment.
      */
-
     public Person withAppointment(DateTime dateTime) {
         Appointment newAppointment = new Appointment(dateTime, "");
         return new Person(name, phone, email, address, tags, newAppointment);
@@ -140,13 +152,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
+                && emergencyContact.equals(otherPerson.emergencyContact)
                 && Objects.equals(appointment, otherPerson.appointment);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address);
+        return Objects.hash(name, phone, email, address, tags, emergencyContact);
     }
 
     @Override
@@ -156,6 +169,8 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("tags", tags)
+                .add("emergencyContact", emergencyContact)
                 .toString();
     }
 }
