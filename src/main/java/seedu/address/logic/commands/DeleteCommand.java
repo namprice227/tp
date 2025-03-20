@@ -17,7 +17,6 @@ import seedu.address.model.person.Person;
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the patient identified by the index number used"
             + " in the displayed patient list.\n"
@@ -28,12 +27,12 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_CONFIRMATION = "Are you sure you want to delete this patient? (y/n)";
 
     private final Index targetIndex;
-    private Person personToDelete;
     private boolean needsConfirmation;
 
     /**
-     * Constructor
-     * @param targetIndex
+     * Constructs a DeleteCommand to delete the person at the specified index.
+     *
+     * @param targetIndex the index of the person to delete
      */
     public DeleteCommand(Index targetIndex) {
         requireNonNull(targetIndex);
@@ -57,7 +56,7 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
