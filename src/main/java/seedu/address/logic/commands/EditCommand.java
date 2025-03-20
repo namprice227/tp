@@ -219,7 +219,7 @@ public class EditCommand extends Command {
         }
 
         public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+            this.tags = (tags != null) ? new HashSet<>(tags) : new HashSet<>();
         }
 
         public Optional<Set<Tag>> getTags() {
@@ -242,6 +242,12 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherDescriptor.email)
                     && Objects.equals(address, otherDescriptor.address)
                     && Objects.equals(tags, otherDescriptor.tags);
+        }
+
+        @Override
+        public String toString() {
+            return "EditPersonDescriptor{name=" + name + ", phone=" + phone + ", email=" + email
+                + ", address=" + address + ", tags=" + tags + "}";
         }
     }
 }
