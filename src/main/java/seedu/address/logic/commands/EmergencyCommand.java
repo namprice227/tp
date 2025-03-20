@@ -39,6 +39,9 @@ public class EmergencyCommand extends Command {
 
     /**
      * Creates an EmergencyCommand to add the specified {@code EmergencyPerson}
+     *
+     * @param person The emergency contact person to be added.
+     * @param targetIndex The index at which the person should be added.
      */
     public EmergencyCommand(EmergencyPerson person, Index targetIndex) {
         requireNonNull(person);
