@@ -31,8 +31,8 @@ public class EmergencyPerson {
         return phone;
     }
 
-    public String getRelationship() {
-        return relationship.toString();
+    public Relationship getRelationship() {
+        return relationship;
     }
 
     /**
@@ -57,9 +57,9 @@ public class EmergencyPerson {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("relationship", relationship)
+                .add("name", name.toString())
+                .add("phone", phone.toString())
+                .add("relationship", relationship.toString())
                 .toString();
     }
 }

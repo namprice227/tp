@@ -18,7 +18,7 @@ public class Name {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}/\\-'\\s]*";
-    public final String fullName;
+    public final String value;
 
     /**
      * Constructs a {@code Name}.
@@ -28,7 +28,7 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        value = name;
     }
 
     /**
@@ -40,7 +40,7 @@ public class Name {
 
     @Override
     public String toString() {
-        return fullName;
+        return value;
     }
 
     @Override
@@ -55,11 +55,11 @@ public class Name {
         }
 
         Name otherName = (Name) other;
-        return fullName.trim().equals(otherName.fullName.trim());
+        return value.trim().equals(otherName.value.trim());
     }
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return value.hashCode();
     }
 }

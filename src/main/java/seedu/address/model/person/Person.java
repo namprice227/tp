@@ -40,6 +40,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.appointment = appointment;
+        this.emergencyContact = new EmergencyPerson(name, phone, new Relationship("SELF"));
     }
 
     /**
@@ -58,8 +59,8 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.emergencyContact = null;
         this.appointment = new Appointment();
+        this.emergencyContact = new EmergencyPerson(name, phone, new Relationship("SELF"));
     }
 
     public Name getName() {
