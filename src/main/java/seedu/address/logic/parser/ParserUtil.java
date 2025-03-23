@@ -23,8 +23,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_PHONE = "Phone numbers must be exactly 8 digits " +
-            "and start with 6, 8 or 9";
+    public static final String MESSAGE_INVALID_PHONE = "Phone numbers must be exactly 8 digits "
+            + "and start with 6, 8 or 9";
     public static final String MESSAGE_INVALID_EMAIL = "Email addresses must not contain spaces.";
 
     /**
