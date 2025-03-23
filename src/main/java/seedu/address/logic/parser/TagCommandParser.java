@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE;
 
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.TagCommand;
@@ -63,9 +62,9 @@ public class TagCommandParser implements Parser<TagCommand> {
                 String prefix = part.split("/")[0] + "/";
 
                 // Skip if it's a valid prefix
-                if (prefix.equals(PREFIX_ALLERGY.toString()) ||
-                        prefix.equals(PREFIX_CONDITION.toString()) ||
-                        prefix.equals(PREFIX_INSURANCE.toString())) {
+                if (prefix.equals(PREFIX_ALLERGY.toString())
+                        || prefix.equals(PREFIX_CONDITION.toString())
+                        || prefix.equals(PREFIX_INSURANCE.toString())) {
                     continue;
                 }
 
