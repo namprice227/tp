@@ -23,8 +23,9 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_PHONE = "Phone numbers must be exactly 8 digits" +
+    public static final String MESSAGE_INVALID_PHONE = "Phone numbers must be exactly 8 digits " +
             "and start with 6, 8 or 9";
+    public static final String MESSAGE_INVALID_EMAIL = "Email addresses must not contain spaces.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
@@ -101,6 +102,12 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
+
+        // Check if the email contains any spaces
+        if (trimmedEmail.contains(" ")) {
+            throw new ParseException(MESSAGE_INVALID_EMAIL);
+        }
+
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
