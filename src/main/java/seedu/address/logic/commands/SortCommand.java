@@ -38,7 +38,7 @@ public class SortCommand extends Command {
         default:
             // This should not happen as parser should validate input
             throw new AssertionError("Unknown sort field: " + sortField);
-    }
+        }
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, sortField));
