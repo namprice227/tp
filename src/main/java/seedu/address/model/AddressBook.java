@@ -2,10 +2,11 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -94,13 +95,33 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Sorts persons in this address book by name alphabetically.
+     */
+    public void sortPersonsByName() {
+        Comparator<Person> nameComparator = Comparator.comparing(
+                person -> person.getName().toString().toLowerCase()
+        );
+
+        persons.sort(nameComparator);
+    }
+
+    /**
+     * Sorts persons in this address book by appointment dates.
+     */
+    public void sortPersonsByAppointment() {
+        Comparator<Person> appointmentComparator = Comparator.comparing(
+                Person::getEarliestAppointment
+        );
+
+        persons.sort(appointmentComparator);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("persons", persons)
-                .toString();
+        return persons.asUnmodifiableObservableList().size() + " persons";
     }
 
     @Override

@@ -194,4 +194,14 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    @Override
+    public void sortPersonListByName() {
+        addressBook.sortPersonsByName();
+    }
+
+    @Override
+    public void sortPersonListByAppointment() {
+        addressBook.sortPersonsByAppointment();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
 }

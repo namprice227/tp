@@ -2,10 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.*;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
@@ -27,6 +25,8 @@ public class Person {
     private EmergencyPerson emergencyContact;
 
     private final Appointment appointment;
+
+    private List<Appointment> appointments = new ArrayList<>();
 
 
     /**
@@ -128,6 +128,18 @@ public class Person {
         return otherPerson != null && otherPerson.getName().equals(getName())
                 && (otherPerson.getPhone().equals(getPhone())
                 || otherPerson.getEmail().equals(getEmail()));
+    }
+
+    /**
+     * Returns the earliest appointment date for this person.
+     * Returns a far future date if no appointments exist.
+     */
+    public DateTime getEarliestAppointment() {
+        if (appointment == null || appointment.getDateTime() == null) {
+            // Create a far future date that will sort after all real dates
+            return new DateTime("31-12-9999 23:59");
+        }
+        return appointment.getDateTime();
     }
 
     /**
