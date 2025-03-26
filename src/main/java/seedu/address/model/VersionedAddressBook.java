@@ -20,41 +20,41 @@ public class VersionedAddressBook extends AddressBook {
      * @param initialState The initial state of the address book.
      */
     public VersionedAddressBook(ReadOnlyAddressBook initialState) {
-    super(initialState);
-    addressBookStateList = new ArrayList<>();
-    addressBookStateList.add(new AddressBook(initialState));
-    currentStatePointer = 0;
+        super(initialState);
+        addressBookStateList = new ArrayList<>();
+        addressBookStateList.add(new AddressBook(initialState));
+        currentStatePointer = 0;
     }
 
   /**
    * Saves a copy of the current address book state.
    */
-  public void commit() {
-    // Remove any states after current pointer
-    while (currentStatePointer < addressBookStateList.size() - 1) {
-      addressBookStateList.remove(addressBookStateList.size() - 1);
-    }
+    public void commit() {
+        // Remove any states after current pointer
+        while (currentStatePointer < addressBookStateList.size() - 1) {
+            addressBookStateList.remove(addressBookStateList.size() - 1);
+        }
 
-    // Create and add a deep copy of the current state
-    addressBookStateList.add(new AddressBook(this));
-    currentStatePointer++;
-  }
+        // Create and add a deep copy of the current state
+        addressBookStateList.add(new AddressBook(this));
+        currentStatePointer++;
+    }
 
   /**
    * Restores the previous address book state.
    */
-  public void undo() throws CommandException {
-    if (!canUndo()) {
-      throw new CommandException("Cannot undo");
+    public void undo() throws CommandException {
+        if (!canUndo()) {
+            throw new CommandException("Cannot undo");
+        }
+        currentStatePointer--;
+        resetData(addressBookStateList.get(currentStatePointer));
     }
-    currentStatePointer--;
-    resetData(addressBookStateList.get(currentStatePointer));
-  }
 
   /**
    * Returns true if undo is possible.
    */
-  public boolean canUndo() {
-    return currentStatePointer > 0;
-  }
+    public boolean canUndo() {
+        return currentStatePointer > 0;
+    }
 }
