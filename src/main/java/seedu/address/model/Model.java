@@ -113,4 +113,13 @@ public interface Model {
 
     boolean hasSchedule(Appointment appointment);
 
+    /**
+     * Sorts the person list by name in alphabetical order.
+     */
+    void sortPersonListByName();
+
+    /**
+     * Sorts the person list by appointment date with earliest first.
+     */
+    void sortPersonListByAppointment();
 }

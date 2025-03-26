@@ -19,6 +19,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ScheduleCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -34,7 +35,6 @@ public class AddressBookParser {
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     private boolean awaitingClearConfirmation = false;
-
 
     /**
      * Parses user input into command for execution.
@@ -56,7 +56,6 @@ public class AddressBookParser {
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
-
 
         switch (commandWord) {
 
@@ -93,7 +92,9 @@ public class AddressBookParser {
         case ScheduleCommand.COMMAND_WORD:
             return new ScheduleCommandParser().parse(arguments);
 
-
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
+            
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

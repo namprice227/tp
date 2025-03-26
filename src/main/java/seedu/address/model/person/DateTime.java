@@ -9,33 +9,26 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a Person's date and time in the address book.
+ * Represents a date and time in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime implements Comparable<DateTime> {
+    public static final String MESSAGE_CONSTRAINTS = "DateTime should be in the format DD-MM-YYYY HH:MM";
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-    public static final String MESSAGE_CONSTRAINTS = "DateTime should be in the format dd-MM-yyyy HH:mm "
-            + "and must be a valid date and time.";
-
-    private static final String DATE_TIME_PATTERN = "dd-MM-yyyy HH:mm";
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
-
-    public final LocalDateTime value;
+    private final LocalDateTime dateTime;
 
     /**
      * Constructs a {@code DateTime}.
      *
-     * @param dateTime A valid date-time string in dd-MM-yyyy HH:mm format.
+     * @param dateTime A valid date time string.
      */
     public DateTime(String dateTime) {
-        requireNonNull(dateTime);
-        checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-        this.value = LocalDateTime.parse(dateTime, FORMATTER);
+        this.dateTime = LocalDateTime.parse(dateTime, FORMATTER);
     }
 
     /**
-     * Returns true if a given string is a valid date-time.
-     * @param test A string that contains that is supposed to be in format dd-MM-yyyy HH:mm
+     * Returns true if a given string is a valid date time.
      */
     public static boolean isValidDateTime(String test) {
         try {
@@ -76,16 +69,17 @@ public class DateTime implements Comparable<DateTime> {
     /**
      * Compares two DateTime objects based on chronological order.
      */
+    public LocalDateTime getLocalDateTime() {
+        return dateTime;
+    }
+
     @Override
-    public int compareTo(DateTime other) {
-        return this.value.compareTo(other.value);
+    public String toString() {
+        return dateTime.format(FORMATTER);
     }
 
     @Override
     public boolean equals(Object other) {
-        if (other == null) {
-            return false;
-        }
         if (other == this) {
             return true;
         }
@@ -95,11 +89,16 @@ public class DateTime implements Comparable<DateTime> {
         }
 
         DateTime otherDateTime = (DateTime) other;
-        return value.equals(otherDateTime.value);
+        return dateTime.equals(otherDateTime.dateTime);
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return dateTime.hashCode();
+    }
+
+    @Override
+    public int compareTo(DateTime other) {
+        return this.dateTime.compareTo(other.dateTime);
     }
 }

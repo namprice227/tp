@@ -202,5 +202,15 @@ public class ModelManager implements Model {
         requireNonNull(appointment);
         return addressBook.getPersonList().stream()
                 .anyMatch(person -> person.getAppointment().equals(appointment));
+  
+    @Override
+    public void sortPersonListByName() {
+        addressBook.sortPersonsByName();
+    }
+
+    @Override
+    public void sortPersonListByAppointment() {
+        addressBook.sortPersonsByAppointment();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 }
