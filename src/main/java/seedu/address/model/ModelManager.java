@@ -296,7 +296,7 @@ public class ModelManager implements Model {
         return addressBook.getPersonList().stream()
                 .anyMatch(person -> person.getAppointment().equals(appointment));
     }
-  
+
     @Override
     public void sortPersonListByName() {
         addressBook.sortPersonsByName();
