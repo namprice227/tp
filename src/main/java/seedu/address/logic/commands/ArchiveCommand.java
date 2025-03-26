@@ -6,6 +6,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+/**
+ * Represents a command to archive a specific contact in the address book.
+ */
 public class ArchiveCommand extends Command {
 
     public static final String COMMAND_WORD = "archive";
@@ -16,6 +19,11 @@ public class ArchiveCommand extends Command {
     public static final String MESSAGE_PERSON_NOT_FOUND = "This contact does not exist.";
     public final int targetIndex;
 
+    /**
+     * Construct an ArchiveCommand with the specified index.
+     *
+     * @param index the index of the contact ot archive
+     */
     public ArchiveCommand(int index) {
         this.targetIndex = index;
     }

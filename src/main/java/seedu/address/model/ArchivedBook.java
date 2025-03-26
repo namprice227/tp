@@ -1,13 +1,14 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 
 /**
  * Represents an ArchivedBook that stores archived contacts.
