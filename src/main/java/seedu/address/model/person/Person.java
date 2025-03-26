@@ -39,7 +39,12 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.appointment = appointment;
+        if (appointment == null) {
+            this.appointment = new Appointment();
+        }
+        else {
+            this.appointment = appointment;
+        }
         if (emergencyContact == null) {
             this.emergencyContact = NIL_EMERGENCY_CONTACT;
         } else {

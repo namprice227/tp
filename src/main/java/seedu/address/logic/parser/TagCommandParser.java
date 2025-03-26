@@ -92,7 +92,9 @@ public class TagCommandParser implements Parser<TagCommand> {
                 // Skip if it's a valid prefix
                 if (prefix.equals(PREFIX_ALLERGY.toString())
                         || prefix.equals(PREFIX_CONDITION.toString())
-                        || prefix.equals(PREFIX_INSURANCE.toString())) {
+                        || prefix.equals(PREFIX_INSURANCE.toString())
+                        || prefix.equals(PREFIX_TAG_DELETE.toString())
+                        || prefix.equals(PREFIX_TAG_EDIT.toString())) {
                     continue;
                 }
 
