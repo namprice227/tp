@@ -47,26 +47,6 @@ public class Person {
         }
     }
 
-    /**
-     * Constructs a {@code Person} with all specified details, including an appointment.
-     *
-     * @param name    The person's name.
-     * @param phone   The person's phone number.
-     * @param email   The person's email address.
-     * @param address The person's home address.
-     * @param tags    The set of tags associated with the person.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.appointment = new Appointment();
-        this.emergencyContact = NIL_EMERGENCY_CONTACT;
-    }
-
     public Name getName() {
         return name;
     }
