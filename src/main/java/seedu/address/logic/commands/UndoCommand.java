@@ -19,23 +19,23 @@ public class UndoCommand extends Command {
     private final Model model;
 
     public UndoCommand(Model model) {
-      this.model = model;
+        this.model = model;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
       // Check if undo is possible
-      if (!model.canUndoAddressBook()) {
-      throw new CommandException(MESSAGE_FAILURE);
-     }
+        if (!model.canUndoAddressBook()) {
+            throw new CommandException(MESSAGE_FAILURE);
+        }
 
-      // Perform the undo operation
-      model.undoAddressBook();
-      return new CommandResult(MESSAGE_SUCCESS);
+        // Perform the undo operation
+        model.undoAddressBook();
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
     public boolean equals(Object other) {
-      return other instanceof UndoCommand;
+        return other instanceof UndoCommand;
     }
-  }
+}
