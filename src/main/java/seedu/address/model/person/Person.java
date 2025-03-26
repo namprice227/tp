@@ -100,12 +100,11 @@ public class Person {
      * Returns a new {@code Person} instance with the given appointment date and time.
      * The existing person's details remain unchanged, ensuring immutability.
      *
-     * @param dateTime The date and time of the appointment.
+     * @param appointment Appointment containing date and time
      * @return A new {@code Person} instance with the updated appointment.
      */
-    public Person withAppointment(DateTime dateTime) {
-        Appointment newAppointment = new Appointment(dateTime, "");
-        return new Person(name, phone, email, address, tags, newAppointment);
+    public Person withAppointment(Appointment appointment) {
+        return new Person(name, phone, email, address, tags, appointment);
     }
 
     /**

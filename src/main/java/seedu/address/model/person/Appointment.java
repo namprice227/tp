@@ -7,6 +7,7 @@ import java.util.Objects;
  * Guarantees: details are present and not null.
  */
 public class Appointment implements Comparable<Appointment> {
+    public static final String MESSAGE_CONSTRAINTS = "This must be DD-MM-YYYY HH:MM";
     private final DateTime dateTime;
     private final String description;
 
@@ -43,6 +44,10 @@ public class Appointment implements Comparable<Appointment> {
         this.description = "";
     }
 
+    public static boolean isValid(String dateTime) {
+        return DateTime.isValidDateTime(dateTime);
+    }
+
     public DateTime getDateTime() {
         return dateTime;
     }
@@ -68,7 +73,10 @@ public class Appointment implements Comparable<Appointment> {
             return true;
         }
 
-        return dateTime != null && dateTime.equals(otherAppointment.dateTime);
+        if (dateTime == null || otherAppointment.dateTime == null) {
+            return false;
+        }
+        return dateTime.difference(otherAppointment.dateTime).abs().toMinutes() < 15.0;
     }
 
     @Override

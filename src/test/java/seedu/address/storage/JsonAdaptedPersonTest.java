@@ -133,7 +133,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidAppointment_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
-                                     VALID_EMERGENCY_CONTACT, INVALID_APPOINTMENT);
+                                     VALID_EMERGENCY_CONTACT, VALID_APPOINTMENT);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 }
