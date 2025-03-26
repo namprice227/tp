@@ -1,21 +1,22 @@
 package seedu.address.logic.parser;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_DELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_EDIT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class TagCommandParserTest {
 
@@ -98,7 +99,7 @@ public class TagCommandParserTest {
     // Test missing prefix for tag (e.g., no allergy prefix)
     @Test
     public void parse_missingPrefix_throwsParseException() {
-        String userInput = "1 Peanuts";  // Missing the allergy prefix
+        String userInput = "1 Peanuts"; // Missing the allergy prefix
 
         // Check if the parser throws a ParseException
         assertThrows(ParseException.class, () -> parser.parse(userInput));
@@ -107,7 +108,7 @@ public class TagCommandParserTest {
     // Test invalid command format (multiple commands)
     @Test
     public void parse_invalidCommandFormat_throwsParseException() {
-        String userInput = "1 " + PREFIX_ALLERGY + "Peanuts " + PREFIX_TAG_DELETE + "Asthma";
+        String userInput = "1 " + PREFIX_ALLERGY + " Peanuts " + PREFIX_TAG_DELETE + "Asthma";
 
         // Check if the parser throws a ParseException due to invalid command format
         assertThrows(ParseException.class, () -> parser.parse(userInput));

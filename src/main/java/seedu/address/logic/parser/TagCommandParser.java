@@ -40,7 +40,8 @@ public class TagCommandParser implements Parser<TagCommand> {
         Set<Tag> tagsToDelete = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG_DELETE));
 
         // Check for edit tags (te/)
-        Tag oldTag = null, newTag = null;
+        Tag oldTag = null;
+        Tag newTag = null;
         boolean isEditTagPresent = argMultimap.getValue(PREFIX_TAG_EDIT).isPresent();
 
         if (isEditTagPresent) {

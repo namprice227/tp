@@ -76,8 +76,8 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
-        this.needsConfirmation = editPersonDescriptor.isAnyFieldEdited(); // Needs confirmation only if fields are not edited
-
+        // Needs confirmation only if fields are not edited
+        this.needsConfirmation = editPersonDescriptor.isAnyFieldEdited();
     }
 
     @Override
