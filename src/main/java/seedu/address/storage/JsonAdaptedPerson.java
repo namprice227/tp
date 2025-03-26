@@ -112,7 +112,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
         Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
         if (emergencyContact != null) {
-            person.setEmergencyContact(emergencyContact.toModelType());
+            return person.setEmergencyContact(emergencyContact.toModelType());
         }
         return person;
     }

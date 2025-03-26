@@ -74,4 +74,9 @@ public class JsonAdaptedEmergencyPerson {
 
         return new EmergencyPerson(modelName, modelPhone, modelRelationship);
     }
+
+    @Override
+    public String toString() {
+        return String.format("JsonAdaptedEmergencyPerson: %s, %s, %s", name, phone, relationship);
+    }
 }
