@@ -46,7 +46,6 @@ public class Person {
         } else {
             this.appointment = appointment;
         }
-        
         if (emergencyContact == null) {
             this.emergencyContact = NIL_EMERGENCY_CONTACT;
         } else {
