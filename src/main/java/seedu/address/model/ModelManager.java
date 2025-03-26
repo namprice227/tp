@@ -152,12 +152,6 @@ public class ModelManager implements Model {
         addressBook.addPerson(person);
     }
 
-    @Override
-    public List<Person> getArchivedPersonList() {
-        return archivedBook.getArchivedContactList().stream()
-            .collect(Collectors.toList());
-
-    }
 
 
     //=========== Tag Command Methods ========================================================================
@@ -213,6 +207,12 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateArchivedFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }

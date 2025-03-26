@@ -111,6 +111,8 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void updateArchivedFilteredPersonList(Predicate<Person> predicate);
+
     /**
      * Archives the specified person by adding them to the archive list
      */
@@ -124,7 +126,5 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered archived list */
     ObservableList<Person> getFilteredArchivedPersonList();
-
-    List<Person> getArchivedPersonList();
 
 }

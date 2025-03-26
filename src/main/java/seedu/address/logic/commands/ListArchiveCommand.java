@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
  * Lists all archived contacts in the address book.
@@ -19,16 +20,7 @@ public class ListArchiveCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        List<Person> archivedContacts = model.getArchivedPersonList();
-
-        if (archivedContacts.isEmpty()) {
-            return new CommandResult("No archived contacts found.");
-        }
-
-        String archivedList = archivedContacts.stream()
-            .map(Person::toString)
-            .collect(Collectors.joining("\n"));
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, archivedList));
+        model.updateArchivedFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

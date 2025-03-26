@@ -18,14 +18,16 @@ import seedu.address.model.person.Person;
  */
 @JsonRootName(value = "archivedbook")
 class JsonSerializableArchivedBook {
-    private final List<JsonAdaptedPerson> persons;
+
+    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableArchivedBook} with the given persons.
      */
     @JsonCreator
     public JsonSerializableArchivedBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons = persons != null ? persons : new ArrayList<>();
+        this.persons.addAll(persons);
     }
 
     /**
@@ -34,9 +36,9 @@ class JsonSerializableArchivedBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableArchivedBook}.
      */
     public JsonSerializableArchivedBook(ReadOnlyArchivedBook source) {
-        this.persons = source.getArchivedContactList().stream()
+        persons.addAll(source.getArchivedContactList().stream()
             .map(JsonAdaptedPerson::new)
-            .collect(Collectors.toList());
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -48,6 +50,9 @@ class JsonSerializableArchivedBook {
         ArchivedBook archivedBook = new ArchivedBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
+            if (archivedBook.hasPerson(person)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            }
             archivedBook.addArchivedPerson(person);
         }
         return archivedBook;
