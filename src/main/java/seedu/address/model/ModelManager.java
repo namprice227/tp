@@ -83,7 +83,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook Undo Methods ================================================================================
+    //=========== AddressBook Undo Methods ==================================================================
 
     @Override
     public void commitAddressBook() {
@@ -100,7 +100,7 @@ public class ModelManager implements Model {
         return versionedAddressBook.canUndo();
     }
 
-    //=========== AddressBook Methods ================================================================================
+    //=========== AddressBook Methods ========================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
