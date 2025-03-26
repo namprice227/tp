@@ -2,13 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
@@ -32,8 +29,6 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private EmergencyPerson emergencyContact;
     private final Appointment appointment;
-    private List<Appointment> appointments = new ArrayList<>();
-
     /**
      * Every field must be present and not null.
      */
@@ -46,7 +41,11 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.appointment = appointment;
-        this.emergencyContact = NIL_EMERGENCY_CONTACT;
+        if (emergencyContact == null) {
+            this.emergencyContact = NIL_EMERGENCY_CONTACT;
+        } else {
+            this.emergencyContact = emergencyContact;
+        }
     }
 
     /**
@@ -90,8 +89,7 @@ public class Person {
     }
 
     public Person setEmergencyContact(EmergencyPerson emergencyContact) {
-        Person newPerson = new Person(name, phone, email, address, tags, appointment);
-        newPerson.emergencyContact = emergencyContact;
+        Person newPerson = new Person(name, phone, email, address, tags, appointment, emergencyContact);
         return newPerson;
     }
 
@@ -111,7 +109,7 @@ public class Person {
      * @return A new {@code Person} instance with the updated appointment.
      */
     public Person withAppointment(Appointment appointment) {
-        return new Person(name, phone, email, address, tags, appointment);
+        return new Person(name, phone, email, address, tags, appointment, emergencyContact);
     }
 
     /**
