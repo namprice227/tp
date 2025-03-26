@@ -76,7 +76,8 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
-        this.needsConfirmation = !editPersonDescriptor.isAnyFieldEdited(); // Only confirm if no fields provided
+        // Needs confirmation only if fields are not edited
+        this.needsConfirmation = editPersonDescriptor.isAnyFieldEdited();
     }
 
     @Override
@@ -124,7 +125,18 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        Person editedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+
+        // Preserve emergency contact if it exists
+        if (personToEdit.getEmergencyContact() != Person.NIL_EMERGENCY_CONTACT) {
+            editedPerson = editedPerson.setEmergencyContact(personToEdit.getEmergencyContact());
+        }
+
+        // Preserve appointment if it exists
+        if (personToEdit.hasAppointment() && personToEdit.getAppointment().getDateTime() != null) {
+            editedPerson = editedPerson.withAppointment(personToEdit.getAppointment());
+        }
+        return editedPerson;
     }
 
     @Override
@@ -133,13 +145,11 @@ public class EditCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof EditCommand)) {
-            return false;
+        if (other instanceof EditCommand otherEditCommand) {
+            return index.equals(otherEditCommand.index)
+                    && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
         }
-
-        EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+        return false;
     }
 
     public void setConfirmation(boolean confirmation) {
@@ -232,16 +242,14 @@ public class EditCommand extends Command {
                 return true;
             }
 
-            if (!(other instanceof EditPersonDescriptor)) {
-                return false;
+            if (other instanceof EditPersonDescriptor otherDescriptor) {
+                return Objects.equals(name, otherDescriptor.name)
+                        && Objects.equals(phone, otherDescriptor.phone)
+                        && Objects.equals(email, otherDescriptor.email)
+                        && Objects.equals(address, otherDescriptor.address)
+                        && Objects.equals(tags, otherDescriptor.tags);
             }
-
-            EditPersonDescriptor otherDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherDescriptor.name)
-                    && Objects.equals(phone, otherDescriptor.phone)
-                    && Objects.equals(email, otherDescriptor.email)
-                    && Objects.equals(address, otherDescriptor.address)
-                    && Objects.equals(tags, otherDescriptor.tags);
+            return false;
         }
 
         @Override

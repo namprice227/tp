@@ -9,15 +9,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EmergencyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.EmergencyPerson;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Relationship;
 
 /**
- * Parses user input for an EmergencyCommand
+ * Parses input arguments and creates a new EmergencyCommand object
  */
-public class EmergencyCommandParser {
+public class EmergencyCommandParser implements Parser<EmergencyCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EmergencyCommand
@@ -34,26 +33,21 @@ public class EmergencyCommandParser {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EmergencyCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EmergencyCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_RELATIONSHIP);
-
-        Name emergencyName = null;
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            emergencyName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        }
-        Phone emergencyPhone = null;
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            emergencyPhone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        }
-        Relationship emergencyRelationship = null;
-        if (argMultimap.getValue(PREFIX_RELATIONSHIP).isPresent()) {
-            emergencyRelationship = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
-            ;
+        if (!argMultimap.getValue(PREFIX_NAME).isPresent()
+                || !argMultimap.getValue(PREFIX_PHONE).isPresent()
+                || !argMultimap.getValue(PREFIX_RELATIONSHIP).isPresent()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EmergencyCommand.MESSAGE_USAGE));
         }
 
-        EmergencyPerson emergencyPerson = new EmergencyPerson(emergencyName, emergencyPhone, emergencyRelationship);
-        return new EmergencyCommand(emergencyPerson, index);
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Relationship relationship = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
+
+        return new EmergencyCommand(index, name, phone, relationship);
     }
 }
