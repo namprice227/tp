@@ -14,7 +14,7 @@ public class VersionedAddressBook extends AddressBook {
 
     /**
      * Constructs a {@code VersionedAddressBook} with the given initial state.
-     * Initializes the state history with the provided {@code initialState} and 
+     * Initializes the state history with the provided {@code initialState} and
      * sets the current state pointer to the first (and only) state.
      *
      * @param initialState The initial state of the address book.
