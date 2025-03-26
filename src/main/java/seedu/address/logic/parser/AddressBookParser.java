@@ -35,7 +35,6 @@ public class AddressBookParser {
 
     private boolean awaitingClearConfirmation = false;
 
-
     /**
      * Parses user input into command for execution.
      *
@@ -56,7 +55,6 @@ public class AddressBookParser {
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
-
 
         switch (commandWord) {
 
@@ -92,7 +90,6 @@ public class AddressBookParser {
 
         case ScheduleCommand.COMMAND_WORD:
             return new ScheduleCommandParser().parse(arguments);
-
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

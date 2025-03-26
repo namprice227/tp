@@ -16,6 +16,10 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    // Static fields
+    public static final EmergencyPerson NIL_EMERGENCY_CONTACT = new EmergencyPerson(
+        new Name("NIL"), new Phone("00000000"), new Relationship("NIL"));
+
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -25,9 +29,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private EmergencyPerson emergencyContact;
-
     private final Appointment appointment;
-
 
     /**
      * Every field must be present and not null.
@@ -40,7 +42,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.appointment = appointment;
-        this.emergencyContact = new EmergencyPerson(name, phone, new Relationship("SELF"));
+        this.emergencyContact = NIL_EMERGENCY_CONTACT;
     }
 
     /**
@@ -60,7 +62,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.appointment = new Appointment();
-        this.emergencyContact = new EmergencyPerson(name, phone, new Relationship("SELF"));
+        this.emergencyContact = NIL_EMERGENCY_CONTACT;
     }
 
     public Name getName() {
@@ -84,8 +86,9 @@ public class Person {
     }
 
     public Person setEmergencyContact(EmergencyPerson emergencyContact) {
-        this.emergencyContact = emergencyContact;
-        return this;
+        Person newPerson = new Person(name, phone, email, address, tags, appointment);
+        newPerson.emergencyContact = emergencyContact;
+        return newPerson;
     }
 
     public Appointment getAppointment() {
@@ -171,6 +174,7 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("emergencyContact", emergencyContact)
+                .add("appointment", appointment)
                 .toString();
     }
 }
