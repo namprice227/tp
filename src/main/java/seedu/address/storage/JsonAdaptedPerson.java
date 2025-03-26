@@ -120,9 +120,8 @@ class JsonAdaptedPerson {
         final Appointment modelAppointment = new Appointment(appointment);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelAppointment);
 
-        Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelAppointment);
         if (emergencyContact != null) {
             return person.setEmergencyContact(emergencyContact.toModelType());
         }

@@ -134,7 +134,7 @@ public class EditCommand extends Command {
 
         // Preserve appointment if it exists
         if (personToEdit.hasAppointment() && personToEdit.getAppointment().getDateTime() != null) {
-            editedPerson = editedPerson.withAppointment(personToEdit.getAppointment().getDateTime());
+            editedPerson = editedPerson.withAppointment(personToEdit.getAppointment());
         }
         return editedPerson;
     }

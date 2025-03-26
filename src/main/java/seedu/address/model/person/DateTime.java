@@ -1,8 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -54,16 +51,8 @@ public class DateTime implements Comparable<DateTime> {
         }
     }
 
-    /**
-     * Formats the DateTime object as a string.
-     */
-    @Override
-    public String toString() {
-        return value.format(FORMATTER);
-    }
-
     public Duration difference(DateTime other) {
-        return Duration.between(value, other.value);
+        return Duration.between(dateTime, other.dateTime);
     }
 
     /**
@@ -73,6 +62,10 @@ public class DateTime implements Comparable<DateTime> {
         return dateTime;
     }
 
+
+    /**
+     * Formats the DateTime object as a string.
+     */
     @Override
     public String toString() {
         return dateTime.format(FORMATTER);
