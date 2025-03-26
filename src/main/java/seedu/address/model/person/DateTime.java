@@ -1,5 +1,9 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -35,6 +39,36 @@ public class DateTime implements Comparable<DateTime> {
         }
     }
 
+    /**
+     * Checks whether a given date-time string represents a future point in time.
+     *
+     * @param test the date-time string to evaluate
+     * @return true if the parsed date-time is after the current system time, false otherwise
+     */
+    public static boolean isDateTimeFuture(String test) {
+        try {
+            LocalDateTime inputTime = LocalDateTime.parse(test, FORMATTER);
+            return inputTime.isAfter(LocalDateTime.now());
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Formats the DateTime object as a string.
+     */
+    @Override
+    public String toString() {
+        return value.format(FORMATTER);
+    }
+
+    public Duration difference(DateTime other) {
+        return Duration.between(value, other.value);
+    }
+
+    /**
+     * Compares two DateTime objects based on chronological order.
+     */
     public LocalDateTime getLocalDateTime() {
         return dateTime;
     }

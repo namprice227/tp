@@ -8,7 +8,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.DateTime;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -26,19 +26,22 @@ public class ScheduleCommand extends Command {
     public static final String MESSAGE_SHOW_SCHEDULE = "Show schedule";
     public static final String MESSAGE_INVALID_DATETIME =
             "The format should be schedule DD-MM-YYYY HH:MM";
+    public static final String MESSAGE_INVALID_FUTURE =
+            "The date must be in the future";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the schedule";
 
     private final Index index;
-    private DateTime dateTime;
+    private Appointment appointment;
 
     /**
      * Constructs a {@code ScheduleCommand} to schedule an appointment for a specific person.
      *
      * @param index The index of the person in the filtered person list.
-     * @param dateTime The appointment date and time.
+     * @param appointment The appointment date and time.
      */
-    public ScheduleCommand(Index index, DateTime dateTime) {
+    public ScheduleCommand(Index index, Appointment appointment) {
         this.index = index;
-        this.dateTime = dateTime;
+        this.appointment = appointment;
     }
 
     /**
@@ -52,17 +55,21 @@ public class ScheduleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (model.hasSchedule(appointment)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        System.out.println(dateTime);
+        System.out.println(appointment);
         System.out.println(index);
 
         // Create an updated person instance with the new appointment
-        Person editedPerson = personToEdit.withAppointment(dateTime);
+        Person editedPerson = personToEdit.withAppointment(appointment);
 
         // Update the model with the edited person
         model.setPerson(personToEdit, editedPerson);

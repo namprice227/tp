@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.EmergencyPerson;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -28,7 +29,6 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private boolean showScheduleMode = false;
 
 
     /**
@@ -245,6 +245,15 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    //=========== Schedule method =============================================================
+
+
+    @Override
+    public boolean hasSchedule(Appointment appointment) {
+        requireNonNull(appointment);
+        return addressBook.getPersonList().stream()
+                .anyMatch(person -> person.getAppointment().equals(appointment));
+  
     @Override
     public void sortPersonListByName() {
         addressBook.sortPersonsByName();
