@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
+
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyArchivedBook;
-
-import java.io.IOException;
-import java.util.Optional;
 
 /**
  * Represents a storage for archived contacts.

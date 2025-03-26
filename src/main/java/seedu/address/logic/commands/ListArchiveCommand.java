@@ -1,13 +1,9 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import seedu.address.model.Model;
 
 /**
  * Lists all archived contacts in the address book.
