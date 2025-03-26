@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -109,5 +110,21 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Archives the specified person by adding them to the archive list
+     */
+    void archivePerson(Person person);
+
+    /**
+     * Remove the specified person from the archive list
+     * and add them back to AddressBook
+     */
+    void unarchivePerson(Person person);
+
+    /** Returns an unmodifiable view of the filtered archived list */
+    ObservableList<Person> getFilteredArchivedPersonList();
+
+    List<Person> getArchivedPersonList();
 
 }
