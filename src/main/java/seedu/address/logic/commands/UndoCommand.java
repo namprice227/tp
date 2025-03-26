@@ -24,7 +24,7 @@ public class UndoCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-      // Check if undo is possible
+        // Check if undo is possible
         if (!model.canUndoAddressBook()) {
             throw new CommandException(MESSAGE_FAILURE);
         }
