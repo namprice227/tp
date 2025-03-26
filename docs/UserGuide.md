@@ -9,7 +9,28 @@
 AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
-<page-nav-print />
+1. [Quick Start](#quick-start)
+2. [Features](#features)
+    - [Viewing help: `help`](#viewing-help-help)
+    - [Adding a person: `add`](#adding-a-person-add)
+    - [Listing all persons : `list`](#listing-all-persons--list)
+    - [Editing a person : `edit`](#editing-a-person--edit)
+    - [Locating persons by name: `find`](#locating-persons-by-name-find)
+    - [Deleting a person : `delete`](#deleting-a-person--delete)
+    - [Clearing all entries : `clear`](#clearing-all-entries--clear)
+    - [Exiting the program : `exit`](#exiting-the-program--exit)
+    - [Scheduling an Appointment : `schedule`](#scheduling-an-appointment--schedule)
+    - [Switching between modes : `contact`](#switching-between-modes--contact)
+    - [Tracking Patient's Condition : `condition`](#tracking-patients-condition--condition)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
+3. [Tag Management](#tag-management)
+    - [Adding a tag: `ta/ ti/ tc/`](#adding-a-tag-ta-ti-tc)
+    - [Deleting a tag: `td/`](#deleting-a-tag-td)
+    - [Editing a tag: `te/`](#editing-a-tag-te)
+4. [FAQ](#faq)
+5. [Known Issues](#known-issues)
+6. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -209,14 +230,68 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### Editing Tags `[coming in v2.0]`
-Add, delete, or edit tag(s) of an existing person in the address book.
+--------------------------------------------------------------------------------------------------------------------
 
-_Details coming soon ..._
+## Tag Management
 
-### Archiving data files `[coming in v2.0]`
+<box type="info" seamless>
 
-_Details coming soon ..._
+### Adding a tag: `ta/ ti/ tc/`
+
+Adds a tag to a person based on their patient_ID in the address book. 
+Tags can be added for allergies (ta/), insurance (ti/), or conditions (tc/).
+
+Format: `tag <patient_ID> ta/ALLERGY`
+         `tag <patient_ID> ti/INSURANCE` 
+         `tag <patient_ID> tc/CONDITION`
+
+<box type="tip" seamless>
+
+**Tip:** You can add tags for different categories such as allergy (`ta/`), insurance (`ti/`), and condition (`tc/`).
+</box>
+
+Examples:
+* `tag 1 ta/peanuts`
+* `tag 2 ti/prudential`
+* `tag 3 tc/diabetes`
+
+**⚠️ Warning:** If the tag already exists for the person, it will not be added again.
+
+---
+
+### Deleting a tag: `td/`
+
+Deletes a tag from a person based on their patient_ID in the address book.
+
+Format: `tag <patient_ID> td/TAGNAME`
+
+<box type="tip" seamless>
+
+**Tip:** You can delete one or more tags from a person based on their index.
+</box>
+
+Examples:
+* `tag 1 td/peanuts`
+* `tag 2 td/diabetes`
+
+**⚠️ Warning:** Deleting a tag cannot be undone. Ensure the tag is no longer needed before deleting.
+
+---
+
+### Editing a tag: `te/`
+
+Edits an existing tag for a person based on their patient_ID in the address book.
+
+Format: `tag <patient_ID> te/OLD_TAG=NEW_TAG`
+
+<box type="tip" seamless>
+
+**Tip:** This command allows you to update an existing tag, for example, if a tag needs to be renamed or corrected.
+</box>
+
+Examples:
+* `tag 1 te/peanut=dust`
+* `tag 2 te/hypertension=high_blood_pressure`
 
 --------------------------------------------------------------------------------------------------------------------
 
