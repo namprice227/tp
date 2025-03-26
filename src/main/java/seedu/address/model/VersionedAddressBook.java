@@ -26,7 +26,7 @@ public class VersionedAddressBook extends AddressBook {
         currentStatePointer = 0;
     }
 
-  /**
+    /**
    * Saves a copy of the current address book state.
    */
     public void commit() {
@@ -40,7 +40,7 @@ public class VersionedAddressBook extends AddressBook {
         currentStatePointer++;
     }
 
-  /**
+    /**
    * Restores the previous address book state.
    */
     public void undo() throws CommandException {
@@ -51,7 +51,7 @@ public class VersionedAddressBook extends AddressBook {
         resetData(addressBookStateList.get(currentStatePointer));
     }
 
-  /**
+    /**
    * Returns true if undo is possible.
    */
     public boolean canUndo() {
