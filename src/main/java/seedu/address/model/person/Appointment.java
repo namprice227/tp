@@ -29,6 +29,20 @@ public class Appointment implements Comparable<Appointment> {
         this.description = "";
     }
 
+    /**
+     * Constructs an {@code Address}.
+     *
+     * @param appointment A valid appointment.
+     */
+    public Appointment(String appointment) {
+        if (appointment.equals("")) {
+            this.dateTime = null;
+        } else {
+            this.dateTime = new DateTime(appointment);
+        }
+        this.description = "";
+    }
+
     public DateTime getDateTime() {
         return dateTime;
     }
