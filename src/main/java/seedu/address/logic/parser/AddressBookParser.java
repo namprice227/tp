@@ -20,8 +20,9 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
+import seedu.address.model.Model;
 /**
  * Parses user input.
  */
@@ -34,7 +35,15 @@ public class AddressBookParser {
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     private boolean awaitingClearConfirmation = false;
+    private final Model model;
 
+    /**
+     * Constructor for AddressBookParser
+     * @param model The model to be used for parsing commands
+     */
+    public AddressBookParser(Model model) {
+        this.model = model;
+    }
 
     /**
      * Parses user input into command for execution.
@@ -92,6 +101,9 @@ public class AddressBookParser {
 
         case ScheduleCommand.COMMAND_WORD:
             return new ScheduleCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommandParser(model).parse(arguments);
 
 
         default:

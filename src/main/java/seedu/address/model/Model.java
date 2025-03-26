@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.EmergencyPerson;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -110,4 +111,20 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Checks if the address book can be undone.
+     * @return true if undo is possible, false otherwise.
+     */
+    boolean canUndoAddressBook();
+
+    /**
+     * Undoes the last command that modified the address book.
+     * Throws CommandException if no undo is possible.
+     */
+    void undoAddressBook() throws CommandException;
+
+    /**
+     * Commits the current state of the address book.
+     */
+    void commitAddressBook();
 }
