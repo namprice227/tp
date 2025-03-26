@@ -41,9 +41,12 @@ public class TagCommandParser implements Parser<TagCommand> {
 
         // Check for edit tags (te/)
         Tag oldTag = null, newTag = null;
-        if (argMultimap.getValue(PREFIX_TAG_EDIT).isPresent()) {
+        boolean isEditTagPresent = argMultimap.getValue(PREFIX_TAG_EDIT).isPresent();
+
+        if (isEditTagPresent) {
             String editTags = argMultimap.getValue(PREFIX_TAG_EDIT).get();
             String[] split = editTags.split("=");
+
             if (split.length != 2) {
                 throw new ParseException("Invalid format for editing a tag. Correct format: te/OLD_TAG=NEW_TAG");
             }
@@ -51,7 +54,17 @@ public class TagCommandParser implements Parser<TagCommand> {
             newTag = new Tag(split[1].trim());
         }
 
-        // Return the appropriate TagCommand based on the arguments parsed
+        // Ensure adding, deleting, and editing cannot happen together
+        if (!tagsToDelete.isEmpty() && (!allergies.isEmpty() || !conditions.isEmpty() || !insurances.isEmpty())) {
+            throw new ParseException("Cannot add and delete tags in the same command.");
+        }
+        if (!tagsToDelete.isEmpty() && isEditTagPresent) {
+            throw new ParseException("Cannot delete and edit tags in the same command.");
+        }
+        if (isEditTagPresent && (!allergies.isEmpty() || !conditions.isEmpty() || !insurances.isEmpty())) {
+            throw new ParseException("Cannot edit and add tags in the same command.");
+        }
+
         return new TagCommand(index, allergies, conditions, insurances, tagsToDelete, oldTag, newTag);
     }
 }
