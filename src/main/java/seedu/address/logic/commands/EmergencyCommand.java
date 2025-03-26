@@ -25,8 +25,8 @@ public class EmergencyCommand extends Command {
 
     public static final String COMMAND_WORD = "emergency";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the emergency contact of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the emergency contact of the patient identified "
+            + "by the index number used in the displayed patient list. "
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -36,7 +36,7 @@ public class EmergencyCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_RELATIONSHIP + "Father";
 
-    public static final String MESSAGE_EDIT_EMERGENCY_SUCCESS = "Updated emergency contact for Person: %1$s";
+    public static final String MESSAGE_EDIT_EMERGENCY_SUCCESS = "Updated emergency contact for patient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
