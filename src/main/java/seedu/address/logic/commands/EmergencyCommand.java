@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -12,57 +13,71 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.EmergencyPerson;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Relationship;
 
 /**
- * Adds a person to the address book.
+ * Edits the emergency contact of an existing person in the address book.
  */
 public class EmergencyCommand extends Command {
 
     public static final String COMMAND_WORD = "emergency";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient's emergency contact to HealthSync.\n"
-            + "Parameters: "
-            + "INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the emergency contact of the person identified "
+            + "by the index number used in the displayed person list. "
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
-            + PREFIX_RELATIONSHIP + "RELATIONSHIP "
-            + "Example: " + COMMAND_WORD + " " + "1"
+            + PREFIX_RELATIONSHIP + "RELATIONSHIP\n"
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_RELATIONSHIP + "Husband ";
+            + PREFIX_RELATIONSHIP + "Father";
 
-    public static final String MESSAGE_EMERGENCY_PERSON_SUCCESS = "Emergency contact added: %1$s";
+    public static final String MESSAGE_EDIT_EMERGENCY_SUCCESS = "Updated emergency contact for Person: %1$s";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
-    private final Index targetIndex;
-    private final EmergencyPerson personToAdd;
+    private final Index index;
+    private final Name emergencyName;
+    private final Phone emergencyPhone;
+    private final Relationship relationship;
 
     /**
-     * Creates an EmergencyCommand to add the specified {@code EmergencyPerson}
-     *
-     * @param person The emergency contact person to be added.
-     * @param targetIndex The index at which the person should be added.
+     * @param index of the person in the filtered person list to edit
+     * @param emergencyName name of emergency contact
+     * @param emergencyPhone phone of emergency contact
+     * @param relationship relationship with emergency contact
      */
-    public EmergencyCommand(EmergencyPerson person, Index targetIndex) {
-        requireNonNull(person);
+    public EmergencyCommand(Index index, Name emergencyName, Phone emergencyPhone, Relationship relationship) {
+        requireNonNull(index);
+        requireNonNull(emergencyName);
+        requireNonNull(emergencyPhone);
+        requireNonNull(relationship);
 
-        this.targetIndex = targetIndex;
-        personToAdd = person;
+        this.index = index;
+        this.emergencyName = emergencyName;
+        this.emergencyPhone = emergencyPhone;
+        this.relationship = relationship;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         List<Person> lastShownList = model.getFilteredPersonList();
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToUpdate = lastShownList.get(targetIndex.getZeroBased());
-        model.addEmergencyContactToPerson(personToUpdate, personToAdd);
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        EmergencyPerson newEmergencyContact = new EmergencyPerson(emergencyName, emergencyPhone, relationship);
+        Person editedPerson = personToEdit.setEmergencyContact(newEmergencyContact);
 
-        return new CommandResult(String.format(MESSAGE_EMERGENCY_PERSON_SUCCESS, Messages.format(personToAdd)));
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_EDIT_EMERGENCY_SUCCESS, editedPerson));
     }
 
     @Override
@@ -71,13 +86,15 @@ public class EmergencyCommand extends Command {
             return true;
         }
 
-        // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof EmergencyCommand)) {
             return false;
         }
 
-        EmergencyCommand otherEmergencyCommand = (EmergencyCommand) other;
-        return personToAdd.equals(otherEmergencyCommand.personToAdd);
+        EmergencyCommand e = (EmergencyCommand) other;
+        return index.equals(e.index)
+                && emergencyName.equals(e.emergencyName)
+                && emergencyPhone.equals(e.emergencyPhone)
+                && relationship.equals(e.relationship);
     }
 }
 

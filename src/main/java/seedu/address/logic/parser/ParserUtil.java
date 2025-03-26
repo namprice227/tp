@@ -99,7 +99,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String relationship} into an {@code Relationship}.
+     * Parses a {@code String relationship} into a {@code Relationship}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code relationship} is invalid.
@@ -107,10 +107,10 @@ public class ParserUtil {
     public static Relationship parseRelationship(String relationship) throws ParseException {
         requireNonNull(relationship);
         String trimmedRelationship = relationship.trim();
-        if (!Relationship.isValidRelation(trimmedRelationship)) {
+        if (!Relationship.isValidRelationship(trimmedRelationship)) {
             throw new ParseException(Relationship.MESSAGE_CONSTRAINTS);
         }
-        return new Relationship(relationship);
+        return new Relationship(trimmedRelationship);
     }
 
     /**
