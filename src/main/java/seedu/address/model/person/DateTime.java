@@ -3,43 +3,52 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a Person's date and time in the address book.
+ * Represents a date and time in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime implements Comparable<DateTime> {
+    public static final String MESSAGE_CONSTRAINTS = "DateTime should be in the format DD-MM-YYYY HH:MM";
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-    public static final String MESSAGE_CONSTRAINTS = "DateTime should be in the format dd-MM-yyyy HH:mm "
-            + "and must be a valid date and time.";
-
-    private static final String DATE_TIME_PATTERN = "dd-MM-yyyy HH:mm";
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
-
-    public final LocalDateTime value;
+    private final LocalDateTime dateTime;
 
     /**
      * Constructs a {@code DateTime}.
      *
-     * @param dateTime A valid date-time string in dd-MM-yyyy HH:mm format.
+     * @param dateTime A valid date time string.
      */
     public DateTime(String dateTime) {
-        requireNonNull(dateTime);
-        checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-        this.value = LocalDateTime.parse(dateTime, FORMATTER);
+        this.dateTime = LocalDateTime.parse(dateTime, FORMATTER);
     }
 
     /**
-     * Returns true if a given string is a valid date-time.
-     * @param test A string that contains that is supposed to be in format dd-MM-yyyy HH:mm
+     * Returns true if a given string is a valid date time.
      */
     public static boolean isValidDateTime(String test) {
         try {
             LocalDateTime.parse(test, FORMATTER);
             return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Checks whether a given date-time string represents a future point in time.
+     *
+     * @param test the date-time string to evaluate
+     * @return true if the parsed date-time is after the current system time, false otherwise
+     */
+    public static boolean isDateTimeFuture(String test) {
+        try {
+            LocalDateTime inputTime = LocalDateTime.parse(test, FORMATTER);
+            return inputTime.isAfter(LocalDateTime.now());
         } catch (DateTimeParseException e) {
             return false;
         }
@@ -53,19 +62,24 @@ public class DateTime implements Comparable<DateTime> {
         return value.format(FORMATTER);
     }
 
+    public Duration difference(DateTime other) {
+        return Duration.between(value, other.value);
+    }
+
     /**
      * Compares two DateTime objects based on chronological order.
      */
+    public LocalDateTime getLocalDateTime() {
+        return dateTime;
+    }
+
     @Override
-    public int compareTo(DateTime other) {
-        return this.value.compareTo(other.value);
+    public String toString() {
+        return dateTime.format(FORMATTER);
     }
 
     @Override
     public boolean equals(Object other) {
-        if (other == null) {
-            return false;
-        }
         if (other == this) {
             return true;
         }
@@ -75,11 +89,16 @@ public class DateTime implements Comparable<DateTime> {
         }
 
         DateTime otherDateTime = (DateTime) other;
-        return value.equals(otherDateTime.value);
+        return dateTime.equals(otherDateTime.dateTime);
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return dateTime.hashCode();
+    }
+
+    @Override
+    public int compareTo(DateTime other) {
+        return this.dateTime.compareTo(other.dateTime);
     }
 }

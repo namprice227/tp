@@ -14,5 +14,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_ALLERGY = new Prefix("ta/");
     public static final Prefix PREFIX_CONDITION = new Prefix("tc/");
     public static final Prefix PREFIX_INSURANCE = new Prefix("ti/");
-
+    public static final Prefix PREFIX_TAG_DELETE = new Prefix("td/");
+    public static final Prefix PREFIX_TAG_EDIT = new Prefix("te/");
 }

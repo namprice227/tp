@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.EmergencyPerson;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -102,6 +103,12 @@ public interface Model {
      */
     Person addTagsToPerson(Person person, Set<Tag> tagsToAdd);
 
+    // Deletes a tag from the person's tags
+    Person deleteTagFromPerson(Person person, Set<Tag> tagToDelete);
+
+    // Edits a tag for the person (changes old tag to new tag)
+    Person editTagForPerson(Person person, Tag oldTag, Tag newTag);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -126,5 +133,17 @@ public interface Model {
     ObservableList<Person> getFilteredArchivedPersonList();
 
     List<Person> getArchivedPersonList();
+
+    boolean hasSchedule(Appointment appointment);
+
+    /**
+     * Sorts the person list by name in alphabetical order.
+     */
+    void sortPersonListByName();
+
+    /**
+     * Sorts the person list by appointment date with earliest first.
+     */
+    void sortPersonListByAppointment();
 
 }

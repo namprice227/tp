@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.EmergencyPerson;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -31,7 +32,6 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> filteredArchivedPersons;
     private boolean showScheduleMode = false;
-
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -195,6 +195,57 @@ public class ModelManager implements Model {
         return updatedPerson;
     }
 
+    @Override
+    public Person deleteTagFromPerson(Person person, Set<Tag> tagsToDelete) {
+        requireAllNonNull(person, tagsToDelete);
+
+        // Create a new set with all existing tags
+        Set<Tag> updatedTags = new HashSet<>(person.getTags());
+
+        // Remove the tags to delete
+        updatedTags.removeAll(tagsToDelete);
+
+        // Create a new person with the updated tags
+        Person updatedPerson = new Person(
+                person.getName(),
+                person.getPhone(),
+                person.getEmail(),
+                person.getAddress(),
+                updatedTags
+        );
+
+        // Update the person in the address book
+        setPerson(person, updatedPerson);
+
+        return updatedPerson;
+    }
+
+    @Override
+    public Person editTagForPerson(Person person, Tag oldTag, Tag newTag) {
+        requireAllNonNull(person, oldTag, newTag);
+
+        // Create a new set with all existing tags
+        Set<Tag> updatedTags = new HashSet<>(person.getTags());
+
+        // Remove the old tag and add the new tag
+        updatedTags.remove(oldTag);
+        updatedTags.add(newTag);
+
+        // Create a new person with the updated tags
+        Person updatedPerson = new Person(
+                person.getName(),
+                person.getPhone(),
+                person.getEmail(),
+                person.getAddress(),
+                updatedTags
+        );
+
+        // Update the person in the address book
+        setPerson(person, updatedPerson);
+
+        return updatedPerson;
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -236,4 +287,23 @@ public class ModelManager implements Model {
                 && filteredArchivedPersons.equals(otherModelManager.filteredArchivedPersons);
     }
 
+    //=========== Schedule method =============================================================
+
+
+    @Override
+    public boolean hasSchedule(Appointment appointment) {
+        requireNonNull(appointment);
+        return addressBook.getPersonList().stream()
+                .anyMatch(person -> person.getAppointment().equals(appointment));
+  
+    @Override
+    public void sortPersonListByName() {
+        addressBook.sortPersonsByName();
+    }
+
+    @Override
+    public void sortPersonListByAppointment() {
+        addressBook.sortPersonsByAppointment();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
 }
