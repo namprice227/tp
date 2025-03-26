@@ -114,17 +114,20 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Appointment.class.getSimpleName()));
         }
-        if (!Appointment.isValid(appointment)) {
+
+        if ((appointment != "") && !Appointment.isValid(appointment)) {
             throw new IllegalValueException(Appointment.MESSAGE_CONSTRAINTS);
         }
         final Appointment modelAppointment = new Appointment(appointment);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelAppointment);
+        Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelAppointment, null);
+
         if (emergencyContact != null) {
             return person.setEmergencyContact(emergencyContact.toModelType());
         }
+
         return person;
 
     }
