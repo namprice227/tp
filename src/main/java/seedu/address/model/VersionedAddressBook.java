@@ -9,15 +9,22 @@ import seedu.address.logic.commands.exceptions.CommandException;
  * Wraps an AddressBook with undo/redo functionality.
  */
 public class VersionedAddressBook extends AddressBook {
-  private final List<ReadOnlyAddressBook> addressBookStateList;
-  private int currentStatePointer;
+    private final List<ReadOnlyAddressBook> addressBookStateList;
+    private int currentStatePointer;
 
-  public VersionedAddressBook(ReadOnlyAddressBook initialState) {
+    /**
+     * Constructs a {@code VersionedAddressBook} with the given initial state.
+     * Initializes the state history with the provided {@code initialState} and 
+     * sets the current state pointer to the first (and only) state.
+     *
+     * @param initialState The initial state of the address book.
+     */
+    public VersionedAddressBook(ReadOnlyAddressBook initialState) {
     super(initialState);
     addressBookStateList = new ArrayList<>();
     addressBookStateList.add(new AddressBook(initialState));
     currentStatePointer = 0;
-  }
+    }
 
   /**
    * Saves a copy of the current address book state.
