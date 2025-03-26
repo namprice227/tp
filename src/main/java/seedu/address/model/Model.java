@@ -101,6 +101,12 @@ public interface Model {
      */
     Person addTagsToPerson(Person person, Set<Tag> tagsToAdd);
 
+    // Deletes a tag from the person's tags
+    Person deleteTagFromPerson(Person person, Set<Tag> tagToDelete);
+
+    // Edits a tag for the person (changes old tag to new tag)
+    Person editTagForPerson(Person person, Tag oldTag, Tag newTag);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

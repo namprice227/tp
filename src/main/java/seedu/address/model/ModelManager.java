@@ -160,6 +160,57 @@ public class ModelManager implements Model {
         return updatedPerson;
     }
 
+    @Override
+    public Person deleteTagFromPerson(Person person, Set<Tag> tagsToDelete) {
+        requireAllNonNull(person, tagsToDelete);
+
+        // Create a new set with all existing tags
+        Set<Tag> updatedTags = new HashSet<>(person.getTags());
+
+        // Remove the tags to delete
+        updatedTags.removeAll(tagsToDelete);
+
+        // Create a new person with the updated tags
+        Person updatedPerson = new Person(
+                person.getName(),
+                person.getPhone(),
+                person.getEmail(),
+                person.getAddress(),
+                updatedTags
+        );
+
+        // Update the person in the address book
+        setPerson(person, updatedPerson);
+
+        return updatedPerson;
+    }
+
+    @Override
+    public Person editTagForPerson(Person person, Tag oldTag, Tag newTag) {
+        requireAllNonNull(person, oldTag, newTag);
+
+        // Create a new set with all existing tags
+        Set<Tag> updatedTags = new HashSet<>(person.getTags());
+
+        // Remove the old tag and add the new tag
+        updatedTags.remove(oldTag);
+        updatedTags.add(newTag);
+
+        // Create a new person with the updated tags
+        Person updatedPerson = new Person(
+                person.getName(),
+                person.getPhone(),
+                person.getEmail(),
+                person.getAddress(),
+                updatedTags
+        );
+
+        // Update the person in the address book
+        setPerson(person, updatedPerson);
+
+        return updatedPerson;
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
