@@ -220,11 +220,11 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 ### Adding a tag: `ta/ ti/ tc/`
 
-Adds a tag to a person based on their patient_ID in the address book. 
+Adds a tag to a person based on their patient_ID in the address book.
 Tags can be added for allergies (ta/), insurance (ti/), or conditions (tc/).
 
 Format: `tag <patient_ID> ta/ALLERGY`
-         `tag <patient_ID> ti/INSURANCE` 
+         `tag <patient_ID> ti/INSURANCE`
          `tag <patient_ID> tc/CONDITION`
 
 <box type="tip" seamless>

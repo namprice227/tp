@@ -23,6 +23,11 @@ public class TagCommandParser implements Parser<TagCommand> {
 
     @Override
     public TagCommand parse(String args) throws ParseException {
+        // If no arguments are provided after the index, throw invalid command format
+        if (args.trim().split("\\s+").length == 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
+        }
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ALLERGY,
                 PREFIX_CONDITION, PREFIX_INSURANCE, PREFIX_TAG_DELETE, PREFIX_TAG_EDIT);
 
@@ -58,6 +63,12 @@ public class TagCommandParser implements Parser<TagCommand> {
             }
             oldTag = new Tag(split[0].trim());
             newTag = new Tag(split[1].trim());
+        }
+
+        // Ensure no tags are being added, deleted, or edited
+        if (allergies.isEmpty() && conditions.isEmpty() && insurances.isEmpty()
+                && tagsToDelete.isEmpty() && !isEditTagPresent) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
         }
 
         // Ensure adding, deleting, and editing cannot happen together
