@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyArchivedBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -19,13 +20,18 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private ArchivedBookStorage archivedBookStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AddressBookStorage}, {@code UserPrefStorage}
+     * and {@code ArchivedBookStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage,
+                          UserPrefsStorage userPrefsStorage,
+                          ArchivedBookStorage archivedBookStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.archivedBookStorage = archivedBookStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -75,4 +81,32 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ ArchivedBook methods ==============================
+
+    @Override
+    public Path getArchivedContactsFilePath() {
+        return archivedBookStorage.getArchivedContactsFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyArchivedBook> readArchivedContacts() throws DataLoadingException {
+        return readArchivedContacts(archivedBookStorage.getArchivedContactsFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyArchivedBook> readArchivedContacts(Path filePath) throws DataLoadingException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return archivedBookStorage.readArchivedContacts(filePath);
+    }
+
+    @Override
+    public void saveArchivedContacts(ReadOnlyArchivedBook archivedAddressBook) throws IOException {
+        saveArchivedContacts(archivedAddressBook, archivedBookStorage.getArchivedContactsFilePath());
+    }
+
+    @Override
+    public void saveArchivedContacts(ReadOnlyArchivedBook archivedAddressBook, Path filePath) throws IOException {
+        logger.fine("Saving archived contacts..." + filePath);
+        archivedBookStorage.saveArchivedContacts(archivedAddressBook, filePath);
+    }
 }

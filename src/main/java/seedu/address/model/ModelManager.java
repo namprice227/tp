@@ -18,6 +18,7 @@ import seedu.address.model.person.Appointment;
 import seedu.address.model.person.EmergencyPerson;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,24 +29,31 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final ArchivedBook archivedBook;
     private final FilteredList<Person> filteredPersons;
-
+    private final FilteredList<Person> filteredArchivedPersons;
+    private boolean showScheduleMode = false;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyArchivedBook archivedBook) {
+        requireAllNonNull(addressBook, userPrefs, archivedBook);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook
+            + ", archived book: " + archivedBook
+            + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.archivedBook = new ArchivedBook(archivedBook);
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredArchivedPersons = new FilteredList<>(this.archivedBook.getArchivedContactList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new ArchivedBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -123,7 +131,29 @@ public class ModelManager implements Model {
     public void addEmergencyContactToPerson(Person person, EmergencyPerson emergencyPerson) {
         requireAllNonNull(person, emergencyPerson);
         Person updatedPerson = person.setEmergencyContact(emergencyPerson);
+        setPerson(person, updatedPerson);
     }
+
+    @Override
+    public void archivePerson(Person person) {
+        requireNonNull(person);
+        archivedBook.addArchivedPerson(person);
+        addressBook.removePerson(person);
+    }
+
+    @Override
+    public void unarchivePerson(Person person) {
+        requireNonNull(person);
+
+        if (!archivedBook.hasPerson(person)) {
+            throw new PersonNotFoundException();
+        }
+
+        archivedBook.unarchivePerson(person);
+        addressBook.addPerson(person);
+    }
+
+
 
     //=========== Tag Command Methods ========================================================================
 
@@ -229,7 +259,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Person> getFilteredArchivedPersonList() {
+        return filteredArchivedPersons;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateArchivedFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
@@ -248,7 +289,9 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && archivedBook.equals(otherModelManager.archivedBook)
+                && filteredArchivedPersons.equals(otherModelManager.filteredArchivedPersons);
     }
 
     //=========== Schedule method =============================================================
@@ -260,6 +303,7 @@ public class ModelManager implements Model {
         return addressBook.getPersonList().stream()
                 .anyMatch(person -> person.getAppointment().equals(appointment));
     }
+
     @Override
     public void sortPersonListByName() {
         addressBook.sortPersonsByName();

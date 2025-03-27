@@ -117,6 +117,22 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void updateArchivedFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Archives the specified person by adding them to the archive list
+     */
+    void archivePerson(Person person);
+
+    /**
+     * Remove the specified person from the archive list
+     * and add them back to AddressBook
+     */
+    void unarchivePerson(Person person);
+
+    /** Returns an unmodifiable view of the filtered archived list */
+    ObservableList<Person> getFilteredArchivedPersonList();
+
     boolean hasSchedule(Appointment appointment);
 
     /**
