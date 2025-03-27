@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.model.AddressBook;
+import seedu.address.model.ArchivedBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -21,7 +22,7 @@ import seedu.address.testutil.TypicalPersons;
  */
 public class ScheduleCommandTest {
 
-    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs(), new ArchivedBook());
 
     @Test
     public void execute_validIndex_success() throws Exception {
@@ -33,7 +34,8 @@ public class ScheduleCommandTest {
         // Create an updated person with the new appointment.
         Person scheduledPerson = personToSchedule.withAppointment(newAppointment);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+            new ArchivedBook(model.getArchivedBook()));
         expectedModel.setPerson(personToSchedule, scheduledPerson);
 
         assertCommandSuccess(scheduleCommand, model, expectedMessage, expectedModel);

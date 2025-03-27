@@ -134,9 +134,10 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidAppointment_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
-                                     VALID_EMERGENCY_CONTACT, VALID_APPOINTMENT);
+            new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
+                VALID_APPOINTMENT, VALID_EMERGENCY_CONTACT);
         assertThrows(IllegalValueException.class, person::toModelType);
+    }
 
     public void toModelType_nullEmergencyContact_returnsPersonWithNilEmergencyContact() throws Exception {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
