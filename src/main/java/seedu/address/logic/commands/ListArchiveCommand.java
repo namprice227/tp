@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 public class ListArchiveCommand extends Command {
 
     public static final String COMMAND_WORD = "listarchive";
-    public static final String MESSAGE_SUCCESS = "Archived Contacts:\n%1$s";
+    public static final String MESSAGE_SUCCESS = "Listed all archived persons.";
 
     @Override
     public CommandResult execute(Model model) {
