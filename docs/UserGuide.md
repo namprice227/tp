@@ -18,6 +18,9 @@ HealthSync is a **desktop application for managing patient contacts and their em
     - [Editing a patient: `edit`](#editing-a-patient--edit)
     - [Setting emergency contact: `emergency`](#setting-emergency-contact--emergency)
     - [Locating patients by name: `find`](#locating-patients-by-name-find)
+    - [Archive a patient: `archive`](#archive-a-patient--archive)
+    - [Listing all patients in archive: `listarchive`](#listing-all-patients-in-archive--listarchive)
+    - [Unarchive a patient: `unarchive`](#unarchive-a-patient--unarchive)
     - [Deleting a patient: `delete`](#deleting-a-patient--delete)
     - [Clearing all entries: `clear`](#clearing-all-entries--clear)
     - [Exiting the program: `exit`](#exiting-the-program--exit)
@@ -171,6 +174,38 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Archive a patient : `archive`
+
+Archives the specified patient from HealthSync. Removes patient from address book and adds them into archive list.
+
+Format: `archive INDEX`
+
+* Archives the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `archive 2` archives the 2nd patient in HealthSync.
+
+### Listing all patients in archive : `listarchive`
+
+Shows a list of all patients being archived.
+
+Format: `listarchive`
+
+### Unarchive a patient : `unarchive`
+
+Remove the specified patient from archive list and add them back to HealthSync.
+
+Format: `unarchive INDEX`
+
+* Unarchive the patient at the specified `INDEX` from archive list.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listarchive` followed by `unarchive 2` adds the 2nd patient in archive list back to HealthSync.
+
 ### Deleting a patient : `delete`
 
 Deletes the specified patient from HealthSync.
@@ -304,3 +339,6 @@ Action     | Format, Examples
 **List**   | `list`
 **Sort**   | `sort FIELD`<br> e.g., `sort name`
 **Help**   | `help`
+**Archive**   | `archive INDEX`<br> eg., `archive 2`
+**Unarchive**   | `unarchive Index`<br> eg., `unarchive 2`
+**List Archive**   | `listarchive`

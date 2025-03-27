@@ -23,6 +23,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyArchivedBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.EmergencyPerson;
@@ -145,6 +146,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyArchivedBook getArchivedBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -170,6 +176,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public Person deleteTagFromPerson(Person person, Set<Tag> tagToDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person editTagForPerson(Person person, Tag oldTag, Tag newTag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -180,8 +196,29 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Person> getFilteredArchivedPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateArchivedFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasSchedule(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void archivePerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unarchivePerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         public void sortPersonListByName() {
             throw new AssertionError("This method should not be called");

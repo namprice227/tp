@@ -34,6 +34,7 @@ public class StorageManager implements Storage {
         this.archivedBookStorage = archivedBookStorage;
     }
 
+
     // ================ UserPrefs methods ==============================
 
     @Override
