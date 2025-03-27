@@ -4,33 +4,28 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# HealthSync User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+HealthSync is a **desktop application for managing patient contacts and their emergency contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HealthSync can get your patient management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 1. [Quick Start](#quick-start)
 2. [Features](#features)
     - [Viewing help: `help`](#viewing-help-help)
-    - [Adding a person: `add`](#adding-a-person-add)
-    - [Listing all persons : `list`](#listing-all-persons--list)
-    - [Editing a person : `edit`](#editing-a-person--edit)
-    - [Locating persons by name: `find`](#locating-persons-by-name-find)
-    - [Deleting a person : `delete`](#deleting-a-person--delete)
-    - [Clearing all entries : `clear`](#clearing-all-entries--clear)
-    - [Exiting the program : `exit`](#exiting-the-program--exit)
-    - [Scheduling an Appointment : `schedule`](#scheduling-an-appointment--schedule)
-    - [Switching between modes : `contact`](#switching-between-modes--contact)
-    - [Tracking Patient's Condition : `condition`](#tracking-patients-condition--condition)
+    - [Adding a patient: `add`](#adding-a-patient-add)
+    - [Listing all patients: `list`](#listing-all-patients--list)
+    - [Sorting patients: `sort`](#sorting-patients--sort)
+    - [Editing a patient: `edit`](#editing-a-patient--edit)
+    - [Setting emergency contact: `emergency`](#setting-emergency-contact--emergency)
+    - [Locating patients by name: `find`](#locating-patients-by-name-find)
+    - [Deleting a patient: `delete`](#deleting-a-patient--delete)
+    - [Clearing all entries: `clear`](#clearing-all-entries--clear)
+    - [Exiting the program: `exit`](#exiting-the-program--exit)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
-3. [Tag Management](#tag-management)
-    - [Adding a tag: `ta/ ti/ tc/`](#adding-a-tag-ta-ti-tc)
-    - [Deleting a tag: `td/`](#deleting-a-tag-td)
-    - [Editing a tag: `te/`](#editing-a-tag-te)
-4. [FAQ](#faq)
-5. [Known Issues](#known-issues)
-6. [Command Summary](#command-summary)
+3. [FAQ](#faq)
+4. [Known Issues](#known-issues)
+5. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -41,23 +36,20 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for HealthSync.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar healthsync.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
+   * `list` : Lists all patients.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient named `John Doe` to HealthSync.
+   * `emergency 1 n/John Smith p/98765432 r/Father` : Sets an emergency contact for the 1st patient.
+   * `delete 3` : Deletes the 3rd patient shown in the current list.
+   * `clear` : Deletes all patients.
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -77,7 +69,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -90,22 +82,21 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+### Adding a patient: `add`
 
-### Adding a person: `add`
-
-Adds a person to the address book.
+Adds a patient to HealthSync.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A patient can have any number of tags (including 0)
 </box>
 
 Examples:
@@ -114,33 +105,57 @@ Examples:
 
 **⚠️ Warning:** If the name, phone, and email address are the same, the entry is considered a **duplicate**.
 
+### Listing all patients : `list`
 
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
+Shows a list of all patients in HealthSync.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Sorting patients : `sort`
 
-Edits an existing person in the address book.
+Sorts the list of patients by a specified field.
+
+Format: `sort FIELD`
+
+* Sorts the patient list by the specified `FIELD`.
+* Available fields: `name`, `appointment`
+* The sorting is case-insensitive.
+
+Examples:
+* `sort name` Sorts patients by name in ascending order
+* `sort appointment` Sorts patients by appointment date
+
+### Editing a patient : `edit`
+
+Edits an existing patient in HealthSync.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Setting Emergency Contact : `emergency`
 
-Finds persons whose names contain any of the given keywords.
+Sets or updates the emergency contact for a patient in HealthSync.
+
+Format: `emergency INDEX n/NAME p/PHONE_NUMBER r/RELATIONSHIP`
+
+* Sets the emergency contact for the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* All fields (name, phone, relationship) are required.
+
+Examples:
+* `emergency 1 n/John Smith p/98765432 r/Father` Sets the emergency contact for the 1st patient to be John Smith (Father) with phone number 98765432.
+
+### Locating patients by name: `find`
+
+Finds patients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -148,7 +163,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -156,23 +171,23 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a patient : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified patient from HealthSync.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd patient in HealthSync.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from HealthSync.
 
 Format: `clear`
 
@@ -182,46 +197,13 @@ Exits the program.
 
 Format: `exit`
 
-### Scheduling an Appointment : `schedule`
-
-Schedule the patient's next appointment.
-
-Format: `schedule <patient_ID> DD-MM-YYYY HH:MM`
-
-Examples:
-* `schedule 1 19-06-2025 10:30` Schedule an appointment for patient whose ID is 1.
-
-<box type="tip" seamless>
-
-**Tip:** `schedule -s` shows all the schedule ordered by date.
-</box>
-
-### Switching between modes : `contact`
-
-Allows you to switch from schedule mode to normal contact mode.
-
-Format: `contact`
-
-Examples:
-* `contact` Brings you from the scheduling page to the contact page.
-
-### Tracking Patient's Condition : `condition`
-
-Keep track of patient's illness and condition by recording them.
-
-Format: `condition <patient_ID> <medical_condition>`
-
-Examples:
-* `condition 1 diabetes` Recorded that patientID 1 has diabetes.
-
-
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+HealthSync data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+HealthSync data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
@@ -238,11 +220,11 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 ### Adding a tag: `ta/ ti/ tc/`
 
-Adds a tag to a person based on their patient_ID in the address book. 
+Adds a tag to a person based on their patient_ID in the address book.
 Tags can be added for allergies (ta/), insurance (ti/), or conditions (tc/).
 
 Format: `tag <patient_ID> ta/ALLERGY`
-         `tag <patient_ID> ti/INSURANCE` 
+         `tag <patient_ID> ti/INSURANCE`
          `tag <patient_ID> tc/CONDITION`
 
 <box type="tip" seamless>
@@ -317,6 +299,8 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Emergency** | `emergency INDEX n/NAME p/PHONE_NUMBER r/RELATIONSHIP`<br> e.g., `emergency 1 n/John Smith p/98765432 r/Father`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
+**Sort**   | `sort FIELD`<br> e.g., `sort name`
 **Help**   | `help`

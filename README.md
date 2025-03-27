@@ -4,7 +4,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-HealthSync is a desktop application designed for healthcare staff in clinics to efficiently manage patient medical records and key contacts on a unified platform. 
+HealthSync is a desktop application designed for healthcare staff in clinics to efficiently manage patient medical records and key contacts on a unified platform.
 
 ## For the detailed documentation of this project, see the **[HealthSync Product Website](https://ay2425s2-cs2103t-f11-3.github.io/tp/UserGuide.html)**.
 

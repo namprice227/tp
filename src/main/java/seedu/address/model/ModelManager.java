@@ -181,7 +181,9 @@ public class ModelManager implements Model {
                 person.getPhone(),
                 person.getEmail(),
                 person.getAddress(),
-                updatedTags
+                updatedTags,
+                person.getAppointment(),
+                person.getEmergencyContact()
         );
 
         // Update the person in the address book
@@ -206,7 +208,9 @@ public class ModelManager implements Model {
                 person.getPhone(),
                 person.getEmail(),
                 person.getAddress(),
-                updatedTags
+                updatedTags,
+                person.getAppointment(),
+                person.getEmergencyContact()
         );
 
         // Update the person in the address book
@@ -232,7 +236,9 @@ public class ModelManager implements Model {
                 person.getPhone(),
                 person.getEmail(),
                 person.getAddress(),
-                updatedTags
+                updatedTags,
+                person.getAppointment(),
+                person.getEmergencyContact()
         );
 
         // Update the person in the address book

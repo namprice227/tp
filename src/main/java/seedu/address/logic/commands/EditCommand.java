@@ -125,17 +125,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        Person editedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
-
-        // Preserve emergency contact if it exists
-        if (personToEdit.getEmergencyContact() != Person.NIL_EMERGENCY_CONTACT) {
-            editedPerson = editedPerson.setEmergencyContact(personToEdit.getEmergencyContact());
-        }
-
-        // Preserve appointment if it exists
-        if (personToEdit.hasAppointment() && personToEdit.getAppointment().getDateTime() != null) {
-            editedPerson = editedPerson.withAppointment(personToEdit.getAppointment());
-        }
+        Person editedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedTags, personToEdit.getAppointment(), personToEdit.getEmergencyContact());
         return editedPerson;
     }
 

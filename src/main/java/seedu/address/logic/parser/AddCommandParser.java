@@ -43,7 +43,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
 
         // Create person with empty tag set and default appointment
-        Person person = new Person(name, phone, email, address, new HashSet<>());
+        Person person = new Person(name, phone, email, address, new HashSet<>(), null, null);
 
         return new AddCommand(person);
     }
