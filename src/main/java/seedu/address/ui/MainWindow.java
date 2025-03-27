@@ -151,6 +151,14 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    @FXML
+    private void handleListArchive() throws CommandException, ParseException {
+        CommandResult result = logic.execute("listarchive");
+        showArchivedList();
+        resultDisplay.setFeedbackToUser(result.getFeedbackToUser());
+    }
+
+
     /**
      * Closes the application.
      */
@@ -186,11 +194,25 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandText.equals("listarchive")) {
+                showArchivedList();
+            } else if (commandText.equals("list")) {
+                showNormalList();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private void showArchivedList() {
+        personListPanel.setArchivedPersonList(logic.getFilteredArchivedPersonList());
+    }
+
+    private void showNormalList() {
+        personListPanel.setPersonList(logic.getFilteredPersonList());
     }
 }

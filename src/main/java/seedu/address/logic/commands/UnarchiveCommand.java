@@ -27,11 +27,11 @@ public class UnarchiveCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (targetIndex < 0 || targetIndex >= model.getFilteredArchivedPersonList().size()) {
+        if (targetIndex <= 0 || targetIndex > model.getFilteredArchivedPersonList().size()) {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         }
 
-        Person personToRestore = model.getFilteredArchivedPersonList().get(targetIndex);
+        Person personToRestore = model.getFilteredArchivedPersonList().get(targetIndex - 1);
         model.unarchivePerson(personToRestore);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToRestore));

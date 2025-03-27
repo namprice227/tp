@@ -86,6 +86,7 @@ public class LogicManager implements Logic {
     private void saveData() throws CommandException {
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveArchivedContacts(model.getArchivedBook());
         } catch (AccessDeniedException e) {
             throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
@@ -102,6 +103,10 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    public ObservableList<Person> getFilteredArchivedPersonList() {
+        return model.getFilteredArchivedPersonList();
     }
 
     @Override

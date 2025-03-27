@@ -21,6 +21,10 @@ public class CommandResult {
 
     private final boolean requiresConfirmation;
 
+    public enum ListType { NORMAL, ARCHIVE }
+
+    private final ListType listType;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -29,7 +33,21 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.requiresConfirmation = requiresConfirmation;
+        this.listType = ListType.NORMAL;
     }
+
+    public CommandResult(String feedbackToUser, ListType listType) {
+        this.feedbackToUser = feedbackToUser;
+        this.listType = listType;
+        this.showHelp = false;
+        this.exit = false;
+        this.requiresConfirmation = false;
+    }
+
+    public ListType getListType() {
+        return listType;
+    }
+
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},

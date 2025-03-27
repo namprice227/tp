@@ -104,6 +104,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyArchivedBook getArchivedBook() {
+        return archivedBook;
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
@@ -139,6 +144,7 @@ public class ModelManager implements Model {
         requireNonNull(person);
         archivedBook.addArchivedPerson(person);
         addressBook.removePerson(person);
+
     }
 
     @Override

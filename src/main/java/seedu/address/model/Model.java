@@ -58,6 +58,8 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    ReadOnlyArchivedBook getArchivedBook();
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */

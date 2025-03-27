@@ -29,6 +29,15 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
+    public void setPersonList(ObservableList<Person> personList) {
+        personListView.setItems(personList);
+    }
+
+    public void setArchivedPersonList(ObservableList<Person> archivedPersonList) {
+        personListView.setItems(archivedPersonList);
+    }
+
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
@@ -45,5 +54,4 @@ public class PersonListPanel extends UiPart<Region> {
             }
         }
     }
-
 }
