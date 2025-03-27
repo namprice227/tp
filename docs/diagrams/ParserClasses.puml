@@ -1,38 +1,76 @@
+```plantuml
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
-Class "{abstract}\nCommand" as Command
-Class XYZCommand
-
-package "Parser classes"{
-Class "<<interface>>\nParser" as Parser
-Class AddressBookParser
-Class XYZCommandParser
-Class CliSyntax
-Class ParserUtil
-Class ArgumentMultimap
-Class ArgumentTokenizer
-Class Prefix
+abstract class "Command" as Command {
+    + execute(model: Model): CommandResult
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> AddressBookParser
+class AddressBookParser {
+    - {static} BASIC_COMMAND_FORMAT: Pattern
+    - logger: Logger
+    - awaitingClearConfirmation: boolean
 
-AddressBookParser .down.> XYZCommandParser: <<create>>
+    + parseCommand(userInput: String): Command
+    + resetConfirmationState(): void
+}
 
-XYZCommandParser ..> XYZCommand : <<create>>
-AddressBookParser ..> Command : <<use>>
-XYZCommandParser .up.|> Parser
-XYZCommandParser ..> ArgumentMultimap
-XYZCommandParser ..> ArgumentTokenizer
-ArgumentTokenizer .left.> ArgumentMultimap
-XYZCommandParser ..> CliSyntax
-CliSyntax ..> Prefix
-XYZCommandParser ..> ParserUtil
-ParserUtil .down.> Prefix
-ArgumentTokenizer .down.> Prefix
-XYZCommand -up-|> Command
+interface Parser<T> {
+    + parse(arguments: String): T
+}
+
+package "Parser Classes" {
+    class AddCommandParser implements Parser
+    class EditCommandParser implements Parser
+    class DeleteCommandParser implements Parser
+    class FindCommandParser implements Parser
+    class EmergencyCommandParser implements Parser
+    class TagCommandParser implements Parser
+    class ScheduleCommandParser implements Parser
+    class SortCommandParser implements Parser
+
+    class ArgumentTokenizer {
+        + tokenize(argMultimap: ArgumentMultimap, prefixes: Prefix...)
+    }
+
+    class ArgumentMultimap {
+        + getValue(prefix: Prefix): Optional<String>
+        + getAllValues(prefix: Prefix): List<String>
+    }
+
+    class CliSyntax {
+        + {static} PREFIX_NAME: Prefix
+        + {static} PREFIX_PHONE: Prefix
+        // other static prefixes
+    }
+
+    class ParserUtil {
+        + {static} parseName(arg: String): Name
+        + {static} parsePhone(arg: String): Phone
+        // other parsing methods
+    }
+
+    class Prefix {
+        - prefix: String
+    }
+}
+
+note right of AddressBookParser
+    Key responsibilities:
+    - Parse user input into appropriate commands
+    - Use specific command parsers
+      to handle different command formats
+    - Handle command routing
+end note
+
+AddressBookParser ..> "1..*" Parser : uses
+AddressBookParser ..> Command : creates
+Parser ..> Command : creates
+AddressBookParser ..> ArgumentTokenizer : uses
+AddressBookParser ..> ParserUtil : uses
+
 @enduml
+```
