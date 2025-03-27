@@ -13,7 +13,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -234,11 +233,11 @@ public class EditCommand extends Command {
             }
 
             if (other instanceof EditPersonDescriptor otherDescriptor) {
-                return Objects.equals(name, otherDescriptor.name)
-                        && Objects.equals(phone, otherDescriptor.phone)
-                        && Objects.equals(email, otherDescriptor.email)
-                        && Objects.equals(address, otherDescriptor.address)
-                        && Objects.equals(tags, otherDescriptor.tags);
+                return name.equals(otherDescriptor.name)
+                        && phone.equals(otherDescriptor.phone)
+                        && email.equals(otherDescriptor.email)
+                        && address.equals(otherDescriptor.address)
+                        && tags.equals(otherDescriptor.tags);
             }
             return false;
         }
