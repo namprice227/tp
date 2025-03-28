@@ -78,6 +78,16 @@ public interface Model {
     void addPerson(Person person);
 
     /**
+     * Returns true if a person with the same phone number as {@code phone} exists in the address book.
+     */
+    boolean hasPersonWithPhone(String phone);
+
+    /**
+     * Returns true if a person with the same email as {@code email} exists in the address book.
+     */
+    boolean hasPersonWithEmail(String email);
+
+    /**
      * Add emergency contact to the given person {@code Person} with {@code emergencyPerson}.
      */
     void addEmergencyContactToPerson(Person person, EmergencyPerson emergencyPerson);
