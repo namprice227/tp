@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.EmergencyPerson;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -58,6 +59,8 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    ReadOnlyArchivedBook getArchivedBook();
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -102,6 +105,12 @@ public interface Model {
      */
     Person addTagsToPerson(Person person, Set<Tag> tagsToAdd);
 
+    // Deletes a tag from the person's tags
+    Person deleteTagFromPerson(Person person, Set<Tag> tagToDelete);
+
+    // Edits a tag for the person (changes old tag to new tag)
+    Person editTagForPerson(Person person, Tag oldTag, Tag newTag);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -110,7 +119,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-
+  
     /**
      * Checks if the address book can be undone.
      * @return true if undo is possible, false otherwise.
@@ -127,4 +136,33 @@ public interface Model {
      * Commits the current state of the address book.
      */
     void commitAddressBook();
+  
+    void updateArchivedFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Archives the specified person by adding them to the archive list
+     */
+    void archivePerson(Person person);
+
+    /**
+     * Remove the specified person from the archive list
+     * and add them back to AddressBook
+     */
+    void unarchivePerson(Person person);
+
+    /** Returns an unmodifiable view of the filtered archived list */
+    ObservableList<Person> getFilteredArchivedPersonList();
+
+    boolean hasSchedule(Appointment appointment);
+
+    /**
+     * Sorts the person list by name in alphabetical order.
+     */
+    void sortPersonListByName();
+
+    /**
+     * Sorts the person list by appointment date with earliest first.
+     */
+    void sortPersonListByAppointment();
+  
 }

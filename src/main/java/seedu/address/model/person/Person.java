@@ -16,6 +16,10 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    // Static fields
+    public static final EmergencyPerson NIL_EMERGENCY_CONTACT = new EmergencyPerson(
+        new Name("NIL"), new Phone("00000000"), new Relationship("NIL"));
+
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -25,42 +29,29 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private EmergencyPerson emergencyContact;
-
     private final Appointment appointment;
-
-
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Appointment appointment) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.appointment = appointment;
-        this.emergencyContact = new EmergencyPerson(name, phone, new Relationship("SELF"));
-    }
 
-    /**
-     * Constructs a {@code Person} with all specified details, including an appointment.
-     *
-     * @param name    The person's name.
-     * @param phone   The person's phone number.
-     * @param email   The person's email address.
-     * @param address The person's home address.
-     * @param tags    The set of tags associated with the person.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  Appointment appointment, EmergencyPerson emergencyContact) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.appointment = new Appointment();
-        this.emergencyContact = new EmergencyPerson(name, phone, new Relationship("SELF"));
+        if (appointment == null) {
+            this.appointment = new Appointment();
+        } else {
+            this.appointment = appointment;
+        }
+        if (emergencyContact == null) {
+            this.emergencyContact = NIL_EMERGENCY_CONTACT;
+        } else {
+            this.emergencyContact = emergencyContact;
+        }
     }
 
     public Name getName() {
@@ -84,8 +75,8 @@ public class Person {
     }
 
     public Person setEmergencyContact(EmergencyPerson emergencyContact) {
-        this.emergencyContact = emergencyContact;
-        return this;
+        Person newPerson = new Person(name, phone, email, address, tags, appointment, emergencyContact);
+        return newPerson;
     }
 
     public Appointment getAppointment() {
@@ -100,12 +91,11 @@ public class Person {
      * Returns a new {@code Person} instance with the given appointment date and time.
      * The existing person's details remain unchanged, ensuring immutability.
      *
-     * @param dateTime The date and time of the appointment.
+     * @param appointment Appointment containing date and time
      * @return A new {@code Person} instance with the updated appointment.
      */
-    public Person withAppointment(DateTime dateTime) {
-        Appointment newAppointment = new Appointment(dateTime, "");
-        return new Person(name, phone, email, address, tags, newAppointment);
+    public Person withAppointment(Appointment appointment) {
+        return new Person(name, phone, email, address, tags, appointment, emergencyContact);
     }
 
     /**
@@ -128,6 +118,18 @@ public class Person {
         return otherPerson != null && otherPerson.getName().equals(getName())
                 && (otherPerson.getPhone().equals(getPhone())
                 || otherPerson.getEmail().equals(getEmail()));
+    }
+
+    /**
+     * Returns the earliest appointment date for this person.
+     * Returns a far future date if no appointments exist.
+     */
+    public DateTime getEarliestAppointment() {
+        if (appointment == null || appointment.getDateTime() == null) {
+            // Create a far future date that will sort after all real dates
+            return new DateTime("31-12-9999 23:59");
+        }
+        return appointment.getDateTime();
     }
 
     /**
@@ -171,6 +173,7 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("emergencyContact", emergencyContact)
+                .add("appointment", appointment)
                 .toString();
     }
 }

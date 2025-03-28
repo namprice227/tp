@@ -13,7 +13,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -76,7 +75,8 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
-        this.needsConfirmation = !editPersonDescriptor.isAnyFieldEdited(); // Only confirm if no fields provided
+        // Needs confirmation only if fields are not edited
+        this.needsConfirmation = editPersonDescriptor.isAnyFieldEdited();
     }
 
     @Override
@@ -124,7 +124,9 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        Person editedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedTags, personToEdit.getAppointment(), personToEdit.getEmergencyContact());
+        return editedPerson;
     }
 
     @Override
@@ -133,13 +135,11 @@ public class EditCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof EditCommand)) {
-            return false;
+        if (other instanceof EditCommand otherEditCommand) {
+            return index.equals(otherEditCommand.index)
+                    && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
         }
-
-        EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+        return false;
     }
 
     public void setConfirmation(boolean confirmation) {
@@ -232,16 +232,14 @@ public class EditCommand extends Command {
                 return true;
             }
 
-            if (!(other instanceof EditPersonDescriptor)) {
-                return false;
+            if (other instanceof EditPersonDescriptor otherDescriptor) {
+                return name.equals(otherDescriptor.name)
+                        && phone.equals(otherDescriptor.phone)
+                        && email.equals(otherDescriptor.email)
+                        && address.equals(otherDescriptor.address)
+                        && tags.equals(otherDescriptor.tags);
             }
-
-            EditPersonDescriptor otherDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherDescriptor.name)
-                    && Objects.equals(phone, otherDescriptor.phone)
-                    && Objects.equals(email, otherDescriptor.email)
-                    && Objects.equals(address, otherDescriptor.address)
-                    && Objects.equals(tags, otherDescriptor.tags);
+            return false;
         }
 
         @Override

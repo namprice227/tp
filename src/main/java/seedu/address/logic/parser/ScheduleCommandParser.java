@@ -6,6 +6,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
 
 /**
@@ -41,8 +42,12 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
             throw new ParseException(ScheduleCommand.MESSAGE_INVALID_DATETIME);
         }
 
-        DateTime dateTime = new DateTime(dateTimeString);
+        if (!DateTime.isDateTimeFuture(dateTimeString)) {
+            throw new ParseException(ScheduleCommand.MESSAGE_INVALID_FUTURE);
+        }
 
-        return new ScheduleCommand(index, dateTime);
+        Appointment appointment = new Appointment(dateTimeString);
+
+        return new ScheduleCommand(index, appointment);
     }
 }

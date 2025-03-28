@@ -22,6 +22,13 @@ public class CommandResult {
     private final boolean requiresConfirmation;
 
     /**
+     * Represents the type of list that the command result can be associated with.
+     */
+    public enum ListType { NORMAL, ARCHIVE }
+
+    private final ListType listType;
+
+    /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean requiresConfirmation) {
@@ -29,6 +36,19 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.requiresConfirmation = requiresConfirmation;
+        this.listType = ListType.NORMAL;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, ListType listType) {
+        this.feedbackToUser = feedbackToUser;
+        this.listType = listType;
+        this.showHelp = false;
+        this.exit = false;
+        this.requiresConfirmation = false;
     }
 
     /**
@@ -37,6 +57,10 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false, false);
+    }
+
+    public ListType getListType() {
+        return listType;
     }
 
     public String getFeedbackToUser() {

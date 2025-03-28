@@ -15,9 +15,11 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.EmergencyPerson;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,24 +30,32 @@ public class ModelManager implements Model {
 
     private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
+    private final ArchivedBook archivedBook;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Person> filteredArchivedPersons;
     private boolean showScheduleMode = false;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyArchivedBook archivedBook) {
+        requireAllNonNull(addressBook, userPrefs, archivedBook);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook
+            + ", archived book: " + archivedBook
+            + " and user prefs " + userPrefs);
 
         this.versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPersons = new FilteredList<>(this.versionedAddressBook.getPersonList());
+        this.archivedBook = new ArchivedBook(archivedBook);
+        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredArchivedPersons = new FilteredList<>(this.archivedBook.getArchivedContactList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new ArchivedBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -114,6 +124,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyArchivedBook getArchivedBook() {
+        return archivedBook;
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return versionedAddressBook.hasPerson(person);
@@ -147,6 +162,27 @@ public class ModelManager implements Model {
         setPerson(person, updatedPerson);
     }
 
+    @Override
+    public void archivePerson(Person person) {
+        requireNonNull(person);
+        archivedBook.addArchivedPerson(person);
+        addressBook.removePerson(person);
+    }
+
+    @Override
+    public void unarchivePerson(Person person) {
+        requireNonNull(person);
+
+        if (!archivedBook.hasPerson(person)) {
+            throw new PersonNotFoundException();
+        }
+
+        archivedBook.unarchivePerson(person);
+        addressBook.addPerson(person);
+    }
+
+
+
     //=========== Tag Command Methods ========================================================================
 
     @Override
@@ -173,7 +209,64 @@ public class ModelManager implements Model {
                 person.getPhone(),
                 person.getEmail(),
                 person.getAddress(),
-                updatedTags
+                updatedTags,
+                person.getAppointment(),
+                person.getEmergencyContact()
+        );
+
+        // Update the person in the address book
+        setPerson(person, updatedPerson);
+
+        return updatedPerson;
+    }
+
+    @Override
+    public Person deleteTagFromPerson(Person person, Set<Tag> tagsToDelete) {
+        requireAllNonNull(person, tagsToDelete);
+
+        // Create a new set with all existing tags
+        Set<Tag> updatedTags = new HashSet<>(person.getTags());
+
+        // Remove the tags to delete
+        updatedTags.removeAll(tagsToDelete);
+
+        // Create a new person with the updated tags
+        Person updatedPerson = new Person(
+                person.getName(),
+                person.getPhone(),
+                person.getEmail(),
+                person.getAddress(),
+                updatedTags,
+                person.getAppointment(),
+                person.getEmergencyContact()
+        );
+
+        // Update the person in the address book
+        setPerson(person, updatedPerson);
+
+        return updatedPerson;
+    }
+
+    @Override
+    public Person editTagForPerson(Person person, Tag oldTag, Tag newTag) {
+        requireAllNonNull(person, oldTag, newTag);
+
+        // Create a new set with all existing tags
+        Set<Tag> updatedTags = new HashSet<>(person.getTags());
+
+        // Remove the old tag and add the new tag
+        updatedTags.remove(oldTag);
+        updatedTags.add(newTag);
+
+        // Create a new person with the updated tags
+        Person updatedPerson = new Person(
+                person.getName(),
+                person.getPhone(),
+                person.getEmail(),
+                person.getAddress(),
+                updatedTags,
+                person.getAppointment(),
+                person.getEmergencyContact()
         );
 
         // Update the person in the address book
@@ -194,7 +287,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Person> getFilteredArchivedPersonList() {
+        return filteredArchivedPersons;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateArchivedFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
@@ -213,6 +317,29 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return versionedAddressBook.equals(otherModelManager.versionedAddressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && archivedBook.equals(otherModelManager.archivedBook)
+                && filteredArchivedPersons.equals(otherModelManager.filteredArchivedPersons);
+    }
+
+    //=========== Schedule method =============================================================
+
+
+    @Override
+    public boolean hasSchedule(Appointment appointment) {
+        requireNonNull(appointment);
+        return addressBook.getPersonList().stream()
+                .anyMatch(person -> person.getAppointment().equals(appointment));
+    }
+
+    @Override
+    public void sortPersonListByName() {
+        addressBook.sortPersonsByName();
+    }
+
+    @Override
+    public void sortPersonListByAppointment() {
+        addressBook.sortPersonsByAppointment();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 }
