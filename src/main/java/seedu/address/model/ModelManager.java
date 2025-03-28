@@ -131,22 +131,7 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
-
-    @Override
-    public boolean hasPersonWithPhone(String phone) {
-        requireNonNull(phone);
-        return addressBook.getPersonList().stream()
-                .anyMatch(person -> person.getPhone().equals(phone));
-    }
-
-    @Override
-    public boolean hasPersonWithEmail(String email) {
-        requireNonNull(email);
-        return addressBook.getPersonList().stream()
-                .anyMatch(person -> person.getEmail().equals(email));
-    }
-
-
+    
     @Override
     public void addEmergencyContactToPerson(Person person, EmergencyPerson emergencyPerson) {
         requireAllNonNull(person, emergencyPerson);
