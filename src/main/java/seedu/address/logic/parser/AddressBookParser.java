@@ -40,7 +40,7 @@ public class AddressBookParser {
 
     private boolean awaitingClearConfirmation = false;
     private final Model model;
-  
+
     /**
      * Constructor for AddressBookParser
      * @param model The model to be used for parsing commands
