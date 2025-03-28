@@ -119,7 +119,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-  
+
     /**
      * Checks if the address book can be undone.
      * @return true if undo is possible, false otherwise.
@@ -136,7 +136,7 @@ public interface Model {
      * Commits the current state of the address book.
      */
     void commitAddressBook();
-  
+
     void updateArchivedFilteredPersonList(Predicate<Person> predicate);
 
     /**
@@ -164,5 +164,5 @@ public interface Model {
      * Sorts the person list by appointment date with earliest first.
      */
     void sortPersonListByAppointment();
-  
+
 }
