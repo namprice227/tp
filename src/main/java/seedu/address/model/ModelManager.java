@@ -131,7 +131,7 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
-    
+
     @Override
     public void addEmergencyContactToPerson(Person person, EmergencyPerson emergencyPerson) {
         requireAllNonNull(person, emergencyPerson);
