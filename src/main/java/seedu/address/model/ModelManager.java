@@ -28,12 +28,12 @@ import seedu.address.model.tag.Tag;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final AddressBook addressBook;
     private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
     private final ArchivedBook archivedBook;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> filteredArchivedPersons;
-    private boolean showScheduleMode = false;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,14 +43,15 @@ public class ModelManager implements Model {
         requireAllNonNull(addressBook, userPrefs, archivedBook);
 
         logger.fine("Initializing with address book: " + addressBook
-            + ", archived book: " + archivedBook
-            + " and user prefs " + userPrefs);
+                + ", archived book: " + archivedBook
+                + " and user prefs " + userPrefs);
 
+        this.addressBook = new AddressBook(addressBook);
         this.versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.filteredPersons = new FilteredList<>(this.versionedAddressBook.getPersonList());
         this.archivedBook = new ArchivedBook(archivedBook);
-        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        this.filteredPersons = new FilteredList<>(this.versionedAddressBook.getPersonList());
         this.filteredArchivedPersons = new FilteredList<>(this.archivedBook.getArchivedContactList());
     }
 
@@ -166,7 +167,8 @@ public class ModelManager implements Model {
     public void archivePerson(Person person) {
         requireNonNull(person);
         archivedBook.addArchivedPerson(person);
-        addressBook.removePerson(person);
+        versionedAddressBook.removePerson(person);
+        commitAddressBook();
     }
 
     @Override
@@ -178,10 +180,9 @@ public class ModelManager implements Model {
         }
 
         archivedBook.unarchivePerson(person);
-        addressBook.addPerson(person);
+        versionedAddressBook.addPerson(person);
+        commitAddressBook();
     }
-
-
 
     //=========== Tag Command Methods ========================================================================
 
@@ -300,7 +301,7 @@ public class ModelManager implements Model {
     @Override
     public void updateArchivedFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredArchivedPersons.setPredicate(predicate);
     }
 
     @Override
@@ -324,22 +325,24 @@ public class ModelManager implements Model {
 
     //=========== Schedule method =============================================================
 
-
     @Override
     public boolean hasSchedule(Appointment appointment) {
         requireNonNull(appointment);
-        return addressBook.getPersonList().stream()
+        return versionedAddressBook.getPersonList().stream()
                 .anyMatch(person -> person.getAppointment().equals(appointment));
     }
 
     @Override
     public void sortPersonListByName() {
-        addressBook.sortPersonsByName();
+        versionedAddressBook.sortPersonsByName();
+        commitAddressBook();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void sortPersonListByAppointment() {
-        addressBook.sortPersonsByAppointment();
+        versionedAddressBook.sortPersonsByAppointment();
+        commitAddressBook();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 }
