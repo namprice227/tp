@@ -43,13 +43,14 @@ public class HelpCommand extends Command {
             return false;
         }
 
-      return input.equals(otherHelpCommand.input);
+        return input.equals(otherHelpCommand.input);
     }
 
     @Override
     public String toString() {
-        return "HelpCommand{" +
-                "input='" + input + '\'' +
-                '}';
+        return "HelpCommand{"
+                + "input='"
+                + input + '\''
+                + '}';
     }
 }
