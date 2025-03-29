@@ -10,17 +10,16 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ClearCommandParserTest {
 
-  private final ClearCommandParser parser = new ClearCommandParser();
+    private final ClearCommandParser parser = new ClearCommandParser();
 
-  @Test
-  public void parse_emptyArgs_returnsClearCommand() throws Exception {
-    ClearCommand command = parser.parse("");
-    assertEquals(new ClearCommand(), command);
-  }
+    @Test
+    public void parse_emptyArgs_returnsClearCommand() throws Exception {
+        ClearCommand command = parser.parse("");
+        assertEquals(new ClearCommand(), command);
+    }
 
-  @Test
-  public void parse_nonEmptyArgs_throwsParseException() {
-    assertThrows(ParseException.class, () -> parser.parse("extra"));
-  }
+    @Test
+    public void parse_nonEmptyArgs_throwsParseException() {
+        assertThrows(ParseException.class, () -> parser.parse("extra"));
+    }
 }
-
