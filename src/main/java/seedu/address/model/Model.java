@@ -146,4 +146,9 @@ public interface Model {
      * Sorts the person list by appointment date with earliest first.
      */
     void sortPersonListByAppointment();
+
+    /**
+     * Returns an empty AddressBook.
+     */
+    ReadOnlyAddressBook getEmptyAddressBook();
 }
