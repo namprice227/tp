@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -288,12 +289,11 @@ public class ModelManager implements Model {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ModelManager)) {
+        if (!(other instanceof ModelManager otherModelManager)) {
             return false;
         }
 
-        ModelManager otherModelManager = (ModelManager) other;
-        return addressBook.equals(otherModelManager.addressBook)
+      return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons)
                 && archivedBook.equals(otherModelManager.archivedBook)
@@ -301,7 +301,6 @@ public class ModelManager implements Model {
     }
 
     //=========== Schedule method =============================================================
-
 
     @Override
     public boolean hasSchedule(Appointment appointment) {
