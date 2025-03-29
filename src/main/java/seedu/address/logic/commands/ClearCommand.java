@@ -15,6 +15,8 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_CONFIRMATION = "Are you sure you want to clear the patient list? (y/n)";
     public static final String MESSAGE_CANCELLED = "Clear command cancelled.";
     public static final String MESSAGE_SUCCESS = "Patient list has been cleared!";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears all entries from the address book.\n"
+            + "This command does not accept any additional parameters.";
 
     private boolean needsConfirmation;
 
