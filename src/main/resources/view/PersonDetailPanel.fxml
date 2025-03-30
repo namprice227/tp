@@ -1,0 +1,23 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="seedu.address.ui.PersonDetailPanel">
+    <VBox spacing="8" padding="10">
+        <Label fx:id="name" styleClass="header"/>
+        <HBox spacing="4" fx:id="tagsContainer"/>
+
+        <Label fx:id="phone"/>
+        <Label fx:id="address"/>
+        <Label fx:id="email"/>
+        <Label fx:id="appointment" styleClass="cell_small_label" text="\$appointment" />
+        <VBox fx:id="emergencyContactBox" styleClass="cell_small_label">
+        <Label text="Emergency Contact:" styleClass="cell_small_label" />
+        <Label fx:id="emergencyContactName" styleClass="cell_small_label" />
+        <Label fx:id="emergencyContactPhone" styleClass="cell_small_label" />
+        <Label fx:id="emergencyContactRelationship" styleClass="cell_small_label" />
+        </VBox>
+    </VBox>
+</AnchorPane>

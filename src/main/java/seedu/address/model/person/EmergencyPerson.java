@@ -48,6 +48,7 @@ public class EmergencyPerson {
         if (!(other instanceof EmergencyPerson)) {
             return false;
         }
+
         EmergencyPerson otherPerson = (EmergencyPerson) other;
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)

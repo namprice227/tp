@@ -37,7 +37,6 @@ public class ScheduleCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
             new ArchivedBook(model.getArchivedBook()));
         expectedModel.setPerson(personToSchedule, scheduledPerson);
-
         assertCommandSuccess(scheduleCommand, model, expectedMessage, expectedModel);
     }
 
