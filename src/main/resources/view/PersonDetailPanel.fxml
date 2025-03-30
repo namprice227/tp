@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="seedu.address.ui.PersonDetailPanel">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
     <VBox spacing="8" padding="10">
         <Label fx:id="name" styleClass="header"/>
         <HBox spacing="4" fx:id="tagsContainer"/>
