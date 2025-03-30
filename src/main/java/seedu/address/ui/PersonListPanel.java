@@ -37,6 +37,13 @@ public class PersonListPanel extends UiPart<Region> {
             .addListener((observable, oldValue, newValue) -> {
                 updateDetailPanel(newValue);
             });
+
+        personListView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1) {
+                Person selectedPerson = personListView.getSelectionModel().getSelectedItem();
+                updateDetailPanel(selectedPerson);
+            }
+        });
     }
 
     private void updateDetailPanel(Person selectedPerson) {
