@@ -23,6 +23,8 @@ public class PersonDetailPanel extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label appointment;
+    @FXML
     private Label emergencyName;
     @FXML
     private Label emergencyPhone;
@@ -37,10 +39,18 @@ public class PersonDetailPanel extends UiPart<Region> {
      * Populates the panel with details of the selected person.
      */
     public void setPerson(Person person) {
-        name.setText(person.getName().value);
-        phone.setText("📞 " + person.getPhone().value);
-        address.setText("🏠 " + person.getAddress().value);
-        email.setText("📧 " + person.getEmail().value);
+        if (person != null) {
+            name.setText(person.getName().value);
+            phone.setText("📞 " + person.getPhone().value);
+            address.setText("🏠 " + person.getAddress().value);
+            email.setText("📧 " + person.getEmail().value);
+
+            if (person.getAppointment() != null) {
+                appointment.setText(person.getAppointment().value);
+            } else {
+                appointment.setText("No appointment set");
+            }
+        }
 
         if (person.getEmergencyContact() != null) {
             emergencyName.setText("👤 " + person.getEmergencyContact().getName());
