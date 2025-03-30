@@ -1,64 +1,35 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 /**
- * A UI component to show the detailed info of a person.
+ * Panel that manages and displays the PersonDetail component.
  */
 public class PersonDetailPanel extends UiPart<Region> {
     private static final String FXML = "PersonDetailPanel.fxml";
 
     @FXML
-    private Label name;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
-    private Label emergencyName;
-    @FXML
-    private Label emergencyPhone;
-    @FXML
-    private HBox tagsContainer;
+    private StackPane personDetailPlaceholder;
+
+    private PersonDetail personDetail;
 
     public PersonDetailPanel() {
         super(FXML);
+        personDetail = new PersonDetail();
+        personDetailPlaceholder.getChildren().add(personDetail.getRoot());
     }
 
     /**
-     * Populates the panel with details of the selected person.
+     * Updates the displayed PersonDetail with the given person.
      */
-    public void setPerson(Person person) {
-        name.setText(person.getName().value);
-        phone.setText("📞 " + person.getPhone().value);
-        address.setText("🏠 " + person.getAddress().value);
-        email.setText("📧 " + person.getEmail().value);
+    public void showPersonDetail(Person person) {
+        personDetail.setPerson(person);
+    }
 
-        emergencyName.setText("👤 " + person.getEmergencyContact().getName());
-        emergencyPhone.setText("📱 " + person.getEmergencyContact().getPhone());
-
-        tagsContainer.getChildren().clear();
-        for (Tag tag : person.getTags()) {
-            Label tagLabel = new Label(tag.tagName);
-            tagLabel.getStyleClass().add("tag");
-
-            if (tag.tagName.toLowerCase().contains("peanut") || tag.tagName.toLowerCase().contains("allergy")) {
-                tagLabel.getStyleClass().add("tag-allergy");
-            } else if (tag.tagName.toLowerCase().contains("insurance")) {
-                tagLabel.getStyleClass().add("tag-insurance");
-            } else {
-                tagLabel.getStyleClass().add("tag-condition");
-            }
-
-            tagsContainer.getChildren().add(tagLabel);
-        }
+    public PersonDetail getPersonDetail() {
+        return personDetail;
     }
 }

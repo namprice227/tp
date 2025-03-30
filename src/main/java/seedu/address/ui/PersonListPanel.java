@@ -48,7 +48,7 @@ public class PersonListPanel extends UiPart<Region> {
 
     private void updateDetailPanel(Person selectedPerson) {
         if (selectedPerson != null) {
-            personDetailPanel.setPerson(selectedPerson);
+            personDetailPanel.showPersonDetail(selectedPerson);
         }
     }
 

@@ -58,7 +58,7 @@
           </VBox>
 
           <!-- Person Details (Right) -->
-          <AnchorPane fx:id="personDetailPanel" HBox.hgrow="ALWAYS" styleClass="pane-with-border">
+          <AnchorPane fx:id="personDetail" HBox.hgrow="ALWAYS" styleClass="pane-with-border">
             <padding><Insets top="10" right="10" bottom="10" left="5"/></padding>
             <StackPane fx:id="personDetailPanelPlaceholder" />
           </AnchorPane>
