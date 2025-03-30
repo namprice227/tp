@@ -42,8 +42,13 @@ public class PersonDetailPanel extends UiPart<Region> {
         address.setText("🏠 " + person.getAddress().value);
         email.setText("📧 " + person.getEmail().value);
 
-        emergencyName.setText("👤 " + person.getEmergencyContact().getName());
-        emergencyPhone.setText("📱 " + person.getEmergencyContact().getPhone());
+        if (person.getEmergencyContact() != null) {
+            emergencyName.setText("👤 " + person.getEmergencyContact().getName());
+            emergencyPhone.setText("📱 " + person.getEmergencyContact().getPhone());
+        } else {
+            emergencyName.setText("👤 No emergency contact");
+            emergencyPhone.setText("📱 Not available");
+        }
 
         tagsContainer.getChildren().clear();
         for (Tag tag : person.getTags()) {

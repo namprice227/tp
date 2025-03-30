@@ -16,12 +16,11 @@
         <Label fx:id="phone"/>
         <Label fx:id="address"/>
         <Label fx:id="email"/>
-        <Label fx:id="appointment" styleClass="cell_small_label" text="\$appointment" />
+        <Label fx:id="appointment" styleClass="cell_small_label" text="appointment" />
         <VBox fx:id="emergencyContactBox" styleClass="cell_small_label">
         <Label text="Emergency Contact:" styleClass="cell_small_label" />
-        <Label fx:id="emergencyContactName" styleClass="cell_small_label" />
-        <Label fx:id="emergencyContactPhone" styleClass="cell_small_label" />
-        <Label fx:id="emergencyContactRelationship" styleClass="cell_small_label" />
+        <Label fx:id="emergencyName" styleClass="cell_small_label" />
+        <Label fx:id="emergencyPhone" styleClass="cell_small_label" />
         </VBox>
     </VBox>
 </AnchorPane>
