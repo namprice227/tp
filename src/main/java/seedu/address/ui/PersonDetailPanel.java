@@ -13,7 +13,6 @@ public class PersonDetailPanel extends UiPart<Region> {
 
     @FXML
     private StackPane personDetailPlaceholder;
-
     private PersonDetail personDetail;
 
     public PersonDetailPanel() {
