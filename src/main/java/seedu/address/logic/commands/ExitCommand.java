@@ -23,16 +23,29 @@ public class ExitCommand extends Command {
     private boolean isConfirmed;
     private final String input;
 
+    /**
+     * Creates an exit command with default parameters.
+     */
     public ExitCommand() {
         this.isConfirmed = false;
         this.input = "";
     }
 
+    /**
+     * Creates an exit command with the provided input string.
+     *
+     * @param input The raw input string to be validated
+     */
     public ExitCommand(String input) {
         this.isConfirmed = false;
         this.input = input;
     }
 
+    /**
+     * Creates an exit command with the specified confirmation state.
+     *
+     * @param isConfirmed Whether the exit has been confirmed by the user
+     */
     public ExitCommand(boolean isConfirmed) {
         this.isConfirmed = isConfirmed;
         this.input = "";
