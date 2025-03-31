@@ -46,7 +46,8 @@ public class TagCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TAGS = "Some tags are already in the patient's tag list";
     public static final String MESSAGE_TAG_NOT_FOUND = "Tag not found in the patient's tag list";
     public static final String MESSAGE_INVALID_PERSON_INDEX = "The person index is invalid.";
-    public static final String MESSAGE_MULTIPLE_OPERATIONS = "Only one tag operation (add, delete, or edit) can be performed at a time";
+    public static final String MESSAGE_MULTIPLE_OPERATIONS = "Only one tag operation (add, delete, or edit) "
+            + "can be performed at a time";
 
     private static final Logger logger = LogsCenter.getLogger(TagCommand.class);
 
