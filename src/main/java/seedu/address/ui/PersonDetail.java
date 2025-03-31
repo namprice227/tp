@@ -63,8 +63,21 @@ public class PersonDetail extends UiPart<Region> {
         tags.getChildren().clear();
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tagLabel = new Label(tag.tagName);
+                    tagLabel.setStyle("-fx-background-color: " + getColorForTag(tag.tagName) + ";"
+                        + "-fx-text-fill: white; -fx-padding: 3px; -fx-background-radius: 5px;");
+                    tags.getChildren().add(tagLabel);
+                });
+    }
 
+    /**
+     * Assigns a colour to a tag based on its name.
+     */
+    private String getColorForTag(String tagName) {
+        String[] colors = {"#FF6B6B", "#1DD1A1", "#54A0FF"};
+        int index = Math.abs(tagName.hashCode()) % colors.length;
+        return colors[index];
     }
 
 }

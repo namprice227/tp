@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.AnchorPane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-         title="Health Sync" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="Health Sync" minWidth="600" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -49,18 +49,18 @@
         </StackPane>
 
         <!-- Main layout area -->
-        <HBox spacing="5" VBox.vgrow="ALWAYS">
+        <HBox spacing="2" VBox.vgrow="ALWAYS">
 
           <!-- Contact List (Left) -->
           <VBox fx:id="personListPanel" minWidth="260" prefWidth="260" styleClass="pane-with-border">
-            <padding><Insets top="10" right="5" bottom="10" left="10"/></padding>
+            <padding><Insets top="10" right="5" bottom="10" left="8"/></padding>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
           <!-- Person Details (Right) -->
           <AnchorPane fx:id="personDetail" HBox.hgrow="ALWAYS" styleClass="pane-with-border">
             <padding><Insets top="10" right="10" bottom="10" left="5"/></padding>
-            <StackPane fx:id="personDetailPanelPlaceholder" />
+            <StackPane fx:id="personDetailPanelPlaceholder" minWidth="500"/>
           </AnchorPane>
 
         </HBox>
