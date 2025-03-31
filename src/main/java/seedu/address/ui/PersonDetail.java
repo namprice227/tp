@@ -39,11 +39,14 @@ public class PersonDetail extends UiPart<Region> {
     private VBox tagSection;
     @FXML
     private VBox emergencyContactSection;
+    @FXML
+    private VBox vbox;
 
     public PersonDetail() {
         super(FXML);
         cardPane.setVisible(false);
         cardPane.setManaged(false);
+        bindLabelWidth(address);
     }
 
     /**
@@ -61,10 +64,16 @@ public class PersonDetail extends UiPart<Region> {
         emergencyContactRelationship.setText(" " + person.getEmergencyContact().getRelationship());
         appointment.setText(person.getAppointment().toString());
         tags.getChildren().clear();
+        bindLabelWidth(address);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
 
+    private void bindLabelWidth(Label label) {
+        if (label != null) {
+            label.prefWidthProperty().bind(vbox.widthProperty());
+        }
     }
 
 }
