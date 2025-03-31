@@ -314,7 +314,6 @@ public class ModelManager implements Model {
         if (!(other instanceof ModelManager otherModelManager)) {
             return false;
         }
-        
         return versionedAddressBook.equals(otherModelManager.versionedAddressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons)
