@@ -107,4 +107,7 @@ public class CommandResult {
                 .toString();
     }
 
+    public ListType getListType() {
+        return listType;
+    }
 }
