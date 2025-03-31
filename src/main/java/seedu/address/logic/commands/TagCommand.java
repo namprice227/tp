@@ -119,38 +119,83 @@ public class TagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        logTagCommandExecution();
+
+        Person personToTag = getPersonToTag(model);
+        Person updatedPerson = modifyPersonTags(model, personToTag);
+        String resultMessage = createResultMessage(updatedPerson);
+
+        logTagCommandSuccess();
+        return new CommandResult(resultMessage);
+    }
+
+    /**
+     * Logs the start of the tag command execution.
+     */
+    private void logTagCommandExecution() {
         logger.info("Executing tag command for index " + targetIndex.getOneBased());
+    }
 
+    /**
+     * Retrieves the Person object to modify tags for, based on the target index.
+     *
+     * @param model The model of the application.
+     * @return The Person object to modify.
+     * @throws CommandException If the target index is invalid.
+     */
+    private Person getPersonToTag(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
-
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             logger.warning("Invalid person index: " + targetIndex.getOneBased());
             throw new CommandException(MESSAGE_INVALID_PERSON_INDEX);
         }
+        return lastShownList.get(targetIndex.getZeroBased());
+    }
 
-        Person personToTag = lastShownList.get(targetIndex.getZeroBased());
-        Person updatedPerson;
-        String resultMessage;
-
+    /**
+     * Modifies the tags of the given Person object based on the command's parameters.
+     *
+     * @param model       The model of the application.
+     * @param personToTag The Person object to modify.
+     * @return The updated Person object.
+     * @throws CommandException If an error occurs during tag modification.
+     */
+    private Person modifyPersonTags(Model model, Person personToTag) throws CommandException {
         try {
-            // Determine operation type and execute
             if (!tagsToDelete.isEmpty()) {
-                updatedPerson = handleTagDeletion(model, personToTag);
-                resultMessage = String.format(MESSAGE_DELETE_SUCCESS, updatedPerson);
+                return handleTagDeletion(model, personToTag);
             } else if (oldTag != null && newTag != null) {
-                updatedPerson = handleTagEditing(model, personToTag);
-                resultMessage = String.format(MESSAGE_EDIT_SUCCESS, updatedPerson);
+                return handleTagEditing(model, personToTag);
             } else {
-                updatedPerson = handleTagAddition(model, personToTag);
-                resultMessage = String.format(MESSAGE_ADD_SUCCESS, updatedPerson);
+                return handleTagAddition(model, personToTag);
             }
-
-            logger.info("Tag command executed successfully");
-            return new CommandResult(resultMessage);
         } catch (CommandException e) {
             logger.warning("Error executing tag command: " + e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Creates the result message based on the type of tag modification.
+     *
+     * @param updatedPerson The updated Person object.
+     * @return The result message.
+     */
+    private String createResultMessage(Person updatedPerson) {
+        if (!tagsToDelete.isEmpty()) {
+            return String.format(MESSAGE_DELETE_SUCCESS, updatedPerson);
+        } else if (oldTag != null && newTag != null) {
+            return String.format(MESSAGE_EDIT_SUCCESS, updatedPerson);
+        } else {
+            return String.format(MESSAGE_ADD_SUCCESS, updatedPerson);
+        }
+    }
+
+    /**
+     * Logs the successful execution of the tag command.
+     */
+    private void logTagCommandSuccess() {
+        logger.info("Tag command executed successfully");
     }
 
     /**
@@ -249,7 +294,11 @@ public class TagCommand extends Command {
                 && allergies.equals(otherTagCommand.allergies)
                 && conditions.equals(otherTagCommand.conditions)
                 && insurances.equals(otherTagCommand.insurances)
-                && tagsToDelete.equals(otherTagCommand.tagsToDelete);
+                && tagsToDelete.equals(otherTagCommand.tagsToDelete)
+                && ((oldTag == null && otherTagCommand.oldTag == null) || (oldTag != null
+                && oldTag.equals(otherTagCommand.oldTag)))
+                && ((newTag == null && otherTagCommand.newTag == null) || (newTag != null
+                && newTag.equals(otherTagCommand.newTag)));
     }
 
     /**
