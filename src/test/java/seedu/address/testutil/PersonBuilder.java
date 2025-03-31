@@ -26,6 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMERGENCY_PERSON = "Mom Mee";
     public static final String DEFAULT_EMERGENCY_PHONE = "85355255";
     public static final String DEFAULT_RELATIONSHIP = "MOTHER";
+    public static final String DEFAULT_APPOINTMENT = "31-12-2025 10:00";
 
     private Name name;
     private Phone phone;
@@ -33,6 +34,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private EmergencyPerson emergencyPerson;
+    private Appointment appointment;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -43,8 +45,9 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        emergencyPerson = new EmergencyPerson(new Name(DEFAULT_NAME),
+        emergencyPerson = new EmergencyPerson(new Name(DEFAULT_EMERGENCY_PERSON),
                 new Phone(DEFAULT_EMERGENCY_PHONE), new Relationship(DEFAULT_RELATIONSHIP));
+        appointment = new Appointment(DEFAULT_APPOINTMENT);
     }
 
     /**
@@ -56,6 +59,8 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        emergencyPerson = personToCopy.getEmergencyContact();
+        appointment = personToCopy.getAppointment();
     }
 
     /**
