@@ -36,7 +36,6 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the address book";
-
     private final Person toAdd;
 
     /**
@@ -56,7 +55,8 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS,
+                Messages.format(toAdd), CommandResult.ListType.NO_CHANGE));
     }
 
     @Override

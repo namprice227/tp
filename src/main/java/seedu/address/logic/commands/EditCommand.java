@@ -10,11 +10,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -27,7 +25,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -122,10 +119,8 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
         Person editedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, personToEdit.getAppointment(), personToEdit.getEmergencyContact());
+                personToEdit.getTags(), personToEdit.getAppointment(), personToEdit.getEmergencyContact());
         return editedPerson;
     }
 
@@ -163,7 +158,6 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
 
@@ -176,14 +170,13 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address);
         }
 
         public void setName(Name name) {
@@ -218,13 +211,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : new HashSet<>();
-        }
-
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
 
         @Override
         public boolean equals(Object other) {
@@ -233,11 +219,10 @@ public class EditCommand extends Command {
             }
 
             if (other instanceof EditPersonDescriptor otherDescriptor) {
-                return name.equals(otherDescriptor.name)
-                        && phone.equals(otherDescriptor.phone)
-                        && email.equals(otherDescriptor.email)
-                        && address.equals(otherDescriptor.address)
-                        && tags.equals(otherDescriptor.tags);
+                return Objects.equals(name, otherDescriptor.name)
+                        && Objects.equals(phone, otherDescriptor.phone)
+                        && Objects.equals(email, otherDescriptor.email)
+                        && Objects.equals(address, otherDescriptor.address);
             }
             return false;
         }
@@ -245,7 +230,7 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             return "EditPersonDescriptor{name=" + name + ", phone=" + phone + ", email=" + email
-                + ", address=" + address + ", tags=" + tags + "}";
+                + ", address=" + address + "}";
         }
     }
 }
