@@ -320,4 +320,9 @@ public class ModelManager implements Model {
         addressBook.sortPersonsByAppointment();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+
+    @Override
+    public ReadOnlyAddressBook getEmptyAddressBook() {
+        return new AddressBook();
+    }
 }
