@@ -228,6 +228,11 @@ public class AddCommandTest {
         public void sortPersonListByAppointment() {
             throw new AssertionError("This method should not be called");
         }
+
+        @Override
+        public ReadOnlyAddressBook getEmptyAddressBook() {
+            return new AddressBook();
+        }
     }
 
     /**
@@ -271,7 +276,4 @@ public class AddCommandTest {
             return new AddressBook();
         }
     }
-
-
-
 }
