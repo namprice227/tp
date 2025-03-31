@@ -29,6 +29,11 @@ public class PersonDetailPanel extends UiPart<Region> {
         personDetail.setPerson(person);
     }
 
+    public void clear() {
+        personDetail.getRoot().setVisible(false);
+        personDetail.getRoot().setManaged(false);
+    }
+
     public PersonDetail getPersonDetail() {
         return personDetail;
     }
