@@ -24,7 +24,7 @@ public class CommandResult {
     /**
      * Represents the type of list that the command result can be associated with.
      */
-    public enum ListType { NORMAL, ARCHIVE }
+    public enum ListType { NORMAL, ARCHIVE, NO_CHANGE }
 
     private final ListType listType;
 
