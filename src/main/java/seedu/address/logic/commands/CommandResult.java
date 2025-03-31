@@ -59,10 +59,6 @@ public class CommandResult {
         this(feedbackToUser, false, false, false);
     }
 
-    public ListType getListType() {
-        return listType;
-    }
-
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
