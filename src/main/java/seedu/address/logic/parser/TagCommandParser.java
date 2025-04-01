@@ -82,7 +82,7 @@ public class TagCommandParser implements Parser<TagCommand> {
             throw new ParseException("Cannot edit and add tags in the same command.");
         }
 
-        return new TagCommand(index, allergies, conditions, insurances, tagsToDelete, oldTag, newTag);
+        return new TagCommand(index, allergies, conditions, insurances, tagsToDelete);
     }
 
     /**

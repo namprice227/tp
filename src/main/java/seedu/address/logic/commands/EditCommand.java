@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -122,7 +123,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        List<Set<Tag>> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         Person editedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedTags, personToEdit.getAppointment(), personToEdit.getEmergencyContact());
@@ -163,7 +164,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
+        private List<Set<Tag>> tags;
 
         public EditPersonDescriptor() {}
 
@@ -218,12 +219,29 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : new HashSet<>();
+        /**
+         * Sets the tags. Ensures the list contains exactly three sets.
+         */
+        public void setTags(List<Set<Tag>> tags) {
+            if (tags == null) {
+                this.tags = new ArrayList<>();
+                for (int i = 0; i < 3; i++) {
+                    this.tags.add(new HashSet<>());
+                }
+            } else {
+                this.tags = new ArrayList<>(tags.size());
+                for (Set<Tag> tagSet : tags) {
+                    this.tags.add(new HashSet<>(tagSet));
+                }
+                // Ensure there are exactly three sets
+                while (this.tags.size() < 3) {
+                    this.tags.add(new HashSet<>());
+                }
+            }
         }
 
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<List<Set<Tag>>> getTags() {
+            return Optional.of(Collections.unmodifiableList(tags));
         }
 
         @Override

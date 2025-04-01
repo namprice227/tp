@@ -49,8 +49,6 @@ public class TagCommand extends Command {
     private final Set<Tag> conditions;
     private final Set<Tag> insurances;
     private final Set<Tag> tagsToDelete;
-    private final Tag oldTag;
-    private final Tag newTag;
 
     /**
      * Constructs a TagCommand object to add, delete, or edit tags for a person at the specified index.
@@ -60,11 +58,9 @@ public class TagCommand extends Command {
      * @param conditions Set of condition tags to be added to the person.
      * @param insurances Set of insurance tags to be added to the person.
      * @param tagsToDelete Set of tags to be deleted from the person.
-     * @param oldTag The existing tag to be edited (if applicable).
-     * @param newTag The new tag to replace the old tag (if applicable).
      */
     public TagCommand(Index targetIndex, Set<Tag> allergies, Set<Tag> conditions, Set<Tag> insurances,
-                      Set<Tag> tagsToDelete, Tag oldTag, Tag newTag) {
+                      Set<Tag> tagsToDelete) {
         requireNonNull(targetIndex);
         requireNonNull(allergies);
         requireNonNull(conditions);
@@ -75,8 +71,6 @@ public class TagCommand extends Command {
         this.conditions = conditions;
         this.insurances = insurances;
         this.tagsToDelete = tagsToDelete;
-        this.oldTag = oldTag;
-        this.newTag = newTag;
     }
 
     /**
@@ -108,16 +102,6 @@ public class TagCommand extends Command {
             }
             return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, personToTag));
         }
-
-        if (oldTag != null && newTag != null) {
-            // Handle edit tag
-            if (!personToTag.getTags().contains(oldTag)) {
-                throw new CommandException(MESSAGE_TAG_NOT_FOUND);
-            }
-            personToTag = model.editTagForPerson(personToTag, oldTag, newTag);
-            return new CommandResult(String.format(MESSAGE_EDIT_SUCCESS, personToTag));
-        }
-
         Set<Tag> allTags = mergeTags();
 
         // Check for duplicate tags before adding
@@ -125,7 +109,7 @@ public class TagCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TAGS);
         }
 
-        Person updatedPerson = model.addTagsToPerson(personToTag, allTags);
+        Person updatedPerson = model.addTagsToPerson(personToTag, allergies, conditions, insurances);
         return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, updatedPerson));
     }
 

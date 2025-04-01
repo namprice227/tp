@@ -39,7 +39,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane allergyTagsPane;
+    @FXML
+    private FlowPane conditionTagsPane;
+    @FXML
+    private FlowPane insuranceTagsPane;
     @FXML
     private Label appointment;
     @FXML
@@ -64,8 +68,8 @@ public class PersonCard extends UiPart<Region> {
         emergencyContactName.setText(person.getEmergencyContact().getName().toString());
         emergencyContactPhone.setText(person.getEmergencyContact().getPhone().toString());
         emergencyContactRelationship.setText(person.getEmergencyContact().getRelationship().toString());
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getAllergyTags().forEach(tag -> allergyTagsPane.getChildren().add(new Label(tag.toString())));
+        person.getConditionTags().forEach(tag -> conditionTagsPane.getChildren().add(new Label(tag.toString())));
+        person.getInsuranceTags().forEach(tag -> insuranceTagsPane.getChildren().add(new Label(tag.toString())));
     }
 }
