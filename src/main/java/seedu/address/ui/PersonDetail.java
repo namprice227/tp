@@ -96,7 +96,8 @@ public class PersonDetail extends UiPart<Region> {
                     // Create a Label for the tag
                     Label tagLabel = new Label(tagName);
                     tagLabel.setStyle("-fx-background-color: " + color + ";"
-                            + "-fx-text-fill: white; -fx-padding: 1px; -fx-background-radius: 1px;");
+                            + "-fx-text-fill: white; -fx-padding: 4px; "
+                        + "-fx-background-radius: 6px; -fx-font-size: 12px;");
 
                     // Add the Label to the FlowPane
                     flowPane.getChildren().add(tagLabel);
