@@ -278,8 +278,10 @@ Format: `clear`
 
 ### Adding a tag: `ta/ ti/ tc/`
 
-Adds a tag to a person based on their patient_ID in the address book.
-Tags can be added for allergies (ta/), insurance (ti/), or conditions (tc/).
+* Adds a tag to a patient based on their patient_ID in the address book.
+* Tags can be added for allergies (ta/), insurance (ti/), or conditions (tc/).
+* Tags are case-sensitive and need to be alphanumeric.
+* Tags can be more than 1 word in length. 
 
 Format: `tag <patient_ID> ta/ALLERGY`
          `tag <patient_ID> ti/INSURANCE`
@@ -287,7 +289,7 @@ Format: `tag <patient_ID> ta/ALLERGY`
 
 <box type="tip" seamless>
 
-**Tip:** You can add tags for different categories such as allergy (`ta/`), insurance (`ti/`), and condition (`tc/`).
+**Tip:** Add the tags based on their different categories such as allergy (`ta/`), insurance (`ti/`), and condition (`tc/`).
 </box>
 
 Examples:
@@ -295,19 +297,20 @@ Examples:
 * `tag 2 ti/prudential`
 * `tag 3 tc/diabetes`
 
-**⚠️ Warning:** If the tag already exists for the person, it will not be added again.
+**⚠️ Warning:** If the tag already exists for the patient, it will not be added again.
 
 ---
 
 ### Deleting a tag: `td/`
 
-Deletes a tag from a person based on their patient_ID in the address book.
+* Deletes a tag from a patient based on their patient_ID in the address book.
+* Tags are case-sensitive.
 
 Format: `tag <patient_ID> td/TAGNAME`
 
 <box type="tip" seamless>
 
-**Tip:** You can delete one or more tags from a person based on their index.
+**Tip:** You can undo the command if the tag was deleted by mistake.
 </box>
 
 Examples:
