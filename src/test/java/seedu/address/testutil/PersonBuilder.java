@@ -26,6 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMERGENCY_PERSON = "Mom Mee";
     public static final String DEFAULT_EMERGENCY_PHONE = "85355255";
     public static final String DEFAULT_RELATIONSHIP = "MOTHER";
+    public static final String DEFAULT_APPOINTMENT = "31-12-2025 10:00";
 
     private Name name;
     private Phone phone;
@@ -50,8 +51,9 @@ public class PersonBuilder {
         insurances = new HashSet<>();
         emergencyPerson = new EmergencyPerson(new Name(DEFAULT_EMERGENCY_PERSON),
                 new Phone(DEFAULT_EMERGENCY_PHONE), new Relationship(DEFAULT_RELATIONSHIP));
-        appointment = new Appointment();
+        appointment = new Appointment(DEFAULT_APPOINTMENT);
     }
+
 
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.

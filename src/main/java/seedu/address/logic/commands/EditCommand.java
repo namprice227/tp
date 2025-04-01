@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -177,14 +178,13 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address);
         }
 
         public void setName(Name name) {
@@ -251,11 +251,10 @@ public class EditCommand extends Command {
             }
 
             if (other instanceof EditPersonDescriptor otherDescriptor) {
-                return name.equals(otherDescriptor.name)
-                        && phone.equals(otherDescriptor.phone)
-                        && email.equals(otherDescriptor.email)
-                        && address.equals(otherDescriptor.address)
-                        && tags.equals(otherDescriptor.tags);
+                return Objects.equals(name, otherDescriptor.name)
+                        && Objects.equals(phone, otherDescriptor.phone)
+                        && Objects.equals(email, otherDescriptor.email)
+                        && Objects.equals(address, otherDescriptor.address);
             }
             return false;
         }
@@ -263,7 +262,7 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             return "EditPersonDescriptor{name=" + name + ", phone=" + phone + ", email=" + email
-                + ", address=" + address + ", tags=" + tags + "}";
+                + ", address=" + address + "}";
         }
     }
 }
