@@ -39,8 +39,12 @@
             <Label fx:id="email" styleClass="cell_small_label"/>
             <Label fx:id="address" styleClass="cell_small_label"/>
 
+            <Label text=""/>
+
             <Label text="🕒 Appointment:" styleClass="cell_small_label_bold"/>
             <Label fx:id="appointment" styleClass="cell_small_label"/>
+
+            <Label text=""/>
 
             <Label text="Emergency Contact:" styleClass="cell_small_label_bold"/>
             <HBox spacing="5" alignment="CENTER_LEFT">

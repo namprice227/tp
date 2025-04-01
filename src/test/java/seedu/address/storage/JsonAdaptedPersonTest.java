@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
 public class JsonAdaptedPersonTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "R@.chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
@@ -30,7 +30,8 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final String VALID_APPOINTMENT = "2025-05-01 14:30";
+    private static final String VALID_APPOINTMENT = "01-05-2025 14:30";
+    private static final String INVALID_APPOINTMENT = "2025-05-01 14:30";
     private static final JsonAdaptedEmergencyPerson VALID_EMERGENCY_CONTACT =
             new JsonAdaptedEmergencyPerson("Jane Doe", "98765432", "Mother");
     private static final JsonAdaptedEmergencyPerson INVALID_EMERGENCY_CONTACT =
@@ -56,7 +57,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_ALLERGY_TAGS, VALID_CONDITION_TAGS, VALID_INSURANCE_TAGS, VALID_APPOINTMENT, VALID_EMERGENCY_CONTACT);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -149,7 +150,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidAppointment_throwsIllegalValueException() {
         JsonAdaptedPerson person =
             new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,  VALID_ALLERGY_TAGS, VALID_CONDITION_TAGS, VALID_INSURANCE_TAGS,
-                VALID_APPOINTMENT, VALID_EMERGENCY_CONTACT);
+                INVALID_APPOINTMENT, VALID_EMERGENCY_CONTACT);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 

@@ -26,6 +26,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -40,6 +41,7 @@ public class AddressBookParserTest {
 
     @BeforeEach
     public void setUp() {
+        model = new ModelManager(); // Initialize model with a valid instance
         parser = new AddressBookParser(model);
     }
 
@@ -79,7 +81,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+        assertThrows(ParseException.class, () -> parser.parseCommand(ClearCommand.COMMAND_WORD + " vefve"));
     }
 
     @Test

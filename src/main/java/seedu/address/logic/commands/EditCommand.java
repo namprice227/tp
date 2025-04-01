@@ -124,10 +124,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        List<Set<Tag>> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         Person editedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, personToEdit.getAppointment(), personToEdit.getEmergencyContact());
+                personToEdit.getTags(), personToEdit.getAppointment(), personToEdit.getEmergencyContact());
         return editedPerson;
     }
 
@@ -217,6 +216,27 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        /**
+         * Sets the tags. Ensures the list contains exactly three sets.
+         */
+        public void setTags(List<Set<Tag>> tags) {
+            if (tags == null) {
+                this.tags = new ArrayList<>();
+                for (int i = 0; i < 3; i++) {
+                    this.tags.add(new HashSet<>());
+                }
+            } else {
+                this.tags = new ArrayList<>(tags.size());
+                for (Set<Tag> tagSet : tags) {
+                    this.tags.add(new HashSet<>(tagSet));
+                }
+                // Ensure there are exactly three sets
+                while (this.tags.size() < 3) {
+                    this.tags.add(new HashSet<>());
+                }
+            }
         }
 
         public Optional<List<Set<Tag>>> getTags() {

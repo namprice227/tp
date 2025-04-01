@@ -1,3 +1,4 @@
+```plantuml
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
@@ -5,26 +6,55 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model as ModelPackage <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
-Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class AddressBook
-Class ModelManager
-Class UserPrefs
+    Interface "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+    Interface "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+    Interface "<<interface>>\nModel" as Model {
+        + setUserPrefs(userPrefs: ReadOnlyUserPrefs)
+        + getUserPrefs(): ReadOnlyUserPrefs
+        + getGuiSettings(): GuiSettings
+        + setGuiSettings(guiSettings: GuiSettings)
+        + getAddressBookFilePath(): Path
+        + setAddressBookFilePath(path: Path)
+        + setAddressBook(addressBook: ReadOnlyAddressBook)
+        + getAddressBook(): ReadOnlyAddressBook
+        + hasPerson(person: Person): boolean
+        + deletePerson(target: Person)
+        + addPerson(person: Person)
+        + addEmergencyContactToPerson(person: Person, emergencyPerson: EmergencyPerson)
+        + setPerson(target: Person, editedPerson: Person)
+        + findPersonByName(name: Name): Optional<Person>
+        + addTagsToPerson(person: Person, tagsToAdd: Set<Tag>): Person
+        + deleteTagFromPerson(person: Person, tagToDelete: Set<Tag>): Person
+        + editTagForPerson(person: Person, oldTag: Tag, newTag: Tag): Person
+        + getFilteredPersonList(): ObservableList<Person>
+        + updateFilteredPersonList(predicate: Predicate<Person>)
+        + hasSchedule(appointment: Appointment): boolean
+        + sortPersonListByName()
+        + sortPersonListByAppointment()
+    }
+    Class AddressBook
+    Class ModelManager
+    Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
-
-Class I #FFFFFF
+    Class UniquePersonList
+    Class Person {
+        - name: Name
+        - phone: Phone
+        - email: Email
+        - address: Address
+        - tags: Set<Tag>
+        - emergencyPerson: EmergencyPerson
+        - appointment: Appointment
+    }
+    Class Address
+    Class Email
+    Class Name
+    Class Phone
+    Class Tag
+    Class EmergencyPerson
+    Class Appointment
+    Class GuiSettings
 }
-
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
 
@@ -42,13 +72,9 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
-
-Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
-
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Person *--> "0..1" EmergencyPerson
+Person *--> "0..1" Appointment
 
 ModelManager --> "~* filtered" Person
 @enduml
+```
