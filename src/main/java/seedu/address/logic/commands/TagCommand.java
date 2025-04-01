@@ -26,20 +26,17 @@ public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-          + ": Adds, deletes, or edits different types of tags to an existing patient in HealthSync.\n"
-          + "Parameters:\n"
+            + ": Adds, deletes, or edits different types of tags to an existing patient in HealthSync.\n"
+            + "Parameters:\n"
             + "  Adding tags: INDEX " + PREFIX_ALLERGY + "TAG " + PREFIX_CONDITION + "TAG " + PREFIX_INSURANCE + "TAG\n"
             + "  Deleting a tag: INDEX td/TAG\n"
-            + "  Editing a tag: INDEX te/OLD_TAG=NEW_TAG\n"
-          + "Example:\n"
+            + "Example:\n"
             + "  " + COMMAND_WORD + " 1 " + PREFIX_ALLERGY + "Peanuts\n"
             + "  " + COMMAND_WORD + " 1 " + PREFIX_CONDITION + "Asthma\n"
             + "  " + COMMAND_WORD + " 1 " + PREFIX_INSURANCE + "Medisave\n"
-            + "  " + COMMAND_WORD + " td/Peanuts\n"
-            + "  " + COMMAND_WORD + " te/Medisave=Prudential";
+            + "  " + COMMAND_WORD + " td/Peanuts\n";
 
     public static final String MESSAGE_ADD_SUCCESS = "Tags added to patient: %1$s";
-    public static final String MESSAGE_EDIT_SUCCESS = "Tag edited to patient: %1$s";
     public static final String MESSAGE_DELETE_SUCCESS = "Tag deleted from patient: %1$s";
     public static final String MESSAGE_DUPLICATE_TAGS = "Some tags are already in the patient's tag list";
     public static final String MESSAGE_TAG_NOT_FOUND = "Tag not found in the patient's tag list";
@@ -156,10 +153,10 @@ public class TagCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-            .add("targetIndex", targetIndex)
-            .add("allergies", allergies)
-            .add("conditions", conditions)
-            .add("insurances", insurances)
-            .toString();
+                .add("targetIndex", targetIndex)
+                .add("allergies", allergies)
+                .add("conditions", conditions)
+                .add("insurances", insurances)
+                .toString();
     }
 }

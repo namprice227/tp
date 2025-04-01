@@ -171,17 +171,14 @@ public class AddCommandTest {
         }
 
         @Override
-        public Person addTagsToPerson(Person person, Set<Tag> tagsToAdd) {
+        public Person addTagsToPerson(Person person, Set<Tag> allergies, Set<Tag> conditions,
+                               Set<Tag> insurances)
+        {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public Person deleteTagFromPerson(Person person, Set<Tag> tagToDelete) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Person editTagForPerson(Person person, Tag oldTag, Tag newTag) {
             throw new AssertionError("This method should not be called.");
         }
 

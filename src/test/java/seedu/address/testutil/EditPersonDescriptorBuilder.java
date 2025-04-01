@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -76,10 +79,21 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+        // Collect tags into a List<Set<Tag>> where each Set contains one tag
+        List<Set<Tag>> tagList = new ArrayList<>();
+
+        // Create a Set<Tag> for each tag and add it to the list
+        for (String tag : tags) {
+            Set<Tag> tagSet = new HashSet<>();
+            tagSet.add(new Tag(tag));  // Wrap each tag in a Set and add it to the List
+            tagList.add(tagSet);
+        }
+
+        // Set the tags in the descriptor
+        descriptor.setTags(tagList);
         return this;
     }
+
 
     public EditPersonDescriptor build() {
         return descriptor;

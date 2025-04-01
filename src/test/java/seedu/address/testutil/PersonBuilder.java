@@ -31,8 +31,11 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Set<Tag> allergies;
+    private Set<Tag> conditions;
+    private Set<Tag> insurances;
     private EmergencyPerson emergencyPerson;
+    private Appointment appointment;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -42,9 +45,12 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
-        emergencyPerson = new EmergencyPerson(new Name(DEFAULT_NAME),
+        allergies = new HashSet<>();
+        conditions = new HashSet<>();
+        insurances = new HashSet<>();
+        emergencyPerson = new EmergencyPerson(new Name(DEFAULT_EMERGENCY_PERSON),
                 new Phone(DEFAULT_EMERGENCY_PHONE), new Relationship(DEFAULT_RELATIONSHIP));
+        appointment = new Appointment();
     }
 
     /**
@@ -55,7 +61,11 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        allergies = new HashSet<>(personToCopy.getAllergyTags());
+        conditions = new HashSet<>(personToCopy.getConditionTags());
+        insurances = new HashSet<>(personToCopy.getInsuranceTags());
+        emergencyPerson = personToCopy.getEmergencyContact();
+        appointment = personToCopy.getAppointment();
     }
 
     /**
@@ -63,22 +73,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
         return this;
     }
 
@@ -98,7 +92,64 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Address} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAddress(String address) {
+        this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code EmergencyPerson} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withEmergencyPerson(String name, String phone, String relationship) {
+        this.emergencyPerson = new EmergencyPerson(new Name(name), new Phone(phone), new Relationship(relationship));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Appointment} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAppointment(Appointment appointment) {
+        this.appointment = appointment;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Allergies} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAllergies(String... tags) {
+        for (String tag : tags) {
+            allergies.add(new Tag(tag));
+        }
+        return this;
+    }
+
+    /**
+     * Sets the {@code Conditions} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withConditions(String... tags) {
+        for (String tag : tags) {
+            conditions.add(new Tag(tag));
+        }
+        return this;
+    }
+
+    /**
+     * Sets the {@code Insurances} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withInsurances(String... tags) {
+        for (String tag : tags) {
+            insurances.add(new Tag(tag));
+        }
+        return this;
+    }
+
+    /**
+     * Builds the {@code Person}.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags, new Appointment(), emergencyPerson);
+        return new Person(name, phone, email, address, allergies, conditions, insurances, appointment, emergencyPerson);
     }
 }
