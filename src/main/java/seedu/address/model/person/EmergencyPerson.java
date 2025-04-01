@@ -35,6 +35,10 @@ public class EmergencyPerson {
         return relationship;
     }
 
+    public boolean isEmpty() {
+        return name == null && phone == null && relationship == null;
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -48,6 +52,7 @@ public class EmergencyPerson {
         if (!(other instanceof EmergencyPerson)) {
             return false;
         }
+
         EmergencyPerson otherPerson = (EmergencyPerson) other;
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)

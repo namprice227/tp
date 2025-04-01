@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -60,12 +58,12 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().toString());
         address.setText(person.getAddress().toString());
         email.setText(person.getEmail().toString());
-        appointment.setText(person.getAppointment().toString());
-        emergencyContactName.setText(person.getEmergencyContact().getName().toString());
-        emergencyContactPhone.setText(person.getEmergencyContact().getPhone().toString());
-        emergencyContactRelationship.setText(person.getEmergencyContact().getRelationship().toString());
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+//        appointment.setText(person.getAppointment().toString());
+//        emergencyContactName.setText(person.getEmergencyContact().getName().toString());
+//        emergencyContactPhone.setText(person.getEmergencyContact().getPhone().toString());
+//        emergencyContactRelationship.setText(person.getEmergencyContact().getRelationship().toString());
+//        person.getTags().stream()
+//                .sorted(Comparator.comparing(tag -> tag.tagName))
+//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }

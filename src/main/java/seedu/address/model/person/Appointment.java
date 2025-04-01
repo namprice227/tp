@@ -2,6 +2,9 @@ package seedu.address.model.person;
 
 import java.util.Objects;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Schedule in the address book.
  * Guarantees: details are present and not null.
@@ -10,6 +13,7 @@ public class Appointment implements Comparable<Appointment> {
     public static final String MESSAGE_CONSTRAINTS = "This must be DD-MM-YYYY HH:MM";
     private final DateTime dateTime;
     private final String description;
+    public final String value;
 
     /**
      * Constructs a {@code Schedule}.
@@ -20,6 +24,7 @@ public class Appointment implements Comparable<Appointment> {
     public Appointment(DateTime dateTime, String description) {
         this.dateTime = Objects.requireNonNull(dateTime);
         this.description = Objects.requireNonNull(description);
+        this.value = dateTime.toString() + " " + description;
     }
 
     /**
@@ -28,6 +33,7 @@ public class Appointment implements Comparable<Appointment> {
     public Appointment() {
         this.dateTime = null;
         this.description = "";
+        this.value = "";
     }
 
     /**
@@ -38,8 +44,10 @@ public class Appointment implements Comparable<Appointment> {
     public Appointment(String appointment) {
         if (appointment.equals("")) {
             this.dateTime = null;
+            this.value = "";
         } else {
             this.dateTime = new DateTime(appointment);
+            this.value = this.dateTime.toString();
         }
         this.description = "";
     }
