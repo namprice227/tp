@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.EmergencyPerson;
 import seedu.address.model.person.Name;
@@ -61,7 +62,8 @@ public interface Model {
     ReadOnlyArchivedBook getArchivedBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
      */
     boolean hasPerson(Person person);
 
@@ -78,14 +80,16 @@ public interface Model {
     void addPerson(Person person);
 
     /**
-     * Add emergency contact to the given person {@code Person} with {@code emergencyPerson}.
+     * Add emergency contact to the given person {@code Person} with
+     * {@code emergencyPerson}.
      */
     void addEmergencyContactToPerson(Person person, EmergencyPerson emergencyPerson);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -98,7 +102,7 @@ public interface Model {
 
     /**
      * Adds tags to the given person.
-     * @param person the person to add tags to
+     * @param person    the person to add tags to
      * @param tagsToAdd the tags to be added
      * @return the updated person with the new tags
      */
@@ -112,10 +116,40 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered person list to filter by the given
+     * {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Checks if the address book can be undone.
+     * @return true if undo is possible, false otherwise.
+     */
+    boolean canUndoAddressBook();
+
+    /**
+     * Undoes the last command that modified the address book.
+     * Throws CommandException if no undo is possible.
+     */
+    void undoAddressBook() throws CommandException;
+
+    /**
+     * Checks if the address book can be redone.
+     * @return true if redo is possible, false otherwise.
+     */
+    boolean canRedoAddressBook();
+
+    /**
+     * Redoes the last command that modified the address book.
+     * Throws CommandException if no redo is possible.
+     */
+    void redoAddressBook() throws CommandException;
+
+    /**
+     * Commits the current state of the address book.
+     */
+    void commitAddressBook();
 
     void updateArchivedFilteredPersonList(Predicate<Person> predicate);
 
@@ -144,4 +178,9 @@ public interface Model {
      * Sorts the person list by appointment date with earliest first.
      */
     void sortPersonListByAppointment();
+
+    /**
+     * Returns an empty AddressBook.
+     */
+    ReadOnlyAddressBook getEmptyAddressBook();
 }

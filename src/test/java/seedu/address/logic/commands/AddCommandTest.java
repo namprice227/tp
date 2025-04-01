@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -228,6 +229,34 @@ public class AddCommandTest {
         public void sortPersonListByAppointment() {
             throw new AssertionError("This method should not be called");
         }
+
+        @Override
+        public void commitAddressBook() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        public void undoAddressBook() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        public boolean canUndoAddressBook() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public ReadOnlyAddressBook getEmptyAddressBook() {
+            return new AddressBook();
+        }
+
+        @Override
+        public boolean canRedoAddressBook() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void redoAddressBook() {
+            throw new AssertionError("This method should not be called");
+        }
     }
 
     /**
@@ -271,7 +300,4 @@ public class AddCommandTest {
             return new AddressBook();
         }
     }
-
-
-
 }

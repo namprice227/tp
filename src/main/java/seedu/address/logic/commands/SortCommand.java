@@ -36,7 +36,6 @@ public class SortCommand extends Command {
             model.sortPersonListByAppointment();
             break;
         default:
-            // This should not happen as parser should validate input
             throw new AssertionError("Unknown sort field: " + sortField);
         }
 
@@ -47,7 +46,7 @@ public class SortCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this
-            || (other instanceof SortCommand // instanceof handles nulls
-            && sortField.equals(((SortCommand) other).sortField)); // state check
+            || (other instanceof SortCommand
+            && sortField.equals(((SortCommand) other).sortField));
     }
 }

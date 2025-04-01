@@ -66,14 +66,15 @@ public class ParserUtil {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
 
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+
         // Check if the phone number contains exactly 8 digits and starts with 6, 8, or 9
         if (!trimmedPhone.matches("^[689]\\d{7}$")) {
             throw new ParseException(MESSAGE_INVALID_PHONE);
         }
 
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
         return new Phone(trimmedPhone);
     }
 

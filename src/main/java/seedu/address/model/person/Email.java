@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.regex.Pattern;
+
 /**
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
@@ -20,7 +22,9 @@ public class Email {
             + "The domain name must:\n"
             + "    - end with a domain label at least 2 characters long\n"
             + "    - have each domain label start and end with alphanumeric characters\n"
-            + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
+            + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.\n"
+            + "3. Must have a valid domain extension";
+
     // alphanumeric and special characters
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
     private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
@@ -30,6 +34,12 @@ public class Email {
     private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
+
+    // Regex for validating domain extensions with multiple levels
+    private static final Pattern DOMAIN_VALIDATION_PATTERN = Pattern.compile(
+            "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}(\\.[A-Za-z]{2,})?$",
+            Pattern.CASE_INSENSITIVE
+    );
 
     public final String value;
 
@@ -46,9 +56,16 @@ public class Email {
 
     /**
      * Returns if a given string is a valid email.
+     * Checks both the regex pattern and the domain validation.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+        // First check the original regex validation
+        boolean matchesRegex = test.matches(VALIDATION_REGEX);
+
+        // Then check for valid domain extension
+        boolean hasValidDomain = DOMAIN_VALIDATION_PATTERN.matcher(test).matches();
+
+        return matchesRegex && hasValidDomain;
     }
 
     @Override
@@ -75,5 +92,4 @@ public class Email {
     public int hashCode() {
         return value.hashCode();
     }
-
 }

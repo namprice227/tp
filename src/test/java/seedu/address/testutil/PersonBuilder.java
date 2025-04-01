@@ -26,6 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMERGENCY_PERSON = "Mom Mee";
     public static final String DEFAULT_EMERGENCY_PHONE = "85355255";
     public static final String DEFAULT_RELATIONSHIP = "MOTHER";
+    public static final String DEFAULT_APPOINTMENT = "31-12-2025 10:00";
 
     private Name name;
     private Phone phone;
@@ -33,6 +34,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private EmergencyPerson emergencyPerson;
+    private Appointment appointment;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -43,8 +45,25 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        emergencyPerson = new EmergencyPerson(new Name(DEFAULT_NAME),
+        emergencyPerson = new EmergencyPerson(new Name(DEFAULT_EMERGENCY_PERSON),
                 new Phone(DEFAULT_EMERGENCY_PHONE), new Relationship(DEFAULT_RELATIONSHIP));
+        appointment = new Appointment(DEFAULT_APPOINTMENT);
+    }
+
+    /**
+     * Constructs a {@code PersonBuilder} with the specified details.
+     *
+     * @param name    The name of the person.
+     * @param phone   The phone number of the person.
+     * @param email   The email address of the person.
+     * @param address The physical address of the person.
+     */
+    public PersonBuilder(String name, String phone, String email, String address) {
+        this.name = new Name(name);
+        this.phone = new Phone(phone);
+        this.email = new Email(email);
+        this.address = new Address(address);
+        tags = new HashSet<>();
     }
 
     /**
@@ -56,6 +75,8 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        emergencyPerson = personToCopy.getEmergencyContact();
+        appointment = personToCopy.getAppointment();
     }
 
     /**
@@ -95,6 +116,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Emergency Contact} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withEmergencyContact(EmergencyPerson emergencyPerson) {
+        this.emergencyPerson = emergencyPerson;
         return this;
     }
 
