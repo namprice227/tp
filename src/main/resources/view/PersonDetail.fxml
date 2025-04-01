@@ -23,8 +23,16 @@
             <HBox spacing="6" alignment="CENTER_LEFT">
                 <Label fx:id="name" styleClass="cell_big_label"/>
             </HBox>
+            <!-- Allergy Tags -->
+            <HBox spacing="0" alignment="CENTER_LEFT">
+                <FlowPane fx:id="allergyTagsPane" hgap="1" vgap="1"/>
 
-            <FlowPane fx:id="tags" hgap="6" vgap="6"/>
+                <!-- Condition Tags -->
+                <FlowPane fx:id="conditionTagsPane" hgap="1" vgap="1"/>
+
+                <!-- Insurance Tags -->
+                <FlowPane fx:id="insuranceTagsPane" hgap="1" vgap="1"/>
+            </HBox>
 
             <Label fx:id="phone" styleClass="cell_small_label"/>
             <Label fx:id="email" styleClass="cell_small_label"/>
