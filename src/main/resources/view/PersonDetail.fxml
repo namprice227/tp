@@ -24,18 +24,25 @@
                 <Label fx:id="name" styleClass="cell_big_label"/>
             </HBox>
 
+            <FlowPane fx:id="tags" hgap="6" vgap="6"/>
+
             <Label fx:id="phone" styleClass="cell_small_label"/>
             <Label fx:id="email" styleClass="cell_small_label"/>
             <Label fx:id="address" styleClass="cell_small_label"/>
+
+            <Label text=""/>
+
+            <Label text="🕒 Appointment:" styleClass="cell_small_label_bold"/>
             <Label fx:id="appointment" styleClass="cell_small_label"/>
 
-            <Label text="Tags:" styleClass="cell_small_label"/>
-            <FlowPane fx:id="tags" hgap="6" vgap="6"/>
+            <Label text=""/>
 
-            <Label text="Emergency Contact:" styleClass="cell_small_label"/>
-            <Label fx:id="emergencyContactName" styleClass="cell_small_label"/>
+            <Label text="Emergency Contact:" styleClass="cell_small_label_bold"/>
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="emergencyContactName" styleClass="cell_small_label"/>
+                <Label fx:id="emergencyContactRelationship" styleClass="cell_small_label"/>
+            </HBox>
             <Label fx:id="emergencyContactPhone" styleClass="cell_small_label"/>
-            <Label fx:id="emergencyContactRelationship" styleClass="cell_small_label"/>
 
         </VBox>
     </GridPane>

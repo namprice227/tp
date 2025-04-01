@@ -58,7 +58,7 @@ public class PersonDetail extends UiPart<Region> {
         email.setText("📧 " + person.getEmail().value);
         emergencyContactName.setText("👤 " + person.getEmergencyContact().getName());
         emergencyContactPhone.setText("📱 " + person.getEmergencyContact().getPhone());
-        emergencyContactRelationship.setText(" " + person.getEmergencyContact().getRelationship());
+        emergencyContactRelationship.setText("(" + person.getEmergencyContact().getRelationship() + ")");
         appointment.setText(person.getAppointment().toString());
         tags.getChildren().clear();
         person.getTags().stream()

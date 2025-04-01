@@ -106,7 +106,7 @@
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #EDE8D0;
+    -fx-background-color: #e4d5b7;
 }
 
 .list-cell:filled:selected {
@@ -122,14 +122,35 @@
     -fx-text-fill: #000000;
 }
 
+@font-face {
+    font-family: "Nunito";
+    src: url("fonts/Nunito-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Lora";
+    src: url("fonts/Lora-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Lora SemiBold";
+    src: url("fonts/Lora-SemiBold.ttf");
+}
+
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Nunito";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: "Lora";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+}
+
+.cell_small_label_bold {
+    -fx-font-family: "Lora SemiBold";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
@@ -161,7 +182,7 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Script";
     -fx-text-fill: white;
     -fx-padding: 2px;
     -fx-pref-height: 15px;
