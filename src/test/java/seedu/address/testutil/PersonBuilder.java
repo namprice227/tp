@@ -151,6 +151,13 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withNoTags() {
+        allergies.clear();
+        conditions.clear();
+        insurances.clear();
+        return this;
+    }
+
     /**
      * Builds the {@code Person}.
      */
