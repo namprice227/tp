@@ -101,7 +101,7 @@ By referring to these sections, you can quickly find the information you need an
 
 --------------------------------------------------------------------------------------------------------------------
 ## Overview of [GUI](#gui)
-
+// 
 ## Features
 
 <box type="info" seamless>
@@ -130,7 +130,7 @@ By referring to these sections, you can quickly find the information you need an
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images\helpMessage.png)
 
 Format: `help`
 
@@ -138,7 +138,7 @@ Format: `help`
 
 Adds a patient to HealthSync.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 <box type="tip" seamless>
 
@@ -196,7 +196,7 @@ Format: `emergency INDEX n/NAME p/PHONE_NUMBER r/RELATIONSHIP`
 * All fields (name, phone, relationship) are required.
 
 Examples:
-* `emergency 1 n/John Smith p/98765432 r/Father` Sets the emergency contact for the 1st patient to be John Smith (Father) with phone number 98765432.
+* `emergency 1 n/Alden Tan p/98765432 r/Boyfriend` Sets the emergency contact for the 1st patient to be Alden Tan (Boyfriend) with phone number 98765432.
 * `emergency 2 n/Mary Goh p/88761432 r/Mother` Sets the emergency contact for the 2nd patient to be Mary Goh (Mother) with phone number 88761432.
 
 
