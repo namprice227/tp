@@ -24,9 +24,9 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        String[] parts = input.trim().split("\\s+"); // Split input by spaces
+        String[] parts = input.trim().split("\\s+");
 
-        if (parts.length > 1) { // If there's more than just "help"
+        if (parts.length > 1) {
             throw new CommandException(MESSAGE_INVALID_COMMAND);
         }
 

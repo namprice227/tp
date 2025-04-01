@@ -100,7 +100,6 @@ public class TagCommandParser implements Parser<TagCommand> {
             if (part.contains("/")) {
                 String prefix = part.split("/")[0] + "/";
 
-                // Skip if it's a valid prefix
                 if (prefix.equals(PREFIX_ALLERGY.toString())
                         || prefix.equals(PREFIX_CONDITION.toString())
                         || prefix.equals(PREFIX_INSURANCE.toString())
@@ -109,7 +108,6 @@ public class TagCommandParser implements Parser<TagCommand> {
                     continue;
                 }
 
-                // If we get here, we found an invalid prefix
                 throw new ParseException(MESSAGE_INVALID_TAG_PREFIX);
             }
         }
