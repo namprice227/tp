@@ -103,9 +103,14 @@ By referring to these sections, you can quickly find the information you need an
 ## Overview of [GUI](#gui)
 HealthSync features a clean and intuitive graphical user interface (GUI) designed to help users efficiently manage patient records and appointments. 
 The main interface consists of several key components:
-
-1. Command Box - Users can enter text-based commands to interact with the application.
-2. Command Reply Box - 
+![HealthSync.png](images%2FHealthSync.png)
+1. Menu Bar - Provide quick access to essential functions:
+   * File Menu 
+     * Exit: Closes the application safely.
+   * Help Menu: Opens a link to the HealthSync User Guide, providing instructions on how to use the application. ![Help.png](images%2FHelp.png)
+2. Command Box - Users can enter text-based commands to interact with the application.
+3. Command Reply Box - Displays messages in response to user commands and provides feedback such as confirmations, errors, and system notifications.
+4. Patient List - Displays a list of all registered patients.
 
 ## Features
 
