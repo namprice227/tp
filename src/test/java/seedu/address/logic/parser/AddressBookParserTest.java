@@ -44,7 +44,7 @@ public class AddressBookParserTest {
         model = new ModelManager(); // Initialize model with a valid instance
         parser = new AddressBookParser(model);
     }
-  
+    
     private final AddressBookParser parser = new AddressBookParser(model);
 
     @Test
