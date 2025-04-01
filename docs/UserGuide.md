@@ -104,15 +104,15 @@ By referring to these sections, you can quickly find the information you need an
 HealthSync features a clean and intuitive graphical user interface (GUI) designed to help users efficiently manage patient records and appointments. 
 The main interface consists of several key components:
 
-![HealthSync.png](images%2FHealthSync.png)
+<img src="images/UpdatedHealthSync.png" width="300" height="200">
 
 1. **Menu Bar** - Provide quick access to essential functions:
    * **File:** 
      * Exit: Closes the application safely.
-   * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application. ![Help.png](images%2FHelp.png)
-2. **Command Box** 
+   * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application. ![HelpMenu.png](images/HelpMenu.png)
+2. **Command Box** - 
    * Users can enter text-based commands to interact with the application.
-3. **Command Reply Box**
+3. **Command Output Box**
    * Display messages in response to user commands. 
    * Provides feedback such as confirmations, errors, and system notifications.
 4. **Patient List Panel** 
@@ -120,6 +120,12 @@ The main interface consists of several key components:
    * Clicking on a patient will show their details in the Person Detail Panel
 5. **Person Details Panel** 
    * Shows detailed information about the selected patient, such as their medical history, emergency contacts, and insurance details.
+6. **Tags** - 
+    * Used to record Allergies, Conditions and Insurance of a patient.
+    * Each type of tag is represented by a different color for easy identification:
+      * Red: Allergy
+      * Green: Condition
+      * Blue: Insurance
 
 ## Features
 
@@ -149,7 +155,7 @@ The main interface consists of several key components:
 
 Shows a message explaining how to access the help page.
 
-![help message](images\helpMessage.png)
+![HealthSyncHelpMessage.png](images/HealthSyncHelpMessage.png)
 
 Format: `help`
 
@@ -234,8 +240,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find david roy` returns `David Li`, `Roy Balakrishnan`<br>
+  <img src="images/HealthSyncFindResult.png" width="200" height="250">
+
 
 ### Archive a patient : `archive`
 
@@ -376,7 +383,6 @@ HealthSync data are saved in the hard disk automatically after any command that 
 HealthSync data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
-
 **⚠️ Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
