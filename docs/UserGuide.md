@@ -101,7 +101,12 @@ By referring to these sections, you can quickly find the information you need an
 
 --------------------------------------------------------------------------------------------------------------------
 ## Overview of [GUI](#gui)
-// 
+HealthSync features a clean and intuitive graphical user interface (GUI) designed to help users efficiently manage patient records and appointments. 
+The main interface consists of several key components:
+
+1. Command Box - Users can enter text-based commands to interact with the application.
+2. Command Reply Box - 
+
 ## Features
 
 <box type="info" seamless>
