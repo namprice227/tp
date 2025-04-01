@@ -67,26 +67,89 @@ public class LogicManager implements Logic {
      */
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
-        logger.info("----------------[USER COMMAND][" + commandText + "]");
+        logUserCommand(commandText);
+        validateCommandText(commandText);
 
         if (pendingCommand.isPresent()) {
             return handleConfirmation(commandText);
         }
 
-        Command command = addressBookParser.parseCommand(commandText);
-        if (!isCommandAllowed(command)) {
-            throw new CommandException(String.format(MESSAGE_COMMAND_RESTRICTED,
-                    getCommandName(command), isArchiveMode ? "archive" : "normal"));
-        }
+        Command command = parseAndValidateCommand(commandText);
+        CommandResult commandResult = executeAndValidateCommand(command);
 
-        CommandResult commandResult = command.execute(model);
         handleModeSwitch(commandResult);
 
         if (commandResult.requiresConfirmation()) {
             pendingCommand = Optional.of(command);
         }
-        saveData();
+
+        saveDataSafely();
         return commandResult;
+    }
+
+    /**
+     * Logs the user command for debugging purposes.
+     *
+     * @param commandText The full user input command string.
+     */
+    private void logUserCommand(String commandText) {
+        logger.info("----------------[USER COMMAND][" + commandText + "]");
+    }
+
+    /**
+     * Validates the user command text, ensuring it is not null.
+     *
+     * @param commandText The full user input command string.
+     * @throws IllegalArgumentException If the command text is null.
+     */
+    private void validateCommandText(String commandText) {
+        if (commandText == null) {
+            throw new IllegalArgumentException("Command text cannot be null.");
+        }
+    }
+
+    /**
+     * Validates the user command text, ensuring it is not null.
+     *
+     * @param commandText The full user input command string.
+     * @throws IllegalArgumentException If the command text is null.
+     */
+    private Command parseAndValidateCommand(String commandText) throws ParseException, CommandException {
+        Command command = addressBookParser.parseCommand(commandText);
+        if (command == null) {
+            throw new AssertionError("Parser returned null command.");
+        }
+        if (!isCommandAllowed(command)) {
+            throw new CommandException(String.format(MESSAGE_COMMAND_RESTRICTED,
+                    getCommandName(command), isArchiveMode ? "archive" : "normal"));
+        }
+        return command;
+    }
+
+    /**
+     * Executes the given Command object and validates the result.
+     *
+     * @param command The Command object to execute.
+     * @return The result of executing the command.
+     * @throws CommandException If an error occurs during command execution.
+     */
+    private CommandResult executeAndValidateCommand(Command command) throws CommandException {
+        CommandResult commandResult = command.execute(model);
+        if (commandResult == null) {
+            throw new AssertionError("Command execution returned null result.");
+        }
+        return commandResult;
+    }
+
+    /**
+     * Attempts to save data and logs any exceptions that occur.
+     */
+    private void saveDataSafely() {
+        try {
+            saveData();
+        } catch (Exception e) {
+            logger.severe("Error saving data: " + e.getMessage());
+        }
     }
 
     /**
