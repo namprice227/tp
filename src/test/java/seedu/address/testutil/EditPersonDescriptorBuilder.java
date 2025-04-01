@@ -73,27 +73,6 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
-     * that we are building.
-     */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        // Collect tags into a List<Set<Tag>> where each Set contains one tag
-        List<Set<Tag>> tagList = new ArrayList<>();
-
-        // Create a Set<Tag> for each tag and add it to the list
-        for (String tag : tags) {
-            Set<Tag> tagSet = new HashSet<>();
-            tagSet.add(new Tag(tag));  // Wrap each tag in a Set and add it to the List
-            tagList.add(tagSet);
-        }
-
-        // Set the tags in the descriptor
-        descriptor.setTags(tagList);
-        return this;
-    }
-
-
     public EditPersonDescriptor build() {
         return descriptor;
     }

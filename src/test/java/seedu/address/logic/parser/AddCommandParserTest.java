@@ -43,11 +43,8 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(
-                BOB.getName().value,
-                BOB.getPhone().value,
-                BOB.getEmail().value,
-                BOB.getAddress().value).build();
+        Person expectedPerson = new PersonBuilder(BOB).withEmergencyContact(null)
+                .withAppointment(null).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB

@@ -32,9 +32,9 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> allergies;
-    private Set<Tag> conditions;
-    private Set<Tag> insurances;
+    private Set<Tag> allergies = new HashSet<>();
+    private Set<Tag> conditions = new HashSet<>();
+    private Set<Tag> insurances = new HashSet<>();
     private EmergencyPerson emergencyPerson;
     private Appointment appointment;
 
@@ -46,13 +46,11 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        allergies = new HashSet<>();
-        conditions = new HashSet<>();
-        insurances = new HashSet<>();
         emergencyPerson = new EmergencyPerson(new Name(DEFAULT_EMERGENCY_PERSON),
                 new Phone(DEFAULT_EMERGENCY_PHONE), new Relationship(DEFAULT_RELATIONSHIP));
         appointment = new Appointment(DEFAULT_APPOINTMENT);
     }
+
 
 
     /**
@@ -107,6 +105,11 @@ public class PersonBuilder {
      */
     public PersonBuilder withEmergencyPerson(String name, String phone, String relationship) {
         this.emergencyPerson = new EmergencyPerson(new Name(name), new Phone(phone), new Relationship(relationship));
+        return this;
+    }
+
+    public PersonBuilder withEmergencyContact(EmergencyPerson emergencyPerson) {
+        this.emergencyPerson = emergencyPerson;
         return this;
     }
 
