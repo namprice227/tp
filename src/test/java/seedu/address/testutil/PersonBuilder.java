@@ -51,6 +51,22 @@ public class PersonBuilder {
     }
 
     /**
+     * Constructs a {@code PersonBuilder} with the specified details.
+     *
+     * @param name    The name of the person.
+     * @param phone   The phone number of the person.
+     * @param email   The email address of the person.
+     * @param address The physical address of the person.
+     */
+    public PersonBuilder(String name, String phone, String email, String address) {
+        this.name = new Name(name);
+        this.phone = new Phone(phone);
+        this.email = new Email(email);
+        this.address = new Address(address);
+        tags = new HashSet<>();
+    }
+
+    /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
@@ -100,6 +116,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Emergency Contact} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withEmergencyContact(EmergencyPerson emergencyPerson) {
+        this.emergencyPerson = emergencyPerson;
         return this;
     }
 
