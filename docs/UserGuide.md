@@ -6,46 +6,88 @@
 
 # HealthSync User Guide
 
-HealthSync is a **desktop application for managing patient contacts and their emergency contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HealthSync can get your patient management tasks done faster than traditional GUI apps.
+---
 
-<!-- * Table of Contents -->
-1. [Quick Start](#quick-start)
-2. [Features](#features)
+HealthSync is a **desktop application tailored for healthcare administrators in family clinics.** It centralises patients' personal information and emergency contact details into a single, easily accessible database, enabling administrators to efficiently manage data and contacts, even in time-sensitive situations.
+
+By combining the speed of a Command Line Interface (CLI) with the visual clarity of a Graphical User Interface (GUI), HealthSync caters to administrators who can type fast, providing quick access to critical information. HealthSync allows you to complete contact management tasks faster than traditional GUI-only apps.
+
+With HealthSync, connecting with patients and their emergency contacts becomes seamless, empowering you to respond swiftly when time is critical.
+
+---
+
+**⚠️ Warning:** HealthSync is only designed for **Singapore-based family clinics**. It operates exclusively in **English** and does not support other languages or international clinic formats.
+    
+Using HealthSync with other languages or across multiple countries and timezones may lead to unexpected behaviour
+
+--- 
+## Table of Contents
+1. How to use this User Guide
+2. [Quick Start](#quick-start)
+3. Overview of GUI
+4. [Features](#features)
     - [Viewing help: `help`](#viewing-help-help)
     - [Adding a patient: `add`](#adding-a-patient-add)
-    - [Listing all patients: `list`](#listing-all-patients--list)
-    - [Sorting patients: `sort`](#sorting-patients--sort)
-    - [Editing a patient: `edit`](#editing-a-patient--edit)
-    - [Setting emergency contact: `emergency`](#setting-emergency-contact--emergency)
+    - [Schedule an appointment: `schedule`](#scheduling-an-appointment)
+    - [Listing all patients: `list`](#listing-all-patients-list)
+    - [Sorting patients: `sort`](#sorting-patients-sort)
+    - [Editing a patient: `edit`](#editing-a-patient-edit)
+    - [Setting emergency contact: `emergency`](#setting-emergency-contact-emergency)
     - [Locating patients by name: `find`](#locating-patients-by-name-find)
-    - [Archive a patient: `archive`](#archive-a-patient--archive)
-    - [Listing all patients in archive: `listarchive`](#listing-all-patients-in-archive--listarchive)
-    - [Unarchive a patient: `unarchive`](#unarchive-a-patient--unarchive)
-    - [Deleting a patient: `delete`](#deleting-a-patient--delete)
-    - [Clearing all entries: `clear`](#clearing-all-entries--clear)
-    - [Exiting the program: `exit`](#exiting-the-program--exit)
+    - [Archiving a patient: `archive`](#archiving-a-patient-archive)
+    - [Listing archived patients: `listarchive`](#listing-archived-patients-listarchive)
+    - [Unarchiving a patient: `unarchive`](#unarchiving-a-patient-unarchive)
+    - [Deleting a patient: `delete`](#deleting-a-patient-delete)
+    - [Clearing all entries: `clear`](#clearing-all-entries-clear)
+    - [Tag Management](#tag-management)
+        - [Adding a tag: `tag`](#adding-a-tag-tag)
+        - [Deleting a tag: `tag`](#deleting-a-tag-tag)
+    - [Undoing a command: `undo`](#undoing-a-command-undo)
+    - [Redoing a command: `redo`](#redoing-a-command-redo)
+    - [Exiting the program: `exit`](#exiting-the-program-exit)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
-3. [FAQ](#faq)
-4. [Known Issues](#known-issues)
+5. [FAQ](#faq)
+6. [Known Issues](#known-issues)
+7. [Glossary](#glossary)
+   - [Terminology](#terminology)
+   - [Valid inputs for patient parameters](#valid-inputs)
 5. [Command Summary](#command-summary)
 
+
 --------------------------------------------------------------------------------------------------------------------
+## How to use this User Guide
+This User Guide is designed to help you understand and use HealthSync effectively. Below are some tips on how to navigate and use this guide:
+
+1. **[Table of Contents](#table-of-contents)**: At the beginning of the guide, you will find a Table of Contents. Use this to instantly jump to the section you are interested in.
+2. **[Quick Start](#quick-start)**: If you are using HealthSync for the first time, start with the Quick Start section. It provides step-by-step instructions on how to set up and start running the application.
+3. **[Overview of GUI](#overview-of-gui)**: This section provides an overview of the graphical user interface (GUI) of HealthSync. Use this section to familiarize yourself with the different components of the application.
+4. **[Features](#features)**: This section details all the commands available in HealthSync. Each command is explained with its format, parameters, and examples. Use this section to learn how to perform specific tasks.
+5. **[Command Summary](#command-summary)**: At the end of the guide, there is a Command Summary table that provides a quick reference for all commands. Use this table to quickly look up the format of a command.
+6. **[FAQ](#faq)**: The FAQ section addresses common questions and issues. Check this section if you encounter any problems or have questions about using HealthSync.
+7. **[Known Issues](#known-issues)**: This section lists any known issues with the application and their solutions. Refer to this section if you do encounter any unexpected behavior.
+8. **[Glossary](#glossary)**: This section explains unfamiliar terms that we use in this User Guide. Check out the glossary if you are unsure of the definition of a word.
+9. **[Notes and Tips](#notes-and-tips)**: Throughout the guide, you will find notes and tips highlighted in different styles. These provide additional information and helpful hints for using HealthSync effectively.
+
+By referring to these sections, you can quickly find the information you need and fully utilize HealthSync.
 
 ## Quick start
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+   * You can check your Java version by following the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line).
+   * If you do not have Java `17` or above installed in your computer, you can download Java from [here](https://www.oracle.com/java/technologies/downloads/#java17).
+   * **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest release of the `healthsync.jar` file from [here](https://github.com/AY2425S2-CS2103T-F11-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for HealthSync.
+3. Copy the file to the folder you want to use as the _home folder_ for HealthSync. The _home folder_ will be where all the data files will be saved.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar healthsync.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. For *Windows:* Open the home folder and right-click anywhere in the red box, as shown in the image below. Click "Open in Terminal". A terminal window will pop up, then type in the command `java -jar medconnect.jar` to run the application.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   For *MacOS:* Right-click home folder. Hover over "Services". Select "New Terminal at folder". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
+          
+
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all patients.
@@ -55,9 +97,29 @@ HealthSync is a **desktop application for managing patient contacts and their em
    * `clear` : Deletes all patients.
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Overview of [GUI](#gui)
+HealthSync features a clean and intuitive graphical user interface (GUI) designed to help users efficiently manage patient records and appointments. 
+The main interface consists of several key components:
+
+![HealthSync.png](images%2FHealthSync.png)
+
+1. **Menu Bar** - Provide quick access to essential functions:
+   * **File:** 
+     * Exit: Closes the application safely.
+   * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application. ![Help.png](images%2FHelp.png)
+2. **Command Box** 
+   * Users can enter text-based commands to interact with the application.
+3. **Command Reply Box**
+   * Display messages in response to user commands. 
+   * Provides feedback such as confirmations, errors, and system notifications.
+4. **Patient List Panel** 
+   * Displays a list of all registered patients. 
+   * Clicking on a patient will show their details in the Person Detail Panel
+5. **Person Details Panel** 
+   * Shows detailed information about the selected patient, such as their medical history, emergency contacts, and insurance details.
 
 ## Features
 
@@ -87,7 +149,7 @@ HealthSync is a **desktop application for managing patient contacts and their em
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images\helpMessage.png)
 
 Format: `help`
 
@@ -95,18 +157,17 @@ Format: `help`
 
 Adds a patient to HealthSync.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 <box type="tip" seamless>
 
-**Tip:** A patient can have any number of tags (including 0)
 </box>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
-**⚠️ Warning:** If the name, phone, and email address are the same, the entry is considered a **duplicate**.
+**⚠️ Warning:** An entry is considered a **duplicate** if it has the same name and phone number or the same name and email address.
 
 ### Listing all patients : `list`
 
@@ -125,14 +186,14 @@ Format: `sort FIELD`
 * The sorting is case-insensitive.
 
 Examples:
-* `sort name` Sorts patients by name in ascending order
-* `sort appointment` Sorts patients by appointment date
+* `sort name` Sorts patients in ascending alphabetical order by name.
+* `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first. 
 
 ### Editing a patient : `edit`
 
 Edits an existing patient in HealthSync.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -140,7 +201,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower` Edits the name of the 2nd patient to be `Betsy Crower`.
 
 ### Setting Emergency Contact : `emergency`
 
@@ -150,11 +211,13 @@ Format: `emergency INDEX n/NAME p/PHONE_NUMBER r/RELATIONSHIP`
 
 * Sets the emergency contact for the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 * All fields (name, phone, relationship) are required.
 
 Examples:
-* `emergency 1 n/John Smith p/98765432 r/Father` Sets the emergency contact for the 1st patient to be John Smith (Father) with phone number 98765432.
+* `emergency 1 n/Alden Tan p/98765432 r/Boyfriend` Sets the emergency contact for the 1st patient to be Alden Tan (Boyfriend) with phone number 98765432.
+* `emergency 2 n/Mary Goh p/88761432 r/Mother` Sets the emergency contact for the 2nd patient to be Mary Goh (Mother) with phone number 88761432.
+
 
 ### Locating patients by name: `find`
 
@@ -164,7 +227,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* Name, Phone number and Email are searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
@@ -226,27 +289,6 @@ Clears all entries from HealthSync.
 
 Format: `clear`
 
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-HealthSync data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-HealthSync data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<box type="warning" seamless>
-
-**Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</box>
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Tag Management
@@ -291,24 +333,54 @@ Examples:
 * `tag 1 td/peanuts`
 * `tag 2 td/diabetes`
 
-**⚠️ Warning:** Deleting a tag cannot be undone. Ensure the tag is no longer needed before deleting.
+--------------------------------------------------------------------------------------------------------------------
 
----
+### Undoing a command: `undo`
 
-### Editing a tag: `te/`
+Reverts the last command that modified data.
 
-Edits an existing tag for a person based on their patient_ID in the address book.
+Format: `undo`
 
-Format: `tag <patient_ID> te/OLD_TAG=NEW_TAG`
-
-<box type="tip" seamless>
-
-**Tip:** This command allows you to update an existing tag, for example, if a tag needs to be renamed or corrected.
-</box>
+**⚠️ Warning:**
+* Cannot be used repeatedly to undo multiple actions.
+* Cannot undo `undo`, `redo`, `help`, or `exit` commands.
 
 Examples:
-* `tag 1 te/peanut=dust`
-* `tag 2 te/hypertension=high_blood_pressure`
+* `undo` (Restores the state before the last action)
+
+### Redoing a command: `redo`
+
+Restores the last undone command.
+
+Format: `redo`
+
+**⚠️ Warning:**
+* Can only be used if `undo` was previously executed.
+* Cannot redo commands that were not undone.
+
+Examples:
+* `redo` (Restores the last undone action)
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Saving the data
+
+HealthSync data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+HealthSync data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<box type="warning" seamless>
+
+**⚠️ Caution:**
+If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -322,23 +394,30 @@ Examples:
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+2. **If you minimise the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimised, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Emergency** | `emergency INDEX n/NAME p/PHONE_NUMBER r/RELATIONSHIP`<br> e.g., `emergency 1 n/John Smith p/98765432 r/Father`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Sort**   | `sort FIELD`<br> e.g., `sort name`
-**Help**   | `help`
-**Archive**   | `archive INDEX`<br> eg., `archive 2`
-**Unarchive**   | `unarchive Index`<br> eg., `unarchive 2`
-**List Archive**   | `listarchive`
+| **Action**                 | **Format, Examples**                                                                                                             |
+|----------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| **Add Patient**            | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`<br>e.g., `add n/John Doe p/98765432 e/john@example.com a/123 Street t/diabetes` |
+| **Edit Patient**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g., `edit 2 n/John Smith p/91234567`                        |
+| **Delete Patient**         | `delete INDEX`<br>e.g., `delete 3`                                                                                               |
+| **Find Patient**           | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find John`                                                                              |
+| **List Patients**          | `list`                                                                                                                           |
+| **Sort Patients**          | `sort FIELD`<br>e.g., `sort name`                                                                                                |
+| **Set Emergency Contact**  | `emergency INDEX n/NAME p/PHONE r/RELATIONSHIP`<br>e.g., `emergency 1 n/Jane Doe p/81234567 r/Mother`                            |
+| **Archive Patient**        | `archive INDEX`<br>e.g., `archive 2`                                                                                             |
+| **List Archived Patients** | `listarchive`                                                                                                                    |
+| **Unarchive Patient**      | `unarchive INDEX`<br>e.g., `unarchive 2`                                                                                         |
+| **Clear All Entries**      | `clear`                                                                                                                          |
+| **Undo Command**           | `undo`                                                                                                                           |
+| **Redo Command**           | `redo`                                                                                                                           |
+| **Add Allergy Tag**        | `tag INDEX ta/ALLERGY`<br>e.g., `tag 1 ta/peanuts`                                                                               |
+| **Add Condition Tag**      | `tag INDEX tc/CONDITION`<br>e.g., `tag 1 tc/asthma`                                                                              |
+| **Add Insurance Tag**      | `tag INDEX ti/INSURANCE`<br>e.g., `tag 1 ti/medishield`                                                                          |
+| **Delete Tag**             | `tag INDEX td/TAGNAME`<br>e.g., `tag 1 td/peanuts`                                                                               |
+| **Help**                   | `help`                                                                                                                           |
+| **Exit**                   | `exit`                                                                                                                           |

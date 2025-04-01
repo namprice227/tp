@@ -39,7 +39,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyArchivedBook archivedBook) {
+            ReadOnlyArchivedBook archivedBook) {
         requireAllNonNull(addressBook, userPrefs, archivedBook);
 
         logger.fine("Initializing with address book: " + addressBook
@@ -59,7 +59,8 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs(), new ArchivedBook());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -94,7 +95,8 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook Undo Methods ==================================================================
+    // =========== AddressBook Undo/Redo Methods
+    // ==================================================================
 
     @Override
     public void commitAddressBook() {
@@ -111,7 +113,18 @@ public class ModelManager implements Model {
         return versionedAddressBook.canUndo();
     }
 
-    //=========== AddressBook Methods ========================================================================
+    @Override
+    public void redoAddressBook() throws CommandException {
+        versionedAddressBook.redo();
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return versionedAddressBook.canRedo();
+    }
+
+    // =========== AddressBook Methods
+    // ========================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -184,7 +197,8 @@ public class ModelManager implements Model {
         commitAddressBook();
     }
 
-    //=========== Tag Command Methods ========================================================================
+    // =========== Tag Command Methods
+    // ========================================================================
 
     @Override
     public Optional<Person> findPersonByName(Name name) {
@@ -212,8 +226,7 @@ public class ModelManager implements Model {
                 person.getAddress(),
                 updatedTags,
                 person.getAppointment(),
-                person.getEmergencyContact()
-        );
+                person.getEmergencyContact());
 
         // Update the person in the address book
         setPerson(person, updatedPerson);
@@ -239,8 +252,7 @@ public class ModelManager implements Model {
                 person.getAddress(),
                 updatedTags,
                 person.getAppointment(),
-                person.getEmergencyContact()
-        );
+                person.getEmergencyContact());
 
         // Update the person in the address book
         setPerson(person, updatedPerson);
@@ -267,8 +279,7 @@ public class ModelManager implements Model {
                 person.getAddress(),
                 updatedTags,
                 person.getAppointment(),
-                person.getEmergencyContact()
-        );
+                person.getEmergencyContact());
 
         // Update the person in the address book
         setPerson(person, updatedPerson);
@@ -276,10 +287,12 @@ public class ModelManager implements Model {
         return updatedPerson;
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered Person List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -314,6 +327,7 @@ public class ModelManager implements Model {
         if (!(other instanceof ModelManager otherModelManager)) {
             return false;
         }
+
         return versionedAddressBook.equals(otherModelManager.versionedAddressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons)
@@ -321,7 +335,8 @@ public class ModelManager implements Model {
                 && filteredArchivedPersons.equals(otherModelManager.filteredArchivedPersons);
     }
 
-    //=========== Schedule method =============================================================
+    // =========== Schedule method
+    // =============================================================
 
     @Override
     public boolean hasSchedule(Appointment appointment) {
