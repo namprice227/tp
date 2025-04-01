@@ -40,6 +40,7 @@ public class AddressBookParserTest {
 
     @BeforeEach
     public void setUp() {
+        model = new ModelManager(); // Initialize model with a valid instance
         parser = new AddressBookParser(model);
     }
 
