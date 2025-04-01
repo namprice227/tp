@@ -56,8 +56,6 @@ public class TagCommand extends Command {
     private final Set<Tag> conditions;
     private final Set<Tag> insurances;
     private final Set<Tag> tagsToDelete;
-    private final Tag oldTag;
-    private final Tag newTag;
 
     /**
      * Constructs a TagCommand object to add, delete, or edit tags for a person at the specified index.
@@ -67,12 +65,9 @@ public class TagCommand extends Command {
      * @param conditions Set of condition tags to be added to the person.
      * @param insurances Set of insurance tags to be added to the person.
      * @param tagsToDelete Set of tags to be deleted from the person.
-     * @param oldTag The existing tag to be edited (if applicable).
-     * @param newTag The new tag to replace the old tag (if applicable).
-     * @throws IllegalArgumentException if multiple operations are requested simultaneously
      */
     public TagCommand(Index targetIndex, Set<Tag> allergies, Set<Tag> conditions, Set<Tag> insurances,
-                      Set<Tag> tagsToDelete, Tag oldTag, Tag newTag) {
+                      Set<Tag> tagsToDelete) {
         requireNonNull(targetIndex);
         requireNonNull(allergies);
         requireNonNull(conditions);
@@ -87,8 +82,6 @@ public class TagCommand extends Command {
         this.conditions = conditions;
         this.insurances = insurances;
         this.tagsToDelete = tagsToDelete;
-        this.oldTag = oldTag;
-        this.newTag = newTag;
     }
 
     /**
@@ -256,7 +249,9 @@ public class TagCommand extends Command {
             logger.warning("Duplicate tags detected when adding to person: " + personToTag.getName());
             throw new CommandException(MESSAGE_DUPLICATE_TAGS);
         }
-
+      
+        Person updatedPerson = model.addTagsToPerson(personToTag, allergies, conditions, insurances);
+        return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, updatedPerson));
         logger.fine("Adding tags: " + allTags + " to person: " + personToTag.getName());
         return model.addTagsToPerson(personToTag, allTags);
     }

@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Set;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -8,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * A UI component to show the detailed info of a person.
@@ -26,7 +28,7 @@ public class PersonDetail extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane tagsFlowPane;
     @FXML
     private Label appointment;
     @FXML
@@ -44,6 +46,11 @@ public class PersonDetail extends UiPart<Region> {
         super(FXML);
         cardPane.setVisible(false);
         cardPane.setManaged(false);
+        tagsFlowPane.prefWrapLengthProperty().bind(cardPane.widthProperty().subtract(40));
+        tagsFlowPane.setMaxWidth(Double.MAX_VALUE);
+        tagsFlowPane.setMinWidth(Region.USE_PREF_SIZE);
+        tagsFlowPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+
     }
 
     /**
@@ -60,24 +67,41 @@ public class PersonDetail extends UiPart<Region> {
         emergencyContactPhone.setText("📱 " + person.getEmergencyContact().getPhone());
         emergencyContactRelationship.setText("(" + person.getEmergencyContact().getRelationship() + ")");
         appointment.setText(person.getAppointment().toString());
-        tags.getChildren().clear();
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> {
-                    Label tagLabel = new Label(tag.tagName);
-                    tagLabel.setStyle("-fx-background-color: " + getColorForTag(tag.tagName) + ";"
-                        + "-fx-text-fill: white; -fx-padding: 3px; -fx-background-radius: 5px;");
-                    tags.getChildren().add(tagLabel);
-                });
+        tagsFlowPane.getChildren().clear();
+        populateTags(tagsFlowPane, person.getAllergyTags(), "#FF6B6B");     // red
+        populateTags(tagsFlowPane, person.getConditionTags(), "#1DD1A1");   // green
+        populateTags(tagsFlowPane, person.getInsuranceTags(), "#54A0FF");   // blue
+        tagsFlowPane.prefWrapLengthProperty().bind(cardPane.widthProperty().subtract(40));
+        tagsFlowPane.setMaxWidth(Double.MAX_VALUE);
+        tagsFlowPane.setMinWidth(Region.USE_PREF_SIZE);
+        tagsFlowPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+
     }
 
     /**
-     * Assigns a colour to a tag based on its name.
+     * Populates a FlowPane with tags from the given set, using the specified color.
+     *
+     * @param flowPane The FlowPane to populate.
+     * @param tags     The set of tags to add.
+     * @param color    The background color for the tags.
      */
-    private String getColorForTag(String tagName) {
-        String[] colors = {"#FF6B6B", "#1DD1A1", "#54A0FF"};
-        int index = Math.abs(tagName.hashCode()) % colors.length;
-        return colors[index];
-    }
+    private void populateTags(FlowPane flowPane, Set<Tag> tags, String color) {
+        // Sort and process the tags
+        tags.stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName)) // Sort tags alphabetically by name
+                .forEach(tag -> {
+                    // Extract the tag name
+                    String tagName = tag.tagName;
 
+                    // Create a Label for the tag
+                    Label tagLabel = new Label(tagName);
+                    tagLabel.setStyle("-fx-background-color: " + color + ";"
+                            + "-fx-text-fill: white; -fx-padding: 4px; "
+                        + "-fx-background-radius: 6px; -fx-font-size: 12px;");
+
+                    // Add the Label to the FlowPane
+                    flowPane.getChildren().add(tagLabel);
+                });
+    }
 }
+

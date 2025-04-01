@@ -2,8 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -27,21 +29,54 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final List<Set<Tag>> tags;
+    private final Set<Tag> allergies = new HashSet<>();
+    private final Set<Tag> conditions = new HashSet<>();
+    private final Set<Tag> insurances = new HashSet<>();
     private EmergencyPerson emergencyContact;
     private final Appointment appointment;
     /**
      * Every field must be present and not null.
      */
 
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+    public Person(Name name, Phone phone, Email email, Address address, List<Set<Tag>> tags,
                   Appointment appointment, EmergencyPerson emergencyContact) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, address);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        if (tags == null) {
+            this.tags = new ArrayList<>();
+        } else {
+            this.allergies.addAll(tags.get(0));
+            this.conditions.addAll(tags.get(1));
+            this.insurances.addAll(tags.get(2));
+            this.tags = tags;
+        }
+        if (appointment == null) {
+            this.appointment = new Appointment();
+        } else {
+            this.appointment = appointment;
+        }
+        if (emergencyContact == null) {
+            this.emergencyContact = NIL_EMERGENCY_CONTACT;
+        } else {
+            this.emergencyContact = emergencyContact;
+        }
+    }
+
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> allergies, Set<Tag> conditions,
+                  Set<Tag> insurances, Appointment appointment, EmergencyPerson emergencyContact) {
+        requireAllNonNull(name, phone, email, address, allergies, conditions, insurances);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.allergies.addAll(allergies);
+        this.conditions.addAll(conditions);
+        this.insurances.addAll(insurances);
+        this.tags = List.of(this.allergies, this.conditions, this.insurances);
         if (appointment == null) {
             this.appointment = new Appointment();
         } else {
@@ -102,8 +137,20 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public List<Set<Tag>> getTags() {
+        return List.of(allergies, conditions, insurances);
+    }
+
+    public Set<Tag> getAllergyTags() {
+        return Collections.unmodifiableSet(allergies);
+    }
+
+    public Set<Tag> getConditionTags() {
+        return Collections.unmodifiableSet(conditions);
+    }
+
+    public Set<Tag> getInsuranceTags() {
+        return Collections.unmodifiableSet(insurances);
     }
 
     /**
@@ -158,6 +205,14 @@ public class Person {
                 && tags.equals(otherPerson.tags)
                 && emergencyContact.equals(otherPerson.emergencyContact)
                 && appointment.equals(otherPerson.appointment);
+    }
+
+    private Set<Tag> mergeTags() {
+        Set<Tag> allTags = new HashSet<>();
+        allTags.addAll(allergies);
+        allTags.addAll(conditions);
+        allTags.addAll(insurances);
+        return allTags;
     }
 
     @Override
