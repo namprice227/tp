@@ -6,29 +6,42 @@
 
 # HealthSync User Guide
 
-HealthSync is a **desktop application for managing patient contacts and their emergency contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HealthSync can get your patient management tasks done faster than traditional GUI apps.
+---
 
-<!-- * Table of Contents -->
+HealthSync is a **desktop application for managing patient contacts and their emergency contacts, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HealthSync can get your patient management tasks done faster than traditional GUI apps.
+
+---
+
+**⚠️ Warning:** HealthSync is designed only for **Singapore-based family clinics**. It operates exclusively in **English** and does not support other languages or international clinic formats.
+
+--- 
+## Table of Contents
 1. [Quick Start](#quick-start)
 2. [Features](#features)
     - [Viewing help: `help`](#viewing-help-help)
     - [Adding a patient: `add`](#adding-a-patient-add)
-    - [Listing all patients: `list`](#listing-all-patients--list)
-    - [Sorting patients: `sort`](#sorting-patients--sort)
-    - [Editing a patient: `edit`](#editing-a-patient--edit)
-    - [Setting emergency contact: `emergency`](#setting-emergency-contact--emergency)
+    - [Listing all patients: `list`](#listing-all-patients-list)
+    - [Sorting patients: `sort`](#sorting-patients-sort)
+    - [Editing a patient: `edit`](#editing-a-patient-edit)
+    - [Setting emergency contact: `emergency`](#setting-emergency-contact-emergency)
     - [Locating patients by name: `find`](#locating-patients-by-name-find)
-    - [Archive a patient: `archive`](#archive-a-patient--archive)
-    - [Listing all patients in archive: `listarchive`](#listing-all-patients-in-archive--listarchive)
-    - [Unarchive a patient: `unarchive`](#unarchive-a-patient--unarchive)
-    - [Deleting a patient: `delete`](#deleting-a-patient--delete)
-    - [Clearing all entries: `clear`](#clearing-all-entries--clear)
-    - [Exiting the program: `exit`](#exiting-the-program--exit)
+    - [Archiving a patient: `archive`](#archiving-a-patient-archive)
+    - [Listing archived patients: `listarchive`](#listing-archived-patients-listarchive)
+    - [Unarchiving a patient: `unarchive`](#unarchiving-a-patient-unarchive)
+    - [Deleting a patient: `delete`](#deleting-a-patient-delete)
+    - [Clearing all entries: `clear`](#clearing-all-entries-clear)
+    - [Tag Management](#tag-management)
+        - [Adding a tag: `tag`](#adding-a-tag-tag)
+        - [Deleting a tag: `tag`](#deleting-a-tag-tag)
+    - [Undoing a command: `undo`](#undoing-a-command-undo)
+    - [Redoing a command: `redo`](#redoing-a-command-redo)
+    - [Exiting the program: `exit`](#exiting-the-program-exit)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
 3. [FAQ](#faq)
 4. [Known Issues](#known-issues)
 5. [Command Summary](#command-summary)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -226,27 +239,6 @@ Clears all entries from HealthSync.
 
 Format: `clear`
 
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-HealthSync data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-HealthSync data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<box type="warning" seamless>
-
-**Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</box>
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Tag Management
@@ -293,22 +285,54 @@ Examples:
 
 **⚠️ Warning:** Deleting a tag cannot be undone. Ensure the tag is no longer needed before deleting.
 
----
+--------------------------------------------------------------------------------------------------------------------
 
-### Editing a tag: `te/`
+### Undoing a command: `undo`
 
-Edits an existing tag for a person based on their patient_ID in the address book.
+Reverts the last command that modified data.
 
-Format: `tag <patient_ID> te/OLD_TAG=NEW_TAG`
+Format: `undo`
 
-<box type="tip" seamless>
-
-**Tip:** This command allows you to update an existing tag, for example, if a tag needs to be renamed or corrected.
-</box>
+**⚠️ Warning:**
+* Can be used repeatedly to undo multiple actions.
+* Cannot undo `undo`, `redo`, `help`, or `exit` commands.
 
 Examples:
-* `tag 1 te/peanut=dust`
-* `tag 2 te/hypertension=high_blood_pressure`
+* `undo` (Restores the state before the last action)
+
+### Redoing a command: `redo`
+
+Restores the last undone command.
+
+Format: `redo`
+
+**⚠️ Warning:**
+* Can only be used if `undo` was previously executed.
+* Cannot redo commands that were not undone.
+
+Examples:
+* `redo` (Restores the last undone action)
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Saving the data
+
+HealthSync data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+HealthSync data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<box type="warning" seamless>
+
+**Caution:**
+If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -322,23 +346,30 @@ Examples:
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+2. **If you minimise the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimised, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Emergency** | `emergency INDEX n/NAME p/PHONE_NUMBER r/RELATIONSHIP`<br> e.g., `emergency 1 n/John Smith p/98765432 r/Father`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Sort**   | `sort FIELD`<br> e.g., `sort name`
-**Help**   | `help`
-**Archive**   | `archive INDEX`<br> eg., `archive 2`
-**Unarchive**   | `unarchive Index`<br> eg., `unarchive 2`
-**List Archive**   | `listarchive`
+| **Action**                 | **Format, Examples**                                                                                                             |
+|----------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| **Add Patient**            | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`<br>e.g., `add n/John Doe p/98765432 e/john@example.com a/123 Street t/diabetes` |
+| **Edit Patient**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g., `edit 2 n/John Smith p/91234567`                        |
+| **Delete Patient**         | `delete INDEX`<br>e.g., `delete 3`                                                                                               |
+| **Find Patient**           | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find John`                                                                              |
+| **List Patients**          | `list`                                                                                                                           |
+| **Sort Patients**          | `sort FIELD`<br>e.g., `sort name`                                                                                                |
+| **Set Emergency Contact**  | `emergency INDEX n/NAME p/PHONE r/RELATIONSHIP`<br>e.g., `emergency 1 n/Jane Doe p/81234567 r/Mother`                            |
+| **Archive Patient**        | `archive INDEX`<br>e.g., `archive 2`                                                                                             |
+| **List Archived Patients** | `listarchive`                                                                                                                    |
+| **Unarchive Patient**      | `unarchive INDEX`<br>e.g., `unarchive 2`                                                                                         |
+| **Clear All Entries**      | `clear`                                                                                                                          |
+| **Undo Command**           | `undo`                                                                                                                           |
+| **Redo Command**           | `redo`                                                                                                                           |
+| **Add Allergy Tag**        | `tag INDEX ta/ALLERGY`<br>e.g., `tag 1 ta/peanuts`                                                                               |
+| **Add Condition Tag**      | `tag INDEX tc/CONDITION`<br>e.g., `tag 1 tc/asthma`                                                                              |
+| **Add Insurance Tag**      | `tag INDEX ti/INSURANCE`<br>e.g., `tag 1 ti/medishield`                                                                          |
+| **Delete Tag**             | `tag INDEX td/TAGNAME`<br>e.g., `tag 1 td/peanuts`                                                                               |
+| **Help**                   | `help`                                                                                                                           |
+| **Exit**                   | `exit`                                                                                                                           |
