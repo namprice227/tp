@@ -283,8 +283,6 @@ Examples:
 * `tag 1 td/peanuts`
 * `tag 2 td/diabetes`
 
-**⚠️ Warning:** Deleting a tag cannot be undone. Ensure the tag is no longer needed before deleting.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ### Undoing a command: `undo`
@@ -294,7 +292,7 @@ Reverts the last command that modified data.
 Format: `undo`
 
 **⚠️ Warning:**
-* Can be used repeatedly to undo multiple actions.
+* Cannot be used repeatedly to undo multiple actions.
 * Cannot undo `undo`, `redo`, `help`, or `exit` commands.
 
 Examples:
@@ -329,7 +327,7 @@ HealthSync data are saved automatically as a JSON file `[JAR file location]/data
 
 <box type="warning" seamless>
 
-**Caution:**
+**⚠️ Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
