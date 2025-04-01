@@ -26,7 +26,7 @@
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Lora";
 }
 
 .tab-pane {
@@ -101,6 +101,10 @@
     -fx-padding: 0 0 0 0;
 }
 
+.list-cell:empty {
+    -fx-background-color: white;
+}
+
 .list-cell:filled:even {
     -fx-background-color: #EDE8D0;
 }
@@ -157,13 +161,15 @@
 
 .stack-pane {
      -fx-background-color: derive(#ffffff, 20%);
+     -fx-border-radius: 5px;
 }
 
 .pane-with-border {
      -fx-background-color: derive(#ffffff, 20%);
-     -fx-background-radius: 5;
+     -fx-background-radius: 5px;
      -fx-border-color: derive(#d3d3d3, 10%);
      -fx-border-top-width: 1px;
+     -fx-border-radius: 5px;
 }
 
 .status-bar {
@@ -172,8 +178,8 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-font-family: "Sans-serif";
+    -fx-font-size: 11.5pt;
     -fx-text-fill: grey;
 }
 
@@ -249,7 +255,7 @@
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #d9b99b;
 }
 
 .button:pressed, .button:default:hover:pressed {
@@ -309,9 +315,14 @@
     -fx-background-color: derive(#ffffff, 20%);
 }
 
+.scroll-bar:vertical {
+    -fx-pref-width: 10px;
+}
+
 .scroll-bar .thumb {
     -fx-background-color: derive(#4a4a4a, 50%);
     -fx-background-insets: 3;
+    -fx-pref-width: 9px;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
@@ -348,8 +359,9 @@
     -fx-border-color: #383838 #383838 #383838 #383838;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-border-radius: 5px;
+    -fx-font-family: "Lora";
+    -fx-font-size: 12pt;
     -fx-text-fill: black;
 }
 
@@ -395,4 +407,12 @@
     -fx-text-fill: white;
     -fx-padding: 4px;
     -fx-border-radius: 4px;
+}
+
+.personDetailPlaceholder {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 5px;
+    -fx-border-color: derive(#d3d3d3, 10%);
+    -fx-border-top-width: 1px;
+    -fx-border-radius: 5px;
 }
