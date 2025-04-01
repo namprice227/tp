@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
