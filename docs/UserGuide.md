@@ -8,18 +8,27 @@
 
 ---
 
-HealthSync is a **desktop application for managing patient contacts and their emergency contacts, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HealthSync can get your patient management tasks done faster than traditional GUI apps.
+HealthSync is a **desktop application tailored for healthcare administrators in family clinics.** It centralises patients' personal information and emergency contact details into a single, easily accessible database, enabling administrators to efficiently manage data and contacts, even in time-sensitive situations.
+
+By combining the speed of a Command Line Interface (CLI) with the visual clarity of a Graphical User Interface (GUI), HealthSync caters to administrators who can type fast, providing quick access to critical information. HealthSync allows you to complete contact management tasks faster than traditional GUI-only apps.
+
+With HealthSync, connecting with patients and their emergency contacts becomes seamless, empowering you to respond swiftly when time is critical.
 
 ---
 
-**⚠️ Warning:** HealthSync is designed only for **Singapore-based family clinics**. It operates exclusively in **English** and does not support other languages or international clinic formats.
+**⚠️ Warning:** HealthSync is only designed for **Singapore-based family clinics**. It operates exclusively in **English** and does not support other languages or international clinic formats.
+    
+Using HealthSync with other languages or across multiple countries and timezones may lead to unexpected behaviour
 
 --- 
 ## Table of Contents
-1. [Quick Start](#quick-start)
-2. [Features](#features)
+1. How to use this User Guide
+2. [Quick Start](#quick-start)
+3. Overview of GUI
+4. [Features](#features)
     - [Viewing help: `help`](#viewing-help-help)
     - [Adding a patient: `add`](#adding-a-patient-add)
+    - [Schedule an appointment: `schedule`](#scheduling-an-appointment)
     - [Listing all patients: `list`](#listing-all-patients-list)
     - [Sorting patients: `sort`](#sorting-patients-sort)
     - [Editing a patient: `edit`](#editing-a-patient-edit)
@@ -38,27 +47,47 @@ HealthSync is a **desktop application for managing patient contacts and their em
     - [Exiting the program: `exit`](#exiting-the-program-exit)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
-3. [FAQ](#faq)
-4. [Known Issues](#known-issues)
+5. [FAQ](#faq)
+6. [Known Issues](#known-issues)
+7. [Glossary](#glossary)
+   - [Terminology](#terminology)
+   - [Valid inputs for patient parameters](#valid-inputs)
 5. [Command Summary](#command-summary)
 
 
 --------------------------------------------------------------------------------------------------------------------
+## How to use this User Guide
+This User Guide is designed to help you understand and use HealthSync effectively. Below are some tips on how to navigate and use this guide:
+
+1. **[Table of Contents](#table-of-contents)**: At the beginning of the guide, you will find a Table of Contents. Use this to instantly jump to the section you are interested in.
+2. **[Quick Start](#quick-start)**: If you are using HealthSync for the first time, start with the Quick Start section. It provides step-by-step instructions on how to set up and start running the application.
+3. **[Overview of GUI](#overview-of-gui)**: This section provides an overview of the graphical user interface (GUI) of HealthSync. Use this section to familiarize yourself with the different components of the application.
+4. **[Features](#features)**: This section details all the commands available in HealthSync. Each command is explained with its format, parameters, and examples. Use this section to learn how to perform specific tasks.
+5. **[Command Summary](#command-summary)**: At the end of the guide, there is a Command Summary table that provides a quick reference for all commands. Use this table to quickly look up the format of a command.
+6. **[FAQ](#faq)**: The FAQ section addresses common questions and issues. Check this section if you encounter any problems or have questions about using HealthSync.
+7. **[Known Issues](#known-issues)**: This section lists any known issues with the application and their solutions. Refer to this section if you do encounter any unexpected behavior.
+8. **[Glossary](#glossary)**: This section explains unfamiliar terms that we use in this User Guide. Check out the glossary if you are unsure of the definition of a word.
+9. **[Notes and Tips](#notes-and-tips)**: Throughout the guide, you will find notes and tips highlighted in different styles. These provide additional information and helpful hints for using HealthSync effectively.
+
+By referring to these sections, you can quickly find the information you need and fully utilize HealthSync.
 
 ## Quick start
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+   * You can check your Java version by following the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line).
+   * If you do not have Java `17` or above installed in your computer, you can download Java from [here](https://www.oracle.com/java/technologies/downloads/#java17).
+   * **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest release of the `healthsync.jar` file from [here](https://github.com/AY2425S2-CS2103T-F11-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for HealthSync.
+3. Copy the file to the folder you want to use as the _home folder_ for HealthSync. The _home folder_ will be where all the data files will be saved.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar healthsync.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. For *Windows:* Open the home folder and right-click anywhere in the red box, as shown in the image below. Click "Open in Terminal". A terminal window will pop up, then type in the command `java -jar medconnect.jar` to run the application.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   For *MacOS:* Right-click home folder. Hover over "Services". Select "New Terminal at folder". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
+          
+
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all patients.
@@ -68,9 +97,10 @@ HealthSync is a **desktop application for managing patient contacts and their em
    * `clear` : Deletes all patients.
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Overview of [GUI](#gui)
 
 ## Features
 
@@ -108,18 +138,17 @@ Format: `help`
 
 Adds a patient to HealthSync.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS
 
 <box type="tip" seamless>
 
-**Tip:** A patient can have any number of tags (including 0)
 </box>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
-**⚠️ Warning:** If the name, phone, and email address are the same, the entry is considered a **duplicate**.
+**⚠️ Warning:** An entry is considered a **duplicate** if it has the same name and phone number or the same name and email address.
 
 ### Listing all patients : `list`
 
@@ -138,14 +167,14 @@ Format: `sort FIELD`
 * The sorting is case-insensitive.
 
 Examples:
-* `sort name` Sorts patients by name in ascending order
-* `sort appointment` Sorts patients by appointment date
+* `sort name` Sorts patients in ascending alphabetical order by name.
+* `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first. 
 
 ### Editing a patient : `edit`
 
 Edits an existing patient in HealthSync.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -153,7 +182,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower` Edits the name of the 2nd patient to be `Betsy Crower`.
 
 ### Setting Emergency Contact : `emergency`
 
@@ -163,11 +192,13 @@ Format: `emergency INDEX n/NAME p/PHONE_NUMBER r/RELATIONSHIP`
 
 * Sets the emergency contact for the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 * All fields (name, phone, relationship) are required.
 
 Examples:
 * `emergency 1 n/John Smith p/98765432 r/Father` Sets the emergency contact for the 1st patient to be John Smith (Father) with phone number 98765432.
+* `emergency 2 n/Mary Goh p/88761432 r/Mother` Sets the emergency contact for the 2nd patient to be Mary Goh (Mother) with phone number 88761432.
+
 
 ### Locating patients by name: `find`
 
@@ -177,7 +208,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* Name, Phone number and Email are searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
