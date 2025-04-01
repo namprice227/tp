@@ -190,8 +190,10 @@ public class Person {
         }
 
         // instanceof handles nulls
-        //if (!(other instanceof Person)) {
-        if (other == null || getClass() != other.getClass()) {
+        if (!(other instanceof Person)) {
+            return false;
+        }
+        if (getClass() != other.getClass()) {
             return false;
         }
 
@@ -202,7 +204,7 @@ public class Person {
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
                 && emergencyContact.equals(otherPerson.emergencyContact)
-                && Objects.equals(appointment, otherPerson.appointment);
+                && appointment.equals(otherPerson.appointment);
     }
 
     private Set<Tag> mergeTags() {
