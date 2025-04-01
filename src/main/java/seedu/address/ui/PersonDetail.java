@@ -28,11 +28,7 @@ public class PersonDetail extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane allergyTagsPane;
-    @FXML
-    private FlowPane conditionTagsPane;
-    @FXML
-    private FlowPane insuranceTagsPane;
+    private FlowPane tagsFlowPane;
     @FXML
     private Label appointment;
     @FXML
@@ -50,6 +46,11 @@ public class PersonDetail extends UiPart<Region> {
         super(FXML);
         cardPane.setVisible(false);
         cardPane.setManaged(false);
+        tagsFlowPane.prefWrapLengthProperty().bind(cardPane.widthProperty().subtract(40));
+        tagsFlowPane.setMaxWidth(Double.MAX_VALUE);
+        tagsFlowPane.setMinWidth(Region.USE_PREF_SIZE);
+        tagsFlowPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+
     }
 
     /**
@@ -66,13 +67,15 @@ public class PersonDetail extends UiPart<Region> {
         emergencyContactPhone.setText("📱 " + person.getEmergencyContact().getPhone());
         emergencyContactRelationship.setText("(" + person.getEmergencyContact().getRelationship() + ")");
         appointment.setText(person.getAppointment().toString());
-        allergyTagsPane.getChildren().clear();
-        conditionTagsPane.getChildren().clear();
-        insuranceTagsPane.getChildren().clear();
-        // Populate tags by category
-        populateTags(allergyTagsPane, person.getAllergyTags(), "#FF6B6B"); // Allergy tags in red
-        populateTags(conditionTagsPane, person.getConditionTags(), "#1DD1A1"); // Condition tags in green
-        populateTags(insuranceTagsPane, person.getInsuranceTags(), "#54A0FF"); // Insurance tags in blue
+        tagsFlowPane.getChildren().clear();
+        populateTags(tagsFlowPane, person.getAllergyTags(), "#FF6B6B");     // red
+        populateTags(tagsFlowPane, person.getConditionTags(), "#1DD1A1");   // green
+        populateTags(tagsFlowPane, person.getInsuranceTags(), "#54A0FF");   // blue
+        tagsFlowPane.prefWrapLengthProperty().bind(cardPane.widthProperty().subtract(40));
+        tagsFlowPane.setMaxWidth(Double.MAX_VALUE);
+        tagsFlowPane.setMinWidth(Region.USE_PREF_SIZE);
+        tagsFlowPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+
     }
 
     /**
@@ -83,8 +86,6 @@ public class PersonDetail extends UiPart<Region> {
      * @param color    The background color for the tags.
      */
     private void populateTags(FlowPane flowPane, Set<Tag> tags, String color) {
-        flowPane.getChildren().clear(); // Clear existing tags
-
         // Sort and process the tags
         tags.stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName)) // Sort tags alphabetically by name

@@ -10,12 +10,19 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox fx:id="cardPane" xmlns="http://javafx.com/javafx/17"
-      xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
+      xmlns:fx="http://javafx.com/fxml/1"
+      HBox.hgrow="ALWAYS">
+    <GridPane HBox.hgrow="ALWAYS"
+              maxWidth="Infinity">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="300"/>
         </columnConstraints>
-        <VBox alignment="TOP_LEFT" spacing="6" GridPane.columnIndex="0">
+
+        <VBox alignment="TOP_LEFT"
+              spacing="6"
+              GridPane.columnIndex="0"
+              GridPane.hgrow="ALWAYS"
+              maxWidth="Infinity" >
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
@@ -24,26 +31,16 @@
                 <Label fx:id="name" styleClass="cell_big_label"/>
             </HBox>
             <!-- Allergy Tags -->
-            <HBox spacing="0" alignment="CENTER_LEFT">
-                <FlowPane fx:id="allergyTagsPane" hgap="1" vgap="1"/>
+            <FlowPane fx:id="tagsFlowPane"
+                      hgap="6" vgap="6" maxWidth="Infinity" />
 
-                <!-- Condition Tags -->
-                <FlowPane fx:id="conditionTagsPane" hgap="1" vgap="1"/>
-
-                <!-- Insurance Tags -->
-                <FlowPane fx:id="insuranceTagsPane" hgap="1" vgap="1"/>
-            </HBox>
 
             <Label fx:id="phone" styleClass="cell_small_label"/>
             <Label fx:id="email" styleClass="cell_small_label"/>
             <Label fx:id="address" styleClass="cell_small_label"/>
 
-            <Label text=""/>
-
             <Label text="🕒 Appointment:" styleClass="cell_small_label_bold"/>
             <Label fx:id="appointment" styleClass="cell_small_label"/>
-
-            <Label text=""/>
 
             <Label text="Emergency Contact:" styleClass="cell_small_label_bold"/>
             <HBox spacing="5" alignment="CENTER_LEFT">

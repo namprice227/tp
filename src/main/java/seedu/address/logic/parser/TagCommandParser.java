@@ -49,37 +49,15 @@ public class TagCommandParser implements Parser<TagCommand> {
         // Check for delete tags (td/)
         Set<Tag> tagsToDelete = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG_DELETE));
 
-        // Check for edit tags (te/)
-        Tag oldTag = null;
-        Tag newTag = null;
-        boolean isEditTagPresent = argMultimap.getValue(PREFIX_TAG_EDIT).isPresent();
-
-        if (isEditTagPresent) {
-            String editTags = argMultimap.getValue(PREFIX_TAG_EDIT).get();
-            String[] split = editTags.split("=");
-
-            if (split.length != 2) {
-                throw new ParseException("Invalid format for editing a tag. Correct format: te/OLD_TAG=NEW_TAG");
-            }
-            oldTag = new Tag(split[0].trim());
-            newTag = new Tag(split[1].trim());
-        }
-
         // Ensure no tags are being added, deleted, or edited
         if (allergies.isEmpty() && conditions.isEmpty() && insurances.isEmpty()
-                && tagsToDelete.isEmpty() && !isEditTagPresent) {
+                && tagsToDelete.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
         }
 
         // Ensure adding, deleting, and editing cannot happen together
         if (!tagsToDelete.isEmpty() && (!allergies.isEmpty() || !conditions.isEmpty() || !insurances.isEmpty())) {
             throw new ParseException("Cannot add and delete tags in the same command.");
-        }
-        if (!tagsToDelete.isEmpty() && isEditTagPresent) {
-            throw new ParseException("Cannot delete and edit tags in the same command.");
-        }
-        if (isEditTagPresent && (!allergies.isEmpty() || !conditions.isEmpty() || !insurances.isEmpty())) {
-            throw new ParseException("Cannot edit and add tags in the same command.");
         }
 
         return new TagCommand(index, allergies, conditions, insurances, tagsToDelete);
@@ -104,8 +82,7 @@ public class TagCommandParser implements Parser<TagCommand> {
                 if (prefix.equals(PREFIX_ALLERGY.toString())
                         || prefix.equals(PREFIX_CONDITION.toString())
                         || prefix.equals(PREFIX_INSURANCE.toString())
-                        || prefix.equals(PREFIX_TAG_DELETE.toString())
-                        || prefix.equals(PREFIX_TAG_EDIT.toString())) {
+                        || prefix.equals(PREFIX_TAG_DELETE.toString())) {
                     continue;
                 }
 
