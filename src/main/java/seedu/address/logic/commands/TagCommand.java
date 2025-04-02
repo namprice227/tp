@@ -34,7 +34,7 @@ public class TagCommand extends Command {
             + "  " + COMMAND_WORD + " 1 " + PREFIX_ALLERGY + "Peanuts\n"
             + "  " + COMMAND_WORD + " 1 " + PREFIX_CONDITION + "Asthma\n"
             + "  " + COMMAND_WORD + " 1 " + PREFIX_INSURANCE + "Medisave\n"
-            + "  " + COMMAND_WORD + " td/Peanuts\n";
+            + "  " + COMMAND_WORD + " 1 " + " td/Peanuts\n";
 
     public static final String MESSAGE_ADD_SUCCESS = "Tags added to patient: %1$s";
     public static final String MESSAGE_DELETE_SUCCESS = "Tag deleted from patient: %1$s";
@@ -92,7 +92,9 @@ public class TagCommand extends Command {
         if (!tagsToDelete.isEmpty()) {
             // Handle delete tag
             for (Tag tagToDelete : tagsToDelete) {
-                if (!personToTag.getTags().contains(tagToDelete)) {
+                // With this implementation:
+                boolean tagFound = personToTag.getTags().stream().anyMatch(tagSet -> tagSet.contains(tagToDelete));
+                if (!tagFound) {
                     throw new CommandException(MESSAGE_TAG_NOT_FOUND);
                 }
                 personToTag = model.deleteTagFromPerson(personToTag, Collections.singleton(tagToDelete));
