@@ -154,7 +154,8 @@ class JsonAdaptedPerson {
         }
         final Appointment modelAppointment = new Appointment(appointment);
 
-        Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelAllergyTags, modelConditionTags, modelInsuranceTags, modelAppointment, null);
+        Person person = new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelAllergyTags, modelConditionTags, modelInsuranceTags, modelAppointment, null);
 
         if (emergencyContact != null) {
             return person.setEmergencyContact(emergencyContact.toModelType());
