@@ -9,19 +9,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
-    <Scene>
+    <Scene fill="#f2f0f0">
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
+      <HBox fx:id="helpMessageContainer" alignment="CENTER">
         <children>
-          <Label fx:id="helpMessage" text="Label">
+          <Label fx:id="helpMessage" text="Label" textFill="#b91212">
             <HBox.margin>
               <Insets right="5.0" />
             </HBox.margin>
