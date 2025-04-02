@@ -175,6 +175,23 @@ Examples:
 
 **⚠️ Warning:** An entry is considered a **duplicate** if it has the same name and phone number or the same name and email address.
 
+### Scheduling an appointment: `schedule`
+
+Schedules an appointment for a patient in HealthSync.
+
+**Format:**  
+`schedule INDEX dd-MM-yyyy HH:mm`
+
+<box type="tip" seamless>  
+Ensure the date and time are in the future.  
+</box>
+
+**Examples:**
+- `schedule 1 12-04-2025 14:30`
+- `schedule 2 05-06-2025 09:00`
+
+**⚠️ Warning:** An appointment is considered a **duplicate** if it has the same date and time as an existing appointment.
+
 ### Listing all patients : `list`
 
 Shows a list of all patients in HealthSync.
