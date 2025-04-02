@@ -17,14 +17,14 @@ With HealthSync, connecting with patients and their emergency contacts becomes s
 ---
 
 **⚠️ Warning:** HealthSync is only designed for **Singapore-based family clinics**. It operates exclusively in **English** and does not support other languages or international clinic formats.
-    
+
 Using HealthSync with other languages or across multiple countries and timezones may lead to unexpected behaviour
 
---- 
+---
 ## Table of Contents
-1. How to use this User Guide
+1. [How to use this User Guide](#how-to-use-this-user-guide)
 2. [Quick Start](#quick-start)
-3. Overview of GUI
+3. [Overview of GUI](#overview-of-gui)
 4. [Features](#features)
     - [Viewing help: `help`](#viewing-help-help)
     - [Adding a patient: `add`](#adding-a-patient-add)
@@ -85,7 +85,7 @@ By referring to these sections, you can quickly find the information you need an
 4. For *Windows:* Open the home folder and right-click anywhere in the red box, as shown in the image below. Click "Open in Terminal". A terminal window will pop up, then type in the command `java -jar medconnect.jar` to run the application.
 
    For *MacOS:* Right-click home folder. Hover over "Services". Select "New Terminal at folder". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
-          
+      
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -101,26 +101,26 @@ By referring to these sections, you can quickly find the information you need an
 
 --------------------------------------------------------------------------------------------------------------------
 ## Overview of [GUI](#gui)
-HealthSync features a clean and intuitive graphical user interface (GUI) designed to help users efficiently manage patient records and appointments. 
+HealthSync features a clean and intuitive graphical user interface (GUI) designed to help users efficiently manage patient records and appointments.
 The main interface consists of several key components:
 
 <img src="images/UpdatedHealthSync.png" width="300" height="200">
 
 1. **Menu Bar** - Provide quick access to essential functions:
-   * **File:** 
+   * **File:**
      * Exit: Closes the application safely.
    * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application. ![HelpMenu.png](images/HelpMenu.png)
-2. **Command Box** - 
+2. **Command Box**
    * Users can enter text-based commands to interact with the application.
 3. **Command Output Box**
-   * Display messages in response to user commands. 
+   * Display messages in response to user commands.
    * Provides feedback such as confirmations, errors, and system notifications.
-4. **Patient List Panel** 
-   * Displays a list of all registered patients. 
+4. **Patient List Panel**
+   * Displays a list of all registered patients.
    * Clicking on a patient will show their details in the Person Detail Panel
-5. **Person Details Panel** 
+5. **Person Details Panel**
    * Shows detailed information about the selected patient, such as their medical history, emergency contacts, and insurance details.
-6. **Tags** - 
+6. **Tags**
     * Used to record Allergies, Conditions and Insurance of a patient.
     * Each type of tag is represented by a different color for easy identification:
       * Red: Allergy
@@ -193,7 +193,7 @@ Format: `sort FIELD`
 
 Examples:
 * `sort name` Sorts patients in ascending alphabetical order by name.
-* `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first. 
+* `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first.
 
 ### Editing a patient : `edit`
 
@@ -307,7 +307,7 @@ Format: `clear`
 * Adds a tag to a patient based on their patient_ID in the address book.
 * Tags can be added for allergies (ta/), insurance (ti/), or conditions (tc/).
 * Tags are case-sensitive and need to be alphanumeric.
-* Tags can be more than 1 word in length. 
+* Tags can be more than 1 word in length.
 
 Format: `tag <patient_ID> ta/ALLERGY`
          `tag <patient_ID> ti/INSURANCE`

@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a date and time in the address book.
@@ -11,7 +12,8 @@ import java.time.format.DateTimeParseException;
  */
 public class DateTime implements Comparable<DateTime> {
     public static final String MESSAGE_CONSTRAINTS = "DateTime should be in the format DD-MM-YYYY HH:MM";
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm")
+            .withResolverStyle(ResolverStyle.STRICT);
 
     private final LocalDateTime dateTime;
 

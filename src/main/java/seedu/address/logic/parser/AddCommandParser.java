@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
-import java.util.HashSet;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -43,7 +42,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
 
         // Create person with empty tag set and default appointment
-        Person person = new Person(name, phone, email, address, new HashSet<>(), null, null);
+        Person person = new Person(name, phone, email, address, null, null, null);
 
         return new AddCommand(person);
     }

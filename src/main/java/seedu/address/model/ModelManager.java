@@ -209,14 +209,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Person addTagsToPerson(Person person, Set<Tag> tagsToAdd) {
-        requireAllNonNull(person, tagsToAdd);
+    public Person addTagsToPerson(Person person, Set<Tag> allergies, Set<Tag> conditions,
+                                  Set<Tag> insurances) {
+        requireAllNonNull(person);
 
-        // Create a new set with all existing tags
-        Set<Tag> updatedTags = new HashSet<>(person.getTags());
-
-        // Add the new tags
-        updatedTags.addAll(tagsToAdd);
+        Set<Tag> currentAllergies = new HashSet<>(person.getAllergyTags());
+        currentAllergies.addAll(allergies);
+        Set<Tag> currentConditions = new HashSet<>(person.getConditionTags());
+        currentConditions.addAll(conditions);
+        Set<Tag> currentInsurances = new HashSet<>(person.getInsuranceTags());
+        currentInsurances.addAll(insurances);
 
         // Create a new person with the updated tags
         Person updatedPerson = new Person(
@@ -224,7 +226,9 @@ public class ModelManager implements Model {
                 person.getPhone(),
                 person.getEmail(),
                 person.getAddress(),
-                updatedTags,
+                currentAllergies,
+                currentConditions,
+                currentInsurances,
                 person.getAppointment(),
                 person.getEmergencyContact());
 
@@ -238,11 +242,14 @@ public class ModelManager implements Model {
     public Person deleteTagFromPerson(Person person, Set<Tag> tagsToDelete) {
         requireAllNonNull(person, tagsToDelete);
 
-        // Create a new set with all existing tags
-        Set<Tag> updatedTags = new HashSet<>(person.getTags());
+        Set<Tag> currentAllergies = new HashSet<>(person.getAllergyTags());
+        Set<Tag> currentConditions = new HashSet<>(person.getConditionTags());
+        Set<Tag> currentInsurances = new HashSet<>(person.getInsuranceTags());
 
         // Remove the tags to delete
-        updatedTags.removeAll(tagsToDelete);
+        currentAllergies.removeAll(tagsToDelete);
+        currentConditions.removeAll(tagsToDelete);
+        currentInsurances.removeAll(tagsToDelete);
 
         // Create a new person with the updated tags
         Person updatedPerson = new Person(
@@ -250,34 +257,9 @@ public class ModelManager implements Model {
                 person.getPhone(),
                 person.getEmail(),
                 person.getAddress(),
-                updatedTags,
-                person.getAppointment(),
-                person.getEmergencyContact());
-
-        // Update the person in the address book
-        setPerson(person, updatedPerson);
-
-        return updatedPerson;
-    }
-
-    @Override
-    public Person editTagForPerson(Person person, Tag oldTag, Tag newTag) {
-        requireAllNonNull(person, oldTag, newTag);
-
-        // Create a new set with all existing tags
-        Set<Tag> updatedTags = new HashSet<>(person.getTags());
-
-        // Remove the old tag and add the new tag
-        updatedTags.remove(oldTag);
-        updatedTags.add(newTag);
-
-        // Create a new person with the updated tags
-        Person updatedPerson = new Person(
-                person.getName(),
-                person.getPhone(),
-                person.getEmail(),
-                person.getAddress(),
-                updatedTags,
+                currentAllergies,
+                currentConditions,
+                currentInsurances,
                 person.getAppointment(),
                 person.getEmergencyContact());
 

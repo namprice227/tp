@@ -1,46 +1,109 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tags" : [ "friends" ]
-  }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tags" : [ "owesMoney", "friends" ]
-  }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "address" : "wall street",
-    "tags" : [ ]
-  }, {
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "tags" : [ "friends" ]
-  }, {
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "email" : "werner@example.com",
-    "address" : "michegan ave",
-    "tags" : [ ]
-  }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "address" : "little tokyo",
-    "tags" : [ ]
-  }, {
-    "name" : "George Best",
-    "phone" : "9482442",
-    "email" : "anna@example.com",
-    "address" : "4th street",
-    "tags" : [ ]
-  } ]
+  "persons": [
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "allergyTags": ["Peanuts"],
+      "conditionTags": ["Hypertension"],
+      "insuranceTags": ["Basic Health Insurance"],
+      "appointment": "15-12-2023 10:00",
+      "emergencyContact": {
+        "name": "John Doe",
+        "phone": "91234567",
+        "relationship": "Brother"
+      }
+    },
+    {
+      "name": "Benson Meier",
+      "phone": "98765432",
+      "email": "johnd@example.com",
+      "address": "311, Clementi Ave 2, #02-25",
+      "allergyTags": ["Pollen"],
+      "conditionTags": ["Asthma"],
+      "insuranceTags": ["Premium Health Insurance"],
+      "appointment": "20-12-2023 14:30",
+      "emergencyContact": {
+        "name": "Jane Smith",
+        "phone": "92345678",
+        "relationship": "Sister"
+      }
+    },
+    {
+      "name": "Carl Kurz",
+      "phone": "95352563",
+      "email": "heinz@example.com",
+      "address": "wall street",
+      "allergyTags": ["None"],
+      "conditionTags": ["None"],
+      "insuranceTags": ["Basic Health Insurance"],
+      "appointment": "10-01-2024 09:00",
+      "emergencyContact": {
+        "name": "Emily Clark",
+        "phone": "93456789",
+        "relationship": "Mother"
+      }
+    },
+    {
+      "name": "Daniel Meier",
+      "phone": "87652533",
+      "email": "cornelia@example.com",
+      "address": "10th street",
+      "allergyTags": ["None"],
+      "conditionTags": ["Diabetes"],
+      "insuranceTags": ["Standard Health Insurance"],
+      "appointment": "05-02-2024 16:45",
+      "emergencyContact": {
+        "name": "Michael Brown",
+        "phone": "94567890",
+        "relationship": "Father"
+      }
+    },
+    {
+      "name": "Elle Meyer",
+      "phone": "9482224",
+      "email": "werner@example.com",
+      "address": "michegan ave",
+      "allergyTags": ["None"],
+      "conditionTags": ["None"],
+      "insuranceTags": ["None"],
+      "appointment": "18-03-2024 11:15",
+      "emergencyContact": {
+        "name": "Sarah Lee",
+        "phone": "95678901",
+        "relationship": "Spouse"
+      }
+    },
+    {
+      "name": "Fiona Kunz",
+      "phone": "9482427",
+      "email": "lydia@example.com",
+      "address": "little tokyo",
+      "allergyTags": ["Gluten"],
+      "conditionTags": ["None"],
+      "insuranceTags": ["Standard Health Insurance"],
+      "appointment": "22-04-2024 13:00",
+      "emergencyContact": {
+        "name": "David Wong",
+        "phone": "96789012",
+        "relationship": "Friend"
+      }
+    },
+    {
+      "name": "George Best",
+      "phone": "9482442",
+      "email": "anna@example.com",
+      "address": "4th street",
+      "allergyTags": ["None"],
+      "conditionTags": ["None"],
+      "insuranceTags": ["Basic Health Insurance"],
+      "appointment": "03-05-2024 15:30",
+      "emergencyContact": {
+        "name": "Laura White",
+        "phone": "97890123",
+        "relationship": "Cousin"
+      }
+    }
+  ]
 }
