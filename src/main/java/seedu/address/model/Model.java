@@ -102,8 +102,7 @@ public interface Model {
 
     /**
      * Adds tags to the given person.
-     * @param person    the person to add tags to
-     * @param tagsToAdd the tags to be added
+     * @param person the person to add tags to
      * @return the updated person with the new tags
      */
     Person addTagsToPerson(Person person, Set<Tag> allergies, Set<Tag> conditions,

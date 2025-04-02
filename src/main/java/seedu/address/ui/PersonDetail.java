@@ -2,12 +2,13 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 import java.util.Set;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -42,6 +43,11 @@ public class PersonDetail extends UiPart<Region> {
     @FXML
     private VBox emergencyContactSection;
 
+    /**
+     * Constructs a {@code PersonDetail} UI component.
+     * Initializes the UI layout and configures the visibility and size properties
+     * of the relevant UI elements.
+     */
     public PersonDetail() {
         super(FXML);
         cardPane.setVisible(false);
@@ -68,9 +74,9 @@ public class PersonDetail extends UiPart<Region> {
         emergencyContactRelationship.setText("(" + person.getEmergencyContact().getRelationship() + ")");
         appointment.setText(person.getAppointment().toString());
         tagsFlowPane.getChildren().clear();
-        populateTags(tagsFlowPane, person.getAllergyTags(), "#FF6B6B");     // red
-        populateTags(tagsFlowPane, person.getConditionTags(), "#1DD1A1");   // green
-        populateTags(tagsFlowPane, person.getInsuranceTags(), "#54A0FF");   // blue
+        populateTags(tagsFlowPane, person.getAllergyTags(), "#FF6B6B"); // red
+        populateTags(tagsFlowPane, person.getConditionTags(), "#1DD1A1"); // green
+        populateTags(tagsFlowPane, person.getInsuranceTags(), "#54A0FF"); // blue
         tagsFlowPane.prefWrapLengthProperty().bind(cardPane.widthProperty().subtract(40));
         tagsFlowPane.setMaxWidth(Double.MAX_VALUE);
         tagsFlowPane.setMinWidth(Region.USE_PREF_SIZE);

@@ -2,18 +2,15 @@ package seedu.address.model.person;
 
 import java.util.Objects;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 /**
  * Represents a Schedule in the address book.
  * Guarantees: details are present and not null.
  */
 public class Appointment implements Comparable<Appointment> {
     public static final String MESSAGE_CONSTRAINTS = "This must be DD-MM-YYYY HH:MM";
+    public final String value;
     private final DateTime dateTime;
     private final String description;
-    public final String value;
 
     /**
      * Constructs a {@code Schedule}.

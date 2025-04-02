@@ -173,8 +173,7 @@ public class AddCommandTest {
 
         @Override
         public Person addTagsToPerson(Person person, Set<Tag> allergies, Set<Tag> conditions,
-                               Set<Tag> insurances)
-        {
+                               Set<Tag> insurances) {
             throw new AssertionError("This method should not be called.");
         }
 

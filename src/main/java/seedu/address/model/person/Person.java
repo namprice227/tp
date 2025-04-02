@@ -69,6 +69,21 @@ public class Person {
         }
     }
 
+    /**
+     * Constructs a {@code Person} with the specified details.
+     *
+     * @param name The person's name. Cannot be null.
+     * @param phone The person's phone number. Cannot be null.
+     * @param email The person's email address. Cannot be null.
+     * @param address The person's residential address. Cannot be null.
+     * @param allergies A set of tags representing the person's allergies. Cannot be null.
+     * @param conditions A set of tags representing the person's medical conditions. Cannot be null.
+     * @param insurances A set of tags representing the person's insurance policies. Cannot be null.
+     * @param appointment The person's appointment details. If null, a default appointment is assigned.
+     * @param emergencyContact The person's emergency contact. If null, a default emergency contact is assigned.
+     * @throws NullPointerException If any of {@code name}, {@code phone}, {@code email}, {@code address},
+     *                              {@code allergies}, {@code conditions}, or {@code insurances} are null.
+     */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> allergies, Set<Tag> conditions,
                   Set<Tag> insurances, Appointment appointment, EmergencyPerson emergencyContact) {
         requireAllNonNull(name, phone, email, address, allergies, conditions, insurances);
