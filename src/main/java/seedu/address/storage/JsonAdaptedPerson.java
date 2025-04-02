@@ -41,8 +41,10 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("allergyTags") List<JsonAdaptedTag> allergyTags,
-            @JsonProperty("conditionTags") List<JsonAdaptedTag> conditionTags, @JsonProperty("insuranceTags") List<JsonAdaptedTag> insuranceTags,
-            @JsonProperty("appointment") String appointment, @JsonProperty("emergencyContact") JsonAdaptedEmergencyPerson emergencyContact) {
+            @JsonProperty("conditionTags") List<JsonAdaptedTag> conditionTags,
+                             @JsonProperty("insuranceTags") List<JsonAdaptedTag> insuranceTags,
+            @JsonProperty("appointment") String appointment,
+                             @JsonProperty("emergencyContact") JsonAdaptedEmergencyPerson emergencyContact) {
         this.name = name;
         this.phone = phone;
         this.email = email;
