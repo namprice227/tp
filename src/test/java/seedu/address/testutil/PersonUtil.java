@@ -54,7 +54,7 @@ public class PersonUtil {
         if (descriptor.getTags().isPresent()) {
             List<Set<Tag>> tagsList = descriptor.getTags().get();
             if (tagsList.isEmpty()) {
-                sb.append(PREFIX_TAG);  // If the list is empty, still append the prefix
+                sb.append(PREFIX_TAG); // If the list is empty, still append the prefix
             } else {
                 tagsList.forEach(tagSet -> {
                     if (!tagSet.isEmpty()) {

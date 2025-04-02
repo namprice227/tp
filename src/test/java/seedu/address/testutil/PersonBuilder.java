@@ -12,7 +12,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Relationship;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -108,6 +107,12 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the emergency contact for the {@code Person} being built.
+     *
+     * @param emergencyPerson The emergency contact to be assigned.
+     * @return This {@code PersonBuilder} instance with the updated emergency contact.
+     */
     public PersonBuilder withEmergencyContact(EmergencyPerson emergencyPerson) {
         this.emergencyPerson = emergencyPerson;
         return this;
@@ -151,6 +156,12 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Clears all tag-related attributes (allergies, conditions, and insurances)
+     * from the {@code Person} being built.
+     *
+     * @return This {@code PersonBuilder} instance with all tags removed.
+     */
     public PersonBuilder withNoTags() {
         allergies.clear();
         conditions.clear();
