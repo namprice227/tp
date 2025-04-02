@@ -74,9 +74,9 @@ public class PersonDetail extends UiPart<Region> {
         emergencyContactRelationship.setText("(" + person.getEmergencyContact().getRelationship() + ")");
         appointment.setText(person.getAppointment().toString());
         tagsFlowPane.getChildren().clear();
-        populateTags(tagsFlowPane, person.getAllergyTags(), "#FF6B6B");     // red
-        populateTags(tagsFlowPane, person.getConditionTags(), "#1DD1A1");   // green
-        populateTags(tagsFlowPane, person.getInsuranceTags(), "#54A0FF");   // blue
+        populateTags(tagsFlowPane, person.getAllergyTags(), "#FF6B6B"); // red
+        populateTags(tagsFlowPane, person.getConditionTags(), "#1DD1A1"); // green
+        populateTags(tagsFlowPane, person.getInsuranceTags(), "#54A0FF"); // blue
         tagsFlowPane.prefWrapLengthProperty().bind(cardPane.widthProperty().subtract(40));
         tagsFlowPane.setMaxWidth(Double.MAX_VALUE);
         tagsFlowPane.setMinWidth(Region.USE_PREF_SIZE);
