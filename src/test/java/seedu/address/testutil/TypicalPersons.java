@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.ArchivedBook;
 import seedu.address.model.person.Person;
 
 /**
@@ -102,6 +103,11 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+        return ab;
+    }
+
+    public static ArchivedBook getTypicalArchivedBook() {
+        ArchivedBook ab = new ArchivedBook();
         return ab;
     }
 
