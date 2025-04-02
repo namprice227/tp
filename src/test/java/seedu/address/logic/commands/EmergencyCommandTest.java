@@ -43,7 +43,7 @@ public class EmergencyCommandTest {
         ReadOnlyArchivedBook archivedBook = new ArchivedBook(model.getArchivedBook());
         ReadOnlyUserPrefs userPrefs = new UserPrefs();
         Model expectedModel = new ModelManager(addressBook, userPrefs, archivedBook);
-        
+        // Set the emergency contact for the person
         EmergencyPerson newEmergencyContact = new EmergencyPerson(
                 new Name("John Smith"), new Phone("98765432"), new Relationship("Father"));
         Person editedPerson = personToEdit.setEmergencyContact(newEmergencyContact);

@@ -15,7 +15,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.testutil.TypicalPersons;
 
 public class UndoCommandParserTest {
-    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs(), TypicalPersons.getTypicalArchivedBook());
+    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs(),
+        TypicalPersons.getTypicalArchivedBook());
     private UndoCommandParser parser = new UndoCommandParser(model);
 
     @Test
