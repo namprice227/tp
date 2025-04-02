@@ -25,7 +25,7 @@ public class ScheduleCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New schedule added";
     public static final String MESSAGE_SHOW_SCHEDULE = "Show schedule";
     public static final String MESSAGE_INVALID_DATETIME =
-            "The format should be schedule DD-MM-YYYY HH:MM";
+            "The format should be schedule DD-MM-YYYY HH:MM. The date must be a valid date.";
     public static final String MESSAGE_INVALID_FUTURE =
             "The date must be in the future";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the schedule";
