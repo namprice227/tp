@@ -138,6 +138,11 @@ public class UniquePersonList implements Iterable<Person> {
         return internalList.hashCode();
     }
 
+    @Override
+    public String toString() {
+        return internalList.toString();
+    }
+
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
