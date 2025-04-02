@@ -48,6 +48,9 @@ public class Person {
         this.address = address;
         if (tags == null) {
             this.tags = new ArrayList<>();
+            for (int i = 0; i < 3; i++) {
+                this.tags.add(new HashSet<>());
+            }
         } else {
             this.allergies.addAll(tags.get(0));
             this.conditions.addAll(tags.get(1));

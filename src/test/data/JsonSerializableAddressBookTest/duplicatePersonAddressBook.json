@@ -1,14 +1,36 @@
 {
-  "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tags": [ "friends" ]
-  }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "4th street"
-  } ]
+  "persons": [
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "allergyTags": ["Peanuts"],
+      "conditionTags": ["Hypertension"],
+      "insuranceTags": ["Basic Health Insurance"],
+      "appointment": "15-12-2023 10:00",
+      "emergencyContact": {
+        "name": "John Doe",
+        "phone": "91234567",
+        "relationship": "Brother"
+      },
+      "tags": ["friends"]
+    },
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "address": "4th street",
+      "allergyTags": ["Gluten"],
+      "conditionTags": ["None"],
+      "insuranceTags": ["Standard Health Insurance"],
+      "appointment": "20-01-2024 14:30",
+      "emergencyContact": {
+        "name": "Jane Smith",
+        "phone": "92345678",
+        "relationship": "Sister"
+      },
+      "tags": ["family"]
+    }
+  ]
 }
