@@ -29,6 +29,7 @@ public class ScheduleCommand extends Command {
     public static final String MESSAGE_INVALID_FUTURE =
             "The date must be in the future";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the schedule";
+    public static final String MESSAGE_INVALID_TIME = "Please enter a valid date and time";
 
     private final Index index;
     private Appointment appointment;
