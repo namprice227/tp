@@ -375,7 +375,7 @@ Format: `undo`
 > * Cannot be used repeatedly to undo multiple actions.
 > * Cannot undo `undo`, `redo`, `help`, or `exit` commands.
     
-[Return Back to Table of Contents](#Table-of-Contents)
+[Return Back to Table of Contents](#table-of-contents)
 
 Example:
 * `undo` (Restores the state before the last action)
