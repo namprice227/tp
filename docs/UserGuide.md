@@ -127,8 +127,8 @@ The main interface consists of several key components:
    * Provides feedback such as confirmations, errors, and system notifications.
 4. **Patient List Panel**
    * Displays a list of all registered patients.
-   * Clicking on a patient will show their details in the Person Detail Panel.
-5. **Person Details Panel**
+   * Clicking on a patient will show their details in the Patient Detail Panel.
+5. **Patient Details Panel**
    * Shows detailed information about the selected patient, such as their medical history, emergency contacts, and insurance details.
 6. **Tags**
     * Used to record Allergies, Conditions and Insurance of a patient.
