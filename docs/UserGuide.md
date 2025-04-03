@@ -490,5 +490,3 @@ This also applies to emergency contacts. To prevent unexpected app behavior, do 
 | **Parameter**                                      | Required input for a command.                                                              | `NAME` and `EMAIL` are examples of parameters you have to provide in an [`add`](#adding-a-patient-add) command.<br><br>`Terry John` and `terry@hotmail.com` are possible examples to provide to the respective parameters. |
 
 [↑ Back to top](#table-of-contents)
-
-<div style="page-break-after: always;"></div>
