@@ -104,12 +104,12 @@ By referring to these sections, you can quickly find the information you need an
 HealthSync features a clean and intuitive graphical user interface (GUI) designed to help users efficiently manage patient records and appointments. 
 The main interface consists of several key components:
 
-<img src="images/UpdatedHealthSync.png" width="300" height="200">
+<img src="images/UpdatedHealthSync.png" width="330" height="220">
 
 1. **Menu Bar** - Provide quick access to essential functions:
    * **File:** 
      * Exit: Closes the application safely.
-   * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application. ![HelpMenu.png](images/HelpMenu.png)
+   * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application. <img src="images/HelpMenu.png" width="300" height="200">
 2. **Command Box** - 
    * Users can enter text-based commands to interact with the application.
 3. **Command Output Box**
@@ -155,7 +155,7 @@ The main interface consists of several key components:
 
 Shows a message explaining how to access the help page.
 
-![HealthSyncHelpMessage.png](images/HealthSyncHelpMessage.png)
+<img src="images/HealthSyncHelpMessage.png" width="250" height="25">
 
 Format: `help`
 
@@ -241,7 +241,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find david roy` returns `David Li`, `Roy Balakrishnan`<br>
-  <img src="images/HealthSyncFindResult.png" width="200" height="250">
+  <img src="images/HealthSyncFindResult.png" width="240" height="300">
 
 
 ### Archive a patient : `archive`
