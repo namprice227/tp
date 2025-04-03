@@ -193,7 +193,8 @@ Format: `sort FIELD`
 
 Examples:
 * `sort name` Sorts patients in ascending alphabetical order by name.
-* `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first. 
+* `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first.
+  <img src="images/SortExample.png" width="300" height="200">
 
 ### Editing a patient : `edit`
 
