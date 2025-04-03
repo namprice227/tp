@@ -71,6 +71,7 @@ By referring to these sections, you can quickly find the information you need an
 
 ## Legend
 **⚠️**: The symbol serves as a warning that executing a specific command in a given context may result in unexpected behavior.
+
 <box type="tip">: The symbol provides helpful guidance on using the command effectively to meet your needs.
 </box>
 
@@ -176,12 +177,13 @@ Examples:
 
 Schedules an appointment for a patient in HealthSync.
 
-**Format:**  
+Format:  
 `schedule INDEX dd-MM-yyyy HH:mm`
 
-> **Tip**: Ensure the date and time are in the future.
+<box type="tip">: Ensure the date and time are in the future.
+</box>
 
-**Examples:**
+Examples:
 - `schedule 1 12-04-2025 14:30`
 - `schedule 2 05-06-2025 09:00`
 
@@ -329,7 +331,8 @@ Format: `tag <INDEX> ta/ALLERGY`
          `tag <INDEX> ti/INSURANCE`
          `tag <INDEX> tc/CONDITION`
 
-> **Tip:** Add the tags based on their different categories such as allergy (`ta/`), insurance (`ti/`), and condition (`tc/`).
+<box type="tip">: Add the tags based on their different categories such as allergy (`ta/`), insurance (`ti/`), and condition (`tc/`).
+</box>
 
 Examples:
 * `tag 1 ta/peanuts` assigns an allergy tag 'peanuts' to the patient at index 1.
@@ -350,8 +353,8 @@ Examples:
 
 Format: `tag <INDEX> td/TAGNAME`
 
-> **Tip:** You can undo the command if the tag was deleted by mistake.
-
+<box type="tip">: You can undo the command if the tag was deleted by mistake.
+</box>
 
 Examples:
 * `tag 1 td/peanuts` deletes the tag 'peanuts' from the patient at index 1.
