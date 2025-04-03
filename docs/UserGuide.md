@@ -85,7 +85,8 @@ By referring to these sections, you can quickly find the information you need an
 4. For *Windows:* Open the home folder and right-click anywhere in the red box, as shown in the image below. Click "Open in Terminal". A terminal window will pop up, then type in the command `java -jar medconnect.jar` to run the application.
 
    For *MacOS:* Right-click home folder. Hover over "Services". Select "New Terminal at folder". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
-      
+
+   <img src="images/MacUser.png" width="330" height="220">
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -104,13 +105,14 @@ By referring to these sections, you can quickly find the information you need an
 HealthSync features a clean and intuitive graphical user interface (GUI) designed to help users efficiently manage patient records and appointments.
 The main interface consists of several key components:
 
-<img src="images/UpdatedHealthSync.png" width="300" height="200">
+<img src="images/UpdatedHealthSync.png" width="330" height="220">
 
 1. **Menu Bar** - Provide quick access to essential functions:
    * **File:**
      * Exit: Closes the application safely.
+   * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application. <img src="images/HelpMenu.png" width="300" height="200">
+2. **Command Box** - 
    * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application. ![HelpMenu.png](images/HelpMenu.png)
-2. **Command Box**
    * Users can enter text-based commands to interact with the application.
 3. **Command Output Box**
    * Display messages in response to user commands.
@@ -155,7 +157,7 @@ The main interface consists of several key components:
 
 Shows a message explaining how to access the help page.
 
-![HealthSyncHelpMessage.png](images/HealthSyncHelpMessage.png)
+<img src="images/HealthSyncHelpMessage.png" width="250" height="25">
 
 Format: `help`
 
@@ -212,6 +214,8 @@ Examples:
 * `sort name` Sorts patients in ascending alphabetical order by name.
 * `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first.
 
+  <img src="images/SortExample.png" width="300" height="200">
+
 ### Editing a patient : `edit`
 
 Edits an existing patient in HealthSync.
@@ -258,7 +262,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find david roy` returns `David Li`, `Roy Balakrishnan`<br>
-  <img src="images/HealthSyncFindResult.png" width="200" height="250">
+  <img src="images/HealthSyncFindResult.png" width="240" height="300">
 
 
 ### Archive a patient : `archive`
@@ -336,7 +340,8 @@ Format: `tag <patient_ID> ta/ALLERGY`
 </box>
 
 Examples:
-* `tag 1 ta/peanuts`
+* `tag 1 ta/peanuts` assigns an allergy tag 'peanuts' to the patient at index 1.
+  <img src="AddTagExample.png" width="300" height="200">
 * `tag 2 ti/prudential`
 * `tag 3 tc/diabetes`
 
@@ -358,6 +363,7 @@ Format: `tag <patient_ID> td/TAGNAME`
 
 Examples:
 * `tag 1 td/peanuts`
+  <img src="DeleteTagExample.png" width="300" height="200">
 * `tag 2 td/diabetes`
 
 --------------------------------------------------------------------------------------------------------------------
