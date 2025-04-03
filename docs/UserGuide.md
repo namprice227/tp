@@ -306,7 +306,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in HealthSync.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
-[Return Back to Table of Contents](#Table-of-Contents)
+[Return Back to Table of Contents](#table-of-contents)
 
 ### Clearing all entries : `clear`
 
@@ -428,8 +428,8 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 | **Action**                 | **Format, Examples**                                                                                                             |
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| **Add Patient**            | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`<br>e.g., `add n/John Doe p/98765432 e/john@example.com a/123 Street t/diabetes` |
-| **Edit Patient**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g., `edit 2 n/John Smith p/91234567`                        |
+| **Add Patient**            | `add n/NAME p/PHONE e/EMAIL a/ADDRESS`<br>e.g., `add n/John Doe p/98765432 e/john@example.com a/123 Street` |
+| **Edit Patient**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]​`<br>e.g., `edit 2 n/John Smith p/91234567`                        |
 | **Delete Patient**         | `delete INDEX`<br>e.g., `delete 3`                                                                                               |
 | **Find Patient**           | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find John`                                                                              |
 | **List Patients**          | `list`                                                                                                                           |
