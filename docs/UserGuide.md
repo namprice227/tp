@@ -20,6 +20,7 @@ This ensures rapid response when every second matters.
 
 Using HealthSync with other languages or across multiple countries and timezones may lead to unexpected behaviour.
 
+<div style="page-break-after: always;"></div>
 ---
 ## Table of Contents
 1. [How to use this User Guide](#how-to-use-this-user-guide)
@@ -55,7 +56,7 @@ Using HealthSync with other languages or across multiple countries and timezones
 10. [Glossary](#glossary)
      - [Terminology](#terminology)
 
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 ## How to use this User Guide
 This User Guide is designed to help you understand and use HealthSync effectively. Below are some tips on how to navigate and use this guide:
@@ -75,6 +76,8 @@ By referring to these sections, you can quickly find the information you need an
 
 <box type="tip">: The symbol provides helpful guidance on using the command effectively to meet your needs.
 </box>
+
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -107,6 +110,8 @@ By referring to these sections, you can quickly find the information you need an
 
 7. Refer to the [Features](#features) below for details of each command.
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## Overview of [GUI](#gui)
 HealthSync features a clean and intuitive graphical user interface (GUI) designed to help users efficiently manage patient records and appointments.
@@ -136,6 +141,8 @@ The main interface consists of several key components:
       * Red: Allergy
       * Green: Condition
       * Blue: Insurance
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -410,6 +417,8 @@ HealthSync data are saved automatically as a JSON file `[JAR file location]/data
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -423,6 +432,8 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimise the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimised, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+
+<div style="page-break-after: always;"></div>
 
 ## Valid Inputs for Patient parameters
 
@@ -463,6 +474,8 @@ This also applies to emergency contacts. To prevent unexpected app behavior, do 
 | **Delete Tag**             | `tag INDEX td/TAGNAME`<br>e.g., `tag 1 td/peanuts`                                                          |
 | **Help**                   | `help`                                                                                                      |
 | **Exit**                   | `exit`                                                                                                      |
+
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 ### Terminology
