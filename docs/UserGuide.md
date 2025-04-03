@@ -8,7 +8,7 @@
 
 ---
 
-HealthSync is a **desktop application tailored for healthcare administrators in family clinics.** It centralises patients' personal information and emergency contact details into a single, easily accessible database, enabling administrators to efficiently manage data and contacts, even in time-sensitive situations.
+HealthSync is a **desktop application tailored for healthcare administrators in family clinics.** It centralises patients' personal information and emergency contact details into a single, easily accessible database, enabling administrators to efficiently manage data and contacts.
 
 By combining the speed of a Command Line Interface (CLI) with the visual clarity of a Graphical User Interface (GUI), HealthSync optimizes workflow for fast-typing administrators, enabling them to retrieve critical patient details and establish contact more efficiently than traditional GUI-only applications.
 
@@ -144,9 +144,6 @@ The main interface consists of several key components:
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
