@@ -12,7 +12,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Relationship;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -32,7 +31,9 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Set<Tag> allergies = new HashSet<>();
+    private Set<Tag> conditions = new HashSet<>();
+    private Set<Tag> insurances = new HashSet<>();
     private EmergencyPerson emergencyPerson;
     private Appointment appointment;
 
@@ -44,27 +45,12 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
         emergencyPerson = new EmergencyPerson(new Name(DEFAULT_EMERGENCY_PERSON),
                 new Phone(DEFAULT_EMERGENCY_PHONE), new Relationship(DEFAULT_RELATIONSHIP));
         appointment = new Appointment(DEFAULT_APPOINTMENT);
     }
 
-    /**
-     * Constructs a {@code PersonBuilder} with the specified details.
-     *
-     * @param name    The name of the person.
-     * @param phone   The phone number of the person.
-     * @param email   The email address of the person.
-     * @param address The physical address of the person.
-     */
-    public PersonBuilder(String name, String phone, String email, String address) {
-        this.name = new Name(name);
-        this.phone = new Phone(phone);
-        this.email = new Email(email);
-        this.address = new Address(address);
-        tags = new HashSet<>();
-    }
+
 
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
@@ -74,7 +60,9 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        allergies = new HashSet<>(personToCopy.getAllergyTags());
+        conditions = new HashSet<>(personToCopy.getConditionTags());
+        insurances = new HashSet<>(personToCopy.getInsuranceTags());
         emergencyPerson = personToCopy.getEmergencyContact();
         appointment = personToCopy.getAppointment();
     }
@@ -84,22 +72,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
         return this;
     }
 
@@ -120,14 +92,87 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Emergency Contact} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAddress(String address) {
+        this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code EmergencyPerson} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withEmergencyPerson(String name, String phone, String relationship) {
+        this.emergencyPerson = new EmergencyPerson(new Name(name), new Phone(phone), new Relationship(relationship));
+        return this;
+    }
+
+    /**
+     * Sets the emergency contact for the {@code Person} being built.
+     *
+     * @param emergencyPerson The emergency contact to be assigned.
+     * @return This {@code PersonBuilder} instance with the updated emergency contact.
      */
     public PersonBuilder withEmergencyContact(EmergencyPerson emergencyPerson) {
         this.emergencyPerson = emergencyPerson;
         return this;
     }
 
+    /**
+     * Sets the {@code Appointment} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAppointment(String appointment) {
+        this.appointment = new Appointment(appointment);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Allergies} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAllergies(String... tags) {
+        for (String tag : tags) {
+            allergies.add(new Tag(tag));
+        }
+        return this;
+    }
+
+    /**
+     * Sets the {@code Conditions} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withConditions(String... tags) {
+        for (String tag : tags) {
+            conditions.add(new Tag(tag));
+        }
+        return this;
+    }
+
+    /**
+     * Sets the {@code Insurances} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withInsurances(String... tags) {
+        for (String tag : tags) {
+            insurances.add(new Tag(tag));
+        }
+        return this;
+    }
+
+    /**
+     * Clears all tag-related attributes (allergies, conditions, and insurances)
+     * from the {@code Person} being built.
+     *
+     * @return This {@code PersonBuilder} instance with all tags removed.
+     */
+    public PersonBuilder withNoTags() {
+        allergies.clear();
+        conditions.clear();
+        insurances.clear();
+        return this;
+    }
+
+    /**
+     * Builds the {@code Person}.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags, new Appointment(), emergencyPerson);
+        return new Person(name, phone, email, address, allergies, conditions, insurances, appointment, emergencyPerson);
     }
 }

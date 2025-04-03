@@ -34,7 +34,7 @@ public class TagCommandParserTest {
         expectedConditions.add(new Tag("Asthma"));
 
         TagCommand expectedTagCommand = new TagCommand(INDEX_FIRST_PERSON, expectedAllergies, expectedConditions,
-                new HashSet<>(), new HashSet<>(), null, null);
+                new HashSet<>(), new HashSet<>());
 
         assertEquals(tagCommand, expectedTagCommand);
     }
@@ -49,23 +49,7 @@ public class TagCommandParserTest {
         tagsToDelete.add(new Tag("Peanuts"));
 
         TagCommand expectedTagCommand = new TagCommand(INDEX_FIRST_PERSON, new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), tagsToDelete, null, null);
-
-        assertEquals(tagCommand, expectedTagCommand);
-    }
-
-    // Test editing a tag
-    @Test
-    public void parse_editTag_success() throws ParseException {
-        String userInput = "1 " + PREFIX_TAG_EDIT + "Medisave=Prudential";
-        TagCommand tagCommand = parser.parse(userInput);
-
-        Tag oldTag = new Tag("Medisave");
-        Tag newTag = new Tag("Prudential");
-
-        TagCommand expectedTagCommand = new TagCommand(INDEX_FIRST_PERSON, new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), oldTag, newTag);
-
+                new HashSet<>(), tagsToDelete);
         assertEquals(tagCommand, expectedTagCommand);
     }
 
