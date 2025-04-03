@@ -52,7 +52,7 @@ Using HealthSync with other languages or across multiple countries and timezones
 7. [Glossary](#glossary)
    - [Terminology](#terminology)
    - [Valid inputs for patient parameters](#valid-inputs)
-5. [Command Summary](#command-summary)
+8. [Command Summary](#command-summary)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -63,11 +63,9 @@ This User Guide is designed to help you understand and use HealthSync effectivel
 2. **[Quick Start](#quick-start)**: Step-by-step instructions for first-time users.
 3. **[Overview of GUI](#overview-of-gui)**: Familiarise yourself with HealthSync's interface.
 4. **[Features](#features)**: Detailed explanations of all commands with formats, parameters and examples.
-5. **[Command Summary](#command-summary)**: A quick reference table for command formats.
-6. **[FAQ](#faq)**: Answers to common questions and troubleshooting tips.
-7. **[Known Issues](#known-issues)**: Lists existing issues and their solutions.
-8. **[Glossary](#glossary)**: Definitions of key terms used in this guide.
-9. **[Notes and Tips](#notes-and-tips)**: Helpful insights highlighted throughout this the guide.
+5. **[FAQ](#faq)**: Answers to common questions and troubleshooting tips.
+6. **[Known Issues](#known-issues)**: Lists existing issues and their solutions.
+7. **[Command Summary](#command-summary)**: A quick reference table for command formats.
 
 By referring to these sections, you can quickly find the information you need and fully utilize HealthSync.
 
@@ -89,8 +87,8 @@ By referring to these sections, you can quickly find the information you need an
 4. For *Windows:* Open the home folder and right-click anywhere in the blue box, as shown in the image below. Click "Open in Terminal". A terminal window will pop up, then type in the command `java -jar medconnect.jar` to run the application.
    ![Windows.png](images/Windows.png)
 
-   For *MacOS:* Right-click home folder. Hover over "Services". Select "New Terminal at folder". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
-
+   For *MacOS:* Right-click home folder. Select "New Terminal at folder". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
+     
    <img src="images/MacUser.png" width="330" height="220">
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
