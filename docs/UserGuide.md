@@ -87,6 +87,7 @@ By referring to these sections, you can quickly find the information you need an
 4. For *Windows:* Open the home folder and right-click anywhere in the blue box, as shown in the image below. Click "Open in Terminal". A terminal window will pop up, then type in the command `java -jar medconnect.jar` to run the application.
    ![Windows.png](images/Windows.png)
 
+   <img src="images/MacUser.png" width="400" height="300">
    For *MacOS:* Right-click home folder. Select "New Terminal at folder". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
      
    <img src="images/MacUser.png" width="330" height="220">
@@ -113,9 +114,8 @@ The main interface consists of several key components:
 1. **Menu Bar** - Provide quick access to essential functions:
    * **File:**
      * Exit: Closes the application safely.
-   * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application. <img src="images/HelpMenu.png" width="300" height="200">
+   * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application. <img src="images/HelpMenu.png" width="330" height="220">
 2. **Command Box** - 
-   * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application. ![HelpMenu.png](images/HelpMenu.png)
    * Users can enter text-based commands to interact with the application.
 3. **Command Output Box**
    * Display messages in response to user commands.
@@ -160,7 +160,7 @@ The main interface consists of several key components:
 
 Shows a message explaining how to access the help page.
 
-<img src="images/HealthSyncHelpMessage.png" width="250" height="25">
+<img src="images/HealthSyncHelpMessage.png" width="450" height="45">
 
 Format: `help`
 
@@ -211,7 +211,7 @@ Examples:
 * `sort name` Sorts patients in ascending alphabetical order by name.
 * `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first.
 
-  <img src="images/SortExample.png" width="300" height="200">
+  <img src="images/SortExample.png" width="330" height="220">
 
 ### Editing a patient : `edit`
 
