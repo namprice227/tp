@@ -52,7 +52,7 @@ Using HealthSync with other languages or across multiple countries and timezones
 7. [Glossary](#glossary)
    - [Terminology](#terminology)
    - [Valid inputs for patient parameters](#valid-inputs)
-5. [Command Summary](#command-summary)
+8. [Command Summary](#command-summary)
 
 
 --------------------------------------------------------------------------------------------------------------------
