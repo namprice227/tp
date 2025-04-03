@@ -132,7 +132,7 @@ The main interface consists of several key components:
    * Shows detailed information about the selected patient, such as their medical history, emergency contacts, and insurance details.
 6. **Tags**
     * Used to record Allergies, Conditions and Insurance of a patient.
-    * Each type of tag is represented by a different color for easy identification:
+    * Each type of tag is represented by a different colour for easy identification:
       * Red: Allergy
       * Green: Condition
       * Blue: Insurance
