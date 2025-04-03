@@ -85,14 +85,14 @@ By referring to these sections, you can quickly find the information you need an
 3. Copy the file to the folder you want to use as the _home folder_ for HealthSync. The _home folder_ will be where all the data files will be saved.
 
 4. For *Windows:* Open the home folder and right-click anywhere in the blue box, as shown in the image below. Click "Open in Terminal". A terminal window will pop up, then type in the command `java -jar medconnect.jar` to run the application.
-   ![Windows.png](images/Windows.png)
 
-   <img src="images/MacUser.png" width="400" height="300">
+   <img src="images/Windows.png" width="440" height="330">
+
    For *MacOS:* Right-click home folder. Select "New Terminal at folder". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
      
-   <img src="images/MacUser.png" width="330" height="220">
+   <img src="images/MacUser.png" width="440" height="330">
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all patients.
@@ -102,19 +102,20 @@ By referring to these sections, you can quickly find the information you need an
    * `clear` : Deletes all patients.
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Overview of [GUI](#gui)
 HealthSync features a clean and intuitive graphical user interface (GUI) designed to help users efficiently manage patient records and appointments.
 The main interface consists of several key components:
 
-<img src="images/UpdatedHealthSync.png" width="330" height="220">
+<img src="images/UpdatedHealthSync.png" width="400" height="300">
 
 1. **Menu Bar** - Provide quick access to essential functions:
    * **File:**
      * Exit: Closes the application safely.
-   * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application. <img src="images/HelpMenu.png" width="330" height="220">
+   * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application.
+     <img src="images/HelpMenu.png" width="400" height="300">
 2. **Command Box** - 
    * Users can enter text-based commands to interact with the application.
 3. **Command Output Box**
@@ -211,7 +212,7 @@ Examples:
 * `sort name` Sorts patients in ascending alphabetical order by name.
 * `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first.
 
-  <img src="images/SortExample.png" width="330" height="220">
+  <img src="images/SortExample.png" width="400" height="260">
 
 ### Editing a patient : `edit`
 
@@ -337,7 +338,8 @@ Format: `tag <INDEX> ta/ALLERGY`
 
 Examples:
 * `tag 1 ta/peanuts` assigns an allergy tag 'peanuts' to the patient at index 1.
-  <img src="AddTagExample.png" width="300" height="200">
+
+  <img src="images/AddTagExample.png" width="400" height="280">
 * `tag 2 ti/prudential` assigns an insurance tag 'prudential' to the patient at index 2.
 * `tag 3 tc/diabetes` assigns a medical condition tag 'diabetes' to the patient at index 3.
 
@@ -358,7 +360,7 @@ Format: `tag <INDEX> td/TAGNAME`
 
 Examples:
 * `tag 1 td/peanuts` deletes the tag 'peanuts' from the patient at index 1.
-  <img src="DeleteTagExample.png" width="300" height="200">
+  <img src="images/DeleteTagExample.png" width="400" height="280">
 * `tag 2 td/diabetes` deletes the tag 'diabetes' from the patient at index 2.
 
 --------------------------------------------------------------------------------------------------------------------
