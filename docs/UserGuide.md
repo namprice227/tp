@@ -424,7 +424,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimise the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimised, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
-### Valid Inputs for Patient parameters
+## Valid Inputs for Patient parameters
 
 A person is uniquely identified by their `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL`. Persons with the same `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL` will be flagged as duplicates and cannot be added to the address book.
 
@@ -439,7 +439,7 @@ This also applies to emergency contacts. To prevent unexpected app behavior, do 
 
 <div style="page-break-after: always;"></div>
 
-### Command Summary
+## Command Summary
 
 | **Action**                 | **Format, Examples**                                                                                        |
 |----------------------------|-------------------------------------------------------------------------------------------------------------|
