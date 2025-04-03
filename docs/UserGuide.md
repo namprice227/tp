@@ -116,14 +116,14 @@ The main interface consists of several key components:
      * Exit: Closes the application safely.
    * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application.
      <img src="images/HelpMenu.png" width="400" height="300">
-2. **Command Box** - 
+2. **Command Box**
    * Users can enter text-based commands to interact with the application.
 3. **Command Output Box**
    * Display messages in response to user commands.
    * Provides feedback such as confirmations, errors, and system notifications.
 4. **Patient List Panel**
    * Displays a list of all registered patients.
-   * Clicking on a patient will show their details in the Person Detail Panel
+   * Clicking on a patient will show their details in the Person Detail Panel.
 5. **Person Details Panel**
    * Shows detailed information about the selected patient, such as their medical history, emergency contacts, and insurance details.
 6. **Tags**
