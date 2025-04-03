@@ -16,7 +16,7 @@ This ensures rapid response when every second matters.
 
 ---
 
-**⚠️ Warning:** HealthSync is only designed for **Singapore-based family clinics**. It operates exclusively in **English** and does not support other languages or international clinic formats.
+> **⚠️ Warning:** HealthSync is only designed for **Singapore-based family clinics**. It operates exclusively in **English** and does not support other languages or international clinic formats.
 
 Using HealthSync with other languages or across multiple countries and timezones may lead to unexpected behaviour.
 
@@ -176,7 +176,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
-**⚠️ Warning:** An entry is considered a **duplicate** if it has the same name and phone number or the same name and email address.
+> **⚠️ Warning:** An entry is considered a **duplicate** if it has the same name and phone number or the same name and email address.
 
 ### Scheduling an appointment: `schedule`
 
@@ -185,15 +185,13 @@ Schedules an appointment for a patient in HealthSync.
 **Format:**  
 `schedule INDEX dd-MM-yyyy HH:mm`
 
-<box type="tip" seamless>  
-Ensure the date and time are in the future.  
-</box>
+> **Tip**: Ensure the date and time are in the future.
 
 **Examples:**
 - `schedule 1 12-04-2025 14:30`
 - `schedule 2 05-06-2025 09:00`
 
-**⚠️ Warning:** An appointment is considered a **duplicate** if it has the same date and time as an existing appointment.
+> **⚠️ Warning:** An appointment is considered a **duplicate** if it has the same date and time as an existing appointment.
 
 ### Listing all patients : `list`
 
@@ -312,6 +310,8 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in HealthSync.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
+[Return Back to Table of Contents](#Table-of-Contents)
+
 ### Clearing all entries : `clear`
 
 Clears all entries from HealthSync.
@@ -326,46 +326,42 @@ Format: `clear`
 
 ### Adding a tag: `ta/ ti/ tc/`
 
-* Adds a tag to a patient based on their patient_ID in the address book.
+* Adds a tag to a patient based on their index in the address book.
 * Tags can be added for allergies (ta/), insurance (ti/), or conditions (tc/).
-* Tags are case-sensitive and need to be alphanumeric.
-* Tags can be more than 1 word in length.
+* Tags are case-sensitive and need to be alphanumeric. e.g. `Peanuts` will not match `peanuts`
+* Tags can be more than 1 word in length. e.g. `broken leg`
 
-Format: `tag <patient_ID> ta/ALLERGY`
-         `tag <patient_ID> ti/INSURANCE`
-         `tag <patient_ID> tc/CONDITION`
+Format: `tag <INDEX> ta/ALLERGY`
+         `tag <INDEX> ti/INSURANCE`
+         `tag <INDEX> tc/CONDITION`
 
-<box type="tip" seamless>
-
-**Tip:** Add the tags based on their different categories such as allergy (`ta/`), insurance (`ti/`), and condition (`tc/`).
-</box>
+> **Tip:** Add the tags based on their different categories such as allergy (`ta/`), insurance (`ti/`), and condition (`tc/`).
 
 Examples:
 * `tag 1 ta/peanuts` assigns an allergy tag 'peanuts' to the patient at index 1.
   <img src="AddTagExample.png" width="300" height="200">
-* `tag 2 ti/prudential`
-* `tag 3 tc/diabetes`
+* `tag 2 ti/prudential` assigns an insurance tag 'prudential' to the patient at index 2.
+* `tag 3 tc/diabetes` assigns a medical condition tag 'diabetes' to the patient at index 3.
 
-**⚠️ Warning:** If the tag already exists for the patient, it will not be added again.
+> **⚠️ Warning:** If the tag already exists for the patient, it will not be added again.
 
 ---
 
 ### Deleting a tag: `td/`
 
-* Deletes a tag from a patient based on their patient_ID in the address book.
-* Tags are case-sensitive.
+* Deletes a tag from a patient based on their index in the address book.
+* Tags are case-sensitive. e.g. `Peanut` will not match `peanut`
+* Only full words will be matched e.g. `Peanut` will not match `Peanuts`
 
-Format: `tag <patient_ID> td/TAGNAME`
+Format: `tag <INDEX> td/TAGNAME`
 
-<box type="tip" seamless>
+> **Tip:** You can undo the command if the tag was deleted by mistake.
 
-**Tip:** You can undo the command if the tag was deleted by mistake.
-</box>
 
 Examples:
-* `tag 1 td/peanuts`
+* `tag 1 td/peanuts` deletes the tag 'peanuts' from the patient at index 1.
   <img src="DeleteTagExample.png" width="300" height="200">
-* `tag 2 td/diabetes`
+* `tag 2 td/diabetes` deletes the tag 'diabetes' from the patient at index 2.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -375,9 +371,11 @@ Reverts the last command that modified data.
 
 Format: `undo`
 
-**⚠️ Warning:**
-* Cannot be used repeatedly to undo multiple actions.
-* Cannot undo `undo`, `redo`, `help`, or `exit` commands.
+> **⚠️ Warning:**
+> * Cannot be used repeatedly to undo multiple actions.
+> * Cannot undo `undo`, `redo`, `help`, or `exit` commands.
+    
+[Return Back to Table of Contents](#Table-of-Contents)
 
 Example:
 * `undo` (Restores the state before the last action)
@@ -388,9 +386,9 @@ Restores the last undone command.
 
 Format: `redo`
 
-**⚠️ Warning:**
-* Can only be used if `undo` was previously executed.
-* Cannot redo commands that were not undone.
+> **⚠️ Warning:**
+> * Can only be used if `undo` was previously executed.
+> * Cannot redo commands that were not undone.
 
 Example:
 * `redo` (Restores the last undone action)
@@ -409,11 +407,9 @@ HealthSync data are saved in the hard disk automatically after any command that 
 
 HealthSync data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<box type="warning" seamless>
-**⚠️ Caution:**
+> **⚠️ Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
