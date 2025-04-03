@@ -92,7 +92,7 @@ By referring to these sections, you can quickly find the information you need an
    <img src="images/Windows.png" width="440" height="330">
 
    For *MacOS:* Right-click home folder. Select "New Terminal at folder". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
-     
+
    <img src="images/MacUser.png" width="440" height="330">
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -118,7 +118,7 @@ The main interface consists of several key components:
    * **File:**
      * Exit: Closes the application safely.
    * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application.
-     
+
      <img src="images/HelpMenu.png" width="420" height="320">
 2. **Command Box**
    * Users can enter text-based commands to interact with the application.
@@ -179,7 +179,7 @@ Examples:
 
 Schedules an appointment for a patient in HealthSync.
 
-Format:  
+Format:
 `schedule INDEX dd-MM-yyyy HH:mm`
 
 <box type="tip">: Ensure the date and time are in the future.
@@ -358,7 +358,7 @@ Format: `tag <INDEX> td/TAGNAME`
 
 Examples:
 * `tag 1 td/peanuts` deletes the tag 'peanuts' from the patient at index 1.
-  
+
   <img src="images/DeleteTagExample.png" width="450" height="320">
 * `tag 2 td/diabetes` deletes the tag 'diabetes' from the patient at index 2.
 
@@ -373,7 +373,7 @@ Format: `undo`
 > **⚠️ Warning:**
 > * Cannot be used repeatedly to undo multiple actions.
 > * Cannot undo `undo`, `redo`, `help`, or `exit` commands.
-    
+
 [Return Back to Table of Contents](#table-of-contents)
 
 Example:
@@ -440,7 +440,7 @@ This also applies to emergency contacts. To prevent unexpected app behavior, do 
 
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-### Command Summary 
+### Command Summary
 
 | **Action**                 | **Format, Examples**                                                                                        |
 |----------------------------|-------------------------------------------------------------------------------------------------------------|
