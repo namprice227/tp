@@ -320,7 +320,8 @@ Format: `tag <patient_ID> ta/ALLERGY`
 </box>
 
 Examples:
-* `tag 1 ta/peanuts`
+* `tag 1 ta/peanuts` assigns an allergy tag 'peanuts' to the patient at index 1.
+  <img src="AddTagExample.png" width="300" height="200">
 * `tag 2 ti/prudential`
 * `tag 3 tc/diabetes`
 
@@ -342,6 +343,7 @@ Format: `tag <patient_ID> td/TAGNAME`
 
 Examples:
 * `tag 1 td/peanuts`
+  <img src="DeleteTagExample.png" width="300" height="200">
 * `tag 2 td/diabetes`
 
 --------------------------------------------------------------------------------------------------------------------
