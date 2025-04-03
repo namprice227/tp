@@ -111,13 +111,13 @@ By referring to these sections, you can quickly find the information you need an
 HealthSync features a clean and intuitive graphical user interface (GUI) designed to help users efficiently manage patient records and appointments.
 The main interface consists of several key components:
 
-<img src="images/UpdatedHealthSync.png" width="400" height="300">
+<img src="images/UpdatedHealthSync.png" width="420" height="320">
 
 1. **Menu Bar** - Provide quick access to essential functions:
    * **File:**
      * Exit: Closes the application safely.
    * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application.
-     <img src="images/HelpMenu.png" width="400" height="300">
+     <img src="images/HelpMenu.png" width="420" height="320">
 2. **Command Box**
    * Users can enter text-based commands to interact with the application.
 3. **Command Output Box**
@@ -157,7 +157,7 @@ The main interface consists of several key components:
 
 Shows a message explaining how to access the help page.
 
-<img src="images/HealthSyncHelpMessage.png" width="450" height="45">
+<img src="images/HealthSyncHelpMessage.png" width="500" height="50">
 
 Format: `help`
 
@@ -209,7 +209,7 @@ Examples:
 * `sort name` Sorts patients in ascending alphabetical order by name.
 * `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first.
 
-  <img src="images/SortExample.png" width="400" height="260">
+  <img src="images/SortExample.png" width="450" height="300">
 
 ### Editing a patient : `edit`
 
@@ -337,7 +337,7 @@ Format: `tag <INDEX> ta/ALLERGY`
 Examples:
 * `tag 1 ta/peanuts` assigns an allergy tag 'peanuts' to the patient at index 1.
 
-  <img src="images/AddTagExample.png" width="400" height="280">
+  <img src="images/AddTagExample.png" width="450" height="320">
 * `tag 2 ti/prudential` assigns an insurance tag 'prudential' to the patient at index 2.
 * `tag 3 tc/diabetes` assigns a medical condition tag 'diabetes' to the patient at index 3.
 
@@ -358,7 +358,8 @@ Format: `tag <INDEX> td/TAGNAME`
 
 Examples:
 * `tag 1 td/peanuts` deletes the tag 'peanuts' from the patient at index 1.
-  <img src="images/DeleteTagExample.png" width="400" height="280">
+  
+  <img src="images/DeleteTagExample.png" width="450" height="320">
 * `tag 2 td/diabetes` deletes the tag 'diabetes' from the patient at index 2.
 
 --------------------------------------------------------------------------------------------------------------------
