@@ -22,7 +22,7 @@ Using HealthSync with other languages or across multiple countries and timezones
 
 ---
 ## Table of Contents
-1. [How to Use this User Guide](#how-to-use-this-user-guide)
+1. [How to use this User Guide](#how-to-use-this-user-guide)
 2. [Quick Start](#quick-start)
 3. [Overview of GUI](#overview-of-gui)
 4. [Features](#features)
@@ -57,7 +57,7 @@ Using HealthSync with other languages or across multiple countries and timezones
 
 
 --------------------------------------------------------------------------------------------------------------------
-## How to Use this User Guide
+## How to use this User Guide
 This User Guide is designed to help you understand and use HealthSync effectively. Below are some tips on how to navigate and use this guide:
 
 1. **[Table of Contents](#table-of-contents)**: Use this to instantly jump to the section you are interested in.
@@ -68,15 +68,15 @@ This User Guide is designed to help you understand and use HealthSync effectivel
 6. **[Known Issues](#known-issues)**: Lists existing issues and their solutions.
 7. **[Command Summary](#command-summary)**: A quick reference table for command formats.
 
-By referring to these sections, you can quickly find the information you need and fully utilise HealthSync.
+By referring to these sections, you can quickly find the information you need and fully utilize HealthSync.
 
 ## Legend
-**⚠️**: This symbol serves as a warning that executing a specific command in a given context may result in unexpected behavior.
+**⚠️**: The symbol serves as a warning that executing a specific command in a given context may result in unexpected behavior.
 
 <box type="tip">: The symbol provides helpful guidance on using the command effectively to meet your needs.
 </box>
 
-## Quick Start
+## Quick start
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    * You can check your Java version by following the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line).
@@ -127,8 +127,8 @@ The main interface consists of several key components:
    * Provides feedback such as confirmations, errors, and system notifications.
 4. **Patient List Panel**
    * Displays a list of all registered patients.
-   * Clicking on a patient will show their details in the Person Detail Panel.
-5. **Person Details Panel**
+   * Clicking on a patient will show their details in the Patient Detail Panel.
+5. **Patient Details Panel**
    * Shows detailed information about the selected patient, such as their medical history, emergency contacts, and insurance details.
 6. **Tags**
     * Used to record Allergies, Conditions and Insurance of a patient.
@@ -419,26 +419,26 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known Issues
+## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimise the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimised, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 ## Valid Inputs for Patient parameters
 
-A patient is uniquely identified by their `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL`. Persons with the same `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL` will be flagged as duplicates and cannot be added to the address book.
+A patient is uniquely identified by their `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL`. Patients with the same `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL` will be flagged as duplicates and cannot be added to the address book.
 
 This also applies to emergency contacts. To prevent unexpected app behavior, do not edit an emergency contact to have the same phone number as another emergency contact for the same patient. If an emergency contact is edited to have the same name and phone number as an existing one, it will be considered a duplicate and will trigger an error.
 
 | Parameter                | Details                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                         |
 |--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`name/` NAME**         | This parameter accepts alphanumeric characters, the words `s/o`, `d/o`, spaces, and the following characters: `-`, `@`, `/`, `'`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `Mason's James`, `Soumya d/o Rajesh`, `Kai Havertz @ Flop` are examples of names you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit). <br/> <br/>          |
+| **`name/` NAME**         | This parameter accepts alphanumeric characters, the words `s/o`, `d/o`, spaces, and the following characters: `-`, `@`, `/`, `'`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `Mason's James`, `Soumya d/o Ramesh`, `Kai Havertz @ Gallagher` are examples of names you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit). <br/> <br/>     |
 | **`phone/`PHONE_NUMBER** | The phone number must be exactly 8 digits long and can only start with 6, 8, or 9. The field cannot be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | `91884567` and `88705469` are examples of phone numbers you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit)                                                |
 | **`email/` EMAIL**       | HealthSync follows the valid email address format detailed [here](https://help.xmatters.com/ondemand/trial/valid_email_format.htm) <br/> <br/> Emails should be of the format `local-part@domain` and adhere to the following constraints: <br/> 1. `local-part` should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br/> 2. This is followed by a `@` and then a domain name for `domain`. The domain name is made up of domain labels separated by periods. The domain name must:<br/>- end with a domain label at least 2 characters long<br/>- have each domain label start and end with alphanumeric characters<br/> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. | `thomastuchel@yahoo.com.uk` and `bellechoy@gmail.com` are examples of emails you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit).                          |
 | **`address/` ADDRESS**   | Addresses can be any value, but they cannot be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `987, Kensington Rd, 123465` and `Block 666, Westminister Street 6, #08-111` are examples of addresses you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit) |                                                                                                                                                                                                                                                     |                                                                                                                                                                                            | Refer to `phone/` above.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                              | Tags should only contain alphanumeric characters, spaces, periods `.` or hyphens `-`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `Mandarin-speaking`, `short-term patient`  are examples of tags you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit) or [`addec`](#adding-an-emergency-contact--addec) command `t/` parameter.                  |
 
 <div style="page-break-after: always;"></div>
---------------------------------------------------------------------------------------------------------------------
+
 ## Command Summary
 
 | **Action**                 | **Format, Examples**                                                                                        |
