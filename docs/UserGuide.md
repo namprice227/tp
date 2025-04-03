@@ -72,6 +72,7 @@ By referring to these sections, you can quickly find the information you need an
 ## Legend
 **⚠️**: The symbol serves as a warning that executing a specific command in a given context may result in unexpected behavior.
 <box type="tip">: The symbol provides helpful guidance on using the command effectively to meet your needs.
+</box>
 
 ## Quick start
 
