@@ -49,10 +49,11 @@ Using HealthSync with other languages or across multiple countries and timezones
     - [Editing the data file](#editing-the-data-file)
 5. [FAQ](#faq)
 6. [Known Issues](#known-issues)
-7. [Glossary](#glossary)
-   - [Terminology](#terminology)
-   - [Valid inputs for patient parameters](#valid-inputs)
+7. [Valid inputs for patient parameters](#valid-inputs)
 8. [Command Summary](#command-summary)
+9. [Valid Inputs for Patient parameters](#valid-inputs-for-patient-parameters)
+10. [Glossary](#glossary)
+     - [Terminology](#terminology)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -86,7 +87,7 @@ By referring to these sections, you can quickly find the information you need an
 
 3. Copy the file to the folder you want to use as the _home folder_ for HealthSync. The _home folder_ will be where all the data files will be saved.
 
-4. For *Windows:* Open the home folder and right-click anywhere in the blue box, as shown in the image below. Click "Open in Terminal". A terminal window will pop up, then type in the command `java -jar medconnect.jar` to run the application.
+4. For *Windows:* Open the home folder and right-click anywhere in the blue box, as shown in the image below. Click "Open in Terminal". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
 
    <img src="images/Windows.png" width="440" height="330">
 
@@ -319,8 +320,6 @@ Format: `clear`
 
 ## Tag Management
 
-<box type="info" seamless>
-
 ### Adding a tag: `ta/ ti/ tc/`
 
 * Adds a tag to a patient based on their index in the address book.
@@ -426,28 +425,59 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 2. **If you minimise the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimised, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
+### Valid Inputs for Patient parameters
 
-## Command summary
+A person is uniquely identified by their `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL`. Persons with the same `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL` will be flagged as duplicates and cannot be added to the address book.
 
-| **Action**                 | **Format, Examples**                                                                                                             |
-|----------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+This also applies to emergency contacts. To prevent unexpected app behavior, do not edit an emergency contact to have the same phone number as another emergency contact for the same patient. If an emergency contact is edited to have the same name and phone number as an existing one, it will be considered a duplicate and will trigger an error.
+
+| Parameter                | Details                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                         |
+|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`name/` NAME**         | This parameter accepts alphanumeric characters, the words `s/o`, `d/o`, spaces, and the following characters: `-`, `@`, `/`, `'`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `Mason's James`, `Soumya d/o Rajesh`, `Kai Havertz @ Flop` are examples of names you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit). <br/> <br/>          |
+| **`phone/`PHONE_NUMBER** | The phone number must be exactly 8 digits long and can only start with 6, 8, or 9. The field cannot be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | `91884567` and `88705469` are examples of phone numbers you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit)                                                |
+| **`email/` EMAIL**       | HealthSync follows the valid email address format detailed [here](https://help.xmatters.com/ondemand/trial/valid_email_format.htm) <br/> <br/> Emails should be of the format `local-part@domain` and adhere to the following constraints: <br/> 1. `local-part` should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br/> 2. This is followed by a `@` and then a domain name for `domain`. The domain name is made up of domain labels separated by periods. The domain name must:<br/>- end with a domain label at least 2 characters long<br/>- have each domain label start and end with alphanumeric characters<br/> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. | `thomastuchel@yahoo.com.uk` and `bellechoy@gmail.com` are examples of emails you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit).                          |
+| **`address/` ADDRESS**   | Addresses can be any value, but they cannot be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `987, Kensington Rd, 123465` and `Block 666, Westminister Street 6, #08-111` are examples of addresses you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit) |                                                                                                                                                                                                                                                     |                                                                                                                                                                                            | Refer to `phone/` above.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                              | Tags should only contain alphanumeric characters, spaces, periods `.` or hyphens `-`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `Mandarin-speaking`, `short-term patient`  are examples of tags you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit) or [`addec`](#adding-an-emergency-contact--addec) command `t/` parameter.                  |
+
+<div style="page-break-after: always;"></div>
+--------------------------------------------------------------------------------------------------------------------
+### Command Summary 
+
+| **Action**                 | **Format, Examples**                                                                                        |
+|----------------------------|-------------------------------------------------------------------------------------------------------------|
 | **Add Patient**            | `add n/NAME p/PHONE e/EMAIL a/ADDRESS`<br>e.g., `add n/John Doe p/98765432 e/john@example.com a/123 Street` |
-| **Edit Patient**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]​`<br>e.g., `edit 2 n/John Smith p/91234567`                        |
-| **Delete Patient**         | `delete INDEX`<br>e.g., `delete 3`                                                                                               |
-| **Find Patient**           | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find John`                                                                              |
-| **List Patients**          | `list`                                                                                                                           |
-| **Schedule Appointment**   | `schedule INDEX [DD-MM-YYYY HH:MM]`<br>e.g, `schedule 1 30-03-2026 12:00`                                                        |
-| **Sort Patients**          | `sort FIELD`<br>e.g., `sort name`                                                                                                |
-| **Set Emergency Contact**  | `emergency INDEX n/NAME p/PHONE r/RELATIONSHIP`<br>e.g., `emergency 1 n/Jane Doe p/81234567 r/Mother`                            |
-| **Archive Patient**        | `archive INDEX`<br>e.g., `archive 2`                                                                                             |
-| **List Archived Patients** | `listarchive`                                                                                                                    |
-| **Unarchive Patient**      | `unarchive INDEX`<br>e.g., `unarchive 2`                                                                                         |
-| **Clear All Entries**      | `clear`                                                                                                                          |
-| **Undo Command**           | `undo`                                                                                                                           |
-| **Redo Command**           | `redo`                                                                                                                           |
-| **Add Allergy Tag**        | `tag INDEX ta/ALLERGY`<br>e.g., `tag 1 ta/peanuts`                                                                               |
-| **Add Condition Tag**      | `tag INDEX tc/CONDITION`<br>e.g., `tag 1 tc/asthma`                                                                              |
-| **Add Insurance Tag**      | `tag INDEX ti/INSURANCE`<br>e.g., `tag 1 ti/medishield`                                                                          |
-| **Delete Tag**             | `tag INDEX td/TAGNAME`<br>e.g., `tag 1 td/peanuts`                                                                               |
-| **Help**                   | `help`                                                                                                                           |
-| **Exit**                   | `exit`                                                                                                                           |
+| **Edit Patient**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]​`<br>e.g., `edit 2 n/John Smith p/91234567`            |
+| **Delete Patient**         | `delete INDEX`<br>e.g., `delete 3`                                                                          |
+| **Find Patient**           | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find John`                                                         |
+| **List Patients**          | `list`                                                                                                      |
+| **Schedule Appointment**   | `schedule INDEX [DD-MM-YYYY HH:MM]`<br>e.g, `schedule 1 30-03-2026 12:00`                                   |
+| **Sort Patients**          | `sort FIELD`<br>e.g., `sort name`                                                                           |
+| **Set Emergency Contact**  | `emergency INDEX n/NAME p/PHONE r/RELATIONSHIP`<br>e.g., `emergency 1 n/Jane Doe p/81234567 r/Mother`       |
+| **Archive Patient**        | `archive INDEX`<br>e.g., `archive 2`                                                                        |
+| **List Archived Patients** | `listarchive`                                                                                               |
+| **Unarchive Patient**      | `unarchive INDEX`<br>e.g., `unarchive 2`                                                                    |
+| **Clear All Entries**      | `clear`                                                                                                     |
+| **Undo Command**           | `undo`                                                                                                      |
+| **Redo Command**           | `redo`                                                                                                      |
+| **Add Allergy Tag**        | `tag INDEX ta/ALLERGY`<br>e.g., `tag 1 ta/peanuts`                                                          |
+| **Add Condition Tag**      | `tag INDEX tc/CONDITION`<br>e.g., `tag 1 tc/asthma`                                                         |
+| **Add Insurance Tag**      | `tag INDEX ti/INSURANCE`<br>e.g., `tag 1 ti/medishield`                                                     |
+| **Delete Tag**             | `tag INDEX td/TAGNAME`<br>e.g., `tag 1 td/peanuts`                                                          |
+| **Help**                   | `help`                                                                                                      |
+| **Exit**                   | `exit`                                                                                                      |
+
+## Glossary
+### Terminology
+
+| Term                                               | Details                                                                                    | Example                                                                                                                                                                                                                    |
+|----------------------------------------------------|--------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Alphanumeric**                                   | Characters that are letters or numbers.                                                    | 1, 2, 3, A, b, c are alphanumeric characters.                                                                                                                                                                              |
+| **Command**                                        | Instructions for HealthSync to execute.                                                    | [Features](#features) are commands that HealthSync can execute. [`list`](listing-all-patients-list) is one such command.                                                                                                   |
+| <a name="cli" />**Command Line Interface (CLI)**   | An interface where users type commands.                                                    | The command line acts as a CLI in HealthSync.                                                                                                                                                                              |
+| <a name="gui" />**Graphical User Interface (GUI)** | An interface using buttons, icons and visuals                                              | HealthSync acts as a GUI.                                                                                                                                                                                                  |
+| **JSON**                                           | JSON (JavaScript Object Notation) is a lightweight format for storing and exchanging data. | The data file used by HealthSync is in JSON format.                                                                                                                                                                        |
+| **Keyword**                                        | The word you want to search for in a `find` command.                                       | Searching for a patient named Eden Lampard could be done by using keywords `Eden` or `Lampard`.                                                                                                                            |
+| **Parameter**                                      | Required input for a command.                                                              | `NAME` and `EMAIL` are examples of parameters you have to provide in an [`add`](#adding-a-patient-add) command.<br><br>`Terry John` and `terry@hotmail.com` are possible examples to provide to the respective parameters. |
+
+[↑ Back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
