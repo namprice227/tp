@@ -20,7 +20,6 @@ This ensures rapid response when every second matters.
 
 Using HealthSync with other languages or across multiple countries and timezones may lead to unexpected behaviour.
 
-<div style="page-break-after: always;"></div>
 ---
 ## Table of Contents
 1. [How to use this User Guide](#how-to-use-this-user-guide)
