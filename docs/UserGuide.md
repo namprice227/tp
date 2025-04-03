@@ -10,15 +10,15 @@
 
 HealthSync is a **desktop application tailored for healthcare administrators in family clinics.** It centralises patients' personal information and emergency contact details into a single, easily accessible database, enabling administrators to efficiently manage data and contacts, even in time-sensitive situations.
 
-By combining the speed of a Command Line Interface (CLI) with the visual clarity of a Graphical User Interface (GUI), HealthSync caters to administrators who can type fast, providing quick access to critical information. HealthSync allows you to complete contact management tasks faster than traditional GUI-only apps.
+By combining the speed of a Command Line Interface (CLI) with the visual clarity of a Graphical User Interface (GUI), HealthSync optimizes workflow for fast-typing administrators, enabling them to retrieve critical patient details and establish contact more efficiently than traditional GUI-only applications.
 
-With HealthSync, connecting with patients and their emergency contacts becomes seamless, empowering you to respond swiftly when time is critical.
+This ensures rapid response when every second matters.
 
 ---
 
-**⚠️ Warning:** HealthSync is only designed for **Singapore-based family clinics**. It operates exclusively in **English** and does not support other languages or international clinic formats.
+> **⚠️ Warning:** HealthSync is only designed for **Singapore-based family clinics**. It operates exclusively in **English** and does not support other languages or international clinic formats.
 
-Using HealthSync with other languages or across multiple countries and timezones may lead to unexpected behaviour
+Using HealthSync with other languages or across multiple countries and timezones may lead to unexpected behaviour.
 
 ---
 ## Table of Contents
@@ -28,7 +28,7 @@ Using HealthSync with other languages or across multiple countries and timezones
 4. [Features](#features)
     - [Viewing help: `help`](#viewing-help-help)
     - [Adding a patient: `add`](#adding-a-patient-add)
-    - [Schedule an appointment: `schedule`](#scheduling-an-appointment)
+    - [Schedule an appointment: `schedule`](#scheduling-an-appointment-schedule)
     - [Listing all patients: `list`](#listing-all-patients-list)
     - [Sorting patients: `sort`](#sorting-patients-sort)
     - [Editing a patient: `edit`](#editing-a-patient-edit)
@@ -52,24 +52,26 @@ Using HealthSync with other languages or across multiple countries and timezones
 7. [Glossary](#glossary)
    - [Terminology](#terminology)
    - [Valid inputs for patient parameters](#valid-inputs)
-5. [Command Summary](#command-summary)
+8. [Command Summary](#command-summary)
 
 
 --------------------------------------------------------------------------------------------------------------------
 ## How to use this User Guide
 This User Guide is designed to help you understand and use HealthSync effectively. Below are some tips on how to navigate and use this guide:
 
-1. **[Table of Contents](#table-of-contents)**: At the beginning of the guide, you will find a Table of Contents. Use this to instantly jump to the section you are interested in.
-2. **[Quick Start](#quick-start)**: If you are using HealthSync for the first time, start with the Quick Start section. It provides step-by-step instructions on how to set up and start running the application.
-3. **[Overview of GUI](#overview-of-gui)**: This section provides an overview of the graphical user interface (GUI) of HealthSync. Use this section to familiarize yourself with the different components of the application.
-4. **[Features](#features)**: This section details all the commands available in HealthSync. Each command is explained with its format, parameters, and examples. Use this section to learn how to perform specific tasks.
-5. **[Command Summary](#command-summary)**: At the end of the guide, there is a Command Summary table that provides a quick reference for all commands. Use this table to quickly look up the format of a command.
-6. **[FAQ](#faq)**: The FAQ section addresses common questions and issues. Check this section if you encounter any problems or have questions about using HealthSync.
-7. **[Known Issues](#known-issues)**: This section lists any known issues with the application and their solutions. Refer to this section if you do encounter any unexpected behavior.
-8. **[Glossary](#glossary)**: This section explains unfamiliar terms that we use in this User Guide. Check out the glossary if you are unsure of the definition of a word.
-9. **[Notes and Tips](#notes-and-tips)**: Throughout the guide, you will find notes and tips highlighted in different styles. These provide additional information and helpful hints for using HealthSync effectively.
+1. **[Table of Contents](#table-of-contents)**: Use this to instantly jump to the section you are interested in.
+2. **[Quick Start](#quick-start)**: Step-by-step instructions for first-time users.
+3. **[Overview of GUI](#overview-of-gui)**: Familiarise yourself with HealthSync's interface.
+4. **[Features](#features)**: Detailed explanations of all commands with formats, parameters and examples.
+5. **[FAQ](#faq)**: Answers to common questions and troubleshooting tips.
+6. **[Known Issues](#known-issues)**: Lists existing issues and their solutions.
+7. **[Command Summary](#command-summary)**: A quick reference table for command formats.
 
 By referring to these sections, you can quickly find the information you need and fully utilize HealthSync.
+
+## Legend
+**⚠️**: The symbol serves as a warning that executing a specific command in a given context may result in unexpected behavior.
+<box type="tip">: The symbol provides helpful guidance on using the command effectively to meet your needs.
 
 ## Quick start
 
@@ -82,11 +84,13 @@ By referring to these sections, you can quickly find the information you need an
 
 3. Copy the file to the folder you want to use as the _home folder_ for HealthSync. The _home folder_ will be where all the data files will be saved.
 
-4. For *Windows:* Open the home folder and right-click anywhere in the red box, as shown in the image below. Click "Open in Terminal". A terminal window will pop up, then type in the command `java -jar medconnect.jar` to run the application.
-
-   For *MacOS:* Right-click home folder. Hover over "Services". Select "New Terminal at folder". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
+4. For *Windows:* Open the home folder and right-click anywhere in the blue box, as shown in the image below. Click "Open in Terminal". A terminal window will pop up, then type in the command `java -jar medconnect.jar` to run the application.
+   ![Windows.png](images/Windows.png)
 
    <img src="images/MacUser.png" width="400" height="300">
+   For *MacOS:* Right-click home folder. Select "New Terminal at folder". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
+     
+   <img src="images/MacUser.png" width="330" height="220">
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -166,15 +170,11 @@ Adds a patient to HealthSync.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
-<box type="tip" seamless>
-
-</box>
-
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
-**⚠️ Warning:** An entry is considered a **duplicate** if it has the same name and phone number or the same name and email address.
+> **⚠️ Warning:** An entry is considered a **duplicate** if it has the same name and phone number or the same name and email address.
 
 ### Scheduling an appointment: `schedule`
 
@@ -183,15 +183,13 @@ Schedules an appointment for a patient in HealthSync.
 **Format:**  
 `schedule INDEX dd-MM-yyyy HH:mm`
 
-<box type="tip" seamless>  
-Ensure the date and time are in the future.  
-</box>
+> **Tip**: Ensure the date and time are in the future.
 
 **Examples:**
 - `schedule 1 12-04-2025 14:30`
 - `schedule 2 05-06-2025 09:00`
 
-**⚠️ Warning:** An appointment is considered a **duplicate** if it has the same date and time as an existing appointment.
+> **⚠️ Warning:** An appointment is considered a **duplicate** if it has the same date and time as an existing appointment.
 
 ### Listing all patients : `list`
 
@@ -264,7 +262,7 @@ Examples:
   <img src="images/HealthSyncFindResult.png" width="240" height="300">
 
 
-### Archive a patient : `archive`
+### Archiving a patient : `archive`
 
 Archives the specified patient from HealthSync. Removes patient from address book and adds them into archive list.
 
@@ -274,7 +272,7 @@ Format: `archive INDEX`
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Example:
 * `list` followed by `archive 2` archives the 2nd patient in HealthSync.
 
 ### Listing all patients in archive : `listarchive`
@@ -283,7 +281,7 @@ Shows a list of all patients being archived.
 
 Format: `listarchive`
 
-### Unarchive a patient : `unarchive`
+### Unarchiving a patient : `unarchive`
 
 Remove the specified patient from archive list and add them back to HealthSync.
 
@@ -293,7 +291,7 @@ Format: `unarchive INDEX`
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Example:
 * `listarchive` followed by `unarchive 2` adds the 2nd patient in archive list back to HealthSync.
 
 ### Deleting a patient : `delete`
@@ -310,6 +308,8 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in HealthSync.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
+[Return Back to Table of Contents](#Table-of-Contents)
+
 ### Clearing all entries : `clear`
 
 Clears all entries from HealthSync.
@@ -324,46 +324,42 @@ Format: `clear`
 
 ### Adding a tag: `ta/ ti/ tc/`
 
-* Adds a tag to a patient based on their patient_ID in the address book.
+* Adds a tag to a patient based on their index in the address book.
 * Tags can be added for allergies (ta/), insurance (ti/), or conditions (tc/).
-* Tags are case-sensitive and need to be alphanumeric.
-* Tags can be more than 1 word in length.
+* Tags are case-sensitive and need to be alphanumeric. e.g. `Peanuts` will not match `peanuts`
+* Tags can be more than 1 word in length. e.g. `broken leg`
 
-Format: `tag <patient_ID> ta/ALLERGY`
-         `tag <patient_ID> ti/INSURANCE`
-         `tag <patient_ID> tc/CONDITION`
+Format: `tag <INDEX> ta/ALLERGY`
+         `tag <INDEX> ti/INSURANCE`
+         `tag <INDEX> tc/CONDITION`
 
-<box type="tip" seamless>
-
-**Tip:** Add the tags based on their different categories such as allergy (`ta/`), insurance (`ti/`), and condition (`tc/`).
-</box>
+> **Tip:** Add the tags based on their different categories such as allergy (`ta/`), insurance (`ti/`), and condition (`tc/`).
 
 Examples:
 * `tag 1 ta/peanuts` assigns an allergy tag 'peanuts' to the patient at index 1.
   <img src="AddTagExample.png" width="300" height="200">
-* `tag 2 ti/prudential`
-* `tag 3 tc/diabetes`
+* `tag 2 ti/prudential` assigns an insurance tag 'prudential' to the patient at index 2.
+* `tag 3 tc/diabetes` assigns a medical condition tag 'diabetes' to the patient at index 3.
 
-**⚠️ Warning:** If the tag already exists for the patient, it will not be added again.
+> **⚠️ Warning:** If the tag already exists for the patient, it will not be added again.
 
 ---
 
 ### Deleting a tag: `td/`
 
-* Deletes a tag from a patient based on their patient_ID in the address book.
-* Tags are case-sensitive.
+* Deletes a tag from a patient based on their index in the address book.
+* Tags are case-sensitive. e.g. `Peanut` will not match `peanut`
+* Only full words will be matched e.g. `Peanut` will not match `Peanuts`
 
-Format: `tag <patient_ID> td/TAGNAME`
+Format: `tag <INDEX> td/TAGNAME`
 
-<box type="tip" seamless>
+> **Tip:** You can undo the command if the tag was deleted by mistake.
 
-**Tip:** You can undo the command if the tag was deleted by mistake.
-</box>
 
 Examples:
-* `tag 1 td/peanuts`
+* `tag 1 td/peanuts` deletes the tag 'peanuts' from the patient at index 1.
   <img src="DeleteTagExample.png" width="300" height="200">
-* `tag 2 td/diabetes`
+* `tag 2 td/diabetes` deletes the tag 'diabetes' from the patient at index 2.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -373,11 +369,13 @@ Reverts the last command that modified data.
 
 Format: `undo`
 
-**⚠️ Warning:**
-* Cannot be used repeatedly to undo multiple actions.
-* Cannot undo `undo`, `redo`, `help`, or `exit` commands.
+> **⚠️ Warning:**
+> * Cannot be used repeatedly to undo multiple actions.
+> * Cannot undo `undo`, `redo`, `help`, or `exit` commands.
+    
+[Return Back to Table of Contents](#Table-of-Contents)
 
-Examples:
+Example:
 * `undo` (Restores the state before the last action)
 
 ### Redoing a command: `redo`
@@ -386,11 +384,11 @@ Restores the last undone command.
 
 Format: `redo`
 
-**⚠️ Warning:**
-* Can only be used if `undo` was previously executed.
-* Cannot redo commands that were not undone.
+> **⚠️ Warning:**
+> * Can only be used if `undo` was previously executed.
+> * Cannot redo commands that were not undone.
 
-Examples:
+Example:
 * `redo` (Restores the last undone action)
 
 ### Exiting the program : `exit`
@@ -407,11 +405,9 @@ HealthSync data are saved in the hard disk automatically after any command that 
 
 HealthSync data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<box type="warning" seamless>
-**⚠️ Caution:**
+> **⚠️ Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -438,6 +434,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 | **Delete Patient**         | `delete INDEX`<br>e.g., `delete 3`                                                                                               |
 | **Find Patient**           | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find John`                                                                              |
 | **List Patients**          | `list`                                                                                                                           |
+| **Schedule Appointment**   | `schedule INDEX [DD-MM-YYYY HH:MM]`<br>e.g, `schedule 1 30-03-2026 12:00`                                                        |
 | **Sort Patients**          | `sort FIELD`<br>e.g., `sort name`                                                                                                |
 | **Set Emergency Contact**  | `emergency INDEX n/NAME p/PHONE r/RELATIONSHIP`<br>e.g., `emergency 1 n/Jane Doe p/81234567 r/Mother`                            |
 | **Archive Patient**        | `archive INDEX`<br>e.g., `archive 2`                                                                                             |
