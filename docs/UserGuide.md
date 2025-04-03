@@ -426,7 +426,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 ## Valid Inputs for Patient parameters
 
-A person is uniquely identified by their `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL`. Persons with the same `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL` will be flagged as duplicates and cannot be added to the address book.
+A patient is uniquely identified by their `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL`. Patients with the same `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL` will be flagged as duplicates and cannot be added to the address book.
 
 This also applies to emergency contacts. To prevent unexpected app behavior, do not edit an emergency contact to have the same phone number as another emergency contact for the same patient. If an emergency contact is edited to have the same name and phone number as an existing one, it will be considered a duplicate and will trigger an error.
 
