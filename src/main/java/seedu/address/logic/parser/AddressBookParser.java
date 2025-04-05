@@ -89,7 +89,7 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommand(arguments);
 
         case EmergencyCommand.COMMAND_WORD:
             return new EmergencyCommandParser().parse(arguments);
