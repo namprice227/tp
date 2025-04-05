@@ -270,16 +270,16 @@ Examples:
 
 ### Archiving a patient : `archive`
 
-Archives the specified patient from HealthSync. Removes patient from patient list and adds them into the archive list.
+Archives the patient at the specified `INDEX` from the main patient list and adds them into the archive list.
 
 Format: `archive INDEX`
 
 * Archives the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
+* The index refers to the index number shown in the displayed patient list after using the `list` command.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `list` followed by `archive 2` archives the 2nd patient in HealthSync.
+* Run `list` to view patients, then enter `archive 2` to archive the 2nd patient in the main HealthSync patient list.
 
 ### Listing all patients in archive : `listarchive`
 
