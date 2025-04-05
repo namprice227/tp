@@ -56,6 +56,7 @@ Using HealthSync with other languages or across multiple countries and timezones
      - [Terminology](#terminology)
 
 <div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## How to use this User Guide
 This User Guide is designed to help you understand and use HealthSync effectively. Below are some tips on how to navigate and use this guide:
