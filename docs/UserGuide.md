@@ -271,7 +271,7 @@ Examples:
 
 ### Archiving a patient : `archive`
 
-Archives the specified patient from HealthSync. Removes patient from address book and adds them into archive list.
+Archives the specified patient from HealthSync. Removes patient from patient list and adds them into the archive list.
 
 Format: `archive INDEX`
 
