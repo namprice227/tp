@@ -26,33 +26,32 @@ Using HealthSync with other languages or across multiple countries and timezones
 2. [Quick Start](#quick-start)
 3. [Overview of GUI](#overview-of-gui)
 4. [Features](#features)
-    - [Viewing help: `help`](#viewing-help-help)
+    - [Viewing help: `help`](#viewing-help--help)
     - [Adding a patient: `add`](#adding-a-patient-add)
     - [Schedule an appointment: `schedule`](#scheduling-an-appointment-schedule)
-    - [Listing all patients: `list`](#listing-all-patients-list)
-    - [Sorting patients: `sort`](#sorting-patients-sort)
-    - [Editing a patient: `edit`](#editing-a-patient-edit)
-    - [Setting emergency contact: `emergency`](#setting-emergency-contact-emergency)
+    - [Listing all patients: `list`](#listing-all-patients--list)
+    - [Sorting patients: `sort`](#sorting-patients--sort)
+    - [Editing a patient: `edit`](#editing-a-patient--edit)
+    - [Setting emergency contact: `emergency`](#setting-emergency-contact--emergency)
     - [Locating patients by name: `find`](#locating-patients-by-name-find)
-    - [Archiving a patient: `archive`](#archiving-a-patient-archive)
-    - [Listing archived patients: `listarchive`](#listing-archived-patients-listarchive)
-    - [Unarchiving a patient: `unarchive`](#unarchiving-a-patient-unarchive)
-    - [Deleting a patient: `delete`](#deleting-a-patient-delete)
-    - [Clearing all entries: `clear`](#clearing-all-entries-clear)
+    - [Archiving a patient: `archive`](#archiving-a-patient--archive)
+    - [Listing archived patients: `listarchive`](#listing-all-patients-in-archive--listarchive)
+    - [Unarchiving a patient: `unarchive`](#unarchiving-a-patient--unarchive)
+    - [Deleting a patient: `delete`](#deleting-a-patient--delete)
+    - [Clearing all entries: `clear`](#clearing-all-entries--clear)
     - [Tag Management](#tag-management)
-        - [Adding a tag: `tag`](#adding-a-tag-tag)
-        - [Deleting a tag: `tag`](#deleting-a-tag-tag)
+        - [Adding a tag: `tag`](#adding-a-tag-ta-ti-tc)
+        - [Deleting a tag: `tag`](#deleting-a-tag-td)
     - [Undoing a command: `undo`](#undoing-a-command-undo)
     - [Redoing a command: `redo`](#redoing-a-command-redo)
-    - [Exiting the program: `exit`](#exiting-the-program-exit)
+    - [Exiting the program: `exit`](#exiting-the-program--exit)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
 5. [FAQ](#faq)
 6. [Known Issues](#known-issues)
-7. [Valid inputs for patient parameters](#valid-inputs)
+7. [Valid inputs for patient parameters](#valid-inputs-for-patient-parameters)
 8. [Command Summary](#command-summary)
-9. [Valid Inputs for Patient parameters](#valid-inputs-for-patient-parameters)
-10. [Glossary](#glossary)
+9. [Glossary](#glossary)
      - [Terminology](#terminology)
 
 <div style="page-break-after: always;"></div>
@@ -86,15 +85,15 @@ By referring to these sections, you can quickly find the information you need an
    * If you do not have Java `17` or above installed in your computer, you can download Java from [here](https://www.oracle.com/java/technologies/downloads/#java17).
    * **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-2. Download the latest release of the `healthsync.jar` file from [here](https://github.com/AY2425S2-CS2103T-F11-3/tp/releases).
+2. Download the latest release of the `HealthSync.jar` file from [here](https://github.com/AY2425S2-CS2103T-F11-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for HealthSync. The _home folder_ will be where all the data files will be saved.
 
-4. For *Windows:* Open the home folder and right-click anywhere in the blue box, as shown in the image below. Click "Open in Terminal". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
+4. For *Windows:* Open the home folder and right-click anywhere in the blue box, as shown in the image below. Click "Open in Terminal". A terminal window will pop up, then type in the command `java -jar HealthSync.jar` to run the application.
 
    <img src="images/Windows.png" width="440" height="330">
 
-   For *MacOS:* Right-click home folder. Select "New Terminal at folder". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
+   For *MacOS:* Right-click home folder. Select "New Terminal at folder". A terminal window will pop up, then type in the command `java -jar HealthSync.jar` to run the application.
 
    <img src="images/MacUser.png" width="440" height="330">
 
@@ -347,6 +346,7 @@ Examples:
   <img src="images/AddTagExample.png" width="450" height="320">
 * `tag 2 ti/prudential` assigns an insurance tag 'prudential' to the patient at index 2.
 * `tag 3 tc/diabetes` assigns a medical condition tag 'diabetes' to the patient at index 3.
+* `tag 4 ta/peanuts tc/headache ti/public` assigns an allergy tag 'peanuts', a medical condition tag 'headache' and insurance tag 'public' to the patient at index 4.
 
 > **⚠️ Warning:** If the tag already exists for the patient, it will not be added again.
 
