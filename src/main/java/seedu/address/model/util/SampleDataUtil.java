@@ -23,46 +23,32 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                    new Address("Blk 30 Geylang Street 29, #06-40"),
-                    getTagSet("friends"),
-                    new Appointment(new DateTime("10-04-2024 14:30"), "Dental Checkup"),
-                    new EmergencyPerson(new Name("John Yeoh"), new Phone("91234567"), new Relationship("Brother"))),
-
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    getTagSet("colleagues", "friends"),
-                    new Appointment(new DateTime("15-05-2024 09:00"), "Project Meeting"),
-                    new EmergencyPerson(new Name("Alice Yu"), new Phone("98765432"), new Relationship("Sister"))),
-
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    getTagSet("neighbours"),
-                    new Appointment(new DateTime("20-06-2024 16:45"), "Gym Session"),
-                    new EmergencyPerson(new Name("Michael Oliveiro"),
-                            new Phone("97654321"), new Relationship("Father"))),
+                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                        getTagSet("Peanuts"), getTagSet("Asthma"), getTagSet("HealthShield"),
+                        new Appointment(new DateTime("20-06-2024 16:45"), ""),
+                        new EmergencyPerson(new Name("Michael Oliveiro"), new Phone("97654321"),
+                                new Relationship("Father"))),
 
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    getTagSet("family"),
-                    new Appointment(new DateTime("12-07-2024 11:00"), "Bank Appointment"),
-                    new EmergencyPerson(new Name("Sophia Li"),
-                            new Phone("92345678"), new Relationship("Mother"))),
+                        new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                        getTagSet("Shellfish"), getTagSet("Diabetes"), getTagSet("MediSave"),
+                        new Appointment(new DateTime("12-07-2024 11:00"), ""),
+                        new EmergencyPerson(new Name("Sophia Li"), new Phone("92345678"), new Relationship("Mother"))),
 
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"),
-                    new Email("irfan@example.com"),
-                    new Address("Blk 47 Tampines Street 20, #17-35"),
-                    getTagSet("classmates"),
-                    new Appointment(new DateTime("05-08-2024 13:15"), "Tuition Session"),
-                    new EmergencyPerson(new Name("Amir Ibrahim"), new Phone("93456789"), new Relationship("Cousin"))),
+            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+                        new Address("Blk 47 Tampines Street 20, #17-35"),
+                        getTagSet("Dust"), getTagSet("Hypertension"), getTagSet("GreatCare"),
+                        new Appointment(new DateTime("05-08-2024 13:15"), ""),
+                        new EmergencyPerson(new Name("Amir Ibrahim"),
+                                new Phone("93456789"), new Relationship("Cousin"))),
 
-            new Person(new Name("Roy Balakrishnan"),
-                    new Phone("92624417"), new Email("royb@example.com"),
-                    new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    getTagSet("colleagues"),
-                    new Appointment(new DateTime("28-09-2024 10:30"), "Annual Checkup"),
-                    new EmergencyPerson(new Name("Neha Balakrishnan"),
-                            new Phone("94567890"), new Relationship("Spouse")))
+            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+                        new Address("Blk 45 Aljunied Street 85, #11-31"),
+                        getTagSet("Gluten"), getTagSet("None"), getTagSet("LifeProtect"),
+                        new Appointment(new DateTime("28-09-2024 10:30"), ""),
+                        new EmergencyPerson(new Name("Neha Balakrishnan"), new Phone("94567890"),
+                                new Relationship("Spouse")))
         };
     }
 
@@ -82,5 +68,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }

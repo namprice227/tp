@@ -44,6 +44,14 @@ public class EmergencyCommandParser implements Parser<EmergencyCommand> {
                     EmergencyCommand.MESSAGE_USAGE));
         }
 
+        // Check for duplicate fields
+        if (argMultimap.getAllValues(PREFIX_NAME).size() > 1
+                || argMultimap.getAllValues(PREFIX_PHONE).size() > 1
+                || argMultimap.getAllValues(PREFIX_RELATIONSHIP).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EmergencyCommand.MESSAGE_USAGE));
+        }
+
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Relationship relationship = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());

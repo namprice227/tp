@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# HealthSync Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -54,6 +54,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
+
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
@@ -65,22 +66,50 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### UI Component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java).
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+#### Overview
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `MainWindow` serves as the primary container for all UI components. It is responsible for orchestrating interactions between different UI elements and ensuring a seamless user experience. Its layout is defined in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml), which specifies the structure and arrangement of UI elements using JavaFX's XML-based markup.
 
-The `UI` component,
+The UI consists of a `MainWindow`, which is composed of multiple UI parts, such as:
+The UI consists of a `MainWindow`, which is composed of multiple UI parts, such as:
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- `CommandBox` – Handles user input.
+- `ResultDisplay` – Displays command execution results.
+- `PersonListPanel` – Controls the list of people displayed on the left side.
+- `PersonCard` – Represents a summarized view of a person in the `PersonListPanel`.
+- `PersonDetailPanel` – Displays detailed attributes of the selected person on the right side.
+- `PersonDetail` – Manages which details appear in the `PersonDetailPanel`.
+- `StatusBarFooter` – Displays application status details.
+
+All UI components, including `MainWindow`, inherit from the abstract `UiPart` class, which encapsulates common UI functionalities.
+
+The `UI` component uses the **JavaFX UI framework**, and its layout is defined in `.fxml` files located in `src/main/resources/view`. For example, the layout of `MainWindow` is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml).
+
+#### Responsibilities of the UI Component
+The `UI` component:
+- Executes user commands by interacting with the `Logic` component.
+- Listens for changes in `Model` data and updates the UI accordingly.
+- Maintains a reference to the `Logic` component, as the UI depends on `Logic` to process user actions.
+- Displays `Person` objects retrieved from the `Model` component.
+
+#### Layout & Functionality
+
+- **Main Window (`MainWindow.fxml`)**: The central UI container, which defines the overall structure of the application. It organizes different UI elements and ensures smooth interaction between them.
+    - `MainWindow` initializes and manages key UI components like `CommandBox`, `ResultDisplay`, `PersonListPanel`, and `PersonDetailPanel`.
+    - It listens to user input and updates the display accordingly.
+
+- **Left Panel:** `PersonListPanel` determines which people appear in the list, and each person’s summary is represented by a `PersonCard`.
+- **Right Panel:** `PersonDetailPanel` displays a detailed view of the selected person, with `PersonDetail` managing which fields are shown.
+
+This structure provides a **clear separation of concerns**, making it easier to extend and modify the UI while keeping the codebase maintainable.
+
+
 
 ### Logic component
 

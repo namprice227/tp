@@ -1,0 +1,73 @@
+```plantuml
+@startuml
+!theme plain
+actor User
+participant "AddressBookParser" as Parser
+participant "AddCommandParser" as CmdParser
+participant "ArgumentTokenizer" as Tokenizer
+participant "ParserUtil" as PUtil
+participant "Person" as PersonClass
+participant "Model" as Model
+participant "View" as View
+
+User -> Parser: Enter "add" command with details
+activate Parser
+
+Parser -> CmdParser: parse(arguments)
+activate CmdParser
+
+CmdParser -> Tokenizer: tokenize(arguments, prefixes)
+activate Tokenizer
+Tokenizer --> CmdParser: ArgumentMultimap
+deactivate Tokenizer
+
+CmdParser -> CmdParser: arePrefixesPresent()
+CmdParser -> PUtil: parseName()
+activate PUtil
+PUtil --> CmdParser: Name
+deactivate PUtil
+
+CmdParser -> PUtil: parsePhone()
+activate PUtil
+PUtil --> CmdParser: Phone
+deactivate PUtil
+
+CmdParser -> PUtil: parseEmail()
+activate PUtil
+PUtil --> CmdParser: Email
+deactivate PUtil
+
+CmdParser -> PUtil: parseAddress()
+activate PUtil
+PUtil --> CmdParser: Address
+deactivate PUtil
+
+CmdParser -> PersonClass: new Person(name, phone, email, address, tags, appointment, emergencyContact)
+activate PersonClass
+PersonClass --> CmdParser: person
+deactivate PersonClass
+
+CmdParser -> CmdParser: new AddCommand(person)
+CmdParser --> Parser: AddCommand
+deactivate CmdParser
+
+Parser -> Model: execute(AddCommand)
+activate Model
+
+Model -> Model: hasPerson(person)
+alt Person does not exist
+    Model -> Model: addPerson(person)
+    Model --> Parser: Success
+else Person already exists
+    Model --> Parser: Throw CommandException
+end
+
+Parser -> View: Display result
+activate View
+View --> User: Show success/failure message
+deactivate View
+
+deactivate Model
+deactivate Parser
+@enduml
+```

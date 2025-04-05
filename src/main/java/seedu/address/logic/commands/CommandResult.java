@@ -24,7 +24,7 @@ public class CommandResult {
     /**
      * Represents the type of list that the command result can be associated with.
      */
-    public enum ListType { NORMAL, ARCHIVE }
+    public enum ListType { NORMAL, ARCHIVE, NO_CHANGE }
 
     private final ListType listType;
 
@@ -57,10 +57,6 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false, false);
-    }
-
-    public ListType getListType() {
-        return listType;
     }
 
     public String getFeedbackToUser() {
@@ -111,4 +107,7 @@ public class CommandResult {
                 .toString();
     }
 
+    public ListType getListType() {
+        return listType;
+    }
 }

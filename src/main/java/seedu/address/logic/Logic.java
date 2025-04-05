@@ -35,9 +35,6 @@ public interface Logic {
 
     ObservableList<Person> getFilteredArchivedPersonList();
 
-
-
-
     /**
      * Returns the user prefs' address book file path.
      */
@@ -53,4 +50,5 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    boolean isArchiveMode();
 }

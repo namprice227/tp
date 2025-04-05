@@ -34,6 +34,6 @@ public class UnarchiveCommand extends Command {
         Person personToRestore = model.getFilteredArchivedPersonList().get(targetIndex - 1);
         model.unarchivePerson(personToRestore);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToRestore));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToRestore), CommandResult.ListType.ARCHIVE);
     }
 }

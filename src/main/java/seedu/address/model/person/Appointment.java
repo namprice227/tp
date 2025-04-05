@@ -8,6 +8,7 @@ import java.util.Objects;
  */
 public class Appointment implements Comparable<Appointment> {
     public static final String MESSAGE_CONSTRAINTS = "This must be DD-MM-YYYY HH:MM";
+    public final String value;
     private final DateTime dateTime;
     private final String description;
 
@@ -20,6 +21,7 @@ public class Appointment implements Comparable<Appointment> {
     public Appointment(DateTime dateTime, String description) {
         this.dateTime = Objects.requireNonNull(dateTime);
         this.description = Objects.requireNonNull(description);
+        this.value = dateTime.toString() + " " + description;
     }
 
     /**
@@ -28,6 +30,7 @@ public class Appointment implements Comparable<Appointment> {
     public Appointment() {
         this.dateTime = null;
         this.description = "";
+        this.value = "";
     }
 
     /**
@@ -38,8 +41,10 @@ public class Appointment implements Comparable<Appointment> {
     public Appointment(String appointment) {
         if (appointment.equals("")) {
             this.dateTime = null;
+            this.value = "";
         } else {
             this.dateTime = new DateTime(appointment);
+            this.value = this.dateTime.toString();
         }
         this.description = "";
     }

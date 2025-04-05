@@ -90,7 +90,7 @@ public class ArchivedBook implements ReadOnlyArchivedBook {
     public boolean equals(Object other) {
         return other == this
             || (other instanceof ArchivedBook
-            && archivedPersons.equals(other));
+            && archivedPersons.equals(((ArchivedBook) other).archivedPersons));
     }
 
     @Override
