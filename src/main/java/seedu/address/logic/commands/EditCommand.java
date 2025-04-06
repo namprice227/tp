@@ -84,16 +84,16 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size() || index.getZeroBased() < 0) {
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+            EditCommand.MESSAGE_USAGE));
+        }
 
         if (needsConfirmation) {
             needsConfirmation = false;
             return new CommandResult(MESSAGE_CONFIRMATION, false, false, true);
-        }
-
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
