@@ -12,11 +12,8 @@ import seedu.address.model.Model;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
-
     public static final String MESSAGE_SUCCESS = "Listed all persons";
-
     public static final String MESSAGE_INVALID_COMMAND = "List command does not accept additional parameters.";
-
     private final String args;
 
     /**
@@ -30,8 +27,6 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        // Check if there are additional parameters
         if ((args != null) && !args.trim().isEmpty()) {
             throw new CommandException(MESSAGE_INVALID_COMMAND);
         }

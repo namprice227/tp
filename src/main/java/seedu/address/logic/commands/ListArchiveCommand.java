@@ -12,11 +12,8 @@ public class ListArchiveCommand extends Command {
 
     public static final String COMMAND_WORD = "listarchive";
     public static final String MESSAGE_SUCCESS = "Listed all archived patients.";
-
     public static final String MESSAGE_INVALID_COMMAND = "Listarchive command does not accept additional parameters.";
-
     private final String args;
-
     /**
      * Creates a ListArchiveCommand to list all archived persons
      * @param args arguments provided after the command word
@@ -24,11 +21,9 @@ public class ListArchiveCommand extends Command {
     public ListArchiveCommand(String args) {
         this.args = args;
     }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        // Check if there are additional parameters
         if ((args != null) && !args.trim().isEmpty()) {
             throw new CommandException(MESSAGE_INVALID_COMMAND);
         }
