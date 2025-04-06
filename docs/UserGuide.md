@@ -12,7 +12,7 @@ HealthSync is a **desktop application tailored for healthcare administrators in 
 
 By combining the speed of a Command Line Interface (CLI) with the visual clarity of a Graphical User Interface (GUI), HealthSync optimizes workflow for fast-typing administrators, enabling them to retrieve critical patient details and establish contact more efficiently than traditional GUI-only applications.
 
-This ensures rapid response in the Healthcare sector when every second matters.
+This ensures rapid response in the Healthcare sector where every second matters.
 
 ---
 
