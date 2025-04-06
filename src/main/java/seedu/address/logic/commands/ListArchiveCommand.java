@@ -27,6 +27,7 @@ public class ListArchiveCommand extends Command {
         if ((args != null) && !args.trim().isEmpty()) {
             throw new CommandException(MESSAGE_INVALID_COMMAND);
         }
+        model.setArchiveMode(true);
         model.updateArchivedFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS, CommandResult.ListType.ARCHIVE);
     }

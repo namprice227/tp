@@ -27,7 +27,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
+    private boolean isArchiveMode = false;
     private final AddressBook addressBook;
     private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
@@ -174,6 +174,14 @@ public class ModelManager implements Model {
         requireAllNonNull(person, emergencyPerson);
         Person updatedPerson = person.setEmergencyContact(emergencyPerson);
         setPerson(person, updatedPerson);
+    }
+
+    public boolean isArchiveMode() {
+        return isArchiveMode;
+    }
+
+    public void setArchiveMode(boolean isArchiveMode) {
+        this.isArchiveMode = isArchiveMode;
     }
 
     @Override

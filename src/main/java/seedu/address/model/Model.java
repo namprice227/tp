@@ -150,6 +150,10 @@ public interface Model {
      */
     void commitAddressBook();
 
+    boolean isArchiveMode();
+
+    void setArchiveMode(boolean isArchiveMode);
+
     void updateArchivedFilteredPersonList(Predicate<Person> predicate);
 
     /**

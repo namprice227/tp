@@ -30,7 +30,7 @@ public class ListCommand extends Command {
         if ((args != null) && !args.trim().isEmpty()) {
             throw new CommandException(MESSAGE_INVALID_COMMAND);
         }
-
+        model.setArchiveMode(false);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS, CommandResult.ListType.NORMAL);
     }
