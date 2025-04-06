@@ -49,10 +49,9 @@ Using HealthSync with other languages or across multiple countries and timezones
     - [Editing the data file](#editing-the-data-file)
 5. [FAQ](#faq)
 6. [Known Issues](#known-issues)
-7. [Valid inputs for patient parameters](#valid-inputs)
+7. [Valid inputs for patient parameters](#valid-inputs-for-patient-parameters)
 8. [Command Summary](#command-summary)
-9. [Valid Inputs for Patient parameters](#valid-inputs-for-patient-parameters)
-10. [Glossary](#glossary)
+9. [Glossary](#glossary)
      - [Terminology](#terminology)
 
 
@@ -171,7 +170,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567`
+* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/91234567`
 
 > **⚠️ Warning:** An entry is considered a **duplicate** if it has the same name and phone number or the same name and email address. The phone number must be exactly 8 digits long and can only start with 6, 8, or 9.
 
