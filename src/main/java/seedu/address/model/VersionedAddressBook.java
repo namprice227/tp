@@ -1,4 +1,3 @@
-
 package seedu.address.model;
 
 import java.util.ArrayList;
@@ -8,12 +7,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
  * Wraps an AddressBook with undo/redo functionality.
- * Undo is limited to one step back only.
+ * Maintains a history of address book states to support undo operations.
  */
 public class VersionedAddressBook extends AddressBook {
     private final List<ReadOnlyAddressBook> addressBookStateList;
     private int currentStatePointer;
-    private boolean hasUndone = false;
 
     /**
      * Constructs a {@code VersionedAddressBook} with the given initial state.
@@ -31,8 +29,7 @@ public class VersionedAddressBook extends AddressBook {
 
     /**
      * Saves a copy of the current address book state.
-     * If an undo operation has been performed, only keeps the current state
-     * and the previous state.
+     * Adds the current state to the history and removes any forward states.
      */
     public void commit() {
         // Remove any states after current pointer
@@ -40,17 +37,10 @@ public class VersionedAddressBook extends AddressBook {
             addressBookStateList.remove(addressBookStateList.size() - 1);
         }
 
-        if (hasUndone) {
-            AddressBook currentState = new AddressBook(this);
-            addressBookStateList.clear();
-            addressBookStateList.add(currentState);
-            currentStatePointer = 0;
-            hasUndone = false;
-        }
-
         addressBookStateList.add(new AddressBook(this));
         currentStatePointer++;
 
+        // Keep only the last two states if there are more than two
         while (addressBookStateList.size() > 2) {
             addressBookStateList.remove(0);
             currentStatePointer--;
@@ -59,7 +49,6 @@ public class VersionedAddressBook extends AddressBook {
 
     /**
      * Restores the previous address book state.
-     * Can only be called once before needing to commit again.
      */
     public void undo() throws CommandException {
         if (!canUndo()) {
@@ -67,15 +56,14 @@ public class VersionedAddressBook extends AddressBook {
         }
         currentStatePointer--;
         resetData(addressBookStateList.get(currentStatePointer));
-        hasUndone = true;
     }
 
     /**
      * Returns true if undo is possible.
-     * Undo is only possible if we haven't already undone and there is a previous state.
+     * Undo is possible if there is a previous state to return to.
      */
     public boolean canUndo() {
-        return currentStatePointer > 0 && !hasUndone;
+        return currentStatePointer > 0;
     }
 
     /**
@@ -87,7 +75,6 @@ public class VersionedAddressBook extends AddressBook {
         }
         currentStatePointer++;
         resetData(addressBookStateList.get(currentStatePointer));
-        hasUndone = false;
     }
 
     /**
