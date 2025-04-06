@@ -156,11 +156,10 @@ The main interface consists of several key components:
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
+
+> **⚠️ Warning:**  For commands that require confirmation, entering anything other than y or n will cancel the command.
 
 ### Viewing help : `help`
 
@@ -333,6 +332,10 @@ Format: `clear`
 * Tags can be added for allergies (ta/), insurance (ti/), or conditions (tc/).
 * Tags are case-sensitive and need to be alphanumeric. e.g. `Peanuts` will not match `peanuts`
 * Tags can be more than 1 word in length. e.g. `broken leg`
+
+<box type="tip">: Multiple tags can be added simultaneously using the format: tag [index] ta/[allergy] tc/[condition] ti/[insurance].
+The order of the tags does not matter.
+</box>
 
 Format: `tag <INDEX> ta/ALLERGY`
          `tag <INDEX> ti/INSURANCE`
