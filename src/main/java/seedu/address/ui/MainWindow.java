@@ -192,6 +192,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            String trimmedCommand = commandText.trim();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -201,9 +202,9 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandText.equals("listarchive")) {
+            if (trimmedCommand.equals("listarchive")) {
                 showArchivedList();
-            } else if (commandText.equals("list")) {
+            } else if (trimmedCommand.equals("list")) {
                 showNormalList();
             }
 
