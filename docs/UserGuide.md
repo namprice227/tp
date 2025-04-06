@@ -189,6 +189,7 @@ Format:
 `schedule INDEX dd-MM-yyyy HH:mm`
 
 <box type="tip">: Ensure the date and time are in the future.
+Ensure that there is a minimum gap of 15 minutes between scheduled events.
 </box>
 
 Examples:
