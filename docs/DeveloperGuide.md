@@ -313,18 +313,32 @@ prompt action, especially when managing recovery progress and treatment schedule
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                   | So that I can…​                                                                                    |
-|----------|--------------------------------------------|----------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| `* * *`  | healthcare administrator                   | quickly locate patient emergency contacts                      | promptly notify their next of kin in life-threatening medical situations                           |
-| `* * *`  | healthcare administrator                   | accurately upload and store hospital patients' contact details | ensure their information is reliably available for communication and record-keeping                |
-| `* * *`  | healthcare professional                    | quickly identify a patient's diseases and all                  | understand the patient’s condition and give better advice                                          |
-| `* * *`  | new user                                   | have sample data to work with                                  | understand how to use the application                                                              |
-| `* * *`  | healthcare administrator                   | efficiently update and manage patient schedules                | ensure that doctor’s schedules are efficiently maintained and there is no overlap between patients |
-| `* *`    | healthcare administrator                   | undo the last operation                                        | recover from unintentional modifications or deletions                                              |
-| `* *`    | healthcare administrator                   | redo the last undone operation                                 | reverse an undo operation if it was done in error                                                  |
-| `*`      | user with many persons in the address book | sort persons by name                                           | locate a person easily                                                                             |
-| `* * *`  | healthcare administrator                   | identify patient’s allergies by tags                           | give appropriate medicines and prevent any cases of malpractice                                    |
-
+| Priority | As a …​                                    | I want to …​                                                   | So that I can…​                                                                                      |
+|----------|--------------------------------------------|----------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| `* * *`  | healthcare administrator                   | quickly locate a patient's emergency contacts                  | promptly notify their next of kin in life-threatening medical situations                             |
+| `* * *`  | healthcare administrator                   | accurately upload and store hospital patients' contact details | ensure their information is reliably available for communication and record-keeping                  |
+| `* * *`  | healthcare professional                    | quickly identify a patient's medical conditions and allergies  | understand the patient’s condition and provide safe and effective care                               |
+| `* * *`  | new user                                   | have sample data to work with                                  | understand how to use the application                                                                |
+| `* * *`  | healthcare administrator                   | schedule an appointment for a patient                          | keep track of upcoming visits to the clinic                                                          |
+| `* * *`  | healthcare administrator                   | efficiently update and manage patient schedules                | ensure that doctors' time is managed well and appointments do not overlap                            |
+| `* * *`  | healthcare administrator                   | identify patient allergies using tags                          | prescribe medicines safely and avoid malpractice                                                     |
+| `* * *`  | healthcare administrator                   | have an overview of all current patients                       | quickly access and manage active patient records                                                     |
+| `* * *`  | healthcare administrator                   | add an insurance tag to a patient                              | document their insurance details for billing and verification purposes                               |
+| `* * *`  | healthcare administrator                   | add a medical condition tag to a patient                       | keep a clear medical history for safe treatment and reference                                        |
+| `* * *`  | healthcare administrator                   | add a new patient to the system                                | begin tracking their appointments, contact, and medical details                                      |
+| `* * *`  | healthcare administrator                   | edit a patient's details                                       | keep their records accurate and up to date                                                           |
+| `* * *`  | healthcare administrator                   | find a patient by name                                         | quickly bring up a specific patient’s record                                                         |
+| `* * *`  | user                                       | access help at any time                                        | see available commands and how to use them                                                           |
+| `* *`    | healthcare administrator                   | undo the last operation                                        | recover from accidental changes or deletions                                                         |
+| `* *`    | healthcare administrator                   | redo the last undone operation                                 | reverse an undo if it was done by mistake                                                            |
+| `* *`    | healthcare administrator                   | delete a specific tag from a patient                           | remove outdated or incorrect medical information                                                     |
+| `*`      | user with many patients                    | sort patients by name                                          | locate a patient quickly and efficiently                                                             |
+| `*`      | healthcare administrator                   | archive a patient who has not visited in years                 | keep the list of current patients clean and manageable                                               |
+| `*`      | healthcare administrator                   | unarchive a patient from the archive list                      | update their information if they return to the clinic                                                |
+| `*`      | healthcare administrator                   | view a list of all archived patients                           | easily access records of patients who are no longer active                                           |
+| `*`      | healthcare administrator                   | clear all patient entries                                      | reset the system when starting fresh or during testing phases                                        |
+| `*`      | healthcare administrator                   | delete a patient from the system                               | remove incorrect or duplicated records                                                               |
+| `*`      | user                                       | exit the application                                           | close the programme when I’m done using it                                                           |
 
 ### Use Cases
 
