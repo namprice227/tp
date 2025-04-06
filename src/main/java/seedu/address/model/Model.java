@@ -139,10 +139,10 @@ public interface Model {
 
     void setLastCommandArchiveRelated(boolean isLastCommandArchiveRelated);
 
-        /**
-         * Checks if the address book can be redone.
-         * @return true if redo is possible, false otherwise.
-         */
+    /**
+     * Checks if the address book can be redone.
+     * @return true if redo is possible, false otherwise.
+     */
     boolean canRedoAddressBook();
 
     /**
