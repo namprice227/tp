@@ -29,7 +29,6 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setLastCommandArchiveRelated(false);
         if (model.isArchiveMode()) {
             model.updateArchivedFilteredPersonList(predicate);
             return new CommandResult(String.format(
