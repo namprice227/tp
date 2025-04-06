@@ -17,6 +17,7 @@ import seedu.address.model.person.Person;
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private Person previousSelectedPerson;
 
     @FXML
     private ListView<Person> personListView;
@@ -34,15 +35,11 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
 
-        personListView.getItems().addListener((ListChangeListener<Person>) change -> {
-            personListView.refresh();
-            if (!personListView.getItems().isEmpty()
-                    && personListView.getSelectionModel().getSelectedItem() == null) {
-                personListView.getSelectionModel().select(0);
-            }
-        });
         personListView.getSelectionModel().selectedItemProperty()
             .addListener((observable, oldValue, newValue) -> {
+                if (newValue != null) {
+                    previousSelectedPerson = newValue;
+                }
                 updateDetailPanel(newValue);
             });
 
