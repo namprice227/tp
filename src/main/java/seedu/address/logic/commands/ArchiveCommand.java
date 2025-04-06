@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -33,7 +34,8 @@ public class ArchiveCommand extends Command {
         requireNonNull(model);
 
         if (targetIndex < 0 || targetIndex >= model.getFilteredPersonList().size()) {
-            throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+            ArchiveCommand.MESSAGE_USAGE));
         }
 
         Person personToArchive = model.getFilteredPersonList().get(targetIndex);
@@ -41,6 +43,6 @@ public class ArchiveCommand extends Command {
         model.archivePerson(personToArchive);
         model.setLastCommandArchiveRelated(true);
 
-        return new CommandResult(String.format(MESSAGE_ARCHIVE_SUCCESS, personToArchive));
+        return new CommandResult(String.format(MESSAGE_ARCHIVE_SUCCESS, Messages.format(personToArchive)));
     }
 }
