@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 /**
  * Lists all archived contacts in the address book.
  */
-public class ListArchiveCommand extends Command  {
+public class ListArchiveCommand extends Command {
 
     public static final String COMMAND_WORD = "listarchive";
     public static final String MESSAGE_SUCCESS = "Listed all archived patients.";
