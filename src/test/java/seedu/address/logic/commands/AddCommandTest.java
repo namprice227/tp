@@ -167,6 +167,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasConflictingPerson(Person editedPerson, Person personToEdit) {
+            return false;
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }

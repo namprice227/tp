@@ -149,6 +149,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasConflictingPerson(Person edited, Person original) {
+        return addressBook.getPersonList().stream()
+                .filter(p -> !p.equals(original))
+                .anyMatch(p -> p.getName().equals(edited.getName())
+                        && (p.getPhone().equals(edited.getPhone()) || p.getEmail().equals(edited.getEmail())));
+    }
+
+    @Override
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
         commitAddressBook();
