@@ -42,7 +42,6 @@ public class ArchiveCommand extends Command {
 
         model.archivePerson(personToArchive);
 
-        return new CommandResult(String.format(MESSAGE_ARCHIVE_SUCCESS, Messages.format(personToArchive)),
-        CommandResult.ListType.ARCHIVE);
+        return new CommandResult(String.format(MESSAGE_ARCHIVE_SUCCESS, Messages.format(personToArchive)));
     }
 }
