@@ -32,7 +32,6 @@ public class VersionedAddressBook extends AddressBook {
      * Adds the current state to the history and removes any forward states.
      */
     public void commit() {
-        // Remove any states after current pointer
         while (currentStatePointer < addressBookStateList.size() - 1) {
             addressBookStateList.remove(addressBookStateList.size() - 1);
         }
@@ -40,7 +39,6 @@ public class VersionedAddressBook extends AddressBook {
         addressBookStateList.add(new AddressBook(this));
         currentStatePointer++;
 
-        // Keep only the last two states if there are more than two
         while (addressBookStateList.size() > 2) {
             addressBookStateList.remove(0);
             currentStatePointer--;
