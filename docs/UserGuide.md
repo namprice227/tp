@@ -162,7 +162,7 @@ The main interface consists of several key components:
 
 Shows a message explaining how to access the help page.
 
-<img src="images/HealthSyncHelpMessage.png" width="500" height="50">
+<img src="images/helpMessage.png" width="420" height="50">
 
 Format: `help`
 
@@ -311,7 +311,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in HealthSync.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
-[Return Back to Table of Contents](#table-of-contents)
+[Return Back to Find Command](#locating-patients-by-name-find)
 
 ### Clearing all entries : `clear`
 
@@ -375,7 +375,6 @@ Reverts the last command that modified data.
 Format: `undo`
 
 > **⚠️ Warning:**
-> * Cannot be used repeatedly to undo multiple actions.
 > * Cannot undo `undo`, `redo`, `help`, or `exit` commands.
 
 [Return Back to Table of Contents](#table-of-contents)
