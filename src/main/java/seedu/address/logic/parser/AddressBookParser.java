@@ -113,7 +113,7 @@ public class AddressBookParser {
             return new RedoCommandParser(model).parse(arguments);
 
         case ListArchiveCommand.COMMAND_WORD:
-            return new ListArchiveCommand();
+            return new ListArchiveCommand(arguments);
 
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);
