@@ -388,7 +388,7 @@ Reverts the last command that modified data.
 Format: `undo`
 
 > **⚠️ Warning:**
-> * Cannot be used repeatedly to undo multiple actions.
+> * The undo command can only revert the most recent action and cannot be used repeatedly to undo multiple past actions.
 > * Cannot undo `undo`, `redo`, `help`, or `exit` commands.
 
 [Return Back to Table of Contents](#table-of-contents)
@@ -405,6 +405,7 @@ Format: `redo`
 > **⚠️ Warning:**
 > * Can only be used if `undo` was previously executed.
 > * Cannot redo commands that were not undone.
+> * Cannot be used repeatedly to redo multiple actions.
 
 Example:
 * `redo` (Restores the last undone action)
