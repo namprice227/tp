@@ -75,6 +75,7 @@ public class EmergencyCommand extends Command {
         EmergencyPerson newEmergencyContact = new EmergencyPerson(emergencyName, emergencyPhone, relationship);
         Person editedPerson = personToEdit.setEmergencyContact(newEmergencyContact);
 
+        model.setLastCommandArchiveRelated(false);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_EMERGENCY_SUCCESS, editedPerson.getName()));

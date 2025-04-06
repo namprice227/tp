@@ -135,10 +135,14 @@ public interface Model {
      */
     void undoAddressBook() throws CommandException;
 
-    /**
-     * Checks if the address book can be redone.
-     * @return true if redo is possible, false otherwise.
-     */
+    boolean isLastCommandArchiveRelated();
+
+    void setLastCommandArchiveRelated(boolean isLastCommandArchiveRelated);
+
+        /**
+         * Checks if the address book can be redone.
+         * @return true if redo is possible, false otherwise.
+         */
     boolean canRedoAddressBook();
 
     /**

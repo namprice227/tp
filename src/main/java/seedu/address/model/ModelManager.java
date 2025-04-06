@@ -28,6 +28,7 @@ import seedu.address.model.tag.Tag;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
     private boolean isArchiveMode = false;
+    private boolean isLastCommandArchiveRelated = false;
     private final AddressBook addressBook;
     private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
@@ -123,6 +124,14 @@ public class ModelManager implements Model {
         return versionedAddressBook.canRedo();
     }
 
+    public boolean isLastCommandArchiveRelated() {
+        return isLastCommandArchiveRelated;
+    }
+
+    public void setLastCommandArchiveRelated(boolean isLastCommandArchiveRelated) {
+        this.isLastCommandArchiveRelated = isLastCommandArchiveRelated;
+    }
+
     // =========== AddressBook Methods
     // ========================================================================
 
@@ -145,7 +154,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return versionedAddressBook.hasPerson(person);
+        return versionedAddressBook.hasPerson(person) && archivedBook.hasPerson(person);
     }
 
     @Override
