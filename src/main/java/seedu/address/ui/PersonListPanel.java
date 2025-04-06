@@ -36,8 +36,8 @@ public class PersonListPanel extends UiPart<Region> {
 
         personListView.getItems().addListener((ListChangeListener<Person>) change -> {
             personListView.refresh();
-            if (!personListView.getItems().isEmpty() &&
-                    personListView.getSelectionModel().getSelectedItem() == null) {
+            if (!personListView.getItems().isEmpty()
+                    && personListView.getSelectionModel().getSelectedItem() == null) {
                 personListView.getSelectionModel().select(0);
             }
         });

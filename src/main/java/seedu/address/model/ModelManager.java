@@ -154,7 +154,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return versionedAddressBook.hasPerson(person) && archivedBook.hasPerson(person);
+        return versionedAddressBook.hasPerson(person) || archivedBook.hasPerson(person);
     }
 
     @Override

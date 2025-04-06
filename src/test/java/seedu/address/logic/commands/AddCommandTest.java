@@ -250,6 +250,15 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called");
         }
 
+        @Override
+        public boolean isLastCommandArchiveRelated() {
+            return false;
+        }
+
+        @Override
+        public void setLastCommandArchiveRelated(boolean isLastCommandArchiveRelated) {
+        }
+
         public boolean canUndoAddressBook() {
             throw new AssertionError("This method should not be called");
         }
