@@ -207,7 +207,7 @@ Format: `sort FIELD`
 * The sorting is case-insensitive.
 
 Examples:
-* `sort name` Sorts patients in ascending alphabetical order by name.
+* `sort name` Sorts patients in ascending alphabetical order by name. If there are multiple patients with the same name, HealthSync will sort them based on their time of addition.
 * `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first.
 
   <img src="images/SortExample.png" width="450" height="300">
