@@ -177,6 +177,7 @@ Examples:
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
 > **⚠️ Warning:** An entry is considered a **duplicate** if it has the same name and phone number or the same name and email address. The phone number must be exactly 8 digits long and can only start with 6, 8, or 9.
+> **⚠️ Warning:** HealthSync allows the addition of two users with the same phone number or email address to account for potential parent-child relationships. However, their names must be different.
 
 ### Scheduling an appointment: `schedule`
 
@@ -193,6 +194,7 @@ Examples:
 - `schedule 2 05-06-2025 09:00`
 
 > **⚠️ Warning:** An appointment is considered a **duplicate** if it has the same date and time as an existing appointment.
+> > **⚠️ Warning:** HealthSync only allows scheduling up to one upcoming appointment at a time.
 
 ### Listing all patients : `list`
 
@@ -263,7 +265,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find david roy` returns `David Li`, `Roy Balakrishnan`<br>
   <img src="images/HealthSyncFindResult.png" width="240" height="300">
-
+*  `find Charles` returns `Charles` and `charles`
 
 ### Archiving a patient : `archive`
 
@@ -296,6 +298,8 @@ Format: `unarchive INDEX`
 
 Example:
 * `listarchive` followed by `unarchive 2` adds the 2nd patient in archive list back to HealthSync.
+
+> **⚠️ Warning:**  The `unarchive` command is not available while viewing the displayed patient list.
 
 ### Deleting a patient : `delete`
 
