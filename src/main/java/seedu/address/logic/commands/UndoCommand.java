@@ -15,6 +15,7 @@ public class UndoCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Undone: Previous command reversed.";
     public static final String MESSAGE_FAILURE = "No more commands to undo.";
+    public static final String MESSAGE_NO_SUPPORT = "Undo is not supported for archive commands.";
 
     private final Model model;
 
@@ -24,6 +25,10 @@ public class UndoCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (model.isLastCommandArchiveRelated()) {
+            throw new CommandException(MESSAGE_NO_SUPPORT);
+        }
+
         // Check if undo is possible
         if (!model.canUndoAddressBook()) {
             throw new CommandException(MESSAGE_FAILURE);

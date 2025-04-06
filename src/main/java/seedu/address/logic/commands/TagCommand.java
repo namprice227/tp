@@ -97,6 +97,7 @@ public class TagCommand extends Command {
                 if (!tagFound) {
                     throw new CommandException(MESSAGE_TAG_NOT_FOUND);
                 }
+                model.setLastCommandArchiveRelated(false);
                 personToTag = model.deleteTagFromPerson(personToTag, Collections.singleton(tagToDelete));
             }
             return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, personToTag));
@@ -108,6 +109,7 @@ public class TagCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TAGS);
         }
 
+        model.setLastCommandArchiveRelated(false);
         Person updatedPerson = model.addTagsToPerson(personToTag, allergies, conditions, insurances);
         return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, updatedPerson));
     }

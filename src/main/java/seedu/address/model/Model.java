@@ -67,6 +67,8 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
+    boolean hasConflictingPerson(Person editedPerson, Person personToEdit);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -133,6 +135,10 @@ public interface Model {
      */
     void undoAddressBook() throws CommandException;
 
+    boolean isLastCommandArchiveRelated();
+
+    void setLastCommandArchiveRelated(boolean isLastCommandArchiveRelated);
+
     /**
      * Checks if the address book can be redone.
      * @return true if redo is possible, false otherwise.
@@ -149,6 +155,10 @@ public interface Model {
      * Commits the current state of the address book.
      */
     void commitAddressBook();
+
+    boolean isArchiveMode();
+
+    void setArchiveMode(boolean isArchiveMode);
 
     void updateArchivedFilteredPersonList(Predicate<Person> predicate);
 
