@@ -346,39 +346,101 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-#### **UC01 - Add Patient**
+#### **UC01 - View Help Window**
 
 **Main Success Scenario (MSS):**
-1. Healthcare Administrator chooses to add a new patient.
-2. HealthSync requests patient details.
-3. Healthcare Administrator enters the requested details.
-4. HealthSync asks the Healthcare Administrator to confirm the addition.
-5. Healthcare Administrator confirms the addition details.
-6. HealthSync successfully adds the patient.
-7. Use case ends.
-
-**Extensions:**
-- **3a.** Healthcare Administrator enters incomplete or invalid details.
-    - **3a1.** HealthSync highlights the errors and requests corrections.
-    - **3a2.** Healthcare Administrator provides corrected details.
-    - Steps **3a1-3a2** are repeated until all details are valid.
-    - Use case resumes from step **4**.
-- **3b.** A patient with the same unique identifier (e.g., National ID, Patient ID) already exists.
-    - **3b1.** HealthSync notifies the Healthcare Administrator of the duplication.
-    - **3b2.** Healthcare Administrator can choose to:
-        - Update the existing record (transition to **UC02 - Edit Patient Details**).
-        - Cancel the addition (Use case ends).
-- **3c.** Healthcare Administrator chooses to assign an emergency contact while adding a patient.
-    - **3c1.** HealthSync requests emergency contact details.
-    - **3c2.** Healthcare Administrator provides emergency contact details.
-    - Use case resumes from step **5**.
-- **4a.** Healthcare Administrator chooses to cancel the operation.
-    - **4a1.** Healthcare Administrator confirms the cancellation.
-    - Use case ends.
+1. Healthcare Administrator chooses to view the help window.
+2. HealthSync displays the link to the user guide.
+3. Use case ends.
 
 ---
 
-#### **UC02 - Edit Patient Details**
+#### **UC02 - Add Patient**
+
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator chooses to add a new patient.
+2. HealthSync prompts the user to enter:
+    - Patient's name.
+    - Patient's phone number.
+    - Patient's email address.
+    - Patient's residential address.
+3. Healthcare Administrator enters the requested details.
+4. HealthSync successfully adds the patient.
+5. Use case ends.
+
+**Extensions:**
+- **3a.** Healthcare Administrator enters incomplete or invalid details (e.g. phone number contains letters).
+    - **3a1.** HealthSync informs the user of the errors.
+    - Use case resumes from step **2**.
+- **3b.** A patient with the same unique identifier (i.e. name and phone number, name and email address) already exists.
+    - **3b1.** HealthSync notifies the user of the duplication.
+    - **3b2.** Healthcare Administrator can choose to:
+        -  **3b2a.** Update the existing record:
+          - **3b2a1.** Transition to **UC02 - Edit Patient Details**.
+        -  **3b2b.** Cancel the addition:
+          - **3b2b1.** Use case ends.
+        -  **3b2c.** Provide corrected details:
+          - **3b2c1.** Use case resumes from step **2**.
+- **4a.** Healthcare Administrator chooses to undo the command.
+    - **4a1.** Transition to **UC09 - Undo Previous Command**.
+
+---
+
+#### **UC03 - Update Patient Schedule**
+
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator requests to update a patient’s appointment.
+2. HealthSync prompts the user to enter:
+    - Patient index.
+    - New or modified appointment details (i.e. appointment date, time).
+3. Healthcare Administrator inputs the updated appointment.
+4. HealthSync updates the patient’s appointment successfully.
+5. Use case ends.
+
+**Extensions:**
+- **3a.** The given index is invalid (out of range or does not exist).
+    - **3a1.** HealthSync informs the user of the invalid index.
+    - Use case resumes from step **2**.
+- **3b.** The entered appointment details are invalid (e.g., overlapping appointments, incorrect format).
+    - **3b1.** HealthSync displays an error message.
+    - **3b2.** Healthcare Administrator corrects the details and resubmits.
+    - Use case resumes from step **2**.
+- **4a.** Healthcare Administrator chooses to undo the command.
+    - **4a1.** Transition to **UC09 - Undo Previous Command**.
+
+---
+
+#### **UC04 - List Patients**
+
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator chooses to list all patients.
+2. HealthSync displays the complete list of patients.
+3. Use case ends.
+
+---
+
+#### **UC05 - Sort Patients by Name**
+
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator requests to sort the list of patients by name.
+2. HealthSync prompts the user to choose the sorting order:
+    - Name (ascending alphabetical order).
+    - Appointment (ascending lexicographical order).
+3. Healthcare Administrator selects the preferred sorting order.
+4. HealthSync sorts the patient list accordingly.
+5. HealthSync displays the sorted patient list.
+6. Use case ends.
+
+**Extensions:**
+- **3a.** The entered sorting order is invalid (i.e. not name or appointment).
+    - **3a1.** HealthSync informs the user of the invalid sorting order.
+    - Use case resumes from step **2**.
+- **5a.** Healthcare Administrator chooses to undo the command.
+    - **5a1.** Transition to **UC09 - Undo Previous Command**.
+
+---
+
+#### **UC06 - Edit Patient Details**
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator requests to edit a patient’s details.
@@ -392,20 +454,119 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. Use case ends.
 
 **Extensions:**
-- **2a.** The given index is invalid (out of range).
-    - **2a1.** HealthSync informs the user of the invalid index.
+- **3a.** The given index is invalid (out of range).
+    - **3a1.** HealthSync informs the user of the invalid index.
     - Use case resumes from step **2**.
-- **2b.** The entered details are invalid (e.g., phone number contains letters).
-    - **2b1.** HealthSync displays an error message.
-    - **2b2.** Healthcare Administrator corrects the details and resubmits.
+- **3b.** The entered details are invalid (e.g. phone number contains letters).
+    - **3b1.** HealthSync informs the user of the invalid details.
     - Use case resumes from step **2**.
-- **6a.** Healthcare Administrator chooses to cancel the edit.
-    - **6a1.** Healthcare Administrator confirms the cancellation.
+- **4a.** Healthcare Administrator does not confirm the action.
+    - **4a1.** HealthSync cancels the operation.
+    - Use case ends.
+- **4b.** Healthcare Administrator inputs an invalid response (not 'y' or 'n') when confirming.
+    - **4b1.** HealthSync displays an error message indicating the invalid input.
+    - **4b2.** Action is cancelled.
+    - Use case ends.
+- **6a.** Healthcare Administrator chooses to undo the command.
+    - **6a1.** Transition to **UC09 - Undo Previous Command**.
+
+---
+
+#### **UC07 - Add an Emergency Contact**
+
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator requests to add an emergency contact for a patient.
+2. HealthSync prompts the user to enter:
+    - Patient index.
+    - Emergency contact’s name.
+    - Emergency contact’s phone number.
+    - Relationship to the patient.
+3. Healthcare Administrator provides the details.
+4. HealthSync adds the emergency contact to the patient’s record.
+5. HealthSync confirms successful addition.
+6. Use case ends.
+
+**Extensions:**
+- **3a.** The given index is invalid (out of range or does not exist).
+    - **3a1.** HealthSync informs the user of the invalid index.
+    - Use case resumes from step **2**.
+- **3b.** The entered details are invalid (e.g. phone number contains letters).
+    - **3b1.** HealthSync informs the user of the invalid details.
+    - Use case resumes from step **2**.
+- **5a.** Healthcare Administrator chooses to undo the command.
+    - **5a1.** Transition to **UC09 - Undo Previous Command**.
+
+---
+
+#### **UC08 - Find Patients**
+
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator chooses to find patients by name.
+2. HealthSync prompts the Healthcare Administrator to enter keywords for the search.
+3. Healthcare Administrator enters the keywords (case-insensitive).
+4. HealthSync searches the patients' name and phone number for the given keywords.
+5. HealthSync displays the list of patients whose details match at least one of the entered keywords.
+6. Use case ends.
+
+**Extensions:**
+- **4a.** No patients match the given keywords.
+    - **4a1.** HealthSync displays a message informing the user that 0 matches were found.
     - Use case ends.
 
 ---
 
-#### **UC03 - Delete a Patient**
+#### **UC09 - Archive Patient**
+
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator chooses to archive a patient.
+2. HealthSync prompts the Healthcare Administrator to enter the index of the patient to be archived.
+3. Healthcare Administrator provides the patient index.
+4. HealthSync archives the patient’s record.
+5. HealthSync confirms successful archiving.
+6. Use case ends.
+
+**Extensions:**
+- **3a.** The given index is invalid (out of range or does not exist).
+    - **3a1.** HealthSync informs the user of the invalid index.
+    - Use case resumes from step **2**.
+- **5a.** Healthcare Administrator chooses to undo the command.
+    - **5a1.** Transition to **UC09 - Undo Previous Command**.
+
+---
+
+#### **UC10 - List Archived Patients**
+
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator chooses to view the list of archived patients.
+2. HealthSync retrieves and displays the list of archived patients.
+3. HealthSync confirms successful display of list of archived patients.
+4. Use case ends.
+
+**Extensions:**
+- **2a.** Healthcare Administrator tries to use any command other than `find`, `unarchive`, or `list` in archive mode.
+    - **2a1.** HealthSync informs the user that the command cannot be executed in archive mode.
+    - **2a2.** Use case ends.
+
+---
+
+#### **UC11 - Unarchive Patient**
+
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator chooses to unarchive a patient.
+2. HealthSync prompts the user to enter the index of the patient to be unarchived.
+3. Healthcare Administrator provides the patient index.
+4. HealthSync unarchives the patient’s record.
+5. HealthSync confirms successful unarchiving.
+6. Use case ends.
+
+**Extensions:**
+- **2a.** The given index is invalid (out of range or does not exist).
+    - **2a1.** HealthSync informs the user of the invalid index.
+    - Use case resumes from step **2**.
+
+---
+
+#### **UC12 - Delete a Patient**
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator requests to delete a patient’s contact.
@@ -418,92 +579,145 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 8. Use case ends.
 
 **Extensions:**
-- **2a.** The given index is invalid (out of range or does not exist).
-    - **2a1.** HealthSync informs the user of the invalid index.
+- **3a.** The given index is invalid (out of range or does not exist).
+    - **3a1.** HealthSync informs the user of the invalid index.
     - Use case resumes from step **2**.
-- **4a.** Healthcare Administrator cancels the deletion.
-    - **4a1.** HealthSync aborts the deletion process.
+- **4a.** Healthcare Administrator does not confirm the action.
+    - **4a1.** HealthSync cancels the operation.
     - Use case ends.
+- **4b.** Healthcare Administrator inputs an invalid response (not 'y' or 'n') when confirming.
+    - **4b1.** HealthSync displays an error message indicating the invalid input.
+    - **4b2.** Action is cancelled.
+    - Use case ends.
+- **7a.** Healthcare Administrator chooses to undo the command.
+    - **7a1.** Transition to **UC09 - Undo Previous Command**.
 
 ---
 
-#### **UC04 - Update Patient Schedule**
+#### **UC13 - Clear Patient List**
 
 **Main Success Scenario (MSS):**
-1. Healthcare Administrator requests to update a patient’s appointment.
-2. HealthSync prompts the user to enter:
-    - Patient identifier (e.g., index, name, or ID).
-    - New or modified appointment details (e.g., appointment date, time, doctor, location).
-3. Healthcare Administrator inputs the updated appointment.
-4. HealthSync asks for confirmation.
-5. Healthcare Administrator confirms the update.
-6. HealthSync updates the patient’s appointment successfully.
-7. Use case ends.
+1. Healthcare Administrator chooses to clear the entire patient list.
+2. HealthSync asks for confirmation.
+3. Healthcare Administrator confirms the edit.
+4. HealthSync clears all patients from the system.
+5. HealthSync confirms the list has been cleared.
+6. Use case ends.
 
 **Extensions:**
-- **2a.** The provided patient identifier is invalid.
-    - **2a1.** HealthSync informs the user.
-    - Use case resumes from step **2**.
-- **2b.** The entered appointment details are invalid (e.g., overlapping appointments, incorrect format).
-    - **2b1.** HealthSync displays an error message.
-    - **2b2.** Healthcare Administrator corrects the details and resubmits.
-    - Use case resumes from step **2**.
-- **4a.** Healthcare Administrator chooses to cancel the update.
-    - **4a1.** Healthcare Administrator confirms the cancellation.
+- **3a.** Healthcare Administrator does not confirm the action.
+    - **3a1.** HealthSync cancels the operation.
     - Use case ends.
+- **3b.** Healthcare Administrator inputs an invalid response (not 'y' or 'n') when confirming.
+    - **3b1.** HealthSync displays an error message indicating the invalid input.
+    - **3b3.** Action is cancelled.
+    - Use case ends.
+- **5a.** Healthcare Administrator chooses to undo the command.
+    - **5a1.** Transition to **UC09 - Undo Previous Command**.
 
 ---
 
-#### **UC05 - Add an Emergency Contact**
+#### **UC14 - Add Tag to Patient**
 
 **Main Success Scenario (MSS):**
-1. Healthcare Administrator requests to add an emergency contact for a patient.
+1. Healthcare Administrator chooses to add tag(s) to a patient.
 2. HealthSync prompts the user to enter:
     - Patient index.
-    - Emergency contact’s name.
-    - Emergency contact’s email.
-    - Emergency contact’s phone number.
-    - Emergency contact’s address.
-    - Relationship to the patient.
-3. Healthcare Administrator provides the details.
-4. HealthSync asks for confirmation.
-5. Healthcare Administrator confirms the addition.
-6. HealthSync adds the emergency contact to the patient’s record.
-7. HealthSync confirms successful addition.
-8. Use case ends.
+    - Tag(s) to add.
+3. Healthcare Administrator enters the index and the tag(s).
+4. HealthSync validates the index and tags.
+5. HealthSync adds the valid tags to the patient and displays the updated tag list.
+6. Use case ends.
 
 **Extensions:**
-- **2a.** The given patient index is invalid.
-    - **2a1.** HealthSync informs the user.
+- **3a.** The given index is invalid (out of range or does not exist).
+    - **3a1.** HealthSync informs the user of the invalid index.
     - Use case resumes from step **2**.
-- **2b.** The entered details are invalid.
-    - **2b1.** HealthSync displays an error message.
-    - **2b2.** User corrects the details and resubmits.
+- **3b.** The tag(s) input is invalid (e.g. tag name is not alphanumeric).
+    - **3b1.** HealthSync informs the user of the invalid input.
     - Use case resumes from step **2**.
-- **4a.** Healthcare Administrator chooses to cancel the operation.
-    - **4a1.** Healthcare Administrator confirms the cancellation.
+- **4a.** The tag(s) already exist.
+    - **4a1.** HealthSync informs the user of the duplication.
+    - Use case resumes from step **2**.
+- **5a.** Healthcare Administrator chooses to undo the command.
+    - **5a1.** Transition to **UC09 - Undo Previous Command**.
+
+---
+
+#### **UC15 - Delete Tag from Patient**
+
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator chooses to delete tag(s) from a patient.
+2. HealthSync prompts the user to enter:
+    - Patient index.
+    - Tag(s) to delete.
+3. Healthcare Administrator enters the index and tag(s).
+4. HealthSync checks if the tag(s) exist.
+5. HealthSync removes valid tag(s) and shows the updated tag list.
+6. Use case ends.
+
+**Extensions:**
+- **3a.** The given index is invalid (out of range or does not exist).
+    - **3a1.** HealthSync informs the user of the invalid index.
+    - Use case resumes from step **2**.
+- **4a.** The tag(s) do not exist.
+    - **4a1.** HealthSync warns the user of the invalid tag.
+    - Use case resumes from step **2**.
+- **5a.** Healthcare Administrator chooses to undo the command.
+    - **5a1.** Transition to **UC09 - Undo Previous Command**.
+
+---
+
+#### **UC16 - Undo Previous Command**
+
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator chooses to undo the most recent modifying command.
+2. HealthSync checks if there is a previous state to revert to.
+3. HealthSync reverts the application to the previous state.
+4. HealthSync confirms the undo action.
+5. Use case ends.
+
+**Extensions:**
+- **2a.** No previous state available to undo.
+    - **2a1.** HealthSync informs the user that there is nothing to undo.
+    - Use case ends.
+- **2b.** Undo has already been used.
+    - **2b1.** HealthSync informs the user that there is nothing to undo.
+    - Use case ends.
+- **2c.** The most recent command is a `find` or `list` command.
+    - **2c1.** HealthSync informs the user that there is nothing to undo.
+    - Use case ends.
+- **2d.** The most recent command is an `archive` command.
+    - **2d1.** HealthSync informs the user that undo cannot be performed for the archive command.
     - Use case ends.
 
 ---
 
-#### **UC06 - Sort Patients by Name**
+#### **UC17 - Redo Last Undone Command**
 
 **Main Success Scenario (MSS):**
-1. Healthcare Administrator requests to sort the list of patients by name.
-2. HealthSync prompts the user to choose the sorting order:
-    - Ascending (A-Z).
-    - Descending (Z-A).
-3. Healthcare Administrator selects the preferred sorting order.
-4. HealthSync asks for confirmation.
-5. Healthcare Administrator confirms the sorting.
-6. HealthSync sorts the patient list accordingly.
-7. HealthSync displays the sorted patient list.
-8. Use case ends.
+1. Healthcare Administrator chooses to redo the last undone command.
+2. HealthSync checks if there is a redo-able state.
+3. HealthSync re-applies the previously undone command.
+4. HealthSync confirms the redo action.
+5. Use case ends.
 
 **Extensions:**
-- **4a.** Healthcare Administrator chooses to cancel the sorting request.
-    - **4a1.** HealthSync aborts the sorting process.
+- **2a.** No command available to redo.
+    - **2a1.** HealthSync informs the user that there is nothing to redo.
     - Use case ends.
+
+---
+
+#### **UC18 - Exit Application**
+
+**Main Success Scenario (MSS):**
+1. Healthcare Administrator chooses to exit the application.
+2. HealthSync saves the application state.
+3. HealthSync closes the application.
+4. Use case ends.
+
+---
 
 ### Non-Functional Requirements
 
