@@ -27,7 +27,8 @@ import seedu.address.model.tag.Tag;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
+    private boolean isArchiveMode = false;
+    private boolean isLastCommandArchiveRelated = false;
     private final AddressBook addressBook;
     private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
@@ -123,6 +124,14 @@ public class ModelManager implements Model {
         return versionedAddressBook.canRedo();
     }
 
+    public boolean isLastCommandArchiveRelated() {
+        return isLastCommandArchiveRelated;
+    }
+
+    public void setLastCommandArchiveRelated(boolean isLastCommandArchiveRelated) {
+        this.isLastCommandArchiveRelated = isLastCommandArchiveRelated;
+    }
+
     // =========== AddressBook Methods
     // ========================================================================
 
@@ -145,7 +154,15 @@ public class ModelManager implements Model {
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return versionedAddressBook.hasPerson(person);
+        return versionedAddressBook.hasPerson(person) || archivedBook.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasConflictingPerson(Person edited, Person original) {
+        return versionedAddressBook.getPersonList().stream()
+                .filter(p -> !p.equals(original))
+                .anyMatch(p -> p.getName().equals(edited.getName())
+                        && (p.getPhone().equals(edited.getPhone()) || p.getEmail().equals(edited.getEmail())));
     }
 
     @Override
@@ -174,6 +191,14 @@ public class ModelManager implements Model {
         requireAllNonNull(person, emergencyPerson);
         Person updatedPerson = person.setEmergencyContact(emergencyPerson);
         setPerson(person, updatedPerson);
+    }
+
+    public boolean isArchiveMode() {
+        return isArchiveMode;
+    }
+
+    public void setArchiveMode(boolean isArchiveMode) {
+        this.isArchiveMode = isArchiveMode;
     }
 
     @Override

@@ -46,6 +46,7 @@ public class ClearCommand extends Command {
             needsConfirmation = false;
             return new CommandResult(MESSAGE_CONFIRMATION, false, false, true);
         }
+        model.setLastCommandArchiveRelated(false);
         model.setAddressBook(model.getEmptyAddressBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }

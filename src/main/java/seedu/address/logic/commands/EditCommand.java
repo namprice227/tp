@@ -104,10 +104,12 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_NO_CHANGES);
         }
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if ((!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson))
+                || model.hasConflictingPerson(editedPerson, personToEdit)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        model.setLastCommandArchiveRelated(false);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
