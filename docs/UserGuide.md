@@ -158,6 +158,8 @@ The main interface consists of several key components:
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+> **⚠️ Warning:**  For commands that require confirmation, entering anything other than y or n will cancel the command.
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -171,6 +173,9 @@ Format: `help`
 Adds a patient to HealthSync.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+
+<box type="tip">: Name is case insensitive
+</box>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -187,6 +192,7 @@ Format:
 `schedule INDEX dd-MM-yyyy HH:mm`
 
 <box type="tip">: Ensure the date and time are in the future.
+Ensure that there is a minimum gap of 15 minutes between scheduled events.
 </box>
 
 Examples:
@@ -227,6 +233,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
+<box type="tip">: Name is case insensitive
+</box>
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
@@ -334,6 +343,10 @@ Format: `clear`
 * Tags are case-sensitive and need to be alphanumeric. e.g. `Peanuts` will not match `peanuts`
 * Tags can be more than 1 word in length. e.g. `broken leg`
 
+<box type="tip">: Multiple tags can be added simultaneously using the format: tag [index] ta/[allergy] tc/[condition] ti/[insurance].
+The order of the tags does not matter.
+</box>
+
 Format: `tag <INDEX> ta/ALLERGY`
          `tag <INDEX> ti/INSURANCE`
          `tag <INDEX> tc/CONDITION`
@@ -379,6 +392,7 @@ Reverts the last command that modified data.
 Format: `undo`
 
 > **⚠️ Warning:**
+> * The undo command can only revert the most recent action and cannot be used repeatedly to undo multiple past actions.
 > * Cannot undo `undo`, `redo`, `help`, or `exit` commands.
 
 [Return Back to Table of Contents](#table-of-contents)
@@ -395,6 +409,7 @@ Format: `redo`
 > **⚠️ Warning:**
 > * Can only be used if `undo` was previously executed.
 > * Cannot redo commands that were not undone.
+> * Cannot be used repeatedly to redo multiple actions.
 
 Example:
 * `redo` (Restores the last undone action)
