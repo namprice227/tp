@@ -302,7 +302,7 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**: \
-Healthcare administrators in clinics
+Healthcare administrators in family clinics
 
 **Value proposition**: \
 HealthSync allows healthcare staff to efficiently organize patient details and key contacts in one unified platform.
@@ -439,6 +439,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - **5a1.** Transition to **UC09 - Undo Previous Command**.
 
 ---
+
+### **UC06 - Sort Patients by Appointment**
+
+**Main Success Scenario (MSS)**
+1. Healthcare Administrator requests to sort the list of patients by appointment.
+2. HealthSync sorts the patient list in ascending lexicographical order by appointment date.
+3. HealthSync displays the sorted patient list with patients having appointments listed first (nearest upcoming appointments at the top), followed by patients without appointments.
+4. Use case ends.
+
+**Extensions:**
+
+- **2a.** No patients have scheduled appointments.
+    - **2a1.** HealthSync sorts the list alphabetically by name. 
+    - **2a2.** HealthSync notifies the user that no appointments are scheduled.
+    - Use case ends.
+
+- **3a.** Healthcare Administrator chooses to undo the command.
+    - **3a1.** Transition to **UC09 - Undo Previous Command.**
+- **3b.** The sorting causes unexpected results due to invalid appointment data.
+
+    - **3b1.** HealthSync displays an error message.
+    - **3b2**. HealthSync reverts to the original order.
+    - Use case resumes from step 1.
 
 #### **UC06 - Edit Patient Details**
 
