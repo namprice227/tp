@@ -159,7 +159,7 @@ The main interface consists of several key components:
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-> **⚠️ Warning:** For commands that require confirmation, entering anything other than 'Y' or 'N' (in either uppercase or lowercase) will result in the command being cancelled.
+> **⚠️ Warning:** For commands that require confirmation such as `edit`, `delete`, `exit` or `clear`, entering anything other than 'Y' or 'N' (in either uppercase or lowercase) will result in the command being cancelled.
 
 ### Viewing help : `help`
 
