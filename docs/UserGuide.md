@@ -154,7 +154,7 @@ HealthSync operates using two primary modes, which determine the patient list di
 
 You can switch between modes using the following commands:
 
-* Use the `list` command to view the active patient list and switch to **NormalMode** if you are not.
+* Use the `list` command to view the active patient list and switch to **Normal Mode** if you are not.
 * Use the `listarchive` command to view the archived patient list and switch to **Archive Mode**.
 
 The current mode significantly impacts which operations you can perform.
