@@ -203,6 +203,8 @@ The following table clearly outlines which commands are functional in each mode:
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+* All names added to HealthSync will have their first letter of each word automatically capitalised. This applies to names entered through the `add`, `edit`, and `emergency` commands.
+
 > **⚠️ Warning:** For commands that require confirmation such as `edit`, `delete`, `exit` or `clear`, entering anything other than 'Y' or 'N' (in either uppercase or lowercase) will result in the command being cancelled.
 
 ### Viewing help : `help`
@@ -219,7 +221,7 @@ Adds a patient to HealthSync.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
-<box type="tip">: Name is case insensitive
+<box type="tip">: The first letter of each word in a name will be automatically capitalised.
 </box>
 
 Examples:
