@@ -66,9 +66,6 @@ package Model {
     }
     class DateTime
     class Relationship
-
-    class GuiSettings
-
     ' Associations and Inheritance:
     VersionedAddressBook .up.|> ReadOnlyAddressBook
     ArchivedBook .up.|> ReadOnlyArchivedBook
