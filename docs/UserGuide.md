@@ -325,6 +325,7 @@ Examples:
   <img src="images/HealthSyncFindResult.png" width="240" height="300">
 *  `find Charles` returns `Charles` and `charles`
 * The command `find 81782349` returns the patient associated with the phone number 81782349.
+* The command `itscominghome@gmail.com` returns the patient associated with the email itscominghome@gmail.com
 
 ### Archiving a patient : `archive`
 
