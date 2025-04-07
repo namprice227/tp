@@ -750,13 +750,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 
 ### Non-Functional Requirements
-1. Performance Requirements:
-* Responsiveness: HealthSync should respond to user commands (e.g adding, editing or viewing contacts) within 3 seconds for typic)
-- Should work on any mainstream OS as long as it has **Java 17 or above** installed.
-- Should be able to handle up to **50 concurrent patients** without noticeable sluggishness in performance for typical use.
-- A user with **above-average typing speed** for regular English text (i.e., not code or system admin commands) should be able to accomplish most tasks **faster using commands than with the mouse**.
-- **HealthSync must comply with relevant healthcare data protection regulations**, such as **PDPA**.
-- The architecture should support **modular extensions**, allowing for additional features (e.g., appointment scheduling, integration with electronic health records).
+1. Reliability and Availability:
+* System Uptime:
+   HealthSync must be available for use at least 99% of the time, especially during clinic operating hours. Regular maintenance should be scheduled during off-peak times.
+
+* Memory Recovery and Backup:
+   Contact data must be backed up daily to prevent data loss. The system should be able to recover from a backup within 2 hours of a failure.
+
+2. Performance Requirements:
+   *  Responsiveness: HealthSync should respond to user commands (e.g., adding, editing, or viewing contacts) within 3 seconds for typical operations under normal usage conditions (i.e., up to 1000 contacts in the database).
+
+   * Scalability:
+   HealthSync should be able to handle up to 5000 contacts without significant performance degradation. Basic operations, such as editing or adding contacts, should not exceed a response time of 4 seconds under this load.
+
+   * Concurrency: HealthSync should be able to handle up to 50 concurrent patients without noticeable sluggishness in performance for typical use.
+
+
+3. Usability Requirements:
+   * Command Efficiency:
+   A user with above-average typing speed for regular English text (i.e., not code or system admin commands) should be able to accomplish most tasks faster using commands than with the mouse.
+
+    * Error Handling and Feedback:
+The system must provide immediate feedback (within 1 second) when an error occurs, such as invalid input or missing fields. The user should be able to correct errors without restarting the operation.
+
+
+4. Data and Storage Requirements:
+   * Human-Editable File Format:
+   Contact information should be stored in a human-readable and editable format (e.g., .json or .csv) so that administrators can manually access and modify data if needed.
+
+    * Data Integrity: The system must ensure that no data is lost or corrupted during common operations (e.g., adding, updating, or deleting contacts). Transaction-like behavior must be implemented to ensure all data operations either succeed fully or fail without partially corrupting data.
+
+
+5. Compliance and Security:
+   * Healthcare Data Protection Compliance:
+   HealthSync must comply with relevant healthcare data protection regulations, such as PDPA, to ensure that patient data is handled securely and confidentially.
+
+
+6. Compatibility and Portability:
+   * Cross-Platform Support:
+   HealthSync must be compatible with mainstream operating systems (Windows, macOS, Linux) and function seamlessly on systems with Java 17 or higher installed.
+
+
+7. Maintainability and Extensibility:
+   * Modular Design:
+   The system should be designed with a modular architecture, allowing for easy future extensions such as additional data fields, user roles, or features (e.g., appointment scheduling or integration with electronic health records).
+
+   * Testability:
+HealthSync must be easily testable, with automated tests that can cover at least 70% of the codebase. Core features (e.g., adding a contact, deleting outdated contacts) should have dedicated test cases.
+
 
 
 --------------------------------------------------------------------------------------------------------------------
