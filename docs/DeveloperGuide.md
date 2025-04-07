@@ -751,11 +751,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 1. Reliability and Availability:
-* System Uptime:
-   HealthSync must be available for use at least 99% of the time, especially during clinic operating hours. Regular maintenance should be scheduled during off-peak times.
+   * System Uptime:
+      HealthSync must be available for use at least 99% of the time, especially during clinic operating hours. Regular maintenance should be scheduled during off-peak times.
 
-* Memory Recovery and Backup:
-   Contact data must be backed up daily to prevent data loss. The system should be able to recover from a backup within 2 hours of a failure.
+   * Memory Recovery and Backup:
+      Contact data must be backed up daily to prevent data loss. The system should be able to recover from a backup within 2 hours of a failure.
+
 
 2. Performance Requirements:
    *  Responsiveness: HealthSync should respond to user commands (e.g., adding, editing, or viewing contacts) within 3 seconds for typical operations under normal usage conditions (i.e., up to 1000 contacts in the database).
@@ -874,14 +875,21 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Planned Enhancements**
+
+The current version of HealthySync has some limitations, and we have outlined our plans for future improvements to enhance upcoming versions of HealthySync.
+
 ### Multiple Language Support
 Currently, HealthSync is only available for usage in English. We recognise that our target users may not be able to read English proficiently or may only have non English names. Our planned enhancement is to translate HealthSync into other languages, such as Chinese and Tamil.
 
-## Removal of past appointment dates
+### Removal of past appointment dates
 At present, HealthSync does not automatically remove or archive past appointment dates, which can clutter the system and make it harder to manage current and future appointments. We plan to implement an automatic system that will remove or archive past appointment dates, ensuring a cleaner, more efficient user experience by keeping only relevant and upcoming appointments visible.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Effort**
-Developing HealthSync presented a variety of challenges that required significant effort from our team. As a group of predominantly Year 2 Computer Science students and junior software developers, we faced a steep learning curve, especially considering this was our first project dealing with multiple entity types and the complexity of healthcare data management.
+As Year 2 Computer Science students with limited software engineering project experience, building upon AddressBook3 (AB3) was particularly challenging for several reasons:
 
-One of the key challenges was designing a system that could efficiently manage multiple types of entities, such as patients, emergency contacts, and healthcare administrators. Unlike previous projects (e.g., AB3), which focused on a single entity type, HealthSync required careful management of relationships and data consistency across different entities. This added complexity to the system design and required us to carefully structure the data models and workflows to ensure smooth interactions between these entity types.
+1) Our limited experience with GitHub and workflow management, including reviewing pull requests and resolving conflicts.
+2) HealthSync, as a Brownfield project based on AB3, presented several challenges that required substantial effort from our team to overcome. One key challenge was efficiently managing multiple entity types, such as those in normal and archive modes, compared to AB3, which dealt with just a single entity type.
+3) The time constraint, with the need to build a relatively bug-free product in just over six weeks.
+
+However, as a group of five, we were able to collaborate effectively, dividing tasks efficiently to tackle challenges and build HealthSync.
