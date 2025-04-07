@@ -128,7 +128,6 @@ public class TagCommand extends Command {
 
     private void checkForCrossCategoryDuplicates() throws CommandException {
         Set<String> seen = new HashSet<>();
-
         for (Tag tag : allergies) {
             String tagLower = tag.tagName.toLowerCase();
             if (!seen.add(tagLower)) {
@@ -148,10 +147,6 @@ public class TagCommand extends Command {
             }
         }
     }
-
-    /**
-     * Flattens a list of sets of tags into a single set of tags.
-     */
     private Set<Tag> flattenTagSets(List<Set<Tag>> nestedTags) {
         Set<Tag> flatSet = new HashSet<>();
         for (Set<Tag> tagSet : nestedTags) {
@@ -159,7 +154,6 @@ public class TagCommand extends Command {
         }
         return flatSet;
     }
-
     /**
      * Compares this TagCommand with another object to determine equality.
      *
