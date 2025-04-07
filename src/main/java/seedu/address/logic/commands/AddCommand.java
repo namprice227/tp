@@ -12,6 +12,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 
@@ -34,7 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25";
 
-    public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New Patient Added : %1$s has been added to the list!";
     public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the address book";
     private final Person toAdd;
 
@@ -43,7 +44,23 @@ public class AddCommand extends Command {
      */
     public AddCommand(Person person) {
         requireNonNull(person);
-        toAdd = person;
+        Name capitalizedName = new Name(capitalizeWords(Messages.showName(person)));
+        toAdd = new Person(capitalizedName, person.getPhone(), person.getEmail(),
+            person.getAddress(), person.getTags(), person.getAppointment(),
+            person.getEmergencyContact());
+    }
+
+    private String capitalizeWords(String name) {
+        String[] words = name.trim().split("\\s+");
+        StringBuilder result = new StringBuilder();
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                result.append(Character.toUpperCase(word.charAt(0)));
+                result.append(word.substring(1).toLowerCase());
+                result.append(" ");
+            }
+        }
+        return result.toString().trim();
     }
 
     @Override
@@ -57,7 +74,7 @@ public class AddCommand extends Command {
 
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS,
-                Messages.format(toAdd), CommandResult.ListType.NO_CHANGE));
+                Messages.showName(toAdd), CommandResult.ListType.NO_CHANGE));
     }
 
     @Override

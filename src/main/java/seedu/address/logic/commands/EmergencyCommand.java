@@ -36,7 +36,7 @@ public class EmergencyCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_RELATIONSHIP + "Father";
 
-    public static final String MESSAGE_EDIT_EMERGENCY_SUCCESS = "Updated emergency contact for patient: %1$s";
+    public static final String MESSAGE_EDIT_EMERGENCY_SUCCESS = "Emergency contact for %1$s is now updated!";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;

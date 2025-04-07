@@ -53,7 +53,7 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Patient Edited Successfully!";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in HealthSync.";
     public static final String MESSAGE_CONFIRMATION = "Are you sure you want to edit this patient? (y/n)";
@@ -189,7 +189,11 @@ public class EditCommand extends Command {
         }
 
         public void setName(Name name) {
-            this.name = name;
+            if (name == null) {
+                this.name = null;
+            } else {
+                this.name = new Name(capitalizeWords(name.toString()));
+            }
         }
 
         public Optional<Name> getName() {
@@ -265,5 +269,18 @@ public class EditCommand extends Command {
             return "EditPersonDescriptor{name=" + name + ", phone=" + phone + ", email=" + email
                 + ", address=" + address + "}";
         }
+    }
+
+    private static String capitalizeWords(String name) {
+        String[] words = name.trim().split("\\s+");
+        StringBuilder result = new StringBuilder();
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                result.append(Character.toUpperCase(word.charAt(0)));
+                result.append(word.substring(1).toLowerCase());
+                result.append(" ");
+            }
+        }
+        return result.toString().trim();
     }
 }
