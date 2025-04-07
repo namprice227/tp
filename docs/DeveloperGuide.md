@@ -716,7 +716,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **2b.** Undo has already been used.
     - **2b1.** HealthSync informs the user that there is nothing to undo.
     - Use case ends.
-- **2c.** The most recent command is a `find` or `list` command.
+- **2c.** The most recent command is a `undo`, `redo` or `find` or `list` command.
     - **2c1.** HealthSync informs the user that there is nothing to undo.
     - Use case ends.
 - **2d.** The most recent command is an `archive` command.
