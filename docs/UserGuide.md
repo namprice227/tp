@@ -16,7 +16,8 @@ This hybrid approach supports rapid responses in a healthcare environment where 
 
 ---
 
-> **⚠️ Warning:** HealthSync is only designed for **Singapore-based family clinics**. It operates exclusively in **English** and does not support other languages or international clinic formats. 
+> **⚠️ Warning:** HealthSync is only designed for **Singapore-based family clinics**. It operates exclusively in **English** and does not support other languages or international clinic formats.
+> 
 > Using HealthSync with other languages or across multiple countries and timezones may lead to unexpected behaviour.
 
 ---
@@ -140,7 +141,7 @@ The main interface consists of several key components:
       * Green: Condition
       * Blue: Insurance
 
->**⚠️ Warning:** To ensure the UI updates consistently, click on a patient contact after making any changes to refresh the display. This ensures the interface reflects the latest data. 
+>**⚠️ Warning:** To ensure the UI updates consistently, click on a patient contact after making any changes to refresh the display. This ensures the interface reflects the latest data.
 
 <div style="page-break-after: always;"></div>
 
@@ -163,26 +164,25 @@ The current mode significantly impacts which operations you can perform.
 
 The following table clearly outlines which commands are functional in each mode:
 
-| Command         | Available in Normal Mode? | Available in Archive Mode? | Notes                                                     |
-| :-------------- | :------------------------ | :------------------------- | :-------------------------------------------------------- |
-| `add`           | ✅ Yes                    | ❌ No                      | Adds active patients                                      |
-| `edit`          | ✅ Yes                    | ❌ No                      | Edits active patients                                     |
-| `delete`        | ✅ Yes                    | ❌ No                      | Deletes active patients permanently                       |
-| `schedule`      | ✅ Yes                    | ❌ No                      | Schedules for active patients                             |
-| `emergency`     | ✅ Yes                    | ❌ No                      | Sets emergency contacts for active patients             |
-| `tag` (add/del) | ✅ Yes                    | ❌ No                      | Manages tags for active patients                          |
-| `sort`          | ✅ Yes                    | ❌ No                      | Sorts the active patient list                             |
-| `archive`       | ✅ Yes                    | ❌ No                      | Moves an active patient to the archive                  |
-| `clear`         | ✅ Yes                    | ❌ No                      | Clears *all* active patients (archive is unaffected)      |
-| `undo`          | ✅ Yes                    | ❌ No                      | Applies mainly to Normal Mode changes                     |
-| `redo`          | ✅ Yes                    | ❌ No                      | Applies mainly to Normal Mode changes                     |
-| `unarchive`     | ❌ No                     | ✅ Yes                     | Moves an archived patient back to the active list       |
-| ---             | ---                       | ---                        | ---                                                       |
-| `list`          | ✅ Yes                    | ✅ Yes                     | Switches to/Refreshes **Normal Mode** |
-| `listarchive`   | ✅ Yes                    | ✅ Yes                     | Switches to/Refreshes **Archive Mode** |
-| `find`          | ✅ Yes                    | ✅ Yes                     | Finds within the *currently displayed* list             |
-| `help`          | ✅ Yes                    | ✅ Yes                     | Available in both modes                                   |
-| `exit`          | ✅ Yes                    | ✅ Yes                     | Available in both modes                                   |
+| Command         | Available in Normal Mode? | Available in Archive Mode? | Notes                                                |
+|:----------------|:--------------------------|:---------------------------|:-----------------------------------------------------|
+| `add`           | ✅ Yes                     | ❌ No                       | Adds active patients                                 |
+| `edit`          | ✅ Yes                     | ❌ No                       | Edits active patients                                |
+| `delete`        | ✅ Yes                     | ❌ No                       | Deletes active patients permanently                  |
+| `schedule`      | ✅ Yes                     | ❌ No                       | Schedules for active patients                        |
+| `emergency`     | ✅ Yes                     | ❌ No                       | Sets emergency contacts for active patients          |
+| `tag` (add/del) | ✅ Yes                     | ❌ No                       | Manages tags for active patients                     |
+| `sort`          | ✅ Yes                     | ❌ No                       | Sorts the active patient list                        |
+| `archive`       | ✅ Yes                     | ❌ No                       | Moves an active patient to the archive               |
+| `clear`         | ✅ Yes                     | ❌ No                       | Clears *all* active patients (archive is unaffected) |
+| `undo`          | ✅ Yes                     | ❌ No                       | Applies mainly to Normal Mode changes                |
+| `redo`          | ✅ Yes                     | ❌ No                       | Applies mainly to Normal Mode changes                |
+| `unarchive`     | ❌ No                      | ✅ Yes                      | Moves an archived patient back to the active list    |
+| `list`          | ✅ Yes                     | ✅ Yes                      | Switches to/Refreshes **Normal Mode**                |
+| `listarchive`   | ✅ Yes                     | ✅ Yes                      | Switches to/Refreshes **Archive Mode**               |
+| `find`          | ✅ Yes                     | ✅ Yes                      | Finds within the *currently displayed* list          |
+| `help`          | ✅ Yes                     | ✅ Yes                      | Available in both modes                              |
+| `exit`          | ✅ Yes                     | ✅ Yes                      | Available in both modes                              |
 
 **Note on `undo`/`redo`:** These commands primarily revert changes made while in Normal Mode. Their effectiveness across mode switches or on actions performed in Archive Mode (like `unarchive`) might be limited. Refer to the specific command descriptions for details on `undo`/`redo` limitations.
 
@@ -203,6 +203,8 @@ The following table clearly outlines which commands are functional in each mode:
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+* All names added to HealthSync will have their first letter automatically capitalised. This applies to names entered through the `add`, `edit`, and `emergency` commands.
+
 > **⚠️ Warning:** For commands that require confirmation such as `edit`, `delete`, `exit` or `clear`, entering anything other than 'Y' or 'N' (in either uppercase or lowercase) will result in the command being cancelled.
 
 ### Viewing help : `help`
@@ -219,14 +221,17 @@ Adds a patient to HealthSync.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
-<box type="tip">: Name is case insensitive
+<box type="tip">: The first letter of a name will be automatically capitalised.
 </box>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/91234567`
 
-> **⚠️ Warning:** An entry is considered a duplicate if it shares the same name and phone number or the same name and email address. Phone numbers must be exactly 8 digits and begin with 6, 8, or 9.
+> **⚠️ Warning:** An entry is considered a duplicate if it shares the same name and phone number or the same name and email address.
+> 
+> Phone numbers must be exactly 8 digits and begin with 6, 8, or 9.
+>
 > HealthSync permits entries with identical phone numbers or email addresses, such as in parent-child relationships, but their names must be different to avoid duplication.
 
 ### Scheduling an appointment: `schedule`
@@ -280,7 +285,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-<box type="tip">: Name is case insensitive
+<box type="tip">: The first letter of a name will be automatically capitalised.
 </box>
 
 Examples:
@@ -297,6 +302,9 @@ Format: `emergency INDEX n/NAME p/PHONE_NUMBER r/RELATIONSHIP`
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …
 * All fields (name, phone, relationship) are required.
+
+<box type="tip">: The first letter of a name will be automatically capitalised.
+</box>
 
 Examples:
 * `emergency 1 n/Alden Tan p/98765432 r/Boyfriend` Sets the emergency contact for the 1st patient to be Alden Tan (Boyfriend) with phone number 98765432.
@@ -322,6 +330,7 @@ Examples:
   <img src="images/HealthSyncFindResult.png" width="240" height="300">
 *  `find Charles` returns `Charles` and `charles`
 * The command `find 81782349` returns the patient associated with the phone number 81782349.
+* The command `itscominghome@gmail.com` returns the patient associated with the email itscominghome@gmail.com
 
 ### Archiving a patient : `archive`
 
@@ -337,7 +346,7 @@ Example:
 * Run `list` to view patients, then enter `archive 2` to archive the 2nd patient in the main HealthSync patient list.
 
 > **⚠️ Warning:**  The `archive` command is not available while viewing the archived patient list.
-> 
+>
 ### Listing all patients in archive : `listarchive`
 
 Shows a list of all patients being archived.
@@ -402,7 +411,7 @@ Format: `tag <INDEX> ta/ALLERGY`
 </box>
 
 Examples:
-* `tag 1 ta/peanuts` assigns an allergy tag 'peanuts' to the patient at index 1.
+* `tag 1 ta/Shellfish` assigns an allergy tag 'Shellfish' to the patient at index 1.
 
   <img src="images/AddTagExample.png" width="450" height="320">
 * `tag 2 ti/prudential` assigns an insurance tag 'prudential' to the patient at index 2.
@@ -425,7 +434,7 @@ Format: `tag <INDEX> td/TAGNAME`
 </box>
 
 Examples:
-* `tag 1 td/peanuts` deletes the tag 'peanuts' from the patient at index 1.
+* `tag 1 td/Shellfish` deletes the tag 'Shellfish' from the patient at index 1.
 
   <img src="images/DeleteTagExample.png" width="450" height="320">
 * `tag 2 td/diabetes` deletes the tag 'diabetes' from the patient at index 2.
@@ -507,11 +516,11 @@ A patient is uniquely identified by their `NAME` and `PHONE_NUMBER` or `NAME` an
 
 This also applies to emergency contacts. To prevent unexpected app behavior, do not edit an emergency contact to have the same phone number as another emergency contact for the same patient. If an emergency contact is edited to have the same name and phone number as an existing one, it will be considered a duplicate and will trigger an error.
 
-| Parameter                | Details                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                         |
-|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`name/` NAME**         | This parameter accepts alphanumeric characters, the words `s/o`, `d/o`, spaces, and the following characters: `-`, `@`, `/`, `'`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `Mason's James`, `Soumya d/o Ramesh`, `Kai Havertz @ Gallagher` are examples of names you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit). <br/> <br/>     |
-| **`phone/`PHONE_NUMBER** | The phone number must be exactly 8 digits long and can only start with 6, 8, or 9. The field cannot be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | `91884567` and `88705469` are examples of phone numbers you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit)                                                |
-| **`email/` EMAIL**       | HealthSync follows the valid email address format detailed [here](https://help.xmatters.com/ondemand/trial/valid_email_format.htm) <br/> <br/> Emails should be of the format `local-part@domain` and adhere to the following constraints: <br/> 1. `local-part` should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br/> 2. This is followed by a `@` and then a domain name for `domain`. The domain name is made up of domain labels separated by periods. The domain name must:<br/>- end with a domain label at least 2 characters long<br/>- have each domain label start and end with alphanumeric characters<br/> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. | `thomastuchel@yahoo.com.uk` and `bellechoy@gmail.com` are examples of emails you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit).                          |
+| Parameter                | Details                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                        |
+|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`name/` NAME**         | This parameter accepts alphanumeric characters, the words `s/o`, `d/o`, spaces, and the following characters: `-`, `@`, `/`, `'`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `Mason's James`, `Soumya d/o Ramesh`, `Kai Havertz @ Gallagher` are examples of names you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit). <br/> <br/>    |
+| **`phone/`PHONE_NUMBER** | The phone number must be exactly 8 digits long and can only start with 6, 8, or 9. The field cannot be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | `91884567` and `88705469` are examples of phone numbers you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit)                                               |
+| **`email/` EMAIL**       | HealthSync follows the valid email address format detailed [here](https://help.xmatters.com/ondemand/trial/valid_email_format.htm) <br/> <br/> Emails should be of the format `local-part@domain` and adhere to the following constraints: <br/> 1. `local-part` should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br/> 2. This is followed by a `@` and then a domain name for `domain`. The domain name is made up of domain labels separated by periods. The domain name must:<br/>- end with a domain label at least 2 characters long<br/>- have each domain label start and end with alphanumeric characters<br/> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. | `thomastuchel@yahoo.com.uk` and `bellechoy@gmail.com` are examples of emails you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit).                         |
 | **`address/` ADDRESS**   | Addresses can be any value, but they cannot be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `987, Kensington Rd, 123465` and `Block 666, Westminster Street 6, #08-111` are examples of addresses you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit) |                                                                  
 <div style="page-break-after: always;"></div>
 

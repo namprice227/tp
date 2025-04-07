@@ -13,7 +13,8 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+* This project is based on the AddressBook-Level3 project created by the SE-EDU initiative.
+* The undo and redo features were inspired by the proposed implementation found in the [AddressBook-Level 3's Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html#proposed-undoredo-feature).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +24,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the `docs/diagrams` folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 ### Architecture
 
@@ -68,13 +72,13 @@ The sections below give more details of each component.
 
 ### UI Component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java).
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2425S2-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java).
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 #### Overview
 
-The `MainWindow` serves as the primary container for all UI components. It is responsible for orchestrating interactions between different UI elements and ensuring a seamless user experience. Its layout is defined in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml), which specifies the structure and arrangement of UI elements using JavaFX's XML-based markup.
+The `MainWindow` serves as the primary container for all UI components. It is responsible for orchestrating interactions between different UI elements and ensuring a seamless user experience. Its layout is defined in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-F11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml), which specifies the structure and arrangement of UI elements using JavaFX's XML-based markup.
 
 The UI consists of a `MainWindow`, which is composed of multiple UI parts, such as:
 The UI consists of a `MainWindow`, which is composed of multiple UI parts, such as:
@@ -113,7 +117,7 @@ This structure provides a **clear separation of concerns**, making it easier to 
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2425S2-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -145,7 +149,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
@@ -168,7 +172,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2425S2-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
@@ -187,7 +191,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
 #### Proposed Implementation
 
@@ -301,13 +305,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**: \
-Healthcare administrators in family clinics
+**Target user profile**:
+* User Role: HealthHealthcare administrators
+* Workplace: Family clinics
+* Responsibilities
+  * Maintain and update patient and emergency contact information.
+  * Effortlessly monitor and stay on top of patients’ upcoming appointments, reducing scheduling conflicts and ensuring prompt follow-ups.
+  * Efficiently manage and update essential patient data, including insurance details, allergies, medical conditions, and treatment history, to ensure comprehensive and accurate medical records.
 
-**Value proposition**: \
+**Value proposition**
+
 HealthSync allows healthcare staff to efficiently organize patient details and key contacts in one unified platform.
-With quick access to updated information, administrators can easily connect with medical staff and patients' families, ensuring smooth communication and
-prompt action, especially when managing recovery progress and treatment schedules.
+By providing quick access to up-to-date information, administrators can seamlessly connect with patients' emergency contacts, ensuring efficient communication and prompt action, particularly in managing recovery progress and treatment schedules.
 
 ### User Stories
 
@@ -451,7 +460,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 
 - **2a.** No patients have scheduled appointments.
-    - **2a1.** HealthSync sorts the list alphabetically by name. 
+    - **2a1.** HealthSync sorts the list alphabetically by name.
     - **2a2.** HealthSync notifies the user that no appointments are scheduled.
     - Use case ends.
 
@@ -707,7 +716,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **2b.** Undo has already been used.
     - **2b1.** HealthSync informs the user that there is nothing to undo.
     - Use case ends.
-- **2c.** The most recent command is a `find` or `list` command.
+- **2c.** The most recent command is a `undo`, `redo` or `find` or `list` command.
     - **2c1.** HealthSync informs the user that there is nothing to undo.
     - Use case ends.
 - **2d.** The most recent command is an `archive` command.
@@ -743,17 +752,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 
 ### Non-Functional Requirements
+1. Reliability and Availability:
+   * System Uptime:
+      HealthSync must be available for use at least 99% of the time, especially during clinic operating hours. Regular maintenance should be scheduled during off-peak times.
 
-- Should work on any mainstream OS as long as it has **Java 17 or above** installed.
-- Should be able to handle up to **50 concurrent patients** without noticeable sluggishness in performance for typical use.
-- A user with **above-average typing speed** for regular English text (i.e., not code or system admin commands) should be able to accomplish most tasks **faster using commands than with the mouse**.
-- **HealthSync must comply with relevant healthcare data protection regulations**, such as **PDPA**.
-- The architecture should support **modular extensions**, allowing for additional features (e.g., appointment scheduling, integration with electronic health records).
+   * Memory Recovery and Backup:
+      Contact data must be backed up daily to prevent data loss. The system should be able to recover from a backup within 2 hours of a failure.
+
+
+2. Performance Requirements:
+   *  Responsiveness: HealthSync should respond to user commands (e.g., adding, editing, or viewing contacts) within 3 seconds for typical operations under normal usage conditions (i.e., up to 1000 contacts in the database).
+
+   * Scalability:
+   HealthSync should be able to handle up to 5000 contacts without significant performance degradation. Basic operations, such as editing or adding contacts, should not exceed a response time of 4 seconds under this load.
+
+   * Concurrency: HealthSync should be able to handle up to 50 concurrent patients without noticeable sluggishness in performance for typical use.
+
+
+3. Usability Requirements:
+   * Command Efficiency:
+   A user with above-average typing speed for regular English text (i.e., not code or system admin commands) should be able to accomplish most tasks faster using commands than with the mouse.
+
+    * Error Handling and Feedback:
+The system must provide immediate feedback (within 1 second) when an error occurs, such as invalid input or missing fields. The user should be able to correct errors without restarting the operation.
+
+
+4. Data and Storage Requirements:
+   * Human-Editable File Format:
+   Contact information should be stored in a human-readable and editable format (e.g., .json or .csv) so that administrators can manually access and modify data if needed.
+
+    * Data Integrity: The system must ensure that no data is lost or corrupted during common operations (e.g., adding, updating, or deleting contacts). Transaction-like behavior must be implemented to ensure all data operations either succeed fully or fail without partially corrupting data.
+
+
+5. Compliance and Security:
+   * Healthcare Data Protection Compliance:
+   HealthSync must comply with relevant healthcare data protection regulations, such as PDPA, to ensure that patient data is handled securely and confidentially.
+
+
+6. Compatibility and Portability:
+   * Cross-Platform Support:
+   HealthSync must be compatible with mainstream operating systems (Windows, macOS, Linux) and function seamlessly on systems with Java 17 or higher installed.
+
+
+7. Maintainability and Extensibility:
+   * Modular Design:
+   The system should be designed with a modular architecture, allowing for easy future extensions such as additional data fields, user roles, or features (e.g., appointment scheduling or integration with electronic health records).
+
+   * Testability:
+HealthSync must be easily testable, with automated tests that can cover at least 70% of the codebase. Core features (e.g., adding a contact, deleting outdated contacts) should have dedicated test cases.
+
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -768,35 +820,44 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the latest jar file [here](https://github.com/AY2425S2-CS2103T-F11-3/tp/releases) and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Open a terminal window and use the `cd` command into the same folder
+   
+   3. Enter `java -jar HealthSync.jar` into the terminal. The window size may not be optimum initially but it can be sized.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. Shutdown
+    There are multiple ways to exit the application:
 
-### Deleting a person
+   1. Use the `exit` command.
+   
+   2. Click on the red cross on the application window.
 
-1. Deleting a person while all persons are being shown
+   3. Click `File` in the top left corner, then `Exit` in the dropdown menu.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+<div style="page-break-after: always;"></div>
+
+### Deleting a patient
+
+1. Deleting a patient while all patients are being shown
+
+   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -804,11 +865,33 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Glossary**
+1. **Command-Line Interface (CLI):** A method of interacting with HealthSync through typed text commands.
+2. **Emergency Contact:** The person to be notified in the event of a patient's emergency. Their name, phone number, and relationship to the patient are all stored in HealthSync.
+3. **Healthcare Administrator:** The primary user of HealthSync, responsible for managing patient and emergency contact details within a clinic environment.
+4. **HealthSync:** A healthcare application designed to assist healthcare administrators in efficiently managing patient contact information within a clinic.
+5. **Mainstream OS**: Windows, Linux, Unix, MacOS.
+6. **Private contact detail**: A contact detail intended to remain confidential and not shared with others
 
-1. **Mainstream OS**: Windows, Linux, Unix, MacOS
-2. **Private contact detail**: A contact detail that is not meant to be shared with others
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned Enhancements**
+
+The current version of HealthySync has some limitations, and we have outlined our plans for future improvements to enhance upcoming versions of HealthySync.
+
+### Multiple Language Support
+Currently, HealthSync is only available for usage in English. We recognise that our target users may not be able to read English proficiently or may only have non English names. Our planned enhancement is to translate HealthSync into other languages, such as Chinese and Tamil.
+
+### Removal of past appointment dates
+At present, HealthSync does not automatically remove or archive past appointment dates, which can clutter the system and make it harder to manage current and future appointments. We plan to implement an automatic system that will remove or archive past appointment dates, ensuring a cleaner, more efficient user experience by keeping only relevant and upcoming appointments visible.
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Effort**
+As Year 2 Computer Science students with limited software engineering project experience, building upon AddressBook3 (AB3) was particularly challenging for several reasons:
+
+1) Our limited experience with GitHub and workflow management, including reviewing pull requests and resolving conflicts.
+2) HealthSync, as a Brownfield project based on AB3, presented several challenges that required substantial effort from our team to overcome. One key challenge was efficiently managing multiple entity types, such as those in normal and archive modes, compared to AB3, which dealt with just a single entity type.
+3) The time constraint, with the need to build a relatively bug-free product in just over six weeks.
+
+However, as a group of five, we were able to collaborate effectively, dividing tasks efficiently to tackle challenges and build HealthSync.
