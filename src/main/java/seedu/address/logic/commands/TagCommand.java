@@ -132,20 +132,24 @@ public class TagCommand extends Command {
      * Checks if there are duplicate tags across the allergy, condition, and insurance categories.
      */
     private void checkForCrossCategoryDuplicates() throws CommandException {
-        Set<Tag> seen = new HashSet<>();
+        Set<String> seen = new HashSet<>();
+
         for (Tag tag : allergies) {
-            if (!seen.add(tag)) {
-                throw new CommandException("Duplicate tag across categories: " + tag.tagName);
+            String tagLower = tag.tagName.toLowerCase();
+            if (!seen.add(tagLower)) {
+                throw new CommandException("Duplicate tag \"" + tag.tagName + "\" found across categories.");
             }
         }
         for (Tag tag : conditions) {
-            if (!seen.add(tag)) {
-                throw new CommandException("Duplicate tag across categories: " + tag.tagName);
+            String tagLower = tag.tagName.toLowerCase();
+            if (!seen.add(tagLower)) {
+                throw new CommandException("Duplicate tag \"" + tag.tagName + "\" found across categories.");
             }
         }
         for (Tag tag : insurances) {
-            if (!seen.add(tag)) {
-                throw new CommandException("Duplicate tag across categories: " + tag.tagName);
+            String tagLower = tag.tagName.toLowerCase();
+            if (!seen.add(tagLower)) {
+                throw new CommandException("Duplicate tag \"" + tag.tagName + "\" found across categories.");
             }
         }
     }
