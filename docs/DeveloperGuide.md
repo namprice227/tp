@@ -78,40 +78,41 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 #### Overview
 
-The `MainWindow` serves as the primary container for all UI components. It is responsible for orchestrating interactions between different UI elements and ensuring a seamless user experience. Its layout is defined in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-F11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml), which specifies the structure and arrangement of UI elements using JavaFX's XML-based markup.
+## UI Component
 
-The UI consists of a `MainWindow`, which is composed of multiple UI parts, such as:
-The UI consists of a `MainWindow`, which is composed of multiple UI parts, such as:
+The `MainWindow` serves as the primary container for all UI components, orchestrating interactions between different elements and ensuring a seamless user experience for healthcare administrators managing patient records. Its layout is defined in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-F11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml), which specifies the structure and arrangement of UI elements using JavaFX's XML-based markup.
 
-- `CommandBox` – Handles user input.
-- `ResultDisplay` – Displays command execution results.
-- `PersonListPanel` – Controls the list of people displayed on the left side.
-- `PersonCard` – Represents a summarized view of a person in the `PersonListPanel`.
-- `PersonDetailPanel` – Displays detailed attributes of the selected person on the right side.
-- `PersonDetail` – Manages which details appear in the `PersonDetailPanel`.
-- `StatusBarFooter` – Displays application status details.
+The UI consists of a `MainWindow` that is composed of multiple UI parts, such as:
 
-All UI components, including `MainWindow`, inherit from the abstract `UiPart` class, which encapsulates common UI functionalities.
+- **`CommandBox`** – Handles user input, enabling administrators to quickly search, add, or update patient data.
+- **`ResultDisplay`** – Displays the results of executed commands, offering immediate feedback on operations (e.g., updating a patient's record).
+- **`PersonListPanel`** – Manages the list of patients (each represented as a `Person`) displayed on the left side, facilitating easy browsing and selection of patient records.
+- **`PersonCard`** – Represents a summarized view of a patient within the `PersonListPanel`, highlighting essential details such as the patient's name and contact information.
+- **`PersonDetailPanel`** – Displays detailed attributes of the selected patient on the right side, ensuring that administrators have a comprehensive view of patient data.
+- **`PersonDetail`** – Controls which patient details are shown in the `PersonDetailPanel`, ensuring that only relevant information is displayed.
+- **`StatusBarFooter`** – Shows application status details, such as the number of patients currently loaded and other system notifications.
 
-The `UI` component uses the **JavaFX UI framework**, and its layout is defined in `.fxml` files located in `src/main/resources/view`. For example, the layout of `MainWindow` is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml).
+All UI components, including `MainWindow`, inherit from the abstract `UiPart` class, which encapsulates common UI functionalities and ensures consistency across the application.
 
 #### Responsibilities of the UI Component
-The `UI` component:
+The `UI` component is responsible for managing the interface through which healthcare administrators interact with patient records. It:
 - Executes user commands by interacting with the `Logic` component.
-- Listens for changes in `Model` data and updates the UI accordingly.
-- Maintains a reference to the `Logic` component, as the UI depends on `Logic` to process user actions.
-- Displays `Person` objects retrieved from the `Model` component.
+- Listens for changes in `Model` data (which includes patient records) and updates the UI accordingly.
+- Maintains a reference to the `Logic` component, as the UI depends on it to process user actions.
+- Displays `Person` objects (representing patient records) retrieved from the `Model` component.
 
 #### Layout & Functionality
 
-- **Main Window (`MainWindow.fxml`)**: The central UI container, which defines the overall structure of the application. It organizes different UI elements and ensures smooth interaction between them.
-    - `MainWindow` initializes and manages key UI components like `CommandBox`, `ResultDisplay`, `PersonListPanel`, and `PersonDetailPanel`.
-    - It listens to user input and updates the display accordingly.
+- **Main Window (`MainWindow.fxml`)**:  
+  The central container that defines the overall structure of the application, ensuring a seamless user experience in managing patient data.
+    - `MainWindow` initializes and manages key UI components such as `CommandBox`, `ResultDisplay`, `PersonListPanel`, and `PersonDetailPanel`.
+    - It listens to user inputs from healthcare administrators and updates the display accordingly.
 
-- **Left Panel:** `PersonListPanel` determines which people appear in the list, and each person’s summary is represented by a `PersonCard`.
-- **Right Panel:** `PersonDetailPanel` displays a detailed view of the selected person, with `PersonDetail` managing which fields are shown.
+- **Left Panel:**  
+  The `PersonListPanel` displays a list of patients. Each patient's summary is represented by a `PersonCard`, allowing administrators to quickly scan through patient records.
 
-This structure provides a **clear separation of concerns**, making it easier to extend and modify the UI while keeping the codebase maintainable.
+- **Right Panel:**  
+  The `PersonDetailPanel` presents detailed information about the selected patient, with `PersonDetail` managing which fields are displayed to provide a comprehensive view of the patient's information.
 
 
 
@@ -153,21 +154,19 @@ How the parsing works:
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
+The **Model** component encapsulates and manages the core data of the application while remaining independent of the UI, Logic, and Storage components. Its responsibilities include:
 
-The `Model` component,
+- **Active Patient Data Management:**  
+  Active patient data is stored in a `VersionedAddressBook`, which maintains a complete collection of `Person` objects in a `UniquePersonList`. This design supports undo/redo functionality by preserving previous states of the address book.
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- **Archived Patient Data Management:**  
+  Archived patient data is managed separately via an `ArchivedBook`, which implements both the `ArchiveBook` and `ReadOnlyArchivedBook` interfaces. This separation ensures that archived records remain distinct from active records while still providing controlled, read-only access.
 
-<box type="info" seamless>
+- **Filtered Person List:**  
+  The Model keeps a filtered list of `Person` objects (e.g., as a result of search queries) as an unmodifiable `ObservableList<Person>`. The UI binds to this list so that it automatically updates when the underlying data changes.
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
-
-</box>
+- **User Preferences:**  
+  User-specific preferences are stored in a `UserPrefs` object, which is exposed externally as a `ReadOnlyUserPrefs` to prevent unwanted modifications by other components.
 
 
 ### Storage component
@@ -1067,6 +1066,13 @@ Currently, HealthSync is only available for usage in English. We recognise that 
 
 ### Removal of past appointment dates
 At present, HealthSync does not automatically remove or archive past appointment dates, which can clutter the system and make it harder to manage current and future appointments. We plan to implement an automatic system that will remove or archive past appointment dates, ensuring a cleaner, more efficient user experience by keeping only relevant and upcoming appointments visible.
+
+### UI Update on Undo
+Currently, when an undo operation is performed, the UI does not update immediately to reflect the change. In a future release, we plan to enhance the undo functionality so that the UI is updated in real time, providing healthcare administrators with immediate visual feedback and a more intuitive interaction experience.
+
+### Enhanced Find Command Functionality
+The current implementation of the find command does not strictly limit results by the complete name. For example, searching for "John Toh" displays all patients with names that include "John Toh" first, followed by those with partial matches like "John" or "TOh." Our planned enhancement aims to refine this functionality by prioritizing exact matches while still accommodating partial matches. This improvement will yield more precise search results, helping administrators locate patient records more efficiently.
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Effort**

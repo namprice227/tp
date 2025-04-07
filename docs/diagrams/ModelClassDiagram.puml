@@ -1,14 +1,14 @@
-```plantuml
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model as ModelPackage <<Rectangle>>{
-    Interface "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
-    Interface "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-    Interface "<<interface>>\nModel" as Model {
+package Model {
+    interface "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+    interface "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+    interface "<<interface>>\nReadOnlyArchivedBook" as ReadOnlyArchivedBook
+    interface "<<interface>>\nModel" as Model {
         + setUserPrefs(userPrefs: ReadOnlyUserPrefs)
         + getUserPrefs(): ReadOnlyUserPrefs
         + getGuiSettings(): GuiSettings
@@ -32,12 +32,14 @@ Package Model as ModelPackage <<Rectangle>>{
         + sortPersonListByName()
         + sortPersonListByAppointment()
     }
-    Class AddressBook
-    Class ModelManager
-    Class UserPrefs
 
-    Class UniquePersonList
-    Class Person {
+    class VersionedAddressBook
+    class ModelManager
+    class UserPrefs
+    class UniquePersonList
+    class ArchivedBook
+
+    class Person {
         - name: Name
         - phone: Phone
         - email: Email
@@ -46,35 +48,51 @@ Package Model as ModelPackage <<Rectangle>>{
         - emergencyPerson: EmergencyPerson
         - appointment: Appointment
     }
-    Class Address
-    Class Email
-    Class Name
-    Class Phone
-    Class Tag
-    Class EmergencyPerson
-    Class Appointment
-    Class GuiSettings
+    class Address
+    class Email
+    class Name
+    class Phone
+    class Tag
+
+    ' EmergencyPerson now explicitly stores its details.
+    class EmergencyPerson {
+        - name: String
+        - phone: String
+        - relationship: Relationship
+    }
+    ' Appointment now contains a DateTime field.
+    class Appointment {
+        - dateTime: DateTime
+    }
+    class DateTime
+    class Relationship
+    ' Associations and Inheritance:
+    VersionedAddressBook .up.|> ReadOnlyAddressBook
+    ArchivedBook .up.|> ReadOnlyArchivedBook
+    ModelManager .up.|> Model
+    UserPrefs .up.|> ReadOnlyUserPrefs
+
+    ModelManager --> "1" VersionedAddressBook
+    ModelManager --> "1" UserPrefs
+    ModelManager --> "1" ArchivedBook
+
+    VersionedAddressBook *--> "1" UniquePersonList
+    ArchivedBook *--> "1" UniquePersonList
+    UniquePersonList --> "0..*" Person
+
+    Person *--> Name
+    Person *--> Phone
+    Person *--> Email
+    Person *--> Address
+    Person *--> "*" Tag
+    Person *--> "0..1" EmergencyPerson
+    Person *--> "0..1" Appointment
+
+    Appointment *--> "1" DateTime
+    EmergencyPerson *--> "1" Relationship
+    EmergencyPerson *--> "1" Name
+    EmergencyPerson *--> "1" Phone
+
+    ModelManager --> Person
 }
-
-AddressBook .up.|> ReadOnlyAddressBook
-
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
-
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
-Person *--> "0..1" EmergencyPerson
-Person *--> "0..1" Appointment
-
-ModelManager --> "~* filtered" Person
 @enduml
-```
