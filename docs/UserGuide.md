@@ -8,17 +8,16 @@
 
 ---
 
-HealthSync is a **desktop application tailored for healthcare administrators in family clinics.** It centralises patients' personal information and emergency contact details into a single, easily accessible database, enabling administrators to efficiently manage data and contacts.
+HealthSync is a **desktop application designed specifically for healthcare administrators in family clinics.** It consolidates patients’ personal details and emergency contact information into a unified, easily accessible database, streamlining the management of critical data.
 
-By combining the speed of a Command Line Interface (CLI) with the visual clarity of a Graphical User Interface (GUI), HealthSync optimizes workflow for fast-typing administrators, enabling them to retrieve critical patient details and establish contact more efficiently than traditional GUI-only applications.
+By integrating the speed and efficiency of a Command Line Interface (CLI) with the intuitive design of a Graphical User Interface (GUI), HealthSync empowers fast-typing administrators to retrieve vital patient information and reach out to emergency contacts more swiftly than with traditional GUI-only systems.
 
-This ensures rapid response in a sector where every second matters.
+This hybrid approach supports rapid responses in a healthcare environment where every second counts.
 
 ---
 
-> **⚠️ Warning:** HealthSync is only designed for **Singapore-based family clinics**. It operates exclusively in **English** and does not support other languages or international clinic formats.
-
-Using HealthSync with other languages or across multiple countries and timezones may lead to unexpected behaviour.
+> **⚠️ Warning:** HealthSync is only designed for **Singapore-based family clinics**. It operates exclusively in **English** and does not support other languages or international clinic formats. 
+> Using HealthSync with other languages or across multiple countries and timezones may lead to unexpected behaviour.
 
 ---
 ## Table of Contents
@@ -28,7 +27,7 @@ Using HealthSync with other languages or across multiple countries and timezones
 4. [Features](#features)
     - [Viewing help: `help`](#viewing-help--help)
     - [Adding a patient: `add`](#adding-a-patient-add)
-    - [Schedule an appointment: `schedule`](#scheduling-an-appointment-schedule)
+    - [Scheduling an appointment: `schedule`](#scheduling-an-appointment-schedule)
     - [Listing all patients: `list`](#listing-all-patients--list)
     - [Sorting patients: `sort`](#sorting-patients--sort)
     - [Editing a patient: `edit`](#editing-a-patient--edit)
@@ -141,6 +140,8 @@ The main interface consists of several key components:
       * Green: Condition
       * Blue: Insurance
 
+>**⚠️ Warning:** To ensure the UI updates consistently, click on a patient contact after making any changes to refresh the display. This ensures the interface reflects the latest data. 
+
 <div style="page-break-after: always;"></div>
 
 ## Features
@@ -181,8 +182,8 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/91234567`
 
-> **⚠️ Warning:** An entry is considered a **duplicate** if it has the same name and phone number or the same name and email address. The phone number must be exactly 8 digits long and can only start with 6, 8, or 9.
-> **⚠️ Warning:** HealthSync allows the addition of two users with the same phone number or email address to account for potential parent-child relationships. However, their names must be different.
+> **⚠️ Warning:** An entry is considered a duplicate if it shares the same name and phone number or the same name and email address. Phone numbers must be exactly 8 digits and begin with 6, 8, or 9.
+> HealthSync permits entries with identical phone numbers or email addresses, such as in parent-child relationships, but their names must be different to avoid duplication.
 
 ### Scheduling an appointment: `schedule`
 
@@ -240,6 +241,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower` Edits the name of the 2nd patient to be `Betsy Crower`.
+
+> **⚠️ Warning:** Entering an invalid input (anything other than 'y' or 'n') in the confirmation prompt will cancel the command by default.
 
 ### Setting Emergency Contact : `emergency`
 
@@ -324,7 +327,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in HealthSync.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
-[Return Back to Find Command](#locating-patients-by-name-find)
+> **⚠️ Warning:** Entering an invalid input (anything other than 'y' or 'n') in the confirmation prompt will cancel the command by default.
 
 ### Clearing all entries : `clear`
 
@@ -332,13 +335,15 @@ Clears all entries from HealthSync.
 
 Format: `clear`
 
+> **⚠️ Warning:** Entering an invalid input (anything other than 'y' or 'n') in the confirmation prompt will cancel the command by default.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Tag Management
 
 ### Adding a tag: `ta/ ti/ tc/`
 
-* Adds a tag to a patient based on their index in the address book.
+* Adds a tag to a patient based on their index in the patient list.
 * Tags can be added for allergies (ta/), insurance (ti/), or conditions (tc/).
 * Tags are case-sensitive and need to be alphanumeric. e.g. `Peanuts` will not match `peanuts`
 * Tags can be more than 1 word in length. e.g. `broken leg`
@@ -368,7 +373,7 @@ Examples:
 
 ### Deleting a tag: `td/`
 
-* Deletes a tag from a patient based on their index in the address book.
+* Deletes a tag from a patient based on their index in the patient list.
 * Tags are case-sensitive. e.g. `Peanut` will not match `peanut`
 * Only full words will be matched e.g. `Peanut` will not match `Peanuts`
 
@@ -448,12 +453,13 @@ Furthermore, certain edits can cause the HealthSync to behave in unexpected ways
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimise the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimised, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+3. When a patient is selected and the `listarchive` command is executed, the patient details panel on the right is not refreshed as expected—it continues to display the previously selected patient's information. To resolve this, simply click on a patient in the archive list to refresh the display. If the archive list is empty, consider switching back to the main patient list, and ensure that no patient is selected before running the `listarchive` command again. 
 
 <div style="page-break-after: always;"></div>
 
 ## Valid Inputs for Patient parameters
 
-A patient is uniquely identified by their `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL`. Patients with the same `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL` will be flagged as duplicates and cannot be added to the address book.
+A patient is uniquely identified by their `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL`. Patients with the same `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL` will be flagged as duplicates and cannot be added to HealthSync.
 
 This also applies to emergency contacts. To prevent unexpected app behavior, do not edit an emergency contact to have the same phone number as another emergency contact for the same patient. If an emergency contact is edited to have the same name and phone number as an existing one, it will be considered a duplicate and will trigger an error.
 
@@ -462,8 +468,7 @@ This also applies to emergency contacts. To prevent unexpected app behavior, do 
 | **`name/` NAME**         | This parameter accepts alphanumeric characters, the words `s/o`, `d/o`, spaces, and the following characters: `-`, `@`, `/`, `'`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `Mason's James`, `Soumya d/o Ramesh`, `Kai Havertz @ Gallagher` are examples of names you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit). <br/> <br/>     |
 | **`phone/`PHONE_NUMBER** | The phone number must be exactly 8 digits long and can only start with 6, 8, or 9. The field cannot be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | `91884567` and `88705469` are examples of phone numbers you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit)                                                |
 | **`email/` EMAIL**       | HealthSync follows the valid email address format detailed [here](https://help.xmatters.com/ondemand/trial/valid_email_format.htm) <br/> <br/> Emails should be of the format `local-part@domain` and adhere to the following constraints: <br/> 1. `local-part` should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br/> 2. This is followed by a `@` and then a domain name for `domain`. The domain name is made up of domain labels separated by periods. The domain name must:<br/>- end with a domain label at least 2 characters long<br/>- have each domain label start and end with alphanumeric characters<br/> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. | `thomastuchel@yahoo.com.uk` and `bellechoy@gmail.com` are examples of emails you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit).                          |
-| **`address/` ADDRESS**   | Addresses can be any value, but they cannot be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `987, Kensington Rd, 123465` and `Block 666, Westminister Street 6, #08-111` are examples of addresses you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit) |                                                                                                                                                                                                                                                     |                                                                                                                                                                                            | Refer to `phone/` above.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                              | Tags should only contain alphanumeric characters, spaces, periods `.` or hyphens `-`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `Mandarin-speaking`, `short-term patient`  are examples of tags you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit) or [`addec`](#adding-an-emergency-contact--addec) command `t/` parameter.                  |
-
+| **`address/` ADDRESS**   | Addresses can be any value, but they cannot be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `987, Kensington Rd, 123465` and `Block 666, Westminister Street 6, #08-111` are examples of addresses you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit) |                                                                  
 <div style="page-break-after: always;"></div>
 
 ## Command Summary
