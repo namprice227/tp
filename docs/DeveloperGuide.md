@@ -818,7 +818,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+1. Initial Launch
 
    1. Download the latest jar file [here](https://github.com/AY2425S2-CS2103T-F11-3/tp/releases) and copy into an empty folder
 
@@ -826,7 +826,7 @@ testers are expected to do more *exploratory* testing.
    
    3. Enter `java -jar HealthSync.jar` into the terminal. The window size may not be optimum initially but it can be sized.
 
-2. Saving window preferences
+2. Saving Window Preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
@@ -844,26 +844,204 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>
 
-### Deleting a patient
+### Testable Features
 
-1. Deleting a patient while all patients are being shown
+#### 1. Scheduling an Appointment
 
-   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
+1. **Scheduling an appointment successfully**
+    - **Prerequisites:** A patient is already added and visible in the list. No upcoming appointment exists for the patient.
+    - **Test case:** `schedule 1 12-04-2025 14:30`  
+      **Expected:** Appointment is scheduled for patient at index 1. A confirmation message is shown, including the updated appointment details. The scheduled date and time are in the future, and there is a minimum gap of 15 minutes from any other appointment.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+2. **Scheduling an appointment in the past**
+    - **Prerequisites:** A patient exists.
+    - **Test case:** `schedule 1 01-01-2020 10:00`  
+      **Expected:** No appointment is scheduled. An error message is displayed indicating that the appointment must be set in the future.
 
-   1. Test case: `delete 0`<br>
-      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
+3. **Scheduling a duplicate appointment**
+    - **Prerequisites:** A patient already has an appointment scheduled at a specific date and time.
+    - **Test case:** `schedule 1 12-04-2025 14:30` (if already scheduled)  
+      **Expected:** No new appointment is created. An error message is displayed stating that duplicate appointments are not permitted.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+4. **Scheduling with insufficient gap between appointments**
+    - **Prerequisites:** The patient already has an appointment scheduled by another person (or for a different reason) at a specific time.
+    - **Test case:** `schedule 1 12-04-2025 14:40` (if there is another appointment within 15 minutes of the new appointment)
+      **Expected:** The system displays an error message indicating that the appointment cannot be scheduled because another appointment is within 15 minutes.
 
-### Saving data
+---
 
-1. Dealing with missing/corrupted data files
+#### 2. Sort
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. **Sort patients by name**
+    - **Prerequisites:** Multiple patients exist in the list, with varying names.
+    - **Test case:** `sort name`  
+      **Expected:** The patient list is sorted in ascending alphabetical order by name. In case of duplicate names, the most recently added patient appears first.
+
+2. **Sort patients by appointment**
+    - **Prerequisites:** Some patients have appointments while others do not.
+    - **Test case:** `sort appointment`  
+      **Expected:** Patients with appointments are listed first, sorted in lexicographical order by appointment date (nearest upcoming appointment at the top), followed by patients without appointments.
+
+3. **Invalid sort field**
+    - **Test case:** `sort invalidField`  
+      **Expected:** The system displays an error message stating that the specified field is not available for sorting.
+
+---
+
+#### 3. Setting Emergency Contact
+
+1. **Setting a valid emergency contact**
+    - **Prerequisites:** A patient is present in the list.
+    - **Test case:** `emergency 1 n/Alden Tan p/98765432 r/Boyfriend`  
+      **Expected:** Emergency contact details for the patient at index 1 are updated. A confirmation message is displayed showing the new emergency contact details.
+
+2. **Incomplete emergency contact details**
+    - **Test case:** `emergency 1 n/Alden Tan p/98765432` (missing relationship)  
+      **Expected:** The system displays an error message indicating that all fields (name, phone, relationship) are required.
+
+3. **Invalid patient index for emergency contact**
+    - **Test case:** `emergency 0 n/Alden Tan p/98765432 r/Boyfriend`  
+      **Expected:** No update is made. The system shows an error message regarding the invalid patient index.
+
+---
+
+#### 4. Archiving a Patient
+
+1. **Archiving a patient successfully**
+    - **Prerequisites:** The patient list is visible with multiple patients (use the `list` command first).
+    - **Test case:** `archive 2`  
+      **Expected:** The patient at index 2 is moved from the main patient list to the archive list. A confirmation message is displayed.
+
+2. **Archiving with an invalid index**
+    - **Test case:** `archive 0` or `archive 100` (when index is out of range)  
+      **Expected:** No patient is archived. An error message is shown regarding the invalid index.
+
+3. **Attempting to archive while in archive mode**
+    - **Prerequisites:** The system is in archive mode (viewing archived patients).
+    - **Test case:** `archive 1`  
+      **Expected:** The system informs the user that the archive command is not available while viewing the archived patient list.
+
+---
+
+#### 5. Listing All Patients in Archive
+
+1. **Listing archived patients when archive is non-empty**
+    - **Prerequisites:** At least one patient has been archived (use the `archive` command first).
+    - **Test case:** `listarchive`  
+      **Expected:** The system retrieves and displays the list of archived patients along with a confirmation message.
+
+2. **Listing archived patients when there are no archived patients**
+    - **Prerequisites:** No patients have been archived.
+    - **Test case:** `listarchive` (when archive is empty)  
+      **Expected:** The system retrieves and displays an empty list of archived patients along with a confirmation message.
+
+3. **Attempting restricted commands in archive mode**
+    - **Prerequisites:** The system is in archive mode (use the `listarchive` command first).
+    - **Test case:** Use any command other than `find` or `unarchive` (e.g., `delete 1`)  
+      **Expected:** The system displays a message indicating that the command cannot be executed in archive mode.
+
+---
+
+#### 6. Unarchiving a Patient
+
+1. **Unarchiving a patient successfully**
+    - **Prerequisites:** The archive list contains at least one patient (use the `archive` command first).
+    - **Test case:** `unarchive 1`  
+      **Expected:** The patient at index 1 in the archive list is moved back to the main patient list. A confirmation message is displayed.
+
+2. **Unarchiving with an invalid index**
+    - **Test case:** `unarchive 0` or `unarchive 10` (if the index is out of range)  
+      **Expected:** No patient is unarchived. An error message is displayed regarding the invalid index.
+
+3. **Attempting to use `unarchive` while not in archive mode**
+    - **Prerequisites:** The system is in the main patient list view. (use the `list` command first)
+    - **Test case:** `unarchive 1`  
+      **Expected:** The system informs the user that the unarchive command is not available while viewing the main patient list.
+
+---
+
+#### 7. Adding a Tag
+
+1. **Adding a new tag successfully**
+    - **Prerequisites:** A patient exists in the list.
+    - **Test case:** `tag 1 ta/peanuts`  
+      **Expected:** The tag "peanuts" is added to the patient at index 1. A confirmation message is displayed showing the updated tag list.
+
+2. **Attempting to add a duplicate tag**
+    - **Prerequisites:** The patient already has the tag "asthma".
+    - **Test case:** `tag 1 tc/asthma`  
+      **Expected:** The system recognises the duplicate and does not add it. A message is displayed indicating that the tag already exists.
+
+3. **Adding a tag with invalid format**
+    - **Test case:** `tag 1 ti/!@#`  
+      **Expected:** No tag is added. The system displays an error message indicating that the tag must be alphanumeric.
+
+---
+
+#### 8. Undoing a Command
+
+1. **Successful undo of a modifying command**
+    - **Prerequisites:** A modifying command (e.g., `edit`, `delete`, `tag`) has been executed.
+    - **Test case:** `undo`  
+      **Expected:** The system reverts to the state before the last modifying command and displays a confirmation message with the updated data.
+
+2. **Attempting undo when no command is available to undo**
+    - **Prerequisites:** No modifying command (e.g., `edit`, `delete`, `tag`) has been executed.
+    - **Test case:** `undo` (when no prior modifying command exists)  
+      **Expected:** No changes are made. An error message is displayed stating that there is nothing to undo.
+
+3. **Attempting to perform undo twice in succession**
+    - **Prerequisites:** A modifying command was undone (use the `undo` command first).
+    - **Test case:** `undo` (executed again immediately)  
+      **Expected:** The system displays an error message indicating that undo can only be done once and no further undo is possible.
+
+4. **Attempting to undo an archive command**
+    - **Prerequisites:** The most recent command is an `archive` command (use the `archive` command first). 
+    - **Test case:** `undo`  
+      **Expected:** The system displays an error message stating that the archive command cannot be undone.
+
+---
+
+#### 9. Redoing a Command
+
+1. **Successful redo after an undo**
+    - **Prerequisites:** A modifying command was undone using `undo` (use the `undo` command first).
+    - **Test case:** `redo`  
+      **Expected:** The previously undone command is reapplied, and the system confirms the change by displaying the updated data.
+
+2. **Attempting redo when no command is available to redo**
+    - **Prerequisites:** The most recent command is not an `undo` command.
+     - **Test case:** `redo` (when no prior undo has been executed)  
+      **Expected:** No changes occur. An error message is shown stating that there is nothing to redo.
+
+3. **Attempting to perform redo multiple times in succession**
+    - **Prerequisites:** The most recent command is a `redo` command (use the `redo` command first).
+     - **Test case:** `redo` (executed again immediately)  
+      **Expected:** The system displays an error message indicating that redo cannot be performed repeatedly.
+
+
+### Saving Data
+
+1. **Data Persistence after Operations**
+    - **Steps:**
+        1. Perform various add, edit, or delete operations in HealthSync.
+        2. Close the application.
+        3. Re-launch the application.
+    - **Expected:** Data should save automatically and persist after closing and reopening the app.
+
+2. **Handling a Missing or Corrupted Data File**
+    - **Issue:** If the data file located at `[JAR file location]/data/addressbook.json` is missing or becomes corrupted (e.g., due to manual editing errors), HealthSync will initialise with default (empty) data.
+    - **Resolution Instructions:**
+        1. **Verify the Data File:**
+            - Check the `/data` folder to ensure that `addressbook.json` exists and is in the correct JSON format.
+        2. **If the File is Missing or Corrupted:**
+            - **Restore from Backup:** If you have a backup copy of the file, replace the corrupted or missing file with the backup.
+            - **Proceed with Default Data:** If no backup is available, note that HealthSync will start with an empty data file, and an error or warning message will be displayed.
+        3. **Preventive Measure:**
+            - Always take a backup of the `addressbook.json` file before making manual edits, as improper changes can lead to data loss or unexpected application behaviour.
+    - **Expected:** Upon re-launching the app:
+        - HealthSync displays a warning or error message about the missing or corrupted data file.
+        - The app initialises with an empty data file, allowing you to continue using the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
