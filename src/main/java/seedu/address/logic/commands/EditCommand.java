@@ -84,16 +84,16 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size() || index.getZeroBased() < 0) {
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+            EditCommand.MESSAGE_USAGE));
+        }
 
         if (needsConfirmation) {
             needsConfirmation = false;
             return new CommandResult(MESSAGE_CONFIRMATION, false, false, true);
-        }
-
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
@@ -104,10 +104,12 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_NO_CHANGES);
         }
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if ((!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson))
+                || model.hasConflictingPerson(editedPerson, personToEdit)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        model.setLastCommandArchiveRelated(false);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));

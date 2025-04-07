@@ -12,7 +12,7 @@ HealthSync is a **desktop application tailored for healthcare administrators in 
 
 By combining the speed of a Command Line Interface (CLI) with the visual clarity of a Graphical User Interface (GUI), HealthSync optimizes workflow for fast-typing administrators, enabling them to retrieve critical patient details and establish contact more efficiently than traditional GUI-only applications.
 
-This ensures rapid response when every second matters.
+This ensures rapid response in a sector where every second matters.
 
 ---
 
@@ -22,29 +22,29 @@ Using HealthSync with other languages or across multiple countries and timezones
 
 ---
 ## Table of Contents
-1. [How to Use this User Guide](#how-to-use-this-user-guide)
+1. [How to use this User Guide](#how-to-use-this-user-guide)
 2. [Quick Start](#quick-start)
 3. [Overview of GUI](#overview-of-gui)
 4. [Features](#features)
-    - [Viewing help: `help`](#viewing-help-help)
+    - [Viewing help: `help`](#viewing-help--help)
     - [Adding a patient: `add`](#adding-a-patient-add)
     - [Schedule an appointment: `schedule`](#scheduling-an-appointment-schedule)
-    - [Listing all patients: `list`](#listing-all-patients-list)
-    - [Sorting patients: `sort`](#sorting-patients-sort)
-    - [Editing a patient: `edit`](#editing-a-patient-edit)
-    - [Setting emergency contact: `emergency`](#setting-emergency-contact-emergency)
+    - [Listing all patients: `list`](#listing-all-patients--list)
+    - [Sorting patients: `sort`](#sorting-patients--sort)
+    - [Editing a patient: `edit`](#editing-a-patient--edit)
+    - [Setting emergency contact: `emergency`](#setting-emergency-contact--emergency)
     - [Locating patients by name: `find`](#locating-patients-by-name-find)
-    - [Archiving a patient: `archive`](#archiving-a-patient-archive)
-    - [Listing archived patients: `listarchive`](#listing-archived-patients-listarchive)
-    - [Unarchiving a patient: `unarchive`](#unarchiving-a-patient-unarchive)
-    - [Deleting a patient: `delete`](#deleting-a-patient-delete)
-    - [Clearing all entries: `clear`](#clearing-all-entries-clear)
+    - [Archiving a patient: `archive`](#archiving-a-patient--archive)
+    - [Listing archived patients: `listarchive`](#listing-all-patients-in-archive--listarchive)
+    - [Unarchiving a patient: `unarchive`](#unarchiving-a-patient--unarchive)
+    - [Deleting a patient: `delete`](#deleting-a-patient--delete)
+    - [Clearing all entries: `clear`](#clearing-all-entries--clear)
     - [Tag Management](#tag-management)
-        - [Adding a tag: `tag`](#adding-a-tag-tag)
-        - [Deleting a tag: `tag`](#deleting-a-tag-tag)
+        - [Adding a tag: `tag`](#adding-a-tag-ta-ti-tc)
+        - [Deleting a tag: `tag`](#deleting-a-tag-td)
     - [Undoing a command: `undo`](#undoing-a-command-undo)
     - [Redoing a command: `redo`](#redoing-a-command-redo)
-    - [Exiting the program: `exit`](#exiting-the-program-exit)
+    - [Exiting the program: `exit`](#exiting-the-program--exit)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
 5. [FAQ](#faq)
@@ -54,9 +54,10 @@ Using HealthSync with other languages or across multiple countries and timezones
 9. [Glossary](#glossary)
      - [Terminology](#terminology)
 
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-## How to Use this User Guide
+## How to use this User Guide
 This User Guide is designed to help you understand and use HealthSync effectively. Below are some tips on how to navigate and use this guide:
 
 1. **[Table of Contents](#table-of-contents)**: Use this to instantly jump to the section you are interested in.
@@ -67,30 +68,32 @@ This User Guide is designed to help you understand and use HealthSync effectivel
 6. **[Known Issues](#known-issues)**: Lists existing issues and their solutions.
 7. **[Command Summary](#command-summary)**: A quick reference table for command formats.
 
-By referring to these sections, you can quickly find the information you need and fully utilise HealthSync.
+By referring to these sections, you can quickly find the information you need and fully utilize HealthSync.
 
 ## Legend
-**⚠️**: This symbol serves as a warning that executing a specific command in a given context may result in unexpected behavior.
+**⚠️**: The symbol serves as a warning that executing a specific command in a given context may result in unexpected behavior.
 
 <box type="tip">: The symbol provides helpful guidance on using the command effectively to meet your needs.
 </box>
 
-## Quick Start
+<div style="page-break-after: always;"></div>
+
+## Quick start
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    * You can check your Java version by following the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line).
    * If you do not have Java `17` or above installed in your computer, you can download Java from [here](https://www.oracle.com/java/technologies/downloads/#java17).
    * **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-2. Download the latest release of the `healthsync.jar` file from [here](https://github.com/AY2425S2-CS2103T-F11-3/tp/releases).
+2. Download the latest release of the `HealthSync.jar` file from [here](https://github.com/AY2425S2-CS2103T-F11-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for HealthSync. The _home folder_ will be where all the data files will be saved.
 
-4. For *Windows:* Open the home folder and right-click anywhere in the blue box, as shown in the image below. Click "Open in Terminal". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
+4. For *Windows:* Open the home folder and right-click anywhere in the blue box, as shown in the image below. Click "Open in Terminal". A terminal window will pop up, then type in the command `java -jar HealthSync.jar` to run the application.
 
    <img src="images/Windows.png" width="440" height="330">
 
-   For *MacOS:* Right-click home folder. Select "New Terminal at folder". A terminal window will pop up, then type in the command `java -jar healthsync.jar` to run the application.
+   For *MacOS:* Right-click home folder. Select "New Terminal at folder". A terminal window will pop up, then type in the command `java -jar HealthSync.jar` to run the application.
 
    <img src="images/MacUser.png" width="440" height="330">
 
@@ -105,6 +108,8 @@ By referring to these sections, you can quickly find the information you need an
    * `exit` : Exits the app.
 
 7. Refer to the [Features](#features) below for details of each command.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## Overview of [GUI](#gui)
@@ -126,8 +131,8 @@ The main interface consists of several key components:
    * Provides feedback such as confirmations, errors, and system notifications.
 4. **Patient List Panel**
    * Displays a list of all registered patients.
-   * Clicking on a patient will show their details in the Person Detail Panel.
-5. **Person Details Panel**
+   * Clicking on a patient will show their details in the Patient Detail Panel.
+5. **Patient Details Panel**
    * Shows detailed information about the selected patient, such as their medical history, emergency contacts, and insurance details.
 6. **Tags**
     * Used to record Allergies, Conditions and Insurance of a patient.
@@ -135,6 +140,8 @@ The main interface consists of several key components:
       * Red: Allergy
       * Green: Condition
       * Blue: Insurance
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -148,17 +155,16 @@ The main interface consists of several key components:
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
+
+> **⚠️ Warning:**  For commands that require confirmation, entering anything other than y or n will cancel the command.
 
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
-<img src="images/HealthSyncHelpMessage.png" width="500" height="50">
+<img src="images/helpMessage.png" width="420" height="50">
 
 Format: `help`
 
@@ -168,11 +174,15 @@ Adds a patient to HealthSync.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
+<box type="tip">: Name is case insensitive
+</box>
+
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/91234567`
 
 > **⚠️ Warning:** An entry is considered a **duplicate** if it has the same name and phone number or the same name and email address. The phone number must be exactly 8 digits long and can only start with 6, 8, or 9.
+> **⚠️ Warning:** HealthSync allows the addition of two users with the same phone number or email address to account for potential parent-child relationships. However, their names must be different.
 
 ### Scheduling an appointment: `schedule`
 
@@ -182,6 +192,7 @@ Format:
 `schedule INDEX dd-MM-yyyy HH:mm`
 
 <box type="tip">: Ensure the date and time are in the future.
+Ensure that there is a minimum gap of 15 minutes between scheduled events.
 </box>
 
 Examples:
@@ -189,6 +200,7 @@ Examples:
 - `schedule 2 05-06-2025 09:00`
 
 > **⚠️ Warning:** An appointment is considered a **duplicate** if it has the same date and time as an existing appointment.
+> > **⚠️ Warning:** HealthSync only allows scheduling up to one upcoming appointment at a time.
 
 ### Listing all patients : `list`
 
@@ -221,6 +233,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
+<box type="tip">: Name is case insensitive
+</box>
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
@@ -259,20 +274,20 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find david roy` returns `David Li`, `Roy Balakrishnan`<br>
   <img src="images/HealthSyncFindResult.png" width="240" height="300">
-
+*  `find Charles` returns `Charles` and `charles`
 
 ### Archiving a patient : `archive`
 
-Archives the specified patient from HealthSync. Removes patient from address book and adds them into archive list.
+Archives the patient at the specified `INDEX` from the main patient list and adds them into the archive list.
 
 Format: `archive INDEX`
 
 * Archives the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
+* The index refers to the index number shown in the displayed patient list after using the `list` command.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `list` followed by `archive 2` archives the 2nd patient in HealthSync.
+* Run `list` to view patients, then enter `archive 2` to archive the 2nd patient in the main HealthSync patient list.
 
 ### Listing all patients in archive : `listarchive`
 
@@ -293,6 +308,8 @@ Format: `unarchive INDEX`
 Example:
 * `listarchive` followed by `unarchive 2` adds the 2nd patient in archive list back to HealthSync.
 
+> **⚠️ Warning:**  The `unarchive` command is not available while viewing the displayed patient list.
+
 ### Deleting a patient : `delete`
 
 Deletes the specified patient from HealthSync.
@@ -307,7 +324,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in HealthSync.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
-[Return Back to Table of Contents](#table-of-contents)
+[Return Back to Find Command](#locating-patients-by-name-find)
 
 ### Clearing all entries : `clear`
 
@@ -326,6 +343,10 @@ Format: `clear`
 * Tags are case-sensitive and need to be alphanumeric. e.g. `Peanuts` will not match `peanuts`
 * Tags can be more than 1 word in length. e.g. `broken leg`
 
+<box type="tip">: Multiple tags can be added simultaneously using the format: tag [index] ta/[allergy] tc/[condition] ti/[insurance].
+The order of the tags does not matter.
+</box>
+
 Format: `tag <INDEX> ta/ALLERGY`
          `tag <INDEX> ti/INSURANCE`
          `tag <INDEX> tc/CONDITION`
@@ -339,6 +360,7 @@ Examples:
   <img src="images/AddTagExample.png" width="450" height="320">
 * `tag 2 ti/prudential` assigns an insurance tag 'prudential' to the patient at index 2.
 * `tag 3 tc/diabetes` assigns a medical condition tag 'diabetes' to the patient at index 3.
+* `tag 4 ta/peanuts tc/headache ti/public` assigns an allergy tag 'peanuts', a medical condition tag 'headache' and insurance tag 'public' to the patient at index 4.
 
 > **⚠️ Warning:** If the tag already exists for the patient, it will not be added again.
 
@@ -372,6 +394,7 @@ Format: `undo`
 > **⚠️ Warning:**
 > * Cannot be used repeatedly to undo multiple actions.
 > * Cannot undo `undo`, `redo`, `help`, `list`, `find` or `exit` commands.
+> * The undo command can only revert the most recent action and cannot be used repeatedly to undo multiple past actions.
 
 [Return Back to Table of Contents](#table-of-contents)
 
@@ -387,6 +410,7 @@ Format: `redo`
 > **⚠️ Warning:**
 > * Can only be used if `undo` was previously executed.
 > * Cannot redo commands that were not undone.
+> * Cannot be used repeatedly to redo multiple actions.
 
 Example:
 * `redo` (Restores the last undone action)
@@ -406,38 +430,42 @@ HealthSync data are saved in the hard disk automatically after any command that 
 HealthSync data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 > **⚠️ Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, HealthSync will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the HealthSync to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HealthSync home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known Issues
+## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimise the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimised, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
+<div style="page-break-after: always;"></div>
+
 ## Valid Inputs for Patient parameters
 
-A patient is uniquely identified by their `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL`. Persons with the same `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL` will be flagged as duplicates and cannot be added to the address book.
+A patient is uniquely identified by their `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL`. Patients with the same `NAME` and `PHONE_NUMBER` or `NAME` and `EMAIL` will be flagged as duplicates and cannot be added to the address book.
 
 This also applies to emergency contacts. To prevent unexpected app behavior, do not edit an emergency contact to have the same phone number as another emergency contact for the same patient. If an emergency contact is edited to have the same name and phone number as an existing one, it will be considered a duplicate and will trigger an error.
 
 | Parameter                | Details                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                         |
 |--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`name/` NAME**         | This parameter accepts alphanumeric characters, the words `s/o`, `d/o`, spaces, and the following characters: `-`, `@`, `/`, `'`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `Mason's James`, `Soumya d/o Rajesh`, `Kai Havertz @ Flop` are examples of names you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit). <br/> <br/>          |
+| **`name/` NAME**         | This parameter accepts alphanumeric characters, the words `s/o`, `d/o`, spaces, and the following characters: `-`, `@`, `/`, `'`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `Mason's James`, `Soumya d/o Ramesh`, `Kai Havertz @ Gallagher` are examples of names you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit). <br/> <br/>     |
 | **`phone/`PHONE_NUMBER** | The phone number must be exactly 8 digits long and can only start with 6, 8, or 9. The field cannot be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | `91884567` and `88705469` are examples of phone numbers you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit)                                                |
 | **`email/` EMAIL**       | HealthSync follows the valid email address format detailed [here](https://help.xmatters.com/ondemand/trial/valid_email_format.htm) <br/> <br/> Emails should be of the format `local-part@domain` and adhere to the following constraints: <br/> 1. `local-part` should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br/> 2. This is followed by a `@` and then a domain name for `domain`. The domain name is made up of domain labels separated by periods. The domain name must:<br/>- end with a domain label at least 2 characters long<br/>- have each domain label start and end with alphanumeric characters<br/> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. | `thomastuchel@yahoo.com.uk` and `bellechoy@gmail.com` are examples of emails you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit).                          |
 | **`address/` ADDRESS**   | Addresses can be any value, but they cannot be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `987, Kensington Rd, 123465` and `Block 666, Westminister Street 6, #08-111` are examples of addresses you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit) |                                                                                                                                                                                                                                                     |                                                                                                                                                                                            | Refer to `phone/` above.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                              | Tags should only contain alphanumeric characters, spaces, periods `.` or hyphens `-`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `Mandarin-speaking`, `short-term patient`  are examples of tags you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit) or [`addec`](#adding-an-emergency-contact--addec) command `t/` parameter.                  |
 
 <div style="page-break-after: always;"></div>
---------------------------------------------------------------------------------------------------------------------
+
 ## Command Summary
 
 | **Action**                 | **Format, Examples**                                                                                        |
@@ -463,19 +491,20 @@ This also applies to emergency contacts. To prevent unexpected app behavior, do 
 | **Help**                   | `help`                                                                                                      |
 | **Exit**                   | `exit`                                                                                                      |
 
+<div style="page-break-after: always;"></div>
+
 ## Glossary
 ### Terminology
 
-| Term                                               | Details                                                                                    | Example                                                                                                                                                                                                                    |
-|----------------------------------------------------|--------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Alphanumeric**                                   | Characters that are letters or numbers.                                                    | 1, 2, 3, A, b, c are alphanumeric characters.                                                                                                                                                                              |
-| **Command**                                        | Instructions for HealthSync to execute.                                                    | [Features](#features) are commands that HealthSync can execute. [`list`](listing-all-patients-list) is one such command.                                                                                                   |
-| <a name="cli" />**Command Line Interface (CLI)**   | An interface where users type commands.                                                    | The command line acts as a CLI in HealthSync.                                                                                                                                                                              |
-| <a name="gui" />**Graphical User Interface (GUI)** | An interface using buttons, icons and visuals                                              | HealthSync acts as a GUI.                                                                                                                                                                                                  |
-| **JSON**                                           | JSON (JavaScript Object Notation) is a lightweight format for storing and exchanging data. | The data file used by HealthSync is in JSON format.                                                                                                                                                                        |
-| **Keyword**                                        | The word you want to search for in a `find` command.                                       | Searching for a patient named Eden Lampard could be done by using keywords `Eden` or `Lampard`.                                                                                                                            |
-| **Parameter**                                      | Required input for a command.                                                              | `NAME` and `EMAIL` are examples of parameters you have to provide in an [`add`](#adding-a-patient-add) command.<br><br>`Terry John` and `terry@hotmail.com` are possible examples to provide to the respective parameters. |
+| Term                                               | Details                                                                                                                                                                                                  | Example                                                                                                                                                                                                                    |
+|----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Alphanumeric**                                   | Characters that are letters or numbers.                                                                                                                                                                  | 1, 2, 3, A, b, c are alphanumeric characters.                                                                                                                                                                              |
+| **Command**                                        | Instructions for HealthSync to execute.                                                                                                                                                                  | [Features](#features) are commands that HealthSync can execute. [`list`](listing-all-patients-list) is one such command.                                                                                                   |
+| <a name="cli" />**Command Line Interface (CLI)**   | An interface where users type commands.                                                                                                                                                                  | The command line acts as a CLI in HealthSync.                                                                                                                                                                              |
+| **Fast-typing**                                    | Users whose [average typing speed](https://www.ratatype.com/learn/average-typing-speed/#:~:text=The%20average%20wpm%20speed%20is,successful%20in%20the%20working%20world.) exceeds 41.4 words per minute | A healthcare administrator with a typing speed of 49.4 words per minute                                                                                                                                                    |
+| <a name="gui" />**Graphical User Interface (GUI)** | An interface using buttons, icons and visuals                                                                                                                                                            | HealthSync acts as a GUI.                                                                                                                                                                                                  |
+| **JSON**                                           | JSON (JavaScript Object Notation) is a lightweight format for storing and exchanging data.                                                                                                               | The data file used by HealthSync is in JSON format.                                                                                                                                                                        |
+| **Keyword**                                        | The word you want to search for in a `find` command.                                                                                                                                                     | Searching for a patient named Eden Lampard could be done by using keywords `Eden` or `Lampard`.                                                                                                                            |
+| **Parameter**                                      | Required input for a command.                                                                                                                                                                            | `NAME` and `EMAIL` are examples of parameters you have to provide in an [`add`](#adding-a-patient-add) command.<br><br>`Terry John` and `terry@hotmail.com` are possible examples to provide to the respective parameters. |
 
 [↑ Back to top](#table-of-contents)
-
-<div style="page-break-after: always;"></div>

@@ -16,6 +16,7 @@ import seedu.address.model.person.Person;
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private Person previousSelectedPerson;
 
     @FXML
     private ListView<Person> personListView;
@@ -35,6 +36,9 @@ public class PersonListPanel extends UiPart<Region> {
 
         personListView.getSelectionModel().selectedItemProperty()
             .addListener((observable, oldValue, newValue) -> {
+                if (newValue != null) {
+                    previousSelectedPerson = newValue;
+                }
                 updateDetailPanel(newValue);
             });
 

@@ -39,6 +39,7 @@ public class SortCommand extends Command {
             throw new AssertionError("Unknown sort field: " + sortField);
         }
 
+        model.setLastCommandArchiveRelated(false);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, sortField));
     }
