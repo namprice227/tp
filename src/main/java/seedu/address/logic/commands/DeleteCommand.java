@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Patient : %1$s is removed.";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Patient: %1$s is removed.";
     public static final String MESSAGE_CONFIRMATION = "Are you sure you want to delete this patient? (y/n)";
 
     private final Index targetIndex;
