@@ -402,7 +402,7 @@ Format: `tag <INDEX> ta/ALLERGY`
 </box>
 
 Examples:
-* `tag 1 ta/peanuts` assigns an allergy tag 'peanuts' to the patient at index 1.
+* `tag 1 ta/Shellfish` assigns an allergy tag 'Shellfish' to the patient at index 1.
 
   <img src="images/AddTagExample.png" width="450" height="320">
 * `tag 2 ti/prudential` assigns an insurance tag 'prudential' to the patient at index 2.
@@ -425,7 +425,7 @@ Format: `tag <INDEX> td/TAGNAME`
 </box>
 
 Examples:
-* `tag 1 td/peanuts` deletes the tag 'peanuts' from the patient at index 1.
+* `tag 1 td/Shellfish` deletes the tag 'Shellfish' from the patient at index 1.
 
   <img src="images/DeleteTagExample.png" width="450" height="320">
 * `tag 2 td/diabetes` deletes the tag 'diabetes' from the patient at index 2.
