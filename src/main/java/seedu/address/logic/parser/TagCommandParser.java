@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_DELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_EDIT;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -60,6 +62,10 @@ public class TagCommandParser implements Parser<TagCommand> {
             throw new ParseException("Cannot add and delete tags in the same command.");
         }
 
+        checkForCategoryDuplicates("allergy", argMultimap.getAllValues(PREFIX_ALLERGY));
+        checkForCategoryDuplicates("condition", argMultimap.getAllValues(PREFIX_CONDITION));
+        checkForCategoryDuplicates("insurance", argMultimap.getAllValues(PREFIX_INSURANCE));
+        checkForCategoryDuplicates("delete", argMultimap.getAllValues(PREFIX_TAG_DELETE));
         return new TagCommand(index, allergies, conditions, insurances, tagsToDelete);
     }
 
@@ -86,6 +92,15 @@ public class TagCommandParser implements Parser<TagCommand> {
                 }
 
                 throw new ParseException(MESSAGE_INVALID_TAG_PREFIX);
+            }
+        }
+    }
+
+    private void checkForCategoryDuplicates(String prefixName, List<String> values) throws ParseException {
+        Set<String> seen = new HashSet<>();
+        for (String val : values) {
+            if (!seen.add(val.toLowerCase())) { // case-insensitive check
+                throw new ParseException("Duplicate tag \"" + val + "\" found in " + prefixName + " category.");
             }
         }
     }

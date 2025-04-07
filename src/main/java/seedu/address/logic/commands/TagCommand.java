@@ -91,11 +91,10 @@ public class TagCommand extends Command {
         }
 
         Person personToTag = lastShownList.get(targetIndex.getZeroBased());
+        checkForCrossCategoryDuplicates();
 
         if (!tagsToDelete.isEmpty()) {
-            // Handle delete tag
             for (Tag tagToDelete : tagsToDelete) {
-                // With this implementation:
                 boolean tagFound = personToTag.getTags().stream().anyMatch(tagSet -> tagSet.contains(tagToDelete));
                 if (!tagFound) {
                     throw new CommandException(MESSAGE_TAG_NOT_FOUND);
@@ -107,8 +106,8 @@ public class TagCommand extends Command {
         }
         Set<Tag> allTags = mergeTags();
 
-        // Check for duplicate tags before adding
-        if (!Collections.disjoint(allTags, personToTag.getTags())) {
+        Set<Tag> existingTags = flattenTagSets(personToTag.getTags());
+        if (!Collections.disjoint(allTags, existingTags)) {
             throw new CommandException(MESSAGE_DUPLICATE_TAGS);
         }
 
@@ -130,6 +129,34 @@ public class TagCommand extends Command {
         return allTags;
     }
 
+    private void checkForCrossCategoryDuplicates() throws CommandException {
+        Set<String> seen = new HashSet<>();
+        for (Tag tag : allergies) {
+            String tagLower = tag.tagName.toLowerCase();
+            if (!seen.add(tagLower)) {
+                throw new CommandException("Duplicate tag \"" + tag.tagName + "\" found across categories.");
+            }
+        }
+        for (Tag tag : conditions) {
+            String tagLower = tag.tagName.toLowerCase();
+            if (!seen.add(tagLower)) {
+                throw new CommandException("Duplicate tag \"" + tag.tagName + "\" found across categories.");
+            }
+        }
+        for (Tag tag : insurances) {
+            String tagLower = tag.tagName.toLowerCase();
+            if (!seen.add(tagLower)) {
+                throw new CommandException("Duplicate tag \"" + tag.tagName + "\" found across categories.");
+            }
+        }
+    }
+    private Set<Tag> flattenTagSets(List<Set<Tag>> nestedTags) {
+        Set<Tag> flatSet = new HashSet<>();
+        for (Set<Tag> tagSet : nestedTags) {
+            flatSet.addAll(tagSet);
+        }
+        return flatSet;
+    }
     /**
      * Compares this TagCommand with another object to determine equality.
      *
