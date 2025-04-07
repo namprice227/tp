@@ -164,26 +164,25 @@ The current mode significantly impacts which operations you can perform.
 
 The following table clearly outlines which commands are functional in each mode:
 
-| Command         | Available in Normal Mode? | Available in Archive Mode? | Notes                                                     |
-| :-------------- | :------------------------ | :------------------------- | :-------------------------------------------------------- |
-| `add`           | ✅ Yes                    | ❌ No                      | Adds active patients                                      |
-| `edit`          | ✅ Yes                    | ❌ No                      | Edits active patients                                     |
-| `delete`        | ✅ Yes                    | ❌ No                      | Deletes active patients permanently                       |
-| `schedule`      | ✅ Yes                    | ❌ No                      | Schedules for active patients                             |
-| `emergency`     | ✅ Yes                    | ❌ No                      | Sets emergency contacts for active patients             |
-| `tag` (add/del) | ✅ Yes                    | ❌ No                      | Manages tags for active patients                          |
-| `sort`          | ✅ Yes                    | ❌ No                      | Sorts the active patient list                             |
-| `archive`       | ✅ Yes                    | ❌ No                      | Moves an active patient to the archive                  |
-| `clear`         | ✅ Yes                    | ❌ No                      | Clears *all* active patients (archive is unaffected)      |
-| `undo`          | ✅ Yes                    | ❌ No                      | Applies mainly to Normal Mode changes                     |
-| `redo`          | ✅ Yes                    | ❌ No                      | Applies mainly to Normal Mode changes                     |
-| `unarchive`     | ❌ No                     | ✅ Yes                     | Moves an archived patient back to the active list       |
-| ---             | ---                       | ---                        | ---                                                       |
-| `list`          | ✅ Yes                    | ✅ Yes                     | Switches to/Refreshes **Normal Mode** |
-| `listarchive`   | ✅ Yes                    | ✅ Yes                     | Switches to/Refreshes **Archive Mode** |
-| `find`          | ✅ Yes                    | ✅ Yes                     | Finds within the *currently displayed* list             |
-| `help`          | ✅ Yes                    | ✅ Yes                     | Available in both modes                                   |
-| `exit`          | ✅ Yes                    | ✅ Yes                     | Available in both modes                                   |
+| Command         | Available in Normal Mode? | Available in Archive Mode? | Notes                                                |
+|:----------------|:--------------------------|:---------------------------|:-----------------------------------------------------|
+| `add`           | ✅ Yes                     | ❌ No                       | Adds active patients                                 |
+| `edit`          | ✅ Yes                     | ❌ No                       | Edits active patients                                |
+| `delete`        | ✅ Yes                     | ❌ No                       | Deletes active patients permanently                  |
+| `schedule`      | ✅ Yes                     | ❌ No                       | Schedules for active patients                        |
+| `emergency`     | ✅ Yes                     | ❌ No                       | Sets emergency contacts for active patients          |
+| `tag` (add/del) | ✅ Yes                     | ❌ No                       | Manages tags for active patients                     |
+| `sort`          | ✅ Yes                     | ❌ No                       | Sorts the active patient list                        |
+| `archive`       | ✅ Yes                     | ❌ No                       | Moves an active patient to the archive               |
+| `clear`         | ✅ Yes                     | ❌ No                       | Clears *all* active patients (archive is unaffected) |
+| `undo`          | ✅ Yes                     | ❌ No                       | Applies mainly to Normal Mode changes                |
+| `redo`          | ✅ Yes                     | ❌ No                       | Applies mainly to Normal Mode changes                |
+| `unarchive`     | ❌ No                      | ✅ Yes                      | Moves an archived patient back to the active list    |
+| `list`          | ✅ Yes                     | ✅ Yes                      | Switches to/Refreshes **Normal Mode**                |
+| `listarchive`   | ✅ Yes                     | ✅ Yes                      | Switches to/Refreshes **Archive Mode**               |
+| `find`          | ✅ Yes                     | ✅ Yes                      | Finds within the *currently displayed* list          |
+| `help`          | ✅ Yes                     | ✅ Yes                      | Available in both modes                              |
+| `exit`          | ✅ Yes                     | ✅ Yes                      | Available in both modes                              |
 
 **Note on `undo`/`redo`:** These commands primarily revert changes made while in Normal Mode. Their effectiveness across mode switches or on actions performed in Archive Mode (like `unarchive`) might be limited. Refer to the specific command descriptions for details on `undo`/`redo` limitations.
 
