@@ -289,11 +289,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Provides a consistent user experience across all commands.
   * Cons: Requires more complex state management to handle transitions between normal and archive modes.
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
