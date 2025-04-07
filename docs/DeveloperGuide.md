@@ -177,9 +177,13 @@ The `Model` component,
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+* can save address book data, archived book data, and user preference data in JSON format, and read them back into corresponding objects.  
+* inherits from `AddressBookStorage`, `ArchivedBookStorage`, and `UserPrefsStorage`, which means it can be treated as any of them (depending on the required functionality in a given context).  
+* delegates the actual reading and writing of JSON data to specific implementations like `JsonAddressBookStorage`, `JsonArchivedBookStorage`, and `JsonUserPrefsStorage`.  
+* uses helper classes such as `JsonSerializableAddressBook` and `JsonSerializableArchivedBook` to convert between model data and JSON.  
+* further relies on classes like `JsonAdaptedPerson` and `JsonAdaptedTag` to handle conversion of individual elements within the model.  
+* depends on some classes in the Model component (because the Storage component’s job is to save/retrieve objects that belong to the Model).
 
 ### Common classes
 
