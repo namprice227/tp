@@ -17,6 +17,7 @@ This hybrid approach supports rapid responses in a healthcare environment where 
 ---
 
 > **⚠️ Warning:** HealthSync is only designed for **Singapore-based family clinics**. It operates exclusively in **English** and does not support other languages or international clinic formats.
+> 
 > Using HealthSync with other languages or across multiple countries and timezones may lead to unexpected behaviour.
 
 ---
