@@ -203,6 +203,8 @@ The following table clearly outlines which commands are functional in each mode:
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+* All names added to HealthSync will have their first letter automatically capitalised. This applies to names entered through the `add`, `edit`, and `emergency` commands.
+
 > **⚠️ Warning:** For commands that require confirmation such as `edit`, `delete`, `exit` or `clear`, entering anything other than 'Y' or 'N' (in either uppercase or lowercase) will result in the command being cancelled.
 
 ### Viewing help : `help`
@@ -219,7 +221,7 @@ Adds a patient to HealthSync.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
-<box type="tip">: Name is case insensitive
+<box type="tip">: The first letter of a name will be automatically capitalised.
 </box>
 
 Examples:
@@ -283,7 +285,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-<box type="tip">: Name is case insensitive
+<box type="tip">: The first letter of a name will be automatically capitalised.
 </box>
 
 Examples:
@@ -300,6 +302,9 @@ Format: `emergency INDEX n/NAME p/PHONE_NUMBER r/RELATIONSHIP`
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …
 * All fields (name, phone, relationship) are required.
+
+<box type="tip">: The first letter of a name will be automatically capitalised.
+</box>
 
 Examples:
 * `emergency 1 n/Alden Tan p/98765432 r/Boyfriend` Sets the emergency contact for the 1st patient to be Alden Tan (Boyfriend) with phone number 98765432.
