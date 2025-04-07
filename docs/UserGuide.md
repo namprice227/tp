@@ -144,6 +144,50 @@ The main interface consists of several key components:
 
 <div style="page-break-after: always;"></div>
 
+---
+## Operating Modes
+
+HealthSync operates using two primary modes, which determine the patient list displayed and the commands available:
+
+* **Normal Mode:** Used for managing the main list of active patients. This is the default mode when you start HealthSync.
+* **Archive Mode:** Used for viewing and managing patients who have been archived from the main list.
+
+You can switch between modes using the following commands:
+
+* Use the `list` command to view the active patient list and switch to **Normal Mode** if you are not.
+* Use the `listarchive` command to view the archived patient list and switch to **Archive Mode**.
+
+The current mode significantly impacts which operations you can perform.
+
+### Command Availability by Mode
+
+The following table clearly outlines which commands are functional in each mode:
+
+| Command         | Available in Normal Mode? | Available in Archive Mode? | Notes                                                     |
+| :-------------- | :------------------------ | :------------------------- | :-------------------------------------------------------- |
+| `add`           | ✅ Yes                    | ❌ No                      | Adds active patients                                      |
+| `edit`          | ✅ Yes                    | ❌ No                      | Edits active patients                                     |
+| `delete`        | ✅ Yes                    | ❌ No                      | Deletes active patients permanently                       |
+| `schedule`      | ✅ Yes                    | ❌ No                      | Schedules for active patients                             |
+| `emergency`     | ✅ Yes                    | ❌ No                      | Sets emergency contacts for active patients             |
+| `tag` (add/del) | ✅ Yes                    | ❌ No                      | Manages tags for active patients                          |
+| `sort`          | ✅ Yes                    | ❌ No                      | Sorts the active patient list                             |
+| `archive`       | ✅ Yes                    | ❌ No                      | Moves an active patient to the archive                  |
+| `clear`         | ✅ Yes                    | ❌ No                      | Clears *all* active patients (archive is unaffected)      |
+| `undo`          | ✅ Yes                    | ❌ No                      | Applies mainly to Normal Mode changes                     |
+| `redo`          | ✅ Yes                    | ❌ No                      | Applies mainly to Normal Mode changes                     |
+| `unarchive`     | ❌ No                     | ✅ Yes                     | Moves an archived patient back to the active list       |
+| ---             | ---                       | ---                        | ---                                                       |
+| `list`          | ✅ Yes                    | ✅ Yes                     | Switches to/Refreshes **Normal Mode** |
+| `listarchive`   | ✅ Yes                    | ✅ Yes                     | Switches to/Refreshes **Archive Mode** |
+| `find`          | ✅ Yes                    | ✅ Yes                     | Finds within the *currently displayed* list             |
+| `help`          | ✅ Yes                    | ✅ Yes                     | Available in both modes                                   |
+| `exit`          | ✅ Yes                    | ✅ Yes                     | Available in both modes                                   |
+
+**Note on `undo`/`redo`:** These commands primarily revert changes made while in Normal Mode. Their effectiveness across mode switches or on actions performed in Archive Mode (like `unarchive`) might be limited. Refer to the specific command descriptions for details on `undo`/`redo` limitations.
+
+---
+
 ## Features
 
 <box type="info" seamless>
@@ -267,7 +311,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Name and Phone number are searched.
+* Name, Phone number and Email address are searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
@@ -398,6 +442,7 @@ Format: `undo`
 > * Cannot be used repeatedly to undo multiple actions.
 > * Cannot undo `undo`, `redo`, `help`, `list`, `find` or `exit` commands.
 > * The undo command can only revert the most recent action and cannot be used repeatedly to undo multiple past actions.
+> * The right panel may not automatically update after using the undo command, requiring manual re-selection of the patient or another patient to view the reverted data.
 
 Example:
 * `undo` (Restores the state before the last action)
@@ -450,8 +495,11 @@ Furthermore, certain edits can cause the HealthSync to behave in unexpected ways
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimise the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimised, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 3.  When the `listarchive` command is executed with a selected patient, the details panel is not refreshed. To resolve this, click on a patient in the archive list to refresh. If the list is empty, switch back to the main patient list and ensure no patient is selected before running the command again
+4. Currently, appointments remain visible even after their date/time has passed. Automatic handling or deletion of past appointments is planned for a future release
 
 <div style="page-break-after: always;"></div>
+
+---
 
 ## Valid Inputs for Patient parameters
 
@@ -466,6 +514,8 @@ This also applies to emergency contacts. To prevent unexpected app behavior, do 
 | **`email/` EMAIL**       | HealthSync follows the valid email address format detailed [here](https://help.xmatters.com/ondemand/trial/valid_email_format.htm) <br/> <br/> Emails should be of the format `local-part@domain` and adhere to the following constraints: <br/> 1. `local-part` should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br/> 2. This is followed by a `@` and then a domain name for `domain`. The domain name is made up of domain labels separated by periods. The domain name must:<br/>- end with a domain label at least 2 characters long<br/>- have each domain label start and end with alphanumeric characters<br/> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. | `thomastuchel@yahoo.com.uk` and `bellechoy@gmail.com` are examples of emails you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit).                          |
 | **`address/` ADDRESS**   | Addresses can be any value, but they cannot be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `987, Kensington Rd, 123465` and `Block 666, Westminster Street 6, #08-111` are examples of addresses you can provide in an [`add`](#adding-a-patient-add), [`edit`](#editing-a-patient--edit) |                                                                  
 <div style="page-break-after: always;"></div>
+
+---
 
 ## Command Summary
 
@@ -493,6 +543,8 @@ This also applies to emergency contacts. To prevent unexpected app behavior, do 
 | **Exit**                   | `exit`                                                                                                       |
 
 <div style="page-break-after: always;"></div>
+
+---
 
 ## Glossary
 ### Terminology
