@@ -183,7 +183,10 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/91234567`
 
-> **⚠️ Warning:** An entry is considered a duplicate if it shares the same name and phone number or the same name and email address. Phone numbers must be exactly 8 digits and begin with 6, 8, or 9.
+> **⚠️ Warning:** An entry is considered a duplicate if it shares the same name and phone number or the same name and email address.
+> 
+> Phone numbers must be exactly 8 digits and begin with 6, 8, or 9.
+>
 > HealthSync permits entries with identical phone numbers or email addresses, such as in parent-child relationships, but their names must be different to avoid duplication.
 
 ### Scheduling an appointment: `schedule`
