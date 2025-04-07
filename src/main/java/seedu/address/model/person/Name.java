@@ -29,7 +29,8 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        value = name;
+        String capitalized = name.substring(0, 1).toUpperCase() + name.substring(1);
+        value = capitalized;
     }
 
     /**

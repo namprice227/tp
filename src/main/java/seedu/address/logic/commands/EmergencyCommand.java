@@ -98,4 +98,3 @@ public class EmergencyCommand extends Command {
                 && relationship.equals(e.relationship);
     }
 }
-

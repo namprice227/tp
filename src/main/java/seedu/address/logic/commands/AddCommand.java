@@ -12,7 +12,6 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 
@@ -44,23 +43,7 @@ public class AddCommand extends Command {
      */
     public AddCommand(Person person) {
         requireNonNull(person);
-        Name capitalizedName = new Name(capitalizeWords(Messages.showName(person)));
-        toAdd = new Person(capitalizedName, person.getPhone(), person.getEmail(),
-            person.getAddress(), person.getTags(), person.getAppointment(),
-            person.getEmergencyContact());
-    }
-
-    private String capitalizeWords(String name) {
-        String[] words = name.trim().split("\\s+");
-        StringBuilder result = new StringBuilder();
-        for (String word : words) {
-            if (!word.isEmpty()) {
-                result.append(Character.toUpperCase(word.charAt(0)));
-                result.append(word.substring(1).toLowerCase());
-                result.append(" ");
-            }
-        }
-        return result.toString().trim();
+        toAdd = person;
     }
 
     @Override

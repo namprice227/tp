@@ -189,11 +189,7 @@ public class EditCommand extends Command {
         }
 
         public void setName(Name name) {
-            if (name == null) {
-                this.name = null;
-            } else {
-                this.name = new Name(capitalizeWords(name.toString()));
-            }
+            this.name = name;
         }
 
         public Optional<Name> getName() {
@@ -269,18 +265,5 @@ public class EditCommand extends Command {
             return "EditPersonDescriptor{name=" + name + ", phone=" + phone + ", email=" + email
                 + ", address=" + address + "}";
         }
-    }
-
-    private static String capitalizeWords(String name) {
-        String[] words = name.trim().split("\\s+");
-        StringBuilder result = new StringBuilder();
-        for (String word : words) {
-            if (!word.isEmpty()) {
-                result.append(Character.toUpperCase(word.charAt(0)));
-                result.append(word.substring(1).toLowerCase());
-                result.append(" ");
-            }
-        }
-        return result.toString().trim();
     }
 }
