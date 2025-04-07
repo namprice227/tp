@@ -805,7 +805,7 @@ HealthSync must be easily testable, with automated tests that can cover at least
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
