@@ -306,7 +306,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 * User Role: HealthHealthcare administrators
 * Workplace: Family clinics
-* Responsibilities 
+* Responsibilities
   * Maintain and update patient and emergency contact information.
   * Effortlessly monitor and stay on top of patients’ upcoming appointments, reducing scheduling conflicts and ensuring prompt follow-ups.
   * Efficiently manage and update essential patient data, including insurance details, allergies, medical conditions, and treatment history, to ensure comprehensive and accurate medical records.
@@ -458,7 +458,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 
 - **2a.** No patients have scheduled appointments.
-    - **2a1.** HealthSync sorts the list alphabetically by name. 
+    - **2a1.** HealthSync sorts the list alphabetically by name.
     - **2a2.** HealthSync notifies the user that no appointments are scheduled.
     - Use case ends.
 
@@ -871,10 +871,10 @@ testers are expected to do more *exploratory* testing.
 Currently, HealthSync is only available for usage in English. We recognise that our target users may not be able to read English proficiently or may only have non English names. Our planned enhancement is to translate HealthSync into other languages, such as Chinese and Tamil.
 
 ## Removal of past appointment dates
-At present, HealthSync does not automatically remove or archive past appointment dates, which can clutter the system and make it harder to manage current and future appointments. We plan to implement an automatic system that will remove or archive past appointment dates, ensuring a cleaner, more efficient user experience by keeping only relevant and upcoming appointments visible. 
+At present, HealthSync does not automatically remove or archive past appointment dates, which can clutter the system and make it harder to manage current and future appointments. We plan to implement an automatic system that will remove or archive past appointment dates, ensuring a cleaner, more efficient user experience by keeping only relevant and upcoming appointments visible.
 
 --------------------------------------------------------------------------------------------------------------------
-## **Appendix: Effort** 
+## **Appendix: Effort**
 Developing HealthSync presented a variety of challenges that required significant effort from our team. As a group of predominantly Year 2 Computer Science students and junior software developers, we faced a steep learning curve, especially considering this was our first project dealing with multiple entity types and the complexity of healthcare data management.
 
 One of the key challenges was designing a system that could efficiently manage multiple types of entities, such as patients, emergency contacts, and healthcare administrators. Unlike previous projects (e.g., AB3), which focused on a single entity type, HealthSync required careful management of relationships and data consistency across different entities. This added complexity to the system design and required us to carefully structure the data models and workflows to ensure smooth interactions between these entity types.
