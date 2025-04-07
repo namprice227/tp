@@ -836,26 +836,26 @@ testers are expected to do more *exploratory* testing.
 
    1. Use the `exit` command.
    
-   2. Click on the red cross on the application window
+   2. Click on the red cross on the application window.
 
-   3. Click `File` in the top left corner, then `Exit` in the dropdown menu/
+   3. Click `File` in the top left corner, then `Exit` in the dropdown menu.
 
-### Deleting a person
+<div style="page-break-after: always;"></div>
 
-1. Deleting a person while all persons are being shown
+### Deleting a patient
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Deleting a patient while all patients are being shown
+
+   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
