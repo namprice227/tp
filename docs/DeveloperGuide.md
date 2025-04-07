@@ -864,3 +864,17 @@ testers are expected to do more *exploratory* testing.
 4. **HealthSync:** A healthcare application designed to assist healthcare administrators in efficiently managing patient contact information within a clinic.
 5. **Mainstream OS**: Windows, Linux, Unix, MacOS.
 6. **Private contact detail**: A contact detail intended to remain confidential and not shared with others
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned Enhancements**
+### Multiple Language Support
+Currently, HealthSync is only available for usage in English. We recognise that our target users may not be able to read English proficiently or may only have non English names. Our planned enhancement is to translate HealthSync into other languages, such as Chinese and Tamil.
+
+## Removal of past appointment dates
+At present, HealthSync does not automatically remove or archive past appointment dates, which can clutter the system and make it harder to manage current and future appointments. We plan to implement an automatic system that will remove or archive past appointment dates, ensuring a cleaner, more efficient user experience by keeping only relevant and upcoming appointments visible. 
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Effort** 
+Developing HealthSync presented a variety of challenges that required significant effort from our team. As a group of predominantly Year 2 Computer Science students and junior software developers, we faced a steep learning curve, especially considering this was our first project dealing with multiple entity types and the complexity of healthcare data management.
+
+One of the key challenges was designing a system that could efficiently manage multiple types of entities, such as patients, emergency contacts, and healthcare administrators. Unlike previous projects (e.g., AB3), which focused on a single entity type, HealthSync required careful management of relationships and data consistency across different entities. This added complexity to the system design and required us to carefully structure the data models and workflows to ensure smooth interactions between these entity types.
