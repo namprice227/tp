@@ -88,11 +88,10 @@ public class TagCommand extends Command {
         }
 
         Person personToTag = lastShownList.get(targetIndex.getZeroBased());
+        checkForCrossCategoryDuplicates();
 
         if (!tagsToDelete.isEmpty()) {
-            // Handle delete tag
             for (Tag tagToDelete : tagsToDelete) {
-                // With this implementation:
                 boolean tagFound = personToTag.getTags().stream().anyMatch(tagSet -> tagSet.contains(tagToDelete));
                 if (!tagFound) {
                     throw new CommandException(MESSAGE_TAG_NOT_FOUND);
@@ -102,12 +101,14 @@ public class TagCommand extends Command {
             }
             return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, personToTag));
         }
+
         Set<Tag> allTags = mergeTags();
 
-        // Check for duplicate tags before adding
-        if (!Collections.disjoint(allTags, personToTag.getTags())) {
+        Set<Tag> existingTags = flattenTagSets(personToTag.getTags());
+        if (!Collections.disjoint(allTags, existingTags)) {
             throw new CommandException(MESSAGE_DUPLICATE_TAGS);
         }
+
 
         model.setLastCommandArchiveRelated(false);
         Person updatedPerson = model.addTagsToPerson(personToTag, allergies, conditions, insurances);
@@ -125,6 +126,39 @@ public class TagCommand extends Command {
         allTags.addAll(conditions);
         allTags.addAll(insurances);
         return allTags;
+    }
+
+    /**
+     * Checks if there are duplicate tags across the allergy, condition, and insurance categories.
+     */
+    private void checkForCrossCategoryDuplicates() throws CommandException {
+        Set<Tag> seen = new HashSet<>();
+        for (Tag tag : allergies) {
+            if (!seen.add(tag)) {
+                throw new CommandException("Duplicate tag across categories: " + tag.tagName);
+            }
+        }
+        for (Tag tag : conditions) {
+            if (!seen.add(tag)) {
+                throw new CommandException("Duplicate tag across categories: " + tag.tagName);
+            }
+        }
+        for (Tag tag : insurances) {
+            if (!seen.add(tag)) {
+                throw new CommandException("Duplicate tag across categories: " + tag.tagName);
+            }
+        }
+    }
+
+    /**
+     * Flattens a list of sets of tags into a single set of tags.
+     */
+    private Set<Tag> flattenTagSets(List<Set<Tag>> nestedTags) {
+        Set<Tag> flatSet = new HashSet<>();
+        for (Set<Tag> tagSet : nestedTags) {
+            flatSet.addAll(tagSet);
+        }
+        return flatSet;
     }
 
     /**
