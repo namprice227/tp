@@ -472,7 +472,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - **3b2**. HealthSync reverts to the original order.
     - Use case resumes from step 1.
 
-#### **UC06 - Edit Patient Details**
+#### **UC07 - Edit Patient Details**
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator requests to edit a patient’s details.
@@ -504,7 +504,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-#### **UC07 - Add an Emergency Contact**
+#### **UC08 - Add an Emergency Contact**
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator requests to add an emergency contact for a patient.
@@ -530,7 +530,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-#### **UC08 - Find Patients**
+#### **UC09 - Find Patients**
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator chooses to find patients by name.
@@ -547,7 +547,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-#### **UC09 - Archive Patient**
+#### **UC10 - Archive Patient**
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator chooses to archive a patient.
@@ -566,7 +566,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-#### **UC10 - List Archived Patients**
+#### **UC11 - List Archived Patients**
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator chooses to view the list of archived patients.
@@ -581,7 +581,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-#### **UC11 - Unarchive Patient**
+#### **UC12 - Unarchive Patient**
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator chooses to unarchive a patient.
@@ -598,7 +598,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-#### **UC12 - Delete a Patient**
+#### **UC13 - Delete a Patient**
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator requests to delete a patient’s contact.
@@ -626,7 +626,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-#### **UC13 - Clear Patient List**
+#### **UC14 - Clear Patient List**
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator chooses to clear the entire patient list.
@@ -649,7 +649,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-#### **UC14 - Add Tag to Patient**
+#### **UC15 - Add Tag to Patient**
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator chooses to add tag(s) to a patient.
@@ -676,7 +676,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-#### **UC15 - Delete Tag from Patient**
+#### **UC16 - Delete Tag from Patient**
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator chooses to delete tag(s) from a patient.
@@ -700,7 +700,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-#### **UC16 - Undo Previous Command**
+#### **UC17 - Undo Previous Command**
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator chooses to undo the most recent modifying command.
@@ -725,7 +725,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-#### **UC17 - Redo Last Undone Command**
+#### **UC18 - Redo Last Undone Command**
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator chooses to redo the last undone command.
@@ -741,7 +741,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-#### **UC18 - Exit Application**
+#### **UC19 - Exit Application**
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator chooses to exit the application.
