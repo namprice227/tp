@@ -201,7 +201,7 @@ Examples:
 - `schedule 2 05-06-2025 09:00`
 
 > **⚠️ Warning:** An appointment is considered a **duplicate** if it has the same date and time as an existing appointment.
-> > **⚠️ Warning:** HealthSync only allows scheduling up to one upcoming appointment at a time.
+> HealthSync only allows scheduling up to one upcoming appointment at a time.
 
 ### Listing all patients : `list`
 
@@ -220,8 +220,7 @@ Format: `sort FIELD`
 * The sorting is case-insensitive.
 
 Examples:
-* `sort name` Sorts patients in ascending alphabetical order by name. If there are multiple patients with the same name, HealthSync will sort them based on their time of addition.
-* `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first.
+** `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first. For patients with no appointments, the patients with appointments will be sorted first, followed by patients without appointments.
 
   <img src="images/SortExample.png" width="450" height="300">
 
