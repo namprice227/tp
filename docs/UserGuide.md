@@ -10,7 +10,7 @@
 
 HealthSync is a **desktop application designed specifically for healthcare administrators in family clinics.** It consolidates patients’ personal details and emergency contact information into a unified, easily accessible database, streamlining the management of critical data.
 
-By integrating the speed and efficiency of a Command Line Interface (CLI) with the intuitive design of a Graphical User Interface (GUI), HealthSync empowers fast-typing administrators to retrieve vital patient information and reach out to emergency contacts more swiftly than with traditional GUI-only systems.
+By integrating the speed and efficiency of a Command Line Interface (CLI) with the design of a Graphical User Interface (GUI), HealthSync empowers fast-typing administrators to retrieve vital patient information and reach out to emergency contacts more swiftly than with traditional GUI-only systems.
 
 This hybrid approach supports rapid responses in a healthcare environment where every second counts.
 
@@ -159,7 +159,7 @@ The main interface consists of several key components:
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-> **⚠️ Warning:**  For commands that require confirmation, entering anything other than y or n will cancel the command.
+> **⚠️ Warning:** For commands that require confirmation, entering anything other than 'Y' or 'N' (in either uppercase or lowercase) will result in the command being cancelled.
 
 ### Viewing help : `help`
 
@@ -191,6 +191,7 @@ Schedules an appointment for a patient in HealthSync.
 
 Format:
 `schedule INDEX dd-MM-yyyy HH:mm`
+* Scheduling a date in the past is not permitted.
 
 <box type="tip">: Ensure the date and time are in the future.
 Ensure that there is a minimum gap of 15 minutes between scheduled events.
@@ -220,7 +221,8 @@ Format: `sort FIELD`
 * The sorting is case-insensitive.
 
 Examples:
-** `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first. For patients with no appointments, the patients with appointments will be sorted first, followed by patients without appointments.
+* `sort name` Sorts patients in ascending alphabetical order by name. In the case of duplicate names, the most recently added patient will be listed first.
+* `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first. For patients with no appointments, the patients with appointments will be sorted first, followed by patients without appointments.
 
   <img src="images/SortExample.png" width="450" height="300">
 
@@ -240,8 +242,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower` Edits the name of the 2nd patient to be `Betsy Crower`.
-
-> **⚠️ Warning:** Entering an invalid input (anything other than 'y' or 'n') in the confirmation prompt will cancel the command by default.
 
 ### Setting Emergency Contact : `emergency`
 
@@ -277,6 +277,7 @@ Examples:
 * `find david roy` returns `David Li`, `Roy Balakrishnan`<br>
   <img src="images/HealthSyncFindResult.png" width="240" height="300">
 *  `find Charles` returns `Charles` and `charles`
+* The command `find 81782349` returns the patient associated with the phone number 81782349.
 
 ### Archiving a patient : `archive`
 
@@ -291,6 +292,8 @@ Format: `archive INDEX`
 Example:
 * Run `list` to view patients, then enter `archive 2` to archive the 2nd patient in the main HealthSync patient list.
 
+> **⚠️ Warning:**  The `archive` command is not available while viewing the archived patient list.
+> 
 ### Listing all patients in archive : `listarchive`
 
 Shows a list of all patients being archived.
@@ -326,15 +329,11 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in HealthSync.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
-> **⚠️ Warning:** Entering an invalid input (anything other than 'y' or 'n') in the confirmation prompt will cancel the command by default.
-
 ### Clearing all entries : `clear`
 
 Clears all entries from HealthSync.
 
 Format: `clear`
-
-> **⚠️ Warning:** Entering an invalid input (anything other than 'y' or 'n') in the confirmation prompt will cancel the command by default.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -366,7 +365,7 @@ Examples:
 * `tag 3 tc/diabetes` assigns a medical condition tag 'diabetes' to the patient at index 3.
 * `tag 4 ta/peanuts tc/headache ti/public` assigns an allergy tag 'peanuts', a medical condition tag 'headache' and insurance tag 'public' to the patient at index 4.
 
-> **⚠️ Warning:** If the tag already exists for the patient, it will not be added again.
+> **⚠️ Warning:** If the tag already exists for the patient, it will be treated as a duplicate and not added again.
 
 ---
 
@@ -400,8 +399,6 @@ Format: `undo`
 > * Cannot undo `undo`, `redo`, `help`, `list`, `find` or `exit` commands.
 > * The undo command can only revert the most recent action and cannot be used repeatedly to undo multiple past actions.
 
-[Return Back to Table of Contents](#table-of-contents)
-
 Example:
 * `undo` (Restores the state before the last action)
 
@@ -433,7 +430,7 @@ HealthSync data are saved in the hard disk automatically after any command that 
 
 HealthSync data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-> **⚠️ Caution:**
+> **⚠️ Warning:**
 If your changes to the data file makes its format invalid, HealthSync will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the HealthSync to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 
@@ -452,7 +449,7 @@ Furthermore, certain edits can cause the HealthSync to behave in unexpected ways
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimise the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimised, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
-3. When a patient is selected and the `listarchive` command is executed, the patient details panel on the right is not refreshed as expected—it continues to display the previously selected patient's information. To resolve this, simply click on a patient in the archive list to refresh the display. If the archive list is empty, consider switching back to the main patient list, and ensure that no patient is selected before running the `listarchive` command again. 
+3.  When the `listarchive` command is executed with a selected patient, the details panel is not refreshed. To resolve this, click on a patient in the archive list to refresh. If the list is empty, switch back to the main patient list and ensure no patient is selected before running the command again
 
 <div style="page-break-after: always;"></div>
 
@@ -472,28 +469,28 @@ This also applies to emergency contacts. To prevent unexpected app behavior, do 
 
 ## Command Summary
 
-| **Action**                 | **Format, Examples**                                                                                        |
-|----------------------------|-------------------------------------------------------------------------------------------------------------|
-| **Add Patient**            | `add n/NAME p/PHONE e/EMAIL a/ADDRESS`<br>e.g., `add n/John Doe p/98765432 e/john@example.com a/123 Street` |
-| **Edit Patient**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]​`<br>e.g., `edit 2 n/John Smith p/91234567`            |
-| **Delete Patient**         | `delete INDEX`<br>e.g., `delete 3`                                                                          |
-| **Find Patient**           | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find John`                                                         |
-| **List Patients**          | `list`                                                                                                      |
-| **Schedule Appointment**   | `schedule INDEX [DD-MM-YYYY HH:MM]`<br>e.g, `schedule 1 30-03-2026 12:00`                                   |
-| **Sort Patients**          | `sort FIELD`<br>e.g., `sort name`                                                                           |
-| **Set Emergency Contact**  | `emergency INDEX n/NAME p/PHONE r/RELATIONSHIP`<br>e.g., `emergency 1 n/Jane Doe p/81234567 r/Mother`       |
-| **Archive Patient**        | `archive INDEX`<br>e.g., `archive 2`                                                                        |
-| **List Archived Patients** | `listarchive`                                                                                               |
-| **Unarchive Patient**      | `unarchive INDEX`<br>e.g., `unarchive 2`                                                                    |
-| **Clear All Entries**      | `clear`                                                                                                     |
-| **Undo Command**           | `undo`                                                                                                      |
-| **Redo Command**           | `redo`                                                                                                      |
-| **Add Allergy Tag**        | `tag INDEX ta/ALLERGY`<br>e.g., `tag 1 ta/peanuts`                                                          |
-| **Add Condition Tag**      | `tag INDEX tc/CONDITION`<br>e.g., `tag 1 tc/asthma`                                                         |
-| **Add Insurance Tag**      | `tag INDEX ti/INSURANCE`<br>e.g., `tag 1 ti/medishield`                                                     |
-| **Delete Tag**             | `tag INDEX td/TAGNAME`<br>e.g., `tag 1 td/peanuts`                                                          |
-| **Help**                   | `help`                                                                                                      |
-| **Exit**                   | `exit`                                                                                                      |
+| **Action**                 | **Format, Examples**                                                                                         |
+|----------------------------|--------------------------------------------------------------------------------------------------------------|
+| **Add Patient**            | `add n/NAME p/PHONE e/EMAIL a/ADDRESS`<br>e.g., `add n/John Doe p/98765432 e/johnd@example.com a/123 Street` |
+| **Edit Patient**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]​`<br>e.g., `edit 2 n/John Smith p/91234567`             |
+| **Delete Patient**         | `delete INDEX`<br>e.g., `delete 3`                                                                           |
+| **Find Patient**           | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find John`                                                          |
+| **List Patients**          | `list`                                                                                                       |
+| **Schedule Appointment**   | `schedule INDEX [DD-MM-YYYY HH:MM]`<br>e.g, `schedule 1 30-03-2026 12:00`                                    |
+| **Sort Patients**          | `sort FIELD`<br>e.g., `sort name`                                                                            |
+| **Set Emergency Contact**  | `emergency INDEX n/NAME p/PHONE r/RELATIONSHIP`<br>e.g., `emergency 1 n/Jane Doe p/81234567 r/Mother`        |
+| **Archive Patient**        | `archive INDEX`<br>e.g., `archive 2`                                                                         |
+| **List Archived Patients** | `listarchive`                                                                                                |
+| **Unarchive Patient**      | `unarchive INDEX`<br>e.g., `unarchive 2`                                                                     |
+| **Clear All Entries**      | `clear`                                                                                                      |
+| **Undo Command**           | `undo`                                                                                                       |
+| **Redo Command**           | `redo`                                                                                                       |
+| **Add Allergy Tag**        | `tag INDEX ta/ALLERGY`<br>e.g., `tag 1 ta/peanuts`                                                           |
+| **Add Condition Tag**      | `tag INDEX tc/CONDITION`<br>e.g., `tag 1 tc/asthma`                                                          |
+| **Add Insurance Tag**      | `tag INDEX ti/INSURANCE`<br>e.g., `tag 1 ti/medishield`                                                      |
+| **Delete Tag**             | `tag INDEX td/TAGNAME`<br>e.g., `tag 1 td/peanuts`                                                           |
+| **Help**                   | `help`                                                                                                       |
+| **Exit**                   | `exit`                                                                                                       |
 
 <div style="page-break-after: always;"></div>
 
