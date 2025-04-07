@@ -101,7 +101,7 @@ By referring to these sections, you can quickly find the information you need an
 
    * `list` : Lists all patients.
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient named `John Doe` to HealthSync.
-   * `emergency 1 n/John Smith p/98765432 r/Father` : Sets an emergency contact for the 1st patient.
+   * `emergency 1 n/John Smith p/98788692 r/Father` : Sets an emergency contact for the 1st patient.
    * `delete 3` : Deletes the 3rd patient shown in the current list.
    * `clear` : Deletes all patients.
    * `exit` : Exits the app.
