@@ -16,7 +16,7 @@ public class SortCommand extends Command {
           + "Parameters: FIELD (must be either \"name\" or \"appointment\")\n"
           + "Example: " + COMMAND_WORD + " name";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all patients by %s";
+    public static final String MESSAGE_SUCCESS = "Sorted all patients by %s!";
 
     private final String sortField;
 

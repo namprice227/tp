@@ -16,7 +16,8 @@ public class UnarchiveCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Restores the specified archived contact. \n"
         + "Parameters: INDEX (must be a positive integer)\n"
         + "Example: " + COMMAND_WORD + " 1";
-    public static final String MESSAGE_SUCCESS = "Restored Contact: %1$s";
+    public static final String MESSAGE_SUCCESS = "Restored Contact: %1$s is added back to patient list! \n"
+        + "Use 'list' to see patient list.";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Person not found in archive.";
     public final int targetIndex;
 
@@ -37,7 +38,7 @@ public class UnarchiveCommand extends Command {
         model.unarchivePerson(personToRestore);
         model.setLastCommandArchiveRelated(true);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(personToRestore)),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.showName(personToRestore)),
         CommandResult.ListType.ARCHIVE);
     }
 }

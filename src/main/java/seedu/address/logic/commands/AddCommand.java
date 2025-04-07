@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25";
 
-    public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New Patient Added : %1$s has been added to the list!";
     public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the address book";
     private final Person toAdd;
 
@@ -57,7 +57,7 @@ public class AddCommand extends Command {
 
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS,
-                Messages.format(toAdd), CommandResult.ListType.NO_CHANGE));
+                Messages.showName(toAdd), CommandResult.ListType.NO_CHANGE));
     }
 
     @Override

@@ -12,6 +12,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -36,8 +37,10 @@ public class TagCommand extends Command {
             + "  " + COMMAND_WORD + " 1 " + PREFIX_INSURANCE + "Medisave\n"
             + "  " + COMMAND_WORD + " 1 " + " td/Peanuts\n";
 
-    public static final String MESSAGE_ADD_SUCCESS = "Tags added to patient: %1$s";
-    public static final String MESSAGE_DELETE_SUCCESS = "Tag deleted from patient: %1$s";
+    public static final String MESSAGE_ADD_SUCCESS = "Tag(s) added to patient!\n"
+        + "Updated Tag(s): %1$s";
+    public static final String MESSAGE_DELETE_SUCCESS = "Tag deleted from patient!\n"
+        + "Updated Tag(s): %1$s";
     public static final String MESSAGE_DUPLICATE_TAGS = "Some tags are already in the patient's tag list";
     public static final String MESSAGE_TAG_NOT_FOUND = "Tag not found in the patient's tag list";
 
@@ -100,7 +103,7 @@ public class TagCommand extends Command {
                 model.setLastCommandArchiveRelated(false);
                 personToTag = model.deleteTagFromPerson(personToTag, Collections.singleton(tagToDelete));
             }
-            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, personToTag));
+            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, Messages.showTag(personToTag)));
         }
         Set<Tag> allTags = mergeTags();
 
@@ -111,7 +114,7 @@ public class TagCommand extends Command {
 
         model.setLastCommandArchiveRelated(false);
         Person updatedPerson = model.addTagsToPerson(personToTag, allergies, conditions, insurances);
-        return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, updatedPerson));
+        return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, Messages.showTag(updatedPerson)));
     }
 
     /**
