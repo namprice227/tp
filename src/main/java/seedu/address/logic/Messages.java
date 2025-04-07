@@ -60,10 +60,23 @@ public class Messages {
     public static String format(EmergencyPerson person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
-                .append("; Phone: ")
-                .append(person.getPhone())
-                .append("; Relationship: ")
-                .append(person.getRelationship());
+            .append("; Phone: ")
+            .append(person.getPhone())
+            .append("; Relationship: ")
+            .append(person.getRelationship());
         return builder.toString();
+    }
+
+    /**
+     * Formats the person name for display to the user.
+     */
+    public static String showName(Person person) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(person.getName());
+        return builder.toString();
+    }
+
+    public static String showTag(Person person) {
+        return person.getTags().toString();
     }
 }

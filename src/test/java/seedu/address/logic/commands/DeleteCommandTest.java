@@ -36,7 +36,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(
                 DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete)
+                Messages.showName(personToDelete)
         );
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getArchivedBook());
@@ -69,7 +69,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(
                 DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete)
+                Messages.showName(personToDelete)
         );
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getArchivedBook());

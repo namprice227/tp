@@ -12,7 +12,7 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
     public static final String COMMAND_WORD_ALTERNATIVE = "Exit";
-    public static final String CONFIRMATION_MESSAGE = "Are you sure? [Y/N]";
+    public static final String CONFIRMATION_MESSAGE = "Are you sure? (y/n)";
     public static final String EXIT_CANCELLED = "Exit cancelled.";
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Goodbye!";
     public static final String MESSAGE_INVALID_COMMAND = "Exit command does not accept additional parameters.";
