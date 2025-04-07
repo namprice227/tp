@@ -11,6 +11,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListArchiveCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.UnarchiveCommand;
@@ -212,7 +215,10 @@ public class LogicManager implements Logic {
             // Allow UnarchiveCommand, ListArchiveCommand, and ListCommand in archive mode
             return command instanceof UnarchiveCommand
                     || command instanceof ListArchiveCommand
-                    || command instanceof ListCommand;
+                    || command instanceof ListCommand
+                    || command instanceof HelpCommand
+                    || command instanceof ExitCommand
+                    || command instanceof FindCommand;
         } else {
             // In normal mode, disallow UnarchiveCommand
             return !(command instanceof UnarchiveCommand);

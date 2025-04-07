@@ -47,7 +47,7 @@ public class Messages {
                 .append("; Tags: ")
                 .append(person.getTags())
                 .append("; Emergency Contact: ")
-                .append(person.getEmergencyContact());
+                .append(format(person.getEmergencyContact()));
         return builder.toString();
     }
 

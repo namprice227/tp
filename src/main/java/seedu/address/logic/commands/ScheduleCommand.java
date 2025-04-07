@@ -73,6 +73,7 @@ public class ScheduleCommand extends Command {
         Person editedPerson = personToEdit.withAppointment(appointment);
 
         // Update the model with the edited person
+        model.setLastCommandArchiveRelated(false);
         model.setPerson(personToEdit, editedPerson);
 
         return new CommandResult(MESSAGE_SUCCESS);

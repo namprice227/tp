@@ -137,6 +137,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setArchiveMode(boolean bool) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isArchiveMode() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -154,6 +164,11 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasConflictingPerson(Person editedPerson, Person personToEdit) {
+            return false;
         }
 
         @Override
@@ -233,6 +248,15 @@ public class AddCommandTest {
 
         public void undoAddressBook() {
             throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public boolean isLastCommandArchiveRelated() {
+            return false;
+        }
+
+        @Override
+        public void setLastCommandArchiveRelated(boolean isLastCommandArchiveRelated) {
         }
 
         public boolean canUndoAddressBook() {
