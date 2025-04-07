@@ -111,7 +111,7 @@ By referring to these sections, you can quickly find the information you need an
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-## Overview of [GUI](#gui)
+## Overview of GUI
 HealthSync features a clean and intuitive graphical user interface (GUI) designed to help users efficiently manage patient records and appointments.
 The main interface consists of several key components:
 
