@@ -56,7 +56,7 @@ public class Name {
         }
 
         Name otherName = (Name) other;
-        return value.trim().equals(otherName.value.trim());
+        return value.trim().equalsIgnoreCase(otherName.value.trim());
     }
 
     @Override
