@@ -101,14 +101,12 @@ public class TagCommand extends Command {
             }
             return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, personToTag));
         }
-
         Set<Tag> allTags = mergeTags();
 
         Set<Tag> existingTags = flattenTagSets(personToTag.getTags());
         if (!Collections.disjoint(allTags, existingTags)) {
             throw new CommandException(MESSAGE_DUPLICATE_TAGS);
         }
-
 
         model.setLastCommandArchiveRelated(false);
         Person updatedPerson = model.addTagsToPerson(personToTag, allergies, conditions, insurances);
@@ -128,9 +126,6 @@ public class TagCommand extends Command {
         return allTags;
     }
 
-    /**
-     * Checks if there are duplicate tags across the allergy, condition, and insurance categories.
-     */
     private void checkForCrossCategoryDuplicates() throws CommandException {
         Set<String> seen = new HashSet<>();
 

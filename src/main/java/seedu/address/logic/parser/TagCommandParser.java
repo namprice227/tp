@@ -62,12 +62,10 @@ public class TagCommandParser implements Parser<TagCommand> {
             throw new ParseException("Cannot add and delete tags in the same command.");
         }
 
-        // Check for duplicates *within* same category
         checkForCategoryDuplicates("allergy", argMultimap.getAllValues(PREFIX_ALLERGY));
         checkForCategoryDuplicates("condition", argMultimap.getAllValues(PREFIX_CONDITION));
         checkForCategoryDuplicates("insurance", argMultimap.getAllValues(PREFIX_INSURANCE));
         checkForCategoryDuplicates("delete", argMultimap.getAllValues(PREFIX_TAG_DELETE));
-
         return new TagCommand(index, allergies, conditions, insurances, tagsToDelete);
     }
 
