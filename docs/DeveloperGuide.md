@@ -13,7 +13,8 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+* This project is based on the AddressBook-Level3 project created by the SE-EDU initiative.
+* The undo and redo features were inspired by the proposed implementation found in the [AddressBook-Level 3's Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html#proposed-undoredo-feature).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,6 +25,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the `docs/diagrams` folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 ### Architecture
 
@@ -68,13 +70,13 @@ The sections below give more details of each component.
 
 ### UI Component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java).
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2425S2-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java).
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 #### Overview
 
-The `MainWindow` serves as the primary container for all UI components. It is responsible for orchestrating interactions between different UI elements and ensuring a seamless user experience. Its layout is defined in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml), which specifies the structure and arrangement of UI elements using JavaFX's XML-based markup.
+The `MainWindow` serves as the primary container for all UI components. It is responsible for orchestrating interactions between different UI elements and ensuring a seamless user experience. Its layout is defined in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-F11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml), which specifies the structure and arrangement of UI elements using JavaFX's XML-based markup.
 
 The UI consists of a `MainWindow`, which is composed of multiple UI parts, such as:
 The UI consists of a `MainWindow`, which is composed of multiple UI parts, such as:
@@ -113,7 +115,7 @@ This structure provides a **clear separation of concerns**, making it easier to 
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2425S2-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -145,7 +147,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
@@ -168,7 +170,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2425S2-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
@@ -187,7 +189,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
 #### Proposed Implementation
 
@@ -301,13 +303,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**: \
-Healthcare administrators in family clinics
+**Target user profile**:
+* User Role: HealthHealthcare administrators
+* Workplace: Family clinics
+* Responsibilities 
+  * Maintain and update patient and emergency contact information.
+  * Effortlessly monitor and stay on top of patients’ upcoming appointments, reducing scheduling conflicts and ensuring prompt follow-ups.
+  * Efficiently manage and update essential patient data, including insurance details, allergies, medical conditions, and treatment history, to ensure comprehensive and accurate medical records.
 
-**Value proposition**: \
+**Value proposition**
+
 HealthSync allows healthcare staff to efficiently organize patient details and key contacts in one unified platform.
-With quick access to updated information, administrators can easily connect with medical staff and patients' families, ensuring smooth communication and
-prompt action, especially when managing recovery progress and treatment schedules.
+By providing quick access to up-to-date information, administrators can seamlessly connect with patients' emergency contacts, ensuring efficient communication and prompt action, particularly in managing recovery progress and treatment schedules.
 
 ### User Stories
 
@@ -743,7 +750,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 
 ### Non-Functional Requirements
-
+1. Performance Requirements:
+* Responsiveness: HealthSync should respond to user commands (e.g adding, editing or viewing contacts) within 3 seconds for typic)
 - Should work on any mainstream OS as long as it has **Java 17 or above** installed.
 - Should be able to handle up to **50 concurrent patients** without noticeable sluggishness in performance for typical use.
 - A user with **above-average typing speed** for regular English text (i.e., not code or system admin commands) should be able to accomplish most tasks **faster using commands than with the mouse**.
@@ -809,6 +817,9 @@ testers are expected to do more *exploratory* testing.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Glossary**
-
-1. **Mainstream OS**: Windows, Linux, Unix, MacOS
-2. **Private contact detail**: A contact detail that is not meant to be shared with others
+1. **Command-Line Interface (CLI):** A method of interacting with HealthSync through typed text commands.
+2. **Emergency Contact:** The person to be notified in the event of a patient's emergency. Their name, phone number, and relationship to the patient are all stored in HealthSync.
+3. **Healthcare Administrator:** The primary user of HealthSync, responsible for managing patient and emergency contact details within a clinic environment.
+4. **HealthSync:** A healthcare application designed to assist healthcare administrators in efficiently managing patient contact information within a clinic.
+5. **Mainstream OS**: Windows, Linux, Unix, MacOS.
+6. **Private contact detail**: A contact detail intended to remain confidential and not shared with others
