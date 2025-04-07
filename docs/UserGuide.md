@@ -179,7 +179,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567`
+* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/91234567`
 
 > **⚠️ Warning:** An entry is considered a **duplicate** if it has the same name and phone number or the same name and email address. The phone number must be exactly 8 digits long and can only start with 6, 8, or 9.
 > **⚠️ Warning:** HealthSync allows the addition of two users with the same phone number or email address to account for potential parent-child relationships. However, their names must be different.
@@ -219,7 +219,7 @@ Format: `sort FIELD`
 * The sorting is case-insensitive.
 
 Examples:
-* `sort name` Sorts patients in ascending alphabetical order by name.
+* `sort name` Sorts patients in ascending alphabetical order by name. If there are multiple patients with the same name, HealthSync will sort them based on their time of addition.
 * `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first.
 
   <img src="images/SortExample.png" width="450" height="300">
@@ -265,7 +265,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Name, Phone number and Email are searched.
+* Name and Phone number are searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
@@ -392,8 +392,9 @@ Reverts the last command that modified data.
 Format: `undo`
 
 > **⚠️ Warning:**
+> * Cannot be used repeatedly to undo multiple actions.
+> * Cannot undo `undo`, `redo`, `help`, `list`, `find` or `exit` commands.
 > * The undo command can only revert the most recent action and cannot be used repeatedly to undo multiple past actions.
-> * Cannot undo `undo`, `redo`, `help`, or `exit` commands.
 
 [Return Back to Table of Contents](#table-of-contents)
 
