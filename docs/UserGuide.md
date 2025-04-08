@@ -116,14 +116,14 @@ By referring to these sections, you can quickly find the information you need an
 HealthSync features a clean and intuitive graphical user interface (GUI) designed to help users efficiently manage patient records and appointments.
 The main interface consists of several key components:
 
-<img src="images/UpdatedHealthSync.png" width="420" height="320">
+<img src="images/UpdatedHealthSync.png" width="450" height="350">
 
 1. **Menu Bar** - Provide quick access to essential functions:
    * **File:**
      * Exit: Closes the application safely.
    * **Help:** Opens a link to the HealthSync User Guide, providing instructions on how to use the application.
 
-     <img src="images/HelpMenu.png" width="420" height="320">
+     <img src="images/HelpMenu.png" width="450" height="350">
 2. **Command Box**
    * Users can enter text-based commands to interact with the application.
 3. **Command Output Box**
@@ -211,7 +211,7 @@ The following table clearly outlines which commands are functional in each mode:
 
 Shows a message explaining how to access the help page.
 
-<img src="images/helpMessage.png" width="420" height="50">
+<img src="images/helpMessage.png" width="450" height="50">
 
 Format: `help`
 
@@ -273,7 +273,7 @@ Examples:
 * `sort name` Sorts patients in ascending alphabetical order by name. In the case of duplicate names, the most recently added patient will be listed first.
 * `sort appointment` Sorts patients by appointment date in lexicographical order, with the nearest upcoming appointment listed first. For patients with no appointments, the patients with appointments will be sorted first, followed by patients without appointments.
 
-  <img src="images/SortExample.png" width="450" height="300">
+  <img src="images/SortExample.png" width="500" height="350">
 
 ### Editing a patient : `edit`
 
@@ -413,7 +413,7 @@ Format: `tag <INDEX> ta/ALLERGY`
 Examples:
 * `tag 1 ta/Shellfish` assigns an allergy tag 'Shellfish' to the patient at index 1.
 
-  <img src="images/AddTagExample.png" width="450" height="320">
+  <img src="images/AddTagExample.png" width="490" height="340">
 * `tag 2 ti/prudential` assigns an insurance tag 'prudential' to the patient at index 2.
 * `tag 3 tc/diabetes` assigns a medical condition tag 'diabetes' to the patient at index 3.
 * `tag 4 ta/peanuts tc/headache ti/public` assigns an allergy tag 'peanuts', a medical condition tag 'headache' and insurance tag 'public' to the patient at index 4.
@@ -436,7 +436,7 @@ Format: `tag <INDEX> td/TAGNAME`
 Examples:
 * `tag 1 td/Shellfish` deletes the tag 'Shellfish' from the patient at index 1.
 
-  <img src="images/DeleteTagExample.png" width="450" height="320">
+  <img src="images/DeleteTagExample.png" width="490" height="340">
 * `tag 2 td/diabetes` deletes the tag 'diabetes' from the patient at index 2.
 
 --------------------------------------------------------------------------------------------------------------------
