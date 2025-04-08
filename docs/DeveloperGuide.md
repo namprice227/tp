@@ -197,12 +197,16 @@ The **Model** component encapsulates and manages the core data of the applicatio
 
 The `Storage` component,
 
-* can save address book data, archived book data, and user preference data in JSON format, and read them back into corresponding objects.  
+* can save patient record data, archived patient data, and user preference data in JSON format, and read them back into corresponding objects.  
 * inherits from `AddressBookStorage`, `ArchivedBookStorage`, and `UserPrefsStorage`, which means it can be treated as any of them (depending on the required functionality in a given context).  
 * delegates the actual reading and writing of JSON data to specific implementations like `JsonAddressBookStorage`, `JsonArchivedBookStorage`, and `JsonUserPrefsStorage`.  
 * uses helper classes such as `JsonSerializableAddressBook` and `JsonSerializableArchivedBook` to convert between model data and JSON.  
 * further relies on classes like `JsonAdaptedPerson` and `JsonAdaptedTag` to handle conversion of individual elements within the model.  
 * depends on some classes in the Model component (because the Storage component’s job is to save/retrieve objects that belong to the Model).
+
+**Note:** Although the storage file is named `addressbook.json`, it actually stores patient data.
+**Note:** Although the storage file is named `archivedbook.json`, it actually stores archived patient data.
+
 
 ### Common classes
 
@@ -329,16 +333,16 @@ The following activity diagram summarizes what happens when a user executes a ne
 ### Product scope
 
 **Target user profile**:
-* User Role: HealthHealthcare administrators
+* User Role: Healthcare administrators
 * Workplace: Family clinics
 * Responsibilities
-  * Maintain and update patient and emergency contact information.
+  * Maintain and update patient records and associated emergency contact information.
   * Effortlessly monitor and stay on top of patients’ upcoming appointments, reducing scheduling conflicts and ensuring prompt follow-ups.
   * Efficiently manage and update essential patient data, including insurance details, allergies, medical conditions, and treatment history, to ensure comprehensive and accurate medical records.
 
 **Value proposition**
 
-HealthSync allows healthcare staff to efficiently organize patient details and key contacts in one unified platform.
+HealthSync allows healthcare staff to efficiently organize patient records and manage critical emergency contact details within one unified platform
 By providing quick access to up-to-date information, administrators can seamlessly connect with patients' emergency contacts, ensuring efficient communication and prompt action, particularly in managing recovery progress and treatment schedules.
 
 ### User Stories
@@ -780,14 +784,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       HealthSync must be available for use at least 99% of the time, especially during clinic operating hours. Regular maintenance should be scheduled during off-peak times.
 
    * Memory Recovery and Backup:
-      Contact data must be backed up daily to prevent data loss. The system should be able to recover from a backup within 2 hours of a failure.
+      Patients data must be backed up daily to prevent data loss. The system should be able to recover from a backup within 2 hours of a failure.
 
 
 2. Performance Requirements:
-   *  Responsiveness: HealthSync should respond to user commands (e.g., adding, editing, or viewing contacts) within 3 seconds for typical operations under normal usage conditions (i.e., up to 1000 contacts in the database).
+   *  Responsiveness: HealthSync should respond to user commands (e.g., adding, editing, or viewing patient data) within 3 seconds for typical operations under normal usage conditions (i.e., up to 1000 patient records in the database).
 
    * Scalability:
-   HealthSync should be able to handle up to 5000 contacts without significant performance degradation. Basic operations, such as editing or adding contacts, should not exceed a response time of 4 seconds under this load.
+   HealthSync should be able to handle up to 5000 patient records without significant performance degradation. Basic operations, such as editing or adding patient records, should not exceed a response time of 4 seconds under this load.
 
    * Concurrency: HealthSync should be able to handle up to 50 concurrent patients without noticeable sluggishness in performance for typical use.
 
@@ -802,9 +806,9 @@ The system must provide immediate feedback (within 1 second) when an error occur
 
 4. Data and Storage Requirements:
    * Human-Editable File Format:
-   Contact information should be stored in a human-readable and editable format (e.g., .json or .csv) so that administrators can manually access and modify data if needed.
+   Patient information should be stored in a human-readable and editable format (e.g., .json or .csv) so that administrators can manually access and modify data if needed.
 
-    * Data Integrity: The system must ensure that no data is lost or corrupted during common operations (e.g., adding, updating, or deleting contacts). Transaction-like behavior must be implemented to ensure all data operations either succeed fully or fail without partially corrupting data.
+    * Data Integrity: The system must ensure that no data is lost or corrupted during common operations (e.g., adding, updating, or deleting records). Transaction-like behavior must be implemented to ensure all data operations either succeed fully or fail without partially corrupting data.
 
 
 5. Compliance and Security:
@@ -822,7 +826,7 @@ The system must provide immediate feedback (within 1 second) when an error occur
    The system should be designed with a modular architecture, allowing for easy future extensions such as additional data fields, user roles, or features (e.g., appointment scheduling or integration with electronic health records).
 
    * Testability:
-HealthSync must be easily testable, with automated tests that can cover at least 70% of the codebase. Core features (e.g., adding a contact, deleting outdated contacts) should have dedicated test cases.
+HealthSync must be easily testable, with automated tests that can cover at least 70% of the codebase. Core features (e.g., adding a patient record, deleting outdated patient record) should have dedicated test cases.
 
 
 
@@ -1070,11 +1074,11 @@ testers are expected to do more *exploratory* testing.
 
 ## **Glossary**
 1. **Command-Line Interface (CLI):** A method of interacting with HealthSync through typed text commands.
-2. **Emergency Contact:** The person to be notified in the event of a patient's emergency. Their name, phone number, and relationship to the patient are all stored in HealthSync.
+2. **Emergency Contact:** The person to be notified in the event of a patient's emergency, associated with patient record. Their name, phone number, and relationship to the patient are all stored in HealthSync.
 3. **Healthcare Administrator:** The primary user of HealthSync, responsible for managing patient and emergency contact details within a clinic environment.
 4. **HealthSync:** A healthcare application designed to assist healthcare administrators in efficiently managing patient contact information within a clinic.
 5. **Mainstream OS**: Windows, Linux, Unix, MacOS.
-6. **Private contact detail**: A contact detail intended to remain confidential and not shared with others
+6. **Private patient detail**: A contact detail intended to remain confidential and not shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Planned Enhancements**
