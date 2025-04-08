@@ -826,10 +826,7 @@ The system must provide immediate feedback (within 1 second) when an error occur
    The system should be designed with a modular architecture, allowing for easy future extensions such as additional data fields, user roles, or features (e.g., appointment scheduling or integration with electronic health records).
 
    * Testability:
-HealthSync must be easily testable, with automated tests that can cover at least 70% of the codebase. Core features (e.g., adding a patient record, deleting outdated patient record) should have dedicated test cases.
-
-
-
+HealthSync must be easily testable, with automated tests that can cover at least 70% of the codebase. Core features (e.g., adding a patient record, deleting outdated patient records) should have dedicated test cases.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for Manual Testing**
