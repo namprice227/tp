@@ -435,20 +435,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Main Success Scenario (MSS):**
 1. Healthcare Administrator requests to sort the list of patients by name.
-2. HealthSync prompts the user to choose the sorting order:
-    - Name (ascending alphabetical order).
-    - Appointment (ascending lexicographical order).
-3. Healthcare Administrator selects the preferred sorting order.
-4. HealthSync sorts the patient list accordingly.
-5. HealthSync displays the sorted patient list.
-6. Use case ends.
+2. HealthSync sorts the patient list in ascending alphabetically order.
+3. HealthSync displays the sorted patient list.
+4. Use case ends.
 
 **Extensions:**
-- **3a.** The entered sorting order is invalid (i.e. not name or appointment).
-    - **3a1.** HealthSync informs the user of the invalid sorting order.
-    - Use case resumes from step **2**.
-- **5a.** Healthcare Administrator chooses to undo the command.
-    - **5a1.** Transition to **UC09 - Undo Previous Command**.
+- **2a.** Healthcare Administrator chooses to undo the command.
+    - **2a1.** Transition to **UC09 - Undo Previous Command**.
 
 ---
 
@@ -461,11 +454,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. Use case ends.
 
 **Extensions:**
-
-- **2a.** No patients have scheduled appointments.
-    - **2a1.** HealthSync sorts the list alphabetically by name.
-    - **2a2.** HealthSync notifies the user that no appointments are scheduled.
-    - Use case ends.
 
 - **3a.** Healthcare Administrator chooses to undo the command.
     - **3a1.** Transition to **UC09 - Undo Previous Command.**
