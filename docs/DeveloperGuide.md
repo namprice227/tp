@@ -179,7 +179,7 @@ The `Storage` component,
 
 * can save address book data, archived book data, and user preference data in JSON format, and read them back into corresponding objects.  
 * inherits from `AddressBookStorage`, `ArchivedBookStorage`, and `UserPrefsStorage`, which means it can be treated as any of them (depending on the required functionality in a given context).  
-* delegates the actual reading and writing of JSON data to specific implementations like `JsonAddressBookStorage`, `JsonArchivedBookStorage`, and `JsonUserPrefsStorage`.  
+* delegates the actual reading and writing of JSON data to specific implementations like `JsonAddressBookStorage`, `JsonArchivedBookStorage`, and `JsonUserPrefsStorage`.
 * uses helper classes such as `JsonSerializableAddressBook` and `JsonSerializableArchivedBook` to convert between model data and JSON.  
 * further relies on classes like `JsonAdaptedPerson` and `JsonAdaptedTag` to handle conversion of individual elements within the model.  
 * depends on some classes in the Model component (because the Storage component’s job is to save/retrieve objects that belong to the Model).
@@ -886,7 +886,7 @@ testers are expected to do more *exploratory* testing.
       **Expected:** Patients with appointments are listed first, sorted in lexicographical order by appointment date (nearest upcoming appointment at the top), followed by patients without appointments.
 
 3. **Invalid sort field**
-    - **Test case:** `sort invalidField`  
+    - **Test case:** `sort invalidField`
       **Expected:** The system displays an error message stating that the specified field is not available for sorting.
 
 ---
@@ -895,7 +895,7 @@ testers are expected to do more *exploratory* testing.
 
 1. **Setting a valid emergency contact**
     - **Prerequisites:** A patient is present in the list.
-    - **Test case:** `emergency 1 n/Alden Tan p/98765432 r/Boyfriend`  
+    - **Test case:** `emergency 1 n/Alden Tan p/98765432 r/Boyfriend`
       **Expected:** Emergency contact details for the patient at index 1 are updated. A confirmation message is displayed showing the new emergency contact details.
 
 2. **Incomplete emergency contact details**
@@ -921,7 +921,7 @@ testers are expected to do more *exploratory* testing.
 
 3. **Attempting to archive while in archive mode**
     - **Prerequisites:** The system is in archive mode (viewing archived patients).
-    - **Test case:** `archive 1`  
+    - **Test case:** `archive 1`
       **Expected:** The system informs the user that the archive command is not available while viewing the archived patient list.
 
 ---
@@ -930,7 +930,7 @@ testers are expected to do more *exploratory* testing.
 
 1. **Listing archived patients when archive is non-empty**
     - **Prerequisites:** At least one patient has been archived (use the `archive` command first).
-    - **Test case:** `listarchive`  
+    - **Test case:** `listarchive`
       **Expected:** The system retrieves and displays the list of archived patients along with a confirmation message.
 
 2. **Listing archived patients when there are no archived patients**
@@ -949,7 +949,7 @@ testers are expected to do more *exploratory* testing.
 
 1. **Unarchiving a patient successfully**
     - **Prerequisites:** The archive list contains at least one patient (use the `archive` command first).
-    - **Test case:** `unarchive 1`  
+    - **Test case:** `unarchive 1` 
       **Expected:** The patient at index 1 in the archive list is moved back to the main patient list. A confirmation message is displayed.
 
 2. **Unarchiving with an invalid index**
@@ -958,7 +958,7 @@ testers are expected to do more *exploratory* testing.
 
 3. **Attempting to use `unarchive` while not in archive mode**
     - **Prerequisites:** The system is in the main patient list view. (use the `list` command first)
-    - **Test case:** `unarchive 1`  
+    - **Test case:** `unarchive 1` 
       **Expected:** The system informs the user that the unarchive command is not available while viewing the main patient list.
 
 ---
@@ -967,7 +967,7 @@ testers are expected to do more *exploratory* testing.
 
 1. **Adding a new tag successfully**
     - **Prerequisites:** A patient exists in the list.
-    - **Test case:** `tag 1 ta/peanuts`  
+    - **Test case:** `tag 1 ta/peanuts` 
       **Expected:** The tag "peanuts" is added to the patient at index 1. A confirmation message is displayed showing the updated tag list.
 
 2. **Attempting to add a duplicate tag**
@@ -976,7 +976,7 @@ testers are expected to do more *exploratory* testing.
       **Expected:** The system recognises the duplicate and does not add it. A message is displayed indicating that the tag already exists.
 
 3. **Adding a tag with invalid format**
-    - **Test case:** `tag 1 ti/!@#`  
+    - **Test case:** `tag 1 ti/!@#`
       **Expected:** No tag is added. The system displays an error message indicating that the tag must be alphanumeric.
 
 ---
@@ -985,7 +985,7 @@ testers are expected to do more *exploratory* testing.
 
 1. **Successful undo of a modifying command**
     - **Prerequisites:** A modifying command (e.g., `edit`, `delete`, `tag`) has been executed.
-    - **Test case:** `undo`  
+    - **Test case:** `undo`
       **Expected:** The system reverts to the state before the last modifying command and displays a confirmation message with the updated data.
 
 2. **Attempting undo when no command is available to undo**
@@ -999,7 +999,7 @@ testers are expected to do more *exploratory* testing.
       **Expected:** The system displays an error message indicating that undo can only be done once and no further undo is possible.
 
 4. **Attempting to undo an archive command**
-    - **Prerequisites:** The most recent command is an `archive` command (use the `archive` command first). 
+    - **Prerequisites:** The most recent command is an `archive` command (use the `archive` command first).
     - **Test case:** `undo`  
       **Expected:** The system displays an error message stating that the archive command cannot be undone.
 
@@ -1009,7 +1009,7 @@ testers are expected to do more *exploratory* testing.
 
 1. **Successful redo after an undo**
     - **Prerequisites:** A modifying command was undone using `undo` (use the `undo` command first).
-    - **Test case:** `redo`  
+    - **Test case:** `redo` 
       **Expected:** The previously undone command is reapplied, and the system confirms the change by displaying the updated data.
 
 2. **Attempting redo when no command is available to redo**

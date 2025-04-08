@@ -17,7 +17,7 @@ This hybrid approach supports rapid responses in a healthcare environment where 
 ---
 
 > **⚠️ Warning:** HealthSync is only designed for **Singapore-based family clinics**. It operates exclusively in **English** and does not support other languages or international clinic formats.
-> 
+>
 > Using HealthSync with other languages or across multiple countries and timezones may lead to unexpected behaviour.
 
 ---
@@ -229,7 +229,7 @@ Examples:
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/91234567`
 
 > **⚠️ Warning:** An entry is considered a duplicate if it shares the same name and phone number or the same name and email address.
-> 
+>
 > Phone numbers must be exactly 8 digits and begin with 6, 8, or 9.
 >
 > HealthSync permits entries with identical phone numbers or email addresses, such as in parent-child relationships, but their names must be different to avoid duplication.
