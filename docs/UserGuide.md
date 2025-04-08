@@ -502,9 +502,18 @@ Furthermore, certain edits can cause the HealthSync to behave in unexpected ways
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+
 2. **If you minimise the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimised, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
-3.  When the `listarchive` command is executed with a selected patient, the details panel is not refreshed. To resolve this, click on a patient in the archive list to refresh. If the list is empty, switch back to the main patient list and ensure no patient is selected before running the command again
+
+
+3.  When the `listarchive` command is executed with a selected patient, the details panel is not refreshed. To resolve this, click on a patient in the archive list to refresh. If the list is empty, switch back to the main patient list and ensure no patient is selected before running the command again.
+
+
 4. Currently, appointments remain visible even after their date/time has passed. Automatic handling or deletion of past appointments is planned for a future release
+
+
+5. Currently, when an administrator tries to schedule an appointment for the same patient within a 15-minute window of their previous appointment, the system blocks it—even if there are no conflicting appointments with others. A workaround is to first schedule the appointment at a completely different time, then reschedule it to the desired time.
 
 <div style="page-break-after: always;"></div>
 
