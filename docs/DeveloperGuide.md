@@ -784,7 +784,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       HealthSync must be available for use at least 99% of the time, especially during clinic operating hours. Regular maintenance should be scheduled during off-peak times.
 
    * Memory Recovery and Backup:
-      Patients data must be backed up daily to prevent data loss. The system should be able to recover from a backup within 2 hours of a failure.
+      Patient data must be backed up daily to prevent data loss. The system should be able to recover from a backup within 2 hours of a failure.
 
 
 2. Performance Requirements:
