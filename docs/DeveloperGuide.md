@@ -9,7 +9,7 @@
 ## Table of Contents
 
 - [Acknowledgements](#acknowledgements)
-- [Setting Up and Getting Started](#setting-up-and-getting-started)
+- [Setting Up, Getting Started](#setting-up-getting-started)
 - [Design](#design)
     - [Architecture](#architecture)
     - [UI Component](#ui-component)
