@@ -6,8 +6,30 @@
 
 # HealthSync Developer Guide
 
-<!-- * Table of Contents -->
-<page-nav-print />
+## Table of Contents
+
+- [Acknowledgements](#acknowledgements)
+- [Setting Up and Getting Started](#setting-up-and-getting-started)
+- [Design](#design)
+    - [Architecture](#architecture)
+    - [UI Component](#ui-component)
+    - [Logic Component](#logic-component)
+    - [Model Component](#model-component)
+    - [Storage Component](#storage-component)
+    - [Common Classes](#common-classes)
+- [Implementation](#implementation)
+    - [Undo/Redo Feature](#undoredo-feature)
+- [Documentation, Logging, Testing, Configuration, DevOps](#documentation-logging-testing-configuration-devops)
+- [Appendix: Requirements](#appendix-requirements)
+    - [Product Scope](#product-scope)
+    - [User Stories](#user-stories)
+    - [Use Cases](#use-cases)
+    - [Non-Functional Requirements](#non-functional-requirements)
+- [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+- [Glossary](#glossary)
+- [Appendix: Planned Enhancements](#appendix-planned-enhancements)
+- [Appendix: Effort](#appendix-effort)
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -77,8 +99,6 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 #### Overview
-
-## UI Component
 
 The `MainWindow` serves as the primary container for all UI components, orchestrating interactions between different elements and ensuring a seamless user experience for healthcare administrators managing patient records. Its layout is defined in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-F11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml), which specifies the structure and arrangement of UI elements using JavaFX's XML-based markup.
 
