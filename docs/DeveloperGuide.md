@@ -1067,7 +1067,7 @@ Currently, HealthSync is only available for usage in English. We recognise that 
 ### Removal of past appointment dates
 At present, HealthSync does not automatically remove or archive past appointment dates, which can clutter the system and make it harder to manage current and future appointments. We plan to implement an automatic system that will remove or archive past appointment dates, ensuring a cleaner, more efficient user experience by keeping only relevant and upcoming appointments visible.
 
-### UI Update on Undo
+### UI Update on Undo, Redo
 Currently, when an undo operation is performed, the UI does not update immediately to reflect the change. In a future release, we plan to enhance the undo functionality so that the UI is updated in real time, providing healthcare administrators with immediate visual feedback and a more intuitive interaction experience.
 
 ### Enhanced Find Command Functionality
